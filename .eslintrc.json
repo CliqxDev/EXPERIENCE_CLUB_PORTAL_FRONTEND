@@ -1,10 +1,4 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "jest": true,
-    "node": true
-  },
   "extends": [
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/recommended",
