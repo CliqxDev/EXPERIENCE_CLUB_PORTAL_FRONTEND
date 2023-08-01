@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import SearchMenu from '.';
 
@@ -7,4 +7,4 @@ export default {
   component: SearchMenu
 } as Meta;
 
-export const Default: Story = () => <SearchMenu />;
+export const Default = () => <SearchMenu onClose={() => {}} />;
