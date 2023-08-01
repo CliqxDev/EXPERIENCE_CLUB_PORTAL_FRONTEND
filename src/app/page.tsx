@@ -1,18 +1,14 @@
 'use client';
 
-import styled from 'styled-components';
-import GlobalStyles from 'styles/global';
+import React from 'react';
+import { Wrapper } from 'styles/styles';
 
-const Wrapper = styled.main`
-  display: flex;
-  color: red;
-`;
+import { NavigationProfile } from 'components/NavigationProfile';
 
 export default function Home() {
   return (
-    <>
-      <GlobalStyles />
-      <Wrapper>teste</Wrapper>
-    </>
+    <Wrapper>
+      <NavigationProfile />
+    </Wrapper>
   );
 }
