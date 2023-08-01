@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import Button from '.';
 
@@ -7,4 +7,4 @@ export default {
   component: Button
 } as Meta;
 
-export const Default: Story = () => <Button />;
+export const Default = () => <Button onClick={() => {}}>Test</Button>;

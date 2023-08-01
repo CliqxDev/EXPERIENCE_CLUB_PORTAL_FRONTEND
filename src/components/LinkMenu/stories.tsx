@@ -7,4 +7,4 @@ export default {
   component: LinkMenu
 } as Meta;
 
-export const Default: Story = () => <LinkMenu />;
+export const Default: Story = () => <LinkMenu>Test</LinkMenu>;
