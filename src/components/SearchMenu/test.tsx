@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 
-import Main from '.';
+import SearchMenu from '.';
 
-describe('<Main />', () => {
+describe('<SearchMenu />', () => {
   it('should render the heading', () => {
-    render(<Main />);
+    render(<SearchMenu />);
 
     expect(
-      screen.getByRole('heading', { name: /Main/i })
+      screen.getByRole('heading', { name: /SearchMenu/i })
     ).toBeInTheDocument();
   });
 });

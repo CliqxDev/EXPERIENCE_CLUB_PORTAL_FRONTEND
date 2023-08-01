@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 
-import Main from '.';
+import Menu from '.';
 
-describe('<Main />', () => {
+describe('<Menu />', () => {
   it('should render the heading', () => {
-    render(<Main />);
+    render(<Menu />);
 
     expect(
-      screen.getByRole('heading', { name: /Main/i })
+      screen.getByRole('heading', { name: /Menu/i })
     ).toBeInTheDocument();
   });
 });
