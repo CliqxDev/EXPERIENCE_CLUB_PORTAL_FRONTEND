@@ -1,10 +1,4 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "jest": true,
-    "node": true
-  },
   "extends": [
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/recommended",
@@ -87,7 +81,8 @@
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "import/no-cycle": "off",
-    "react/no-unstable-nested-components": "off"
+    "react/no-unstable-nested-components": "off",
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/parsers": {
