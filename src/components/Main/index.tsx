@@ -1,16 +1,10 @@
+import Header from 'components/Header';
+
 import * as S from './styles';
 
-const Main = ({
-  title = 'Next Boilerplate',
-  description = 'TypeScript, ReactJS, NextJS e Styled Components'
-}) => (
+const Main = () => (
   <S.Wrapper>
-    <S.Title>{title}</S.Title>
-    <S.Description>{description}</S.Description>
-    <S.Illustration
-      src="/img/hero-illustration.svg"
-      alt="Um desenvolvedor de frente para uma tela com código."
-    />
+    <Header />
   </S.Wrapper>
 );
 
