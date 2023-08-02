@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable simple-import-sort/imports */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
+import { redirect } from 'next/navigation';
 import { clearSigIn, sigIn } from 'flux/modules/sigIn/actions';
 import { useAppDispatch } from 'hook/store';
 import { sigInSchema } from 'utils/schemas';
@@ -13,6 +15,7 @@ import Checkbox from 'components/Checkbox';
 import Input from 'components/Input';
 import { RequestStatus } from 'models/iRequest';
 
+import { login } from 'utils/services/auth';
 import * as S from './styles';
 
 type UserType = {
@@ -41,13 +44,9 @@ const SigIn = () => {
     }
 
     if (status === RequestStatus.success && !isEmpty(data)) {
-      if (!data.validated) {
-        // navigate('/alterar-senha');
-      } else {
-        // login(data.token);
+        login(data);
         dispatch(clearSigIn());
-        // navigate('/transacoes');
-      }
+        redirect('/');
     }
   }, [status, message, data]);
 
@@ -61,6 +60,8 @@ const SigIn = () => {
       setCheckboxStatus(true);
     }
   }, []);
+
+  
 
   const handleSubmit = () => {
     dispatch(
@@ -87,7 +88,11 @@ const SigIn = () => {
       <h2>e nunca mais perca um conteúdo</h2>
       <Input
         value={formik.values.email}
-        onChange={formik.handleChange}
+        onChange={(e: any) => {
+          formik.handleChange(e);
+          setCheckboxStatus(false);
+          localStorage.removeItem("REMEMBER_SIGN");
+        }}
         onBlur={formik.handleBlur}
         label="E-mail"
         required
@@ -100,7 +105,11 @@ const SigIn = () => {
       <Input
         required
         value={formik.values.password}
-        onChange={formik.handleChange}
+        onChange={(e: any) => {
+          formik.handleChange(e);
+          setCheckboxStatus(false);
+          localStorage.removeItem("REMEMBER_SIGN");
+        }}
         onBlur={formik.handleBlur}
         label="Senha"
         id="password"

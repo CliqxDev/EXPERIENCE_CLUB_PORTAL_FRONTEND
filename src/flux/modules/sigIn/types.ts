@@ -3,11 +3,7 @@ export type SigInRequest = {
   password: string;
 };
 
-export type SigIn = {
-  token: string;
-  validated: boolean;
-};
-
 export interface SigInResponse {
-  data: SigIn;
+  access: string;
+  refresh: string;
 }
