@@ -13,7 +13,7 @@ type Response = {
 function* sigInSaga({ payload }: ReturnType<typeof sigIn.request>): Generator {
   try {
     const response: Response = (yield call(login, payload)) as Response;
-    yield put(sigIn.success(response.data.data));
+    yield put(sigIn.success(response.data));
   } catch (err) {
     const errors = err as Error | AxiosError;
     yield put(sigIn.failure(errors));
