@@ -1,15 +1,46 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-  button:hover {
-    background: #6750a4;
-    box-shadow:
-      0px 1px 3px 1px rgba(0, 0, 0, 0.15),
-      0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  }
-`;
+export const Wrapper = styled.div``;
 
-export const Button = styled.button`
+const variants = {
+  default: css`
+    background: #2954fc;
+    border: none;
+
+    &:disabled {
+      cursor: default;
+      box-shadow: none;
+      background: #e8e8e8;
+      color: #1d1d1b;
+    }
+
+    &:not([disabled]):hover {
+      background: #6750a4;
+      box-shadow:
+        0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+        0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    }
+  `,
+  link: css`
+    background: #ffffff;
+    color: #2954fc;
+    border: none;
+
+    &:disabled {
+      cursor: default;
+      box-shadow: none;
+      background: #e8e8e8;
+      color: #1d1d1b;
+    }
+
+    &:not([disabled]):hover {
+      background: rgba(103, 80, 164, 0.08);
+      color: #6750a4;
+    }
+  `
+};
+
+export const Button = styled.button<{ variant: 'default' | 'link' }>`
   outline: none;
   display: flex;
   align-items: center;
@@ -21,7 +52,6 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: 20px;
   border-radius: 8px;
-  background: #2954fc;
-  border: none;
   cursor: pointer;
+  ${({ variant }) => variant && variants[variant]}
 `;

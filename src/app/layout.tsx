@@ -1,3 +1,6 @@
+/* eslint-disable import/order */
+
+import { Providers } from 'flux/provider';
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from 'styles/registry';
 
@@ -14,8 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {' '}
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <Providers>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </Providers>
       </body>
     </html>
   );

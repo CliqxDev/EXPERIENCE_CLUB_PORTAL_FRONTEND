@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Link from 'next/link';
 
 import Button from 'components/Button';
 import { ButtonMenu } from 'components/ButtonMenu';
@@ -64,9 +65,11 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => (
         Embarque agora na <br />
         transformação.
       </span>
-      <Button onClick={() => {}} id="sign">
-        Entrar
-      </Button>
+      <Link href="/sigin" passHref>
+        <Button onClick={() => {}} id="sign">
+          Entrar
+        </Button>
+      </Link>
     </S.BoxSign>
 
     <LinkMenu>Sobre</LinkMenu>

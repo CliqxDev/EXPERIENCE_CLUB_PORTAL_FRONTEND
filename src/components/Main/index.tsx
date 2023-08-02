@@ -9,5 +9,4 @@ const Main = () => (
     <CarouselSlide />
   </S.Wrapper>
 );
-
 export default Main;
