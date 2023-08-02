@@ -3,15 +3,17 @@ import { IRequest, RequestStatus } from 'models/iRequest';
 import { Action, createReducer } from 'typesafe-actions';
 
 import { clearSigIn, sigIn } from './actions';
-import { SigIn } from './types';
+import { SigInResponse } from './types';
 
-const initialState: IRequest<SigIn> = {
+const initialState: IRequest<SigInResponse> = {
   data: null,
   message: null,
   status: RequestStatus.idle
 };
 
-const sigInReducer = createReducer<IRequest<SigIn>, Action>(initialState)
+const sigInReducer = createReducer<IRequest<SigInResponse>, Action>(
+  initialState
+)
   .handleAction(sigIn.request, state => ({
     ...state,
     data: null,
