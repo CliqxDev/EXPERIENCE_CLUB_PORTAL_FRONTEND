@@ -23,8 +23,8 @@ const request = async (
 
   try {
     const token = getToken();
-    if (token) {
-      headers['x-person-token'] = token;
+    if (token.access) {
+      headers['x-person-token'] = token.access;
     }
   } catch (ex) {
     if (ex !== 'No current user') {
