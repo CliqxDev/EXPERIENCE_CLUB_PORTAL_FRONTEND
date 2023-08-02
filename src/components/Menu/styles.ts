@@ -6,11 +6,7 @@ export const Wrapper = styled.main`
   background-color: #ffffff;
   padding: 1.6rem;
   top: 0;
-<<<<<<< HEAD
   z-index: 999;
-=======
-  z-index: 100;
->>>>>>> 9a5eb5bbc7f4883a159c197eaae6c2410c7a3302
 
   #exit {
     width: 100%;
