@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import passwordIcon from '../../../public/eye-off.svg'
+import passwordOffIcon from '../../../public/eye-off.svg'
+import passwordOnIcon from '../../../public/eye-on.svg'
 
 import { AlertPassword, ContainerInput, ContentSecurity, InputPassword, SaveButton, Title } from "./styles";
 
@@ -20,14 +21,25 @@ export function SecurityForm() {
           type={password ? 'text' : 'password'}
           placeholder="Senha atual"
         />
-        <Image
-          src={passwordIcon}
-          style={{ marginRight: '1rem', cursor: 'pointer' }}
-          width={20}
-          height={20}
-          alt="Mostrar Senha"
-          onClick={() => setPassword(!password)}
-        />
+        {!password ?
+          <Image
+            src={passwordOffIcon}
+            style={{ marginRight: '1rem', cursor: 'pointer' }}
+            width={20}
+            height={20}
+            alt="Mostrar Senha"
+            onClick={() => setPassword(!password)}
+          />
+          :
+          <Image
+            src={passwordOnIcon}
+            style={{ marginRight: '1rem', cursor: 'pointer' }}
+            width={20}
+            height={20}
+            alt="Mostrar Senha"
+            onClick={() => setPassword(!password)}
+          />
+        }
       </ContainerInput>
 
       {/* SENHA  */}
@@ -36,14 +48,25 @@ export function SecurityForm() {
           type={newPassword ? 'text' : 'password'}
           placeholder="Senha"
         />
-        <Image
-          src={passwordIcon}
-          style={{ marginRight: '1rem', cursor: 'pointer' }}
-          width={20}
-          height={20}
-          alt="Mostrar Senha"
-          onClick={() => setNewPassword(!newPassword)}
-        />
+        {!newPassword ?
+          <Image
+            src={passwordOffIcon}
+            style={{ marginRight: '1rem', cursor: 'pointer' }}
+            width={20}
+            height={20}
+            alt="Mostrar Senha"
+            onClick={() => setNewPassword(!newPassword)}
+          />
+          :
+          <Image
+            src={passwordOnIcon}
+            style={{ marginRight: '1rem', cursor: 'pointer' }}
+            width={20}
+            height={20}
+            alt="Mostrar Senha"
+            onClick={() => setNewPassword(!newPassword)}
+          />
+        }
       </ContainerInput>
 
       <AlertPassword>• Ter 8 ou mais caracteres</AlertPassword>
@@ -57,14 +80,26 @@ export function SecurityForm() {
           type={confirmPassword ? 'text' : 'password'}
           placeholder="Confirmação de senha"
         />
-        <Image
-          src={passwordIcon}
+        {!confirmPassword ?
+          <Image
+          src={passwordOffIcon}
           style={{ marginRight: '1rem', cursor: 'pointer' }}
           width={20}
           height={20}
           alt="Mostrar Senha"
           onClick={() => setConfirmPassword(!confirmPassword)}
         />
+          :
+          <Image
+          src={passwordOnIcon}
+          style={{ marginRight: '1rem', cursor: 'pointer' }}
+          width={20}
+          height={20}
+          alt="Mostrar Senha"
+          onClick={() => setConfirmPassword(!confirmPassword)}
+        />
+        }
+        
       </ContainerInput>
 
       <SaveButton>Salvar</SaveButton>
