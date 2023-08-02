@@ -30,6 +30,8 @@ export const Label = styled.label`
   `}
 `;
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment, spaced-comment
+//@ts-ignore
 export const InputText = styled(InputMask)`
   ${() => css`
     font-size: 16px;
