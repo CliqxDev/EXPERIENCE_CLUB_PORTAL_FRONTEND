@@ -14,7 +14,7 @@ const Trails = () => {
   useEffect(() => {
     setTimeout(() => {
       setOptionLabel('mercado')
-    }, 500)
+    }, 100)
   }, [])
 
   return (
