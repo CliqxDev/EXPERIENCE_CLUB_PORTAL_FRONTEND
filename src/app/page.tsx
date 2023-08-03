@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
-import { Wrapper } from 'styles/styles';
+import GlobalStyles from 'styles/global';
 
-import { NavigationProfile } from 'components/NavigationProfile';
+import Main from 'components/Main';
 
 export default function Home() {
   return (
-    <Wrapper>
-      <NavigationProfile />
-    </Wrapper>
+    <>
+      <GlobalStyles />
+      <Main />
+    </>
   );
 }
