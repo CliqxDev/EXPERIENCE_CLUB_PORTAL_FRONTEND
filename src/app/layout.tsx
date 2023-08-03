@@ -7,8 +7,8 @@ import GlobalStyles from 'styles/global';
 import theme from '../styles/theme';
 
 export const metadata: Metadata = {
-  title: 'EXP Club',
-  description: 'EXP Club'
+  title: 'EXPLORE, EXPAND, EXPERIENCE',
+  description: ''
 };
 
 export default function RootLayout({
