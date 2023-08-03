@@ -1,3 +1,4 @@
+import Accompany from 'components/Accompany';
 import CardTrails from 'components/CardTrails';
 import CarouselSlide from 'components/Carousel';
 import Columnists from 'components/Columnists';
@@ -13,6 +14,7 @@ const Main = () => (
     <Trails />
     <CardTrails />
     <Columnists />
+    <Accompany />
   </S.Wrapper>
 );
 export default Main;
