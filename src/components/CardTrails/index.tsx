@@ -101,7 +101,6 @@ const listCards: Array<object> = [
   },
 ]
 
-
 const CardTrails = () => {
   const [showMore, setShowMore] = useState(false);
 
