@@ -1,10 +1,8 @@
-'use client';
+/* eslint-disable import/order */
 
+import { Providers } from 'flux/provider';
 import type { Metadata } from 'next';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyles from 'styles/global';
-
-import theme from '../styles/theme';
+import StyledComponentsRegistry from 'styles/registry';
 
 export const metadata: Metadata = {
   title: 'EXPLORE, EXPAND, EXPERIENCE',
@@ -18,10 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <body>{children}</body>
-      </ThemeProvider>
+      <body>
+        <Providers>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </Providers>
+      </body>
     </html>
   );
 }
