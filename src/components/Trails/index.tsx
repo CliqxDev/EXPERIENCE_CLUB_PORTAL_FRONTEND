@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect,useState } from 'react'
 
+import Title from 'components/Title';
+
 import * as S from './styles';
 
 const Trails = () => {
@@ -19,7 +21,7 @@ const Trails = () => {
 
   return (
     <S.Wrapper>
-      <S.Title>Trilhas</S.Title>
+      <Title variant='black50'>Trilhas</Title>
 
       <S.ContentRadio style={{ marginTop: '2rem' }}>
         {/* MERCADO */}

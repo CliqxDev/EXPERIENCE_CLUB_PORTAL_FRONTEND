@@ -10,94 +10,61 @@ import subjectIcon from '../../../public/img/subject-icon.svg'
 
 import * as S from './styles';
 
-const listCards: Array<object> = [
+const listCards = [
   {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac2.',
     description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
     subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac3.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac4.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac5.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac6.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac7.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac8.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac9.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac00.',
+    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
+    subject: 'Reportagem',
   },
   {
     title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
     description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
     subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
   },
   {
     title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
     description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
     subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet consectetur. Interdum ac.',
-    img: <Image src="" alt="" />,
-    description: 'JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.',
-    iconSubject: <Image src="" alt="" />,
-    subject: 'Reportagem',
-    iconShare: <Image src="" alt="" />,
   },
 ]
 
@@ -111,7 +78,7 @@ const CardTrails = () => {
       {visibleListCard.map((card, idx: number) => (
         <S.ContentCard key={idx}>
 
-          <S.TileCardText>Lorem ipsum dolor sit amet consectetur. Interdum ac.</S.TileCardText>
+          <S.TileCardText>{card.title}</S.TileCardText>
           <S.ContentDescriptionCard>
             <Image
               src={descriptionImg}
@@ -119,7 +86,7 @@ const CardTrails = () => {
               width={120}
               height={120}
             />
-            <S.DescriptionCardText>JPMorgan Chase’s head of global real estate explains how and why the company is investing in tomorrow’s workplace.</S.DescriptionCardText>
+            <S.DescriptionCardText>{card.description}</S.DescriptionCardText>
           </S.ContentDescriptionCard>
 
           <S.FooterCard>
@@ -128,7 +95,7 @@ const CardTrails = () => {
                 src={subjectIcon}
                 alt="Assunto"
               />
-              <S.SubjectText>Reportagem</S.SubjectText>
+              <S.SubjectText>{card.subject}</S.SubjectText>
             </S.Subject>
             <Image
               src={shareIcon}

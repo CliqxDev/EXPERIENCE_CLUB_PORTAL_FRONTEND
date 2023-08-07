@@ -1,57 +1,43 @@
 /* eslint-disable react/no-array-index-key */
 import Image from 'next/image';
 
+import Title from 'components/Title';
+
 import arrowRight from '../../../public/img/arrow-right-blue.svg'
 import bannerCard from '../../../public/img/banner-card.png'
 import readIcon from '../../../public/img/read-icon.svg'
 
 import * as S from './styles';
 
-const listBanners: Array<object> = [
+const listBanners = [
   {
-    title: 'LEIA',
-    iconTop: <Image src="" alt="" />,
-    banner: <Image src="" alt="" />,
+    title: 'LEIA0',
     description: 'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.',
-    showMore: 'Veja',
-    iconFooter: <Image src="" alt="" />,
   },
   {
-    title: 'LEIA',
-    iconTop: <Image src="" alt="" />,
-    banner: <Image src="" alt="" />,
+    title: 'LEIA1',
     description: 'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.',
-    showMore: 'Veja',
-    iconFooter: <Image src="" alt="" />,
   },
   {
-    title: 'LEIA',
-    iconTop: <Image src="" alt="" />,
-    banner: <Image src="" alt="" />,
+    title: 'LEIA2',
     description: 'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.',
-    showMore: 'Veja',
-    iconFooter: <Image src="" alt="" />,
   },
   {
-    title: 'LEIA',
-    iconTop: <Image src="" alt="" />,
-    banner: <Image src="" alt="" />,
+    title: 'LEIA3',
     description: 'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.',
-    showMore: 'Veja',
-    iconFooter: <Image src="" alt="" />,
   },
 ]
 
 const Accompany = () => (
   <S.AccompanyWrapper>
-    <S.AccompanyTitle>Acompanhe</S.AccompanyTitle>
+    <Title variant='black400'>Acompanhe</Title>
 
     <S.AccompanyList>
       {listBanners.map((cardContent, idx) => (
         <S.AccompanyCard key={idx}>
           <S.TopCard >
             <S.AccompanyTitle style={{ color: '#686866', fontSize: '1.4rem', lineHeight: '2rem' }}>
-              LEIA
+              {cardContent.title}
             </S.AccompanyTitle>
 
             <Image
@@ -70,7 +56,7 @@ const Accompany = () => (
           />
 
           <S.DescriptionCard>
-            Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.
+            {cardContent.description}
           </S.DescriptionCard>
 
           <S.FooterCard>

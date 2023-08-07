@@ -51,11 +51,3 @@ export const ContentRadio = styled.div`
 
   margin-top: 1rem;
 `;
-
-export const Title = styled.h1`
-  font-family: Work Sans;
-  font-size: 2.8rem;
-  font-weight: 400;
-  line-height: 3.6rem;
-  color: #FFF;
-`;

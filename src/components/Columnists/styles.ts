@@ -16,15 +16,6 @@ export const TopContent = styled.div`
   margin: 6rem 0 0 0;
 `;
 
-export const ColumnistsTitle = styled.h1`
-  font-family: Work Sans;
-  font-size: 2.8rem;
-  font-weight: 400;
-  line-height: 3.6rem;
-
-  color: #4A4A49;
-`;
-
 export const ShowMore = styled.span`
   font-family: Work Sans;
   font-size: 1.4rem;
