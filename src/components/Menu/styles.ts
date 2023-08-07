@@ -33,30 +33,6 @@ export const Title = styled.span`
   letter-spacing: 0.5px;
 `;
 
-export const BoxSign = styled.div`
-  border: 1px solid #e8e8e8;
-  width: 100%;
-  height: 72px;
-  padding: 1.6rem;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.8rem;
-
-  #sign {
-    width: 145px;
-    height: 40px;
-  }
-
-  span {
-    color: #1d1d1b;
-    font-family: Work Sans;
-    font-size: 1.6rem;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-  }
-`;
-
 export const Divider = styled.div`
   margin-left: 1.6rem;
   height: 1px;

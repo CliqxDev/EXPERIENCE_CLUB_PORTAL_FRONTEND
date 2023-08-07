@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import Link from 'next/link';
 
+import BoxLogged from 'components/BoxLogged';
+// import BoxSign from 'components/BoxSign';
 import Button from 'components/Button';
 import { ButtonMenu } from 'components/ButtonMenu';
 import LinkMenu from 'components/LinkMenu';
@@ -60,17 +61,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => (
         </svg>
       </ButtonMenu>
     </S.Header>
-    <S.BoxSign>
-      <span>
-        Embarque agora na <br />
-        transformação.
-      </span>
-      <Link href="/sigin" passHref>
-        <Button onClick={() => {}} id="sign">
-          Entrar
-        </Button>
-      </Link>
-    </S.BoxSign>
+    {/* <BoxSign /> */}
+    <BoxLogged />
 
     <LinkMenu>Sobre</LinkMenu>
     <LinkMenu>Planos</LinkMenu>
