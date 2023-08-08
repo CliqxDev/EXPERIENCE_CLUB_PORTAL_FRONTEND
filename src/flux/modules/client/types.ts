@@ -12,3 +12,17 @@ export interface ClientInfoResponse {
   is_premium: boolean;
   is_admin: boolean;
 }
+
+export interface AssignNewsletterRequest {
+  email: string;
+  name: string;
+}
+
+export interface AssignNewsletterResponse {
+  success: string;
+}
+
+export interface Client {
+  clientInfo: ClientInfoResponse;
+  newsletter: AssignNewsletterResponse;
+}

@@ -10,6 +10,10 @@ export default {
       .email('E-mail inválido.')
       .required('Campo obrigatório.');
   },
+  EmailNotRequired() {
+    return Yup.string()
+      .email('E-mail inválido.')
+  },
   PasswordMatch() {
     return Yup.string()
       .required('Campo obrigatório.')

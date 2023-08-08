@@ -2,17 +2,21 @@
 import { AxiosError } from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { clientInfo } from './actions';
-import { getClientInfo } from './service';
-import { ClientInfoResponse } from './types';
+import { assignNewsletter, clientInfo } from './actions';
+import { getClientInfo, postAssignNewsletter } from './service';
+import { AssignNewsletterResponse, ClientInfoResponse } from './types';
 
-type Response = {
+type ClientInfoApiResponse = {
   data: ClientInfoResponse;
+};
+
+type AssignNewsletterApiResponse = {
+  data: AssignNewsletterResponse;
 };
 
 function* clientInfoSaga(): Generator {
   try {
-    const response: Response = (yield call(getClientInfo)) as Response;
+    const response: ClientInfoApiResponse = (yield call(getClientInfo)) as ClientInfoApiResponse;
     yield put(clientInfo.success(response.data));
   } catch (err) {
     const errors = err as Error | AxiosError;
@@ -20,4 +24,14 @@ function* clientInfoSaga(): Generator {
   }
 }
 
-export default [takeEvery(clientInfo.request, clientInfoSaga)];
+function* assignNewsletterSaga({ payload }: ReturnType<typeof assignNewsletter.request>): Generator {
+  try {
+    const response: AssignNewsletterApiResponse = (yield call(postAssignNewsletter, payload)) as AssignNewsletterApiResponse;
+    yield put(assignNewsletter.success(response.data));
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(assignNewsletter.failure(errors));
+  }
+}
+
+export default [takeEvery(clientInfo.request, clientInfoSaga), takeEvery(assignNewsletter.request, assignNewsletterSaga)];
