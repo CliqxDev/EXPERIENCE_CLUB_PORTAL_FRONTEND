@@ -82,7 +82,8 @@
     "jsx-a11y/anchor-is-valid": "off",
     "import/no-cycle": "off",
     "react/no-unstable-nested-components": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-debugger": "off"
   },
   "settings": {
     "import/parsers": {

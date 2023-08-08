@@ -1,12 +1,12 @@
 'use client';
 
 import FormLayout from 'components/FormLayout';
-import SigIn from 'components/SigIn';
+import Register from 'components/Register';
 
-export default function SigInPage() {
+export default function RegisterPage() {
   return (
     <FormLayout onRedirectPath="/">
-      <SigIn />
+      <Register />
     </FormLayout>
   );
 }

@@ -14,6 +14,9 @@ export const Wrapper = styled.main`
     background-color: #1d1d1b;
     margin-top: 2.4rem;
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Header = styled.div`
