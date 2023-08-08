@@ -7,4 +7,4 @@ export default {
   component: FormError
 } as Meta;
 
-export const Default: Story = () => <FormError />;
+export const Default: Story = () => <FormError>test</FormError>;

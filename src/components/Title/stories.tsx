@@ -7,4 +7,4 @@ export default {
   component: Title
 } as Meta;
 
-export const Default: Story = () => <Title />;
+export const Default: Story = () => <Title>test</Title>;
