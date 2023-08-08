@@ -126,24 +126,26 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
 
       <S.Divider />
       <S.TitleSort>Trilhas</S.TitleSort>
-      <LinkMenu variant="sort" color="#708CFD">
-        Futuro
-      </LinkMenu>
-      <LinkMenu variant="sort" color="#5476FD">
-        Startup
-      </LinkMenu>
-      <LinkMenu variant="sort" color="#254CE5">
-        ESG
-      </LinkMenu>
-      <LinkMenu variant="sort" color="#1D3CB3">
-        Tecnologia
-      </LinkMenu>
-      <LinkMenu variant="sort" color="#172E8B">
-        Gestão
-      </LinkMenu>
-      <LinkMenu variant="sort" color="#11236A">
-        Mercado
-      </LinkMenu>
+      <S.WrapperTrail>
+        <LinkMenu variant="sort" color="#708CFD">
+          Futuro
+        </LinkMenu>
+        <LinkMenu variant="sort" color="#5476FD">
+          Startup
+        </LinkMenu>
+        <LinkMenu variant="sort" color="#254CE5">
+          ESG
+        </LinkMenu>
+        <LinkMenu variant="sort" color="#1D3CB3">
+          Tecnologia
+        </LinkMenu>
+        <LinkMenu variant="sort" color="#172E8B">
+          Gestão
+        </LinkMenu>
+        <LinkMenu variant="sort" color="#11236A">
+          Mercado
+        </LinkMenu>
+      </S.WrapperTrail>
       {isLogged && (
         <Button onClick={handleLogout} id="exit">
           Sair

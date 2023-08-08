@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.main`
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-color: #ffffff;
   padding: 1.6rem;
   top: 0;
@@ -49,4 +49,11 @@ export const TitleSort = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
   margin: 2.4rem 0;
+`;
+
+export const WrapperTrail = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 250px;
 `;
