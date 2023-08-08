@@ -1,9 +1,12 @@
 /* eslint-disable import/order */
-import { FC, useEffect } from 'react';
-import { clientInfo } from 'flux/modules/sigIn copy/actions';
+import { FC, useEffect, useState } from 'react';
+import { clearClientInfo } from 'flux/modules/client/actions';
+import { clearSigIn } from 'flux/modules/sigIn/actions';
+import { useClientInfo } from 'hook/selectors/clientHooks';
 import { useAppDispatch } from 'hook/store';
+import { isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
-import { isAuthenticated } from 'utils/services/auth';
+import { logout } from 'utils/services/auth';
 
 import BoxLogged from 'components/BoxLogged';
 import BoxSign from 'components/BoxSign';
@@ -17,17 +20,51 @@ type SearchMenuProps = {
   onClose: () => void;
 };
 
+const DEFAULT_MENU = [
+  {
+    label: 'Sobre',
+    path: '/'
+  },
+  {
+    label: 'Planos',
+    path: '/'
+  }
+];
+
 const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const dispatch = useAppDispatch();
+  const { data } = useClientInfo();
+  const [isLogged, setIsLogger] = useState(false);
+  const [menuList, setMenuList] = useState(DEFAULT_MENU);
 
   useEffect(() => {
-    debugger;
-
-    if (isAuthenticated()) {
-      debugger;
-      dispatch(clientInfo.request());
+    if (!isEmpty(data)) {
+      setIsLogger(true);
     }
-  }, []);
+  }, [data]);
+
+  useEffect(() => {
+    const newMenuList = [...DEFAULT_MENU];
+    if (isLogged) {
+      newMenuList.push({
+        label: 'Assinatura',
+        path: '/'
+      });
+    } else {
+      newMenuList.push({
+        label: 'Cadastre-se',
+        path: '/register'
+      });
+    }
+    setMenuList(newMenuList);
+  }, [isLogged]);
+
+  const handleLogout = () => {
+    dispatch(clearClientInfo());
+    dispatch(clearSigIn());
+    logout();
+    setIsLogger(false);
+  };
 
   return (
     <S.Wrapper>
@@ -78,14 +115,15 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
           </svg>
         </ButtonMenu>
       </S.Header>
-      <BoxSign />
-      <BoxLogged />
 
-      <LinkMenu>Sobre</LinkMenu>
-      <LinkMenu>Planos</LinkMenu>
-      <Link href="/register" passHref>
-        <LinkMenu>Cadastre-se</LinkMenu>
-      </Link>
+      {(isLogged && <BoxLogged />) || <BoxSign />}
+
+      {menuList.map(({ path, label }) => (
+        <Link href={path} passHref key={uniqueId()}>
+          <LinkMenu>{label}</LinkMenu>
+        </Link>
+      ))}
+
       <S.Divider />
       <S.TitleSort>Trilhas</S.TitleSort>
       <LinkMenu variant="sort" color="#708CFD">
@@ -106,9 +144,12 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       <LinkMenu variant="sort" color="#11236A">
         Mercado
       </LinkMenu>
-      <Button onClick={onClose} id="exit">
-        Sair
-      </Button>
+      {isLogged && (
+        <Button onClick={handleLogout} id="exit">
+          Sair
+        </Button>
+      )}
+      <div style={{ paddingBottom: 24 }} />
     </S.Wrapper>
   );
 };

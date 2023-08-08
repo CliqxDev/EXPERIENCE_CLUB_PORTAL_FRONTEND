@@ -7,6 +7,7 @@ export const Wrapper = styled.main`
   padding: 1.6rem;
   top: 0;
   z-index: 999;
+  height: 100vh;
 
   #exit {
     width: 100%;

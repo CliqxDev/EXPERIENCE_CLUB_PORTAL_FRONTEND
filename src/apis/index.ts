@@ -24,7 +24,7 @@ const request = async (
   try {
     const token = getToken();
     if (token.access) {
-      headers['x-person-token'] = `bearer ${token.access}`;
+      headers.Authorization = `Bearer ${token.access}`;
     }
   } catch (ex) {
     if (ex !== 'No current user') {

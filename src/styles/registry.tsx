@@ -1,11 +1,16 @@
+/* eslint-disable import/order */
 /* eslint-disable react/jsx-no-useless-fragment */
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { clientInfo } from 'flux/modules/client/actions';
+import { useSigIn } from 'hook/selectors/sigInHooks';
+import { useAppDispatch } from 'hook/store';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import GlobalStyles from 'styles/global';
+import { isAuthenticated } from 'utils/services/auth';
 
 export default function StyledComponentsRegistry({
   children
@@ -15,6 +20,15 @@ export default function StyledComponentsRegistry({
   // Only create stylesheet once with lazy initial state
   // x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
   const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
+  const { data } = useSigIn();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      dispatch(clientInfo.request());
+    }
+  }, [dispatch, clientInfo, data, isAuthenticated]);
 
   useServerInsertedHTML(() => {
     const styles = styledComponentsStyleSheet.getStyleElement();
