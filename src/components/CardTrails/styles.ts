@@ -5,9 +5,6 @@ export const Wrapper = styled.main`
 
   display: flex;
   flex-direction: column;
-
-  padding: 1.6rem;
-  background: #11236A;
 `;
 
 export const ContentCard = styled.div`
