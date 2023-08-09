@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { isEmpty } from 'lodash';
+import { forEach, isEmpty } from 'lodash';
 import { redirect } from 'next/navigation';
 import { clearSigIn, sigIn } from 'flux/modules/sigIn/actions';
 import { useAppDispatch } from 'hook/store';
@@ -19,11 +19,26 @@ import FormError from 'components/FormError';
 import { masks } from 'utils/masks';
 import * as S from './styles';
 
+type Rule = 'done' | 'error' | 'default';
+
+type PasswordRule = {
+  length: Rule;
+  letterAndNumber: Rule;
+  upperCaseLetter: Rule;
+  specialCharacter: Rule;
+};
+
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
   const { status, message, data } = useSigIn();
 
   const [errorMessage, setErrorMessage] = useState('');
+  const [passwordRule, setPasswordRule] = useState<PasswordRule>({
+    length: 'default',
+    letterAndNumber: 'default',
+    upperCaseLetter: 'default',
+    specialCharacter: 'default'
+  });
 
   useEffect(() => {
     if (status === RequestStatus.error) {
@@ -67,6 +82,45 @@ const FormPersonalData = () => {
     onSubmit: handleSubmit,
     validationSchema: () => personalDataSchema
   });
+
+  useEffect(() => {
+    const { password } = formik.values;
+    const format = /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
+    const newRules: PasswordRule = {
+      length: 'error',
+      letterAndNumber: 'error',
+      upperCaseLetter: 'error',
+      specialCharacter: 'error'
+    };
+
+    if (password.length >= 6) {
+      newRules.length = 'done';
+    }
+
+    if (password.search(/[A-Z]/) !== -1) {
+      newRules.upperCaseLetter = 'done';
+    }
+
+    if (password.search(/[0-9]/) !== -1 && password.search(/[a-z]/) !== -1) {
+      newRules.letterAndNumber = 'done';
+    }
+
+    if (format.test(password)) {
+      newRules.specialCharacter = 'done';
+    }
+
+    setPasswordRule(newRules);
+  }, [formik.values.password]);
+
+  const isValidPasswordRule = () => {
+    let isValid = true;
+    forEach(passwordRule, rule => {
+      if (rule !== 'done') {
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
 
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
@@ -134,15 +188,28 @@ const FormPersonalData = () => {
         name="password"
         placeholder=""
         errorMessage={(formik.touched.password && formik.errors.password) || ''}
-        spacing="24"
         type="password"
       />
+      <S.PasswordRulesWrapper>
+        <S.ItemRule variant={passwordRule.length}>
+          • Ter 8 ou mais caracteres
+        </S.ItemRule>
+        <S.ItemRule variant={passwordRule.letterAndNumber}>
+          • Letras e números
+        </S.ItemRule>
+        <S.ItemRule variant={passwordRule.upperCaseLetter}>
+          • Letra maiúscula
+        </S.ItemRule>
+        <S.ItemRule variant={passwordRule.specialCharacter}>
+          • Caracteres especiais (*,!.&%$#@)
+        </S.ItemRule>
+      </S.PasswordRulesWrapper>
       <Input
         required
         value={formik.values.confirmationPassword}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        label="Senha"
+        label="Confirmação de senha"
         id="confirmationPassword"
         name="confirmationPassword"
         placeholder=""
@@ -154,7 +221,16 @@ const FormPersonalData = () => {
         spacing="24"
         type="password"
       />
-      <Button disabled={!(formik.isValid && formik.dirty)} type="submit">
+
+      <S.TermsWrapper>
+        Ao continuar, eu concordo que li e aceito os{' '}
+        <span> Termos de uso </span>e a <span>Política de privacidade</span>.
+      </S.TermsWrapper>
+
+      <Button
+        disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
+        type="submit"
+      >
         Cadastrar
       </Button>
       {errorMessage && <FormError>{errorMessage}</FormError>}

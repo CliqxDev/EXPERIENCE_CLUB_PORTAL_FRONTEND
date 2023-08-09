@@ -12,3 +12,12 @@ export interface ClientInfoResponse {
   is_premium: boolean;
   is_admin: boolean;
 }
+
+export interface ClientPersonalData {
+  password: string;
+  name: string;
+  email: string;
+  phone?: string;
+  date_birth?: string;
+  role?: string;
+}

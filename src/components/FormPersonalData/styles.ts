@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.form`
-  padding: 2.4rem 3.2rem;
+  padding: 3.2rem 2.4rem;
 
   h1 {
     font-size: 2.4rem;
@@ -29,10 +29,49 @@ export const Wrapper = styled.form`
   }
 `;
 
-export const Row = styled.div`
+export const TermsWrapper = styled.div`
+  color: #686866;
+  font-family: Work Sans;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 1.6rem;
+
+  span {
+    cursor: pointer;
+    color: #2954fc;
+  }
+`;
+
+export const PasswordRulesWrapper = styled.div`
   display: flex;
-  width: 100%;
-  align-items: center;
-  margin-bottom: 3.2rem;
-  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 2.4rem;
+  padding-left: 1.6rem;
+  padding-top: 0.4rem;
+`;
+
+const itemRuleVariant = {
+  done: css`
+    color: #15803d;
+  `,
+  error: css`
+    color: #dc2626;
+  `,
+  default: css`
+    color: #4a4a49;
+  `
+};
+
+export const ItemRule = styled.span<{ variant: 'done' | 'error' | 'default' }>`
+  font-family: Work Sans;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+
+  ${({ variant }) => itemRuleVariant[variant]}
 `;

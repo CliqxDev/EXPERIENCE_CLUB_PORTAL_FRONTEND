@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.form`
-  padding: 2.4rem 3.2rem;
+  padding: 3.2rem 2.4rem;
 
   h1 {
     font-size: 2.4rem;
