@@ -5,17 +5,15 @@ import { isDate, isPastDate, minDateForBirthDate } from './date';
 
 export default {
   Required() {
-    return Yup.string().required('Campo obrigatório.');
+    return Yup.string().required('Campo vazio');
   },
   Email() {
-    return Yup.string()
-      .email('E-mail inválido.')
-      .required('Campo obrigatório.');
+    return Yup.string().email('E-mail incorreto').required('Campo vazio');
   },
   DateNotFuture() {
     return Yup.string().test(
       'validDate',
-      'Essa data não é compatível.',
+      'Essa data não é compatível',
       value => {
         if (value) {
           return (
@@ -28,7 +26,7 @@ export default {
   },
   PasswordMatch() {
     return Yup.string()
-      .oneOf([Yup.ref('password')], 'As senhas não conferem!')
-      .required('Campo obrigatório.');
+      .oneOf([Yup.ref('password')], 'As senhas não estão iguais')
+      .required('Campo vazio');
   }
 };

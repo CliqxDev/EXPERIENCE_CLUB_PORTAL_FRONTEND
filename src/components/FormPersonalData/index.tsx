@@ -1,22 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable simple-import-sort/imports */
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { forEach, isEmpty } from 'lodash';
+import { forEach } from 'lodash';
 import { redirect } from 'next/navigation';
-import { clearSigIn, sigIn } from 'flux/modules/sigIn/actions';
 import { useAppDispatch } from 'hook/store';
 import { personalDataSchema } from 'utils/schemas';
-import { useSigIn } from 'hook/selectors/sigInHooks';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
 import { RequestStatus } from 'models/iRequest';
 
-import { login } from 'utils/services/auth';
 import FormError from 'components/FormError';
 import { masks } from 'utils/masks';
+import { createClient, clearCreateClient } from 'flux/modules/client/actions';
+import { useCreateClient } from 'hook/selectors/clientHooks';
 import * as S from './styles';
 
 type Rule = 'done' | 'error' | 'default';
@@ -30,7 +27,7 @@ type PasswordRule = {
 
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
-  const { status, message, data } = useSigIn();
+  const { status } = useCreateClient();
 
   const [errorMessage, setErrorMessage] = useState('');
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
@@ -42,27 +39,24 @@ const FormPersonalData = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
-      if (message === 'Request failed with status code 401') {
-        setErrorMessage(
-          'E-mail ou senha incorretos. Confirme suas informações ou crie uma conta.'
-        );
-      } else {
-        setErrorMessage('Falha ao tentar efetuar o login');
-      }
+      setErrorMessage('Falha ao tentar efetuar o login');
     }
 
-    if (status === RequestStatus.success && !isEmpty(data)) {
-      login(data);
-      dispatch(clearSigIn());
-      redirect('/');
+    if (status === RequestStatus.success) {
+      dispatch(clearCreateClient());
+      redirect('/register/email-verify');
     }
-  }, [status, message, data]);
+  }, [status]);
 
   const handleSubmit = () => {
     dispatch(
-      sigIn.request({
+      createClient.request({
+        password: formik.values.password,
+        name: formik.values.name,
         email: formik.values.email,
-        password: formik.values.password
+        phone: formik.values.cellphone,
+        date_birth: formik.values.birthDate,
+        role: formik.values.role
       })
     );
   };
@@ -85,30 +79,40 @@ const FormPersonalData = () => {
 
   useEffect(() => {
     const { password } = formik.values;
-    const format = /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-    const newRules: PasswordRule = {
+
+    let newRules: PasswordRule = {
       length: 'error',
       letterAndNumber: 'error',
       upperCaseLetter: 'error',
       specialCharacter: 'error'
     };
 
-    if (password.length >= 6) {
-      newRules.length = 'done';
-    }
+    if (password) {
+      const format = /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
 
-    if (password.search(/[A-Z]/) !== -1) {
-      newRules.upperCaseLetter = 'done';
-    }
+      if (password.length >= 6) {
+        newRules.length = 'done';
+      }
 
-    if (password.search(/[0-9]/) !== -1 && password.search(/[a-z]/) !== -1) {
-      newRules.letterAndNumber = 'done';
-    }
+      if (password.search(/[A-Z]/) !== -1) {
+        newRules.upperCaseLetter = 'done';
+      }
 
-    if (format.test(password)) {
-      newRules.specialCharacter = 'done';
-    }
+      if (password.search(/[0-9]/) !== -1 && password.search(/[a-z]/) !== -1) {
+        newRules.letterAndNumber = 'done';
+      }
 
+      if (format.test(password)) {
+        newRules.specialCharacter = 'done';
+      }
+    } else {
+      newRules = {
+        length: 'default',
+        letterAndNumber: 'default',
+        upperCaseLetter: 'default',
+        specialCharacter: 'default'
+      };
+    }
     setPasswordRule(newRules);
   }, [formik.values.password]);
 
