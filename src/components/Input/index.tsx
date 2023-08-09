@@ -65,7 +65,7 @@ const Input: FC<InputProps> = ({
           }}
           onFocus={() => setIsFocused(true)}
           autoComplete={value ? 'no' : ''}
-          maskChar={null}
+          maskPlaceholder=""
           mask={maskFormat}
           aria-label={name}
           inputMode={inputMode}

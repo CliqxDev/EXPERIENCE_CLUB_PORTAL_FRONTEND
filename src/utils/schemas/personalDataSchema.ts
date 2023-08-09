@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import ValidationRules from '../validations/validationsSchemas';
 
-export const registerStep1 = Yup.object().shape({
+export const personalDataSchema = Yup.object().shape({
   name: ValidationRules.Required(),
   email: ValidationRules.Email(),
   birthDate: ValidationRules.Required(),

@@ -1,2 +1,2 @@
-export { registerStep1 } from './registerStep1';
+export { personalDataSchema } from './personalDataSchema';
 export { sigInSchema } from './sigInSchema';
