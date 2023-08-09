@@ -24,6 +24,10 @@ export default {
       }
     );
   },
+  EmailNotRequired() {
+    return Yup.string()
+      .email('E-mail inválido.')
+  },
   PasswordMatch() {
     return Yup.string()
       .oneOf([Yup.ref('password')], 'As senhas não estão iguais')

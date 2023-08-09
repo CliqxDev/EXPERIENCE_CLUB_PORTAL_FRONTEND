@@ -51,6 +51,15 @@ export interface ClientPersonalDataResponse {
   is_admin: boolean;
 }
 
+export interface AssignNewsletterRequest {
+  email: string;
+  name: string;
+}
+
+export interface AssignNewsletterResponse {
+  success: string;
+}
+
 export interface Client {
   clientInfo: IRequest<ClientInfoResponse>;
   createClient: IRequest<ClientPersonalDataResponse>;
