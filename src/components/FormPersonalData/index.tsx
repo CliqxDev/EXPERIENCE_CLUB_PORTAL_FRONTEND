@@ -39,7 +39,7 @@ const FormPersonalData = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
-      setErrorMessage('Falha ao tentar efetuar o login');
+      setErrorMessage('Falha na integração');
     }
 
     if (status === RequestStatus.success) {
