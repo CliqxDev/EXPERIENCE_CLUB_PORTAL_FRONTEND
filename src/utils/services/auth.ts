@@ -5,11 +5,14 @@ type TokenType = {
   refresh?: string;
 };
 
-export const isAuthenticated = () => !!localStorage.getItem(TOKEN_KEY);
+export const isAuthenticated = () =>
+  typeof window !== 'undefined' && !!window.localStorage.getItem(TOKEN_KEY);
 
 export const getToken = () => {
   let token: TokenType = {};
-  const localStorageUser = localStorage.getItem(TOKEN_KEY);
+  const localStorageUser =
+    (typeof window !== 'undefined' && window.localStorage.getItem(TOKEN_KEY)) ||
+    null;
   if (localStorageUser !== null) {
     token = JSON.parse(localStorageUser);
   }
@@ -17,7 +20,8 @@ export const getToken = () => {
 };
 
 export const login = (token: TokenType) =>
-  localStorage.setItem(
+  typeof window !== 'undefined' &&
+  window.localStorage.setItem(
     TOKEN_KEY,
     JSON.stringify({
       access: token.access,
@@ -25,4 +29,5 @@ export const login = (token: TokenType) =>
     })
   );
 
-export const logout = () => localStorage.removeItem(TOKEN_KEY);
+export const logout = () =>
+  typeof window !== 'undefined' && window.localStorage.removeItem(TOKEN_KEY);
