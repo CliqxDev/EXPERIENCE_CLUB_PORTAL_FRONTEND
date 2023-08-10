@@ -155,18 +155,21 @@ const FormPersonalData = () => {
         spacing="24"
       />
       <Input
-        value={formik.values.role}
+        value={formik.values.cellphone}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         label="Telefone"
-        id="role"
-        name="role"
+        id="cellphone"
+        name="cellphone"
         placeholder=""
-        errorMessage={(formik.touched.role && formik.errors.role) || ''}
+        errorMessage={
+          (formik.touched.cellphone && formik.errors.cellphone) || ''
+        }
         spacing="24"
         inputMode="numeric"
         mask={{ mask: masks.cel.mask, maskPlaceholder: '' }}
       />
+
       <Input
         value={formik.values.birthDate}
         onChange={formik.handleChange}
@@ -181,6 +184,17 @@ const FormPersonalData = () => {
         spacing="24"
         inputMode="numeric"
         mask={{ mask: masks.data.mask, maskPlaceholder: '' }}
+      />
+      <Input
+        value={formik.values.role}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        label="Cargo"
+        id="role"
+        name="role"
+        placeholder=""
+        errorMessage={(formik.touched.role && formik.errors.role) || ''}
+        spacing="24"
       />
       <Input
         required
