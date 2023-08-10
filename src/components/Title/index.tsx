@@ -4,7 +4,7 @@ import * as S from './styles';
 
 type TitleProps = {
   children: string;
-  variant?: 'black50' | 'black400' | 'light' | 'lightCenter';
+  variant?: 'black50' | 'black400' | 'black500' | 'light' | 'lightCenter';
 };
 
 const Title: FC<TitleProps> = ({

@@ -52,7 +52,7 @@ const formatTypes = [
 
 const Formats = () => (
   <S.FormatsWrapper>
-    <Title variant='black400'>Formatos</Title>
+    <Title variant='black500'>Formatos</Title>
 
     <S.ListCard>
       {formatTypes.map((card) => (

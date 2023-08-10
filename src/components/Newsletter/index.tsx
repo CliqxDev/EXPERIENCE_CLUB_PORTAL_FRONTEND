@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/order */
 /* eslint-disable arrow-body-style */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { assignNewsletter } from 'flux/modules/client/actions';
 import { useFormik } from 'formik';
 import { useClientInfo } from 'hook/selectors/clientHooks';
@@ -12,12 +13,20 @@ import { isAuthenticated } from 'utils/services/auth';
 import Button from 'components/Button';
 import Title from 'components/Title';
 
+import AssignNewsletter from './AssignNewsletter/AssignNewsletter';
 import * as S from './styles';
 
 const Newsletter = () => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
   const [checked, setChecked] = useState<boolean | undefined>(false);
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(data)) {
+      setIsLogged(true);
+    }
+  }, [data])
 
   const handleSubmit = () => {
     const requestClient = {
@@ -43,9 +52,14 @@ const Newsletter = () => {
 
   return (
     <S.NewsletterWrapper>
+      {/* <AssignNewsletter
+        title="Bem vindo(a)!"
+        subtitle="Agora você está junto da nossa comunidade"
+        message="Seu cadastro foi concluído, em breve você receberá nossos conteúdos."
+      /> */}
       <Title variant='lightCenter'>Inscreva-se na nossa Newsletter!</Title>
       <S.FormWrapper onSubmit={formik.handleSubmit}>
-        {!isAuthenticated() &&
+        {!isLogged &&
           <>
             <S.Input
               type="text"
@@ -82,7 +96,6 @@ const Newsletter = () => {
         }
         <Button
           type='submit'
-          disabled={!isAuthenticated() && (formik.isValid || !checked)}
           style={{ width: '36.4rem', height: '4rem', margin: '2rem auto' }}
           variant="default"
         >

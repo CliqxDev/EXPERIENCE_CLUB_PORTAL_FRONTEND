@@ -40,7 +40,7 @@ const showMoreContent = [
 
 const ShowMore = () => (
   <S.ShowMoreWrapper>
-    <Title variant='black400'>Veja Mais</Title>
+    <Title variant='black500'>Veja Mais</Title>
     <S.ListCard>
       {showMoreContent.map((card) => (
         <S.ContentCard key={card.title}>

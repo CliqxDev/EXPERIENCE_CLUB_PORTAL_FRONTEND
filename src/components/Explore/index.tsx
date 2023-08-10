@@ -38,7 +38,7 @@ const listCardsExplore = [
 
 const Explore = () => (
   <S.ExploreWrapper>
-    <Title variant='black400'>
+    <Title variant='black500'>
       Explore
     </Title>
 

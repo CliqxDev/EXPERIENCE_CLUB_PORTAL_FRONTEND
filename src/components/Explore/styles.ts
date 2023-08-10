@@ -39,7 +39,7 @@ export const DescriptionCard = styled.p`
   font-weight: 500;
   line-height: 2.6rem;
 
-  color: #1D1D1B;
+  color: #0C0C0B;
 `;
 
 export const FooterCard = styled.div`

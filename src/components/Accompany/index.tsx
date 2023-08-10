@@ -30,7 +30,7 @@ const listBanners = [
 
 const Accompany = () => (
   <S.AccompanyWrapper>
-    <Title variant='black400'>Acompanhe</Title>
+    <Title variant='black500'>Acompanhe</Title>
 
     <S.AccompanyList>
       {listBanners.map((cardContent, idx) => (

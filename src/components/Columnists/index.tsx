@@ -34,7 +34,7 @@ const columnistsCard = [
 const Columnists = () => (
   <S.ColumnistsWrapper>
     <S.TopContent>
-      <Title variant='black400'>Colunistas</Title>
+      <Title variant='black500'>Colunistas</Title>
       <S.ShowMore>
         Veja Mais
       </S.ShowMore>

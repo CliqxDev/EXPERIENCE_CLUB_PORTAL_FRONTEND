@@ -76,5 +76,5 @@ export const DescriptionCard = styled.p`
   line-height: 2.8rem;
 
   margin-top: 1rem;
-  color: #1D1D1B;
+  color: #0C0C0B;
 `;

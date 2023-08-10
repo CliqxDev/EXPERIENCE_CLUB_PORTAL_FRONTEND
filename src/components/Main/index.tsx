@@ -1,5 +1,4 @@
 import Accompany from 'components/Accompany';
-import CardTrails from 'components/CardTrails';
 import CarouselSlide from 'components/Carousel';
 import Columnists from 'components/Columnists';
 import Explore from 'components/Explore';
@@ -16,7 +15,6 @@ const Main = () => (
     <Header />
     <CarouselSlide />
     <Trails />
-    <CardTrails />
     <Columnists />
     <Accompany />
     <Newsletter />

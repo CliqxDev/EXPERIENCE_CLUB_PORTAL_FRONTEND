@@ -50,7 +50,7 @@ export const TitleBanner = styled.h1`
   font-size: 1.4rem;
   line-height: 2.4rem;
   
-  color: #1D1D1B;
+  color: #0C0C0B;
 `;
 
 export const DescriptionBanner = styled.p`
@@ -60,7 +60,7 @@ export const DescriptionBanner = styled.p`
   line-height: 2.4rem;
   margin-top: 0.8rem;
   
-  color: #686866;
+  color: #4A4A49;
 `;
 
 export const FooterCard = styled.div`

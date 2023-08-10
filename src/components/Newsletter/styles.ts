@@ -4,6 +4,11 @@ export const NewsletterWrapper = styled.main`
   width: 100%;
   height: 38.8rem;
 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   background-image: url('/img/newsletter-bg.png');
   background-size: 100% 38.8rem;
   background-repeat: no-repeat;

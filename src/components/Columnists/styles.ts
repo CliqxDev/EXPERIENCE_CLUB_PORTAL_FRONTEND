@@ -75,7 +75,7 @@ export const Description = styled.p`
   font-weight: 500;
   line-height: 2.4rem;
 
-  color: #1D1D1B;
+  color: #0C0C0B;
 `;
 
 export const NameColumnist = styled.p`

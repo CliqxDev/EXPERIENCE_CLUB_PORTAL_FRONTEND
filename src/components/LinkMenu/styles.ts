@@ -15,7 +15,7 @@ export const Wrapper = styled.div<{
 
   span {
     color: ${({ variant }) => (variant === 'sort' ? '#ffffff' : '#4a4a49')};
-    font-family: Roboto;
+    font-family: Work Sans;
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 20px;
