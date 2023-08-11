@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Title from 'components/Title';
 
@@ -41,7 +42,7 @@ const Columnists = () => (
     </S.TopContent>
 
     <S.ListColumnists>
-    {columnistsCard.map((card, idx) => (
+      {columnistsCard.map((card, idx) => (
         <S.CardColumnists key={idx}>
           {/* INFO */}
           <S.InfoColumnists>
@@ -62,15 +63,17 @@ const Columnists = () => (
               {card.nameColumnist}
             </S.NameColumnist>
 
-            <Image
-              src={arrowRight}
-              alt="Ver Colunista"
-              width={20}
-              height={14}
-            />
+            <Link href="/columnists/:id">
+              <Image
+                src={arrowRight}
+                alt="Ver Colunista"
+                width={20}
+                height={14}
+              />
+            </Link>
           </S.FooterCard>
         </S.CardColumnists>
-    ))}
+      ))}
     </S.ListColumnists>
   </S.ColumnistsWrapper>
 );
