@@ -22,6 +22,7 @@ export type InputProps = {
   name: string;
   value: string;
   id: string;
+  style?: object;
   onChange: any;
   onBlur?: any;
   placeholder?: string;

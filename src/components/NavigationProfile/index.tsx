@@ -1,4 +1,7 @@
 /* eslint-disable no-nested-ternary */
+
+'use-client'
+
 import React, { useState } from 'react'
 import { DeleteAccount } from 'styles/styles';
 
@@ -8,7 +11,7 @@ import { PersonalData } from 'components/PersonalData';
 import { SecurityForm } from 'components/SecurityForm';
 import { SubscriberPlan } from 'components/SubscriberPlan';
 
-import { Line, Titles, TopNavigation } from './styles';
+import * as S from './styles'
 
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -37,13 +40,13 @@ export function NavigationProfile() {
   }
 
   return (
-    <>
-      <TopNavigation>
-        <Titles onClick={activeProfile} profile={profile}>Perfil</Titles>
-        <Titles onClick={activeAddress} address={address}>Endereço</Titles>
-        <Titles onClick={activeSecurity} security={security}>Segurança</Titles>
-      </TopNavigation>
-      <Line />
+    <S.WrapperProfile>
+      <S.TopNavigation>
+        <S.Titles onClick={activeProfile} profile={profile}>Perfil</S.Titles>
+        <S.Titles onClick={activeAddress} address={address}>Endereço</S.Titles>
+        <S.Titles onClick={activeSecurity} security={security}>Segurança</S.Titles>
+      </S.TopNavigation>
+      <S.Line />
       {
         profile ?
           <>
@@ -55,6 +58,6 @@ export function NavigationProfile() {
           : address ? <AddressForm /> :
             security && <SecurityForm />
       }
-    </>
+    </S.WrapperProfile>
   );
 }

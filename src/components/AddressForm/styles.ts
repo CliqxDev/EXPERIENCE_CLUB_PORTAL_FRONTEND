@@ -6,7 +6,7 @@ export const ContentAddress = styled.main`
 
   margin: 2rem 2rem 1.4rem 2rem;
 
-  background: ${({ theme }) => theme.colors.white};
+  background: #ffff;
   border-radius: 4px;
 `;
 
@@ -14,6 +14,8 @@ export const FormAddress = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding: 2rem;
 `;
 
 export const InputAddress = styled.input`
@@ -21,20 +23,20 @@ export const InputAddress = styled.input`
   height: 4rem;
 
   margin-top: 2rem;
-  border: 1px solid ${({ theme }) => theme.colors.black200};
+  border: 1px solid #979796;
   border-radius: 4px;
   outline: none;
 
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 
   padding: 1.6rem;
 `;
 
 export const ContentState = styled.div`
-  width: 90%;
+  width: 95%;
 
   display: flex;
   flex-direction: row;
@@ -43,17 +45,16 @@ export const ContentState = styled.div`
 
 export const SelectState = styled.select`
   width: 25%;
-  height: 4rem;
+  height: 5.6rem;
 
-  margin-top: 2rem;
-  border: 1px solid ${({ theme }) => theme.colors.black200};
+  border: 1px solid #979796;
   border-radius: 4px;
   outline: none;
 
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 
   padding-left: 1.6rem;
 `;
@@ -75,7 +76,7 @@ export const SaveButton = styled.button`
   border-radius: 8px;
   margin: 3.5rem 0 2rem 0;
 
-  background: ${({ theme }) => theme.colors.blue500 };
-  color: ${({ theme }) => theme.colors.white };
+  background: #1D1D1B;
+  color: #FFFF;
   cursor: pointer;
 `;

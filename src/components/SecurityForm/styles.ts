@@ -6,7 +6,7 @@ export const ContentSecurity = styled.main`
 
   margin: 2rem 2rem 1.4rem 2rem;
 
-  background: ${({ theme }) => theme.colors.white};
+  background: #FFFF;
   border-radius: 4px;
 `;
 
@@ -18,7 +18,7 @@ export const ContainerInput = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  border: 1px solid ${({ theme }) => theme.colors.black200};
+  border: 1px solid #979796;
   border-radius: 4px;
   outline: none;
 
@@ -36,7 +36,7 @@ export const InputPassword = styled.input`
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 
   padding-left: 1.6rem;
 `;
@@ -46,7 +46,7 @@ export const Title = styled.h1`
   font-weight: 600;
   line-height: 2.4rem;
 
-  color: ${({ theme }) => theme.colors.black400};
+  color: #4A4A49;
   margin: 1rem 1.6rem;
 `;
 
@@ -67,8 +67,8 @@ export const SaveButton = styled.button`
   border-radius: 8px;
   margin: 1.6rem;
 
-  background: ${({ theme }) => theme.colors.blue500 };
-  color: ${({ theme }) => theme.colors.white };
+  background: #1D1D1B;
+  color: #FFFF;
   cursor: pointer;
 `;
 
@@ -80,6 +80,6 @@ export const AlertPassword = styled.span`
   font-weight: 500;
   line-height: 1.6rem;
 
-  color: ${({ theme }) => theme.colors.black400};
+  color: #4A4A49;
   margin: 0.1rem 1.6rem;
 `;

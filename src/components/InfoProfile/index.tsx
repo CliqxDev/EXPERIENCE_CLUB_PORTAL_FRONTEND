@@ -32,7 +32,7 @@ export function InfoProfile() {
         width={30}
         height={30}
         src={colaboratorIcon}
-        style={{ position: 'sticky', margin: '1rem 1.2rem 0 0' }}
+        style={{ position: 'sticky', margin: '1rem 1.2rem 0 -1.2rem' }}
         alt="Colaborador"
       />
 

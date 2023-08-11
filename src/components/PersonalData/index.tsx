@@ -1,41 +1,62 @@
-import { useEffect,useState } from "react";
+/* eslint-disable react/jsx-curly-brace-presence */
+/* eslint-disable no-console */
+import { useFormik } from "formik";
+import { personalDataProfileSchema } from "utils/schemas";
 
-import { ContainerPersonalData, ContentInputs, InputData, SaveButton, Title } from "./styles";
+import Button from "components/Button";
+import Input from "components/Input";
+
+import * as S from './styles';
 
 export function PersonalData() {
-  const [phone, setPhone] = useState('');
-  const [head, setHead] = useState('');
-  const [disabled, setDisabled] = useState(true);
+  const handleSubmit = () => {
+    console.log("asd")
+  }
 
-  useEffect(() => {
-    if (phone && head !== '') {
-      setDisabled(false)
-    } else {
-      setDisabled(true)
-    }
-  }, [head, phone, disabled])
+  const formik = useFormik({
+    initialValues: {
+      telephone: '',
+      headInovation: ''
+    },
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: handleSubmit,
+    validationSchema: () => personalDataProfileSchema
+  });
 
   return (
-    <ContainerPersonalData>
-      <Title>Dados Pessoais</Title>
+    <S.ContainerPersonalData>
+      <S.Title>Dados Pessoais</S.Title>
 
-      <ContentInputs>
-        <InputData
-          type="text"
-          placeholder="(00) 0 0000-0000"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+      <S.FormData>
+        <Input
+          value={formik.values.telephone}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Telefone"
+          required
+          mask='tel'
+          id="telephone"
+          name="telephone"
+          placeholder=""
+          style={{ width: '95%'}}
+          errorMessage={(formik.touched.telephone && formik.errors.telephone) || ''}
+          spacing="24"
         />
-        <InputData
-          type="text"
-          style={{ marginTop: '1.4rem'}}
-          placeholder="Head de inovação"
-          value={head}
-          onChange={(e) => setHead(e.target.value)}
+        <Input
+          value={formik.values.headInovation}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Head de inovação"
+          id="head-inovation"
+          name="head-inovation"
+          placeholder=""
+          style={{ width: '95%', height: '5.6rem' }}
+          spacing="24"
         />
-      </ContentInputs>
+        <Button type="submit" style={{ width: '95%' }}>Salvar</Button>
+      </S.FormData>
 
-      <SaveButton disabled={disabled}>Salvar</SaveButton>
-    </ContainerPersonalData>
+    </S.ContainerPersonalData>
   );
 }

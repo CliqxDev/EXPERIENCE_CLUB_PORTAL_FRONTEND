@@ -1,71 +1,132 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
+import { useFormik } from "formik";
+import { addressSchema } from "utils/schemas/addressSchema";
+
+import Input from "components/Input";
 
 import { ContentAddress, ContentState, FormAddress, InputAddress, SaveButton, SelectState } from "./styles";
 
 export function AddressForm() {
-  const [cep, setCep] = useState('');
-  const [address, setAddress] = useState('');
-  const [number, setNumber] = useState('');
-  const [district, setDistrict] = useState('');
-  const [complement, setComplement] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+
+  const handleSubmit = () => {
+    console.log('asd')
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      cep: '',
+      address: '',
+      number: '',
+      district: '',
+      complement: '',
+      state: '',
+      city: '',
+    },
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: handleSubmit,
+    validationSchema: () => addressSchema
+  });
 
   return (
     <ContentAddress>
       <FormAddress>
         {/* CEP */}
-        <InputAddress
-          type="text"
-          placeholder="CEP"
-          style={{ marginTop: '3.5rem' }}
-          onChange={(e) => setCep(e.target.value)}
+        <Input
+          value={formik.values.cep}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="CEP"
+          required
+          mask='cep'
+          id="cep"
+          name="cep"
+          placeholder=""
+          style={{ width: '95%' }}
+          errorMessage={(formik.touched.cep && formik.errors.cep) || ''}
+          spacing="24"
         />
         {/* ENDEREÇO */}
-        <InputAddress
-          type="text"
-          placeholder="Endereço"
-          onChange={(e) => setAddress(e.target.value)}
+        <Input
+          value={formik.values.address}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Endereço"
+          required
+          id="address"
+          name="address"
+          placeholder=""
+          style={{ width: '95%' }}
+          errorMessage={(formik.touched.address && formik.errors.address) || ''}
+          spacing="24"
         />
 
         {/* NÚMERO */}
-        <InputAddress
-          type="text"
-          placeholder="Número"
-          onChange={(e) => setNumber(e.target.value)}
+        <Input
+          value={formik.values.number}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Número"
+          required
+          id="number"
+          name="number"
+          placeholder=""
+          style={{ width: '95%' }}
+          errorMessage={(formik.touched.number && formik.errors.number) || ''}
+          spacing="24"
         />
 
         {/* BAIRRO */}
-        <InputAddress
-          type="text"
-          placeholder="Bairro"
-          onChange={(e) => setDistrict(e.target.value)}
+        <Input
+          value={formik.values.district}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Bairro"
+          required
+          id="district"
+          name="district"
+          placeholder=""
+          style={{ width: '95%' }}
+          errorMessage={(formik.touched.district && formik.errors.district) || ''}
+          spacing="24"
         />
 
         {/* COMPLEMENTO */}
-        <InputAddress
-          type="text"
-          placeholder="Complemento"
-          onChange={(e) => setComplement(e.target.value)}
+        <Input
+          value={formik.values.complement}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Complemento"
+          id="complement"
+          name="complement"
+          placeholder=""
+          style={{ width: '95%' }}
+          spacing="24"
         />
 
         <ContentState>
           {/* ESTADO */}
           <SelectState
             placeholder="Estado"
-            onChange={(e) => setState(e.target.value)}
           >
             <option>SP</option>
             <option>RJ</option>
           </SelectState>
 
           {/* CIDADE */}
-          <InputAddress
-            type="text"
-            placeholder="Cidade"
+          <Input
+            value={formik.values.city}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Cidade"
+            required
+            id="city"
+            name="city"
+            placeholder=""
             style={{ width: '70%' }}
-            onChange={(e) => setCity(e.target.value)}
+            errorMessage={(formik.touched.city && formik.errors.city) || ''}
+            spacing="24"
           />
         </ContentState>
 
