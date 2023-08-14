@@ -60,7 +60,7 @@ export const SelectState = styled.select`
 `;
 
 export const SaveButton = styled.button`
-  width: 90%;
+  width: 96%;
   height: 3.5rem;
 
   font-size: 1.4rem;

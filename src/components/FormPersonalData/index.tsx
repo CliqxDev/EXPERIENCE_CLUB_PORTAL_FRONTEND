@@ -174,7 +174,7 @@ const FormPersonalData = () => {
         value={formik.values.birthDate}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        label="Data de  nascimento"
+        label="Data de nascimento"
         id="birthDate"
         name="birthDate"
         placeholder=""
