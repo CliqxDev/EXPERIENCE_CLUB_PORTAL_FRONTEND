@@ -17,7 +17,7 @@ export const Title = styled.h1`
   font-weight: 500;
   line-height: 2.4rem;
 
-  color: ${({ theme }) => theme.colors.white};
+  color: #FFFF;
 `;
 
 export const Description = styled.p`
@@ -30,7 +30,7 @@ export const Description = styled.p`
 
   margin-top: 0.6rem;
 
-  color: ${({ theme }) => theme.colors.white};
+  color: #FFFF;
 `;
 
 export const ButtonPlan = styled.button`
@@ -41,8 +41,8 @@ export const ButtonPlan = styled.button`
   font-weight: 500;
   line-height: 2rem;
 
-  background: ${({ theme }) => theme.colors.blue500};
-  color: ${({ theme }) => theme.colors.white};
+  background: #1D1D1B;
+  color: #FFFF;
 
   outline: none;
   border: none;

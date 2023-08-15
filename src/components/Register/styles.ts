@@ -1,17 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.main`
-  position: absolute;
-  z-index: 10;
-  bottom: 1.6rem;
-  left: 1.6rem;
-  right: 1.6rem;
-  border-radius: 4px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-
   #next-step {
     width: 100%;
   }

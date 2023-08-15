@@ -1,5 +1,7 @@
 /* eslint-disable import/order */
 
+'use-client'
+
 import { Providers } from 'flux/provider';
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from 'styles/registry';

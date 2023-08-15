@@ -23,6 +23,7 @@ const Input: FC<InputProps> = ({
   inputMode,
   required,
   autoFocus,
+  style,
   type = 'text'
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -49,7 +50,7 @@ const Input: FC<InputProps> = ({
   }, [mask]);
 
   return (
-    <S.Wrapper error={errorMessage} disabled={disabled} spacing={spacing}>
+    <S.Wrapper style={style} error={errorMessage} disabled={disabled} spacing={spacing}>
       <S.InputWrapper>
         <S.InputText
           type={(showPassword && 'text') || type}
@@ -65,7 +66,7 @@ const Input: FC<InputProps> = ({
           }}
           onFocus={() => setIsFocused(true)}
           autoComplete={value ? 'no' : ''}
-          maskChar={null}
+          maskPlaceholder=""
           mask={maskFormat}
           aria-label={name}
           inputMode={inputMode}

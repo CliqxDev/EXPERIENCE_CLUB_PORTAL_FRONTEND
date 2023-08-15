@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { clearSigIn, sigIn } from 'flux/modules/sigIn/actions';
 import { useAppDispatch } from 'hook/store';
 import { sigInSchema } from 'utils/schemas';
@@ -144,9 +145,11 @@ const SigIn = () => {
       <Button disabled={!(formik.isValid && formik.dirty)} type="submit">
         Entrar
       </Button>
-      <Button id="register-btn" variant="link">
-        Ainda não possui uma conta? Clique aqui
-      </Button>
+      <Link href="/register" passHref>
+        <Button id="register-btn" variant="link" type="button">
+          Ainda não possui uma conta? Clique aqui
+        </Button>
+      </Link>
       {errorMessage && <FormError>{errorMessage}</FormError>}
     </S.Wrapper>
   );

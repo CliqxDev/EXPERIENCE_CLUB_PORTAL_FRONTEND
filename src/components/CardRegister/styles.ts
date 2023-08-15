@@ -63,6 +63,10 @@ export const Root = styled.main<StyleProps>`
   padding: 2.4rem;
   flex-direction: column;
   ${({ variant }) => rootVariants[variant || 'default']}
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Title = styled.h1<StyleProps>`

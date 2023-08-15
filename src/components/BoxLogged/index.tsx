@@ -1,4 +1,6 @@
+/* eslint-disable import/order */
 import { useClientInfo } from 'hook/selectors/clientHooks';
+import Link from 'next/link';
 
 import { ButtonMenu } from 'components/ButtonMenu';
 
@@ -29,6 +31,7 @@ const BoxLogged = () => {
           <h3>Aproveite sua jornada.</h3>
         </S.WrapperUserData>
       </S.WrapperUserColumn>
+      <Link href="/perfil">
       <ButtonMenu onClick={() => {}}>
         <svg
           width="24"
@@ -55,6 +58,7 @@ const BoxLogged = () => {
           </g>
         </svg>
       </ButtonMenu>
+      </Link>
     </S.Wrapper>
   );
 };

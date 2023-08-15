@@ -7,6 +7,12 @@ type TitleProps = {
   security?: boolean;
 };
 
+export const WrapperProfile = styled.main`
+  width: 100%;
+  height: 100vh;
+  background: #E8E8E8;
+`;
+
 export const TopNavigation = styled.div`
   width: 100%;
 
@@ -25,14 +31,14 @@ export const Titles = styled.span<TitleProps>`
         security && '8.6rem'
   )}; 
 
-  height: 4.8rem;
+  height: 4.8rem;a
   font-size: 1.6rem;
   font-weight: 500;
 
-  border-bottom: ${({ profile, address, security, theme }) => (
-    profile ? `2px ${theme.colors.black200} solid` :
-      address ? `2px ${theme.colors.black200} solid` :
-        security ? `2px ${theme.colors.black200} solid` :
+  border-bottom: ${({ profile, address, security }) => (
+    profile ? `2px #979796 solid` :
+      address ? `2px #979796 solid` :
+        security ? `2px #979796 solid` :
           'none'
   )};
 
@@ -40,11 +46,11 @@ export const Titles = styled.span<TitleProps>`
   align-items: center;
   justify-content: center;
 
-  color: ${({ profile, address, security, theme }) => (
-    profile ? theme.colors.black500 :
-      address ? theme.colors.black500 :
-        security ? theme.colors.black500 :
-          theme.colors.blue500
+  color: ${({ profile, address, security }) => (
+    profile ? '#1D1D1B' :
+      address ? '#1D1D1B' :
+        security ? '#1D1D1B' :
+          '#2954FC'
   )};
   
   padding: 1rem;
@@ -57,5 +63,5 @@ export const Line = styled.div`
   height: 1px;
   margin-top: -1.6rem;
 
-  background: ${({ theme }) => (theme.colors.black200)};
+  background: #979796;
 `;

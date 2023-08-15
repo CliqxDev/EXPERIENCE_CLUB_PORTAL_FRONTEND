@@ -5,13 +5,13 @@
 
 import { useParams } from "next/navigation";
 
-import Header from "components/Header";
+import InfoColumnists from "components/InfoColumnists";
 
 export default function Columnists() {
   const params = useParams();
   const uid = params?.uid;
 
   return (
-    <Header />
+    <InfoColumnists />
   );
 }

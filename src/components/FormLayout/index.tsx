@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FC, ReactNode } from 'react';
 import Link from 'next/link';
 
@@ -8,10 +9,11 @@ import * as S from './styles';
 type MainProps = {
   children: ReactNode;
   onRedirectPath: string;
+  variant?: 'bottom' | 'simple';
 };
 
-const FormLayout: FC<MainProps> = ({ children, onRedirectPath }) => (
-  <S.Wrapper>
+const FormLayout: FC<MainProps> = ({ children, onRedirectPath, variant }) => (
+  <S.Wrapper variant={variant || 'bottom'}>
     <S.Header>
       <Link href={onRedirectPath} passHref>
         <ButtonMenu onClick={() => {}}>
@@ -72,8 +74,7 @@ const FormLayout: FC<MainProps> = ({ children, onRedirectPath }) => (
 
       <div style={{ height: 48, width: 48 }} />
     </S.Header>
-    {children}
-    <S.Background />
+    <S.FormWrapper variant={variant || 'bottom'}>{children}</S.FormWrapper>
   </S.Wrapper>
 );
 

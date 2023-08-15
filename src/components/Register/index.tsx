@@ -26,7 +26,7 @@ const Register = () => (
           descubra como queremos transformar a educação empresarial.
         </Card.Subtitle>
       </S.SubtitleWrapper>
-      <Link href="/register/step1" passHref>
+      <Link href="/register/personal-data" passHref>
         <Button onClick={() => {}} id="next-step">
           Acesse por tempo limitado
         </Button>

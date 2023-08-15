@@ -2,7 +2,13 @@
 import { AxiosError } from 'axios';
 import { createAction, createAsyncAction } from 'typesafe-actions';
 
-import { AssignNewsletterRequest, AssignNewsletterResponse, ClientInfoResponse } from './types';
+import {
+  AssignNewsletterRequest,
+  AssignNewsletterResponse,
+  ClientInfoResponse,
+  ClientPersonalDataPayload,
+  ClientPersonalDataResponse
+} from './types';
 
 export const clientInfo = createAsyncAction(
   'CLIENT_INFO_REQUEST',
@@ -17,3 +23,11 @@ export const assignNewsletter = createAsyncAction(
 )<AssignNewsletterRequest, AssignNewsletterResponse, Error | AxiosError>();
 
 export const clearClientInfo = createAction('CLEAR_CLIENT_INFO')();
+
+export const createClient = createAsyncAction(
+  'CREATE_CLIENT_REQUEST',
+  'CREATE_CLIENT_SUCCESS',
+  'CREATE_CLIENT_ERROR'
+)<ClientPersonalDataPayload, ClientPersonalDataResponse, Error | AxiosError>();
+
+export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();
