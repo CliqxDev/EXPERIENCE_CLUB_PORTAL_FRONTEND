@@ -1,24 +1,18 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-shadow */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik'
 import { forEach } from 'lodash';
 import { securityProfileSchema } from 'utils/schemas';
 
+import Button from 'components/Button';
 import Input from 'components/Input';
+import PasswordRules from 'components/PasswordRules';
+import { PasswordRule } from 'components/PasswordRules/types';
 
 import * as S from './styles';
 
-type Rule = 'done' | 'error' | 'default';
-
-type PasswordRule = {
-  length: Rule;
-  letterAndNumber: Rule;
-  upperCaseLetter: Rule;
-  specialCharacter: Rule;
-};
-
-export function SecurityForm() {
+const SecurityForm = () => {
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
     length: 'default',
     letterAndNumber: 'default',
@@ -41,46 +35,6 @@ export function SecurityForm() {
     onSubmit: handleSubmit,
     validationSchema: () => securityProfileSchema
   });
-
-  
-  useEffect(() => {
-    const { password } = formik.values;
-
-    let newRules: PasswordRule = {
-      length: 'error',
-      letterAndNumber: 'error',
-      upperCaseLetter: 'error',
-      specialCharacter: 'error'
-    };
-
-    if (password) {
-      const format = /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-
-      if (password.length >= 6) {
-        newRules.length = 'done';
-      }
-
-      if (password.search(/[A-Z]/) !== -1) {
-        newRules.upperCaseLetter = 'done';
-      }
-
-      if (password.search(/[0-9]/) !== -1 && password.search(/[a-z]/) !== -1) {
-        newRules.letterAndNumber = 'done';
-      }
-
-      if (format.test(password)) {
-        newRules.specialCharacter = 'done';
-      }
-    } else {
-      newRules = {
-        length: 'default',
-        letterAndNumber: 'default',
-        upperCaseLetter: 'default',
-        specialCharacter: 'default'
-      };
-    }
-    setPasswordRule(newRules);
-  }, [formik.values.password]);
 
   const isValidPasswordRule = () => {
     let isValid = true;
@@ -127,20 +81,7 @@ export function SecurityForm() {
           type="password"
         />
 
-        <S.PasswordRulesWrapper>
-          <S.ItemRule variant={passwordRule.length}>
-            • Ter 8 ou mais caracteres
-          </S.ItemRule>
-          <S.ItemRule variant={passwordRule.letterAndNumber}>
-            • Letras e números
-          </S.ItemRule>
-          <S.ItemRule variant={passwordRule.upperCaseLetter}>
-            • Letra maiúscula
-          </S.ItemRule>
-          <S.ItemRule variant={passwordRule.specialCharacter}>
-            • Caracteres especiais (*,!.&%$#@)
-          </S.ItemRule>
-        </S.PasswordRulesWrapper>
+        <PasswordRules password={formik.values.password} onChangePassword={(param) => setPasswordRule(param)} />
 
         {/* CONFIRMAÇÃO DE SENHA  */}
         <Input
@@ -156,12 +97,16 @@ export function SecurityForm() {
           errorMessage={(formik.touched.confirmPassword && formik.errors.confirmPassword) || ''}
           type="password"
         />
-        <S.SaveButton
+        <Button
+          style={{ width: '96%', marginTop: '2rem' }}
           disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
-          type="submit">
+          type="submit"
+        >
           Salvar
-        </S.SaveButton>
+        </Button>
       </S.FormContent>
     </S.ContentSecurity>
   );
 }
+
+export default SecurityForm;

@@ -6,8 +6,7 @@ import colaboratorIcon from '../../../public/colaborator.svg'
 
 import { Avatar, ChangeAvatar, ChangeAvatarLabel, ContainerInfo, Email, InfoContent, Name } from "./styles";
 
-export function InfoProfile() {
-  return (
+const InfoProfile = () => (
     <ContainerInfo>
 
       <InfoContent>
@@ -37,5 +36,6 @@ export function InfoProfile() {
       />
 
     </ContainerInfo>
-  );
-}
+  )
+
+export default InfoProfile;

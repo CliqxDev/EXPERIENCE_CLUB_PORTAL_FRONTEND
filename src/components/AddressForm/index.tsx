@@ -3,11 +3,12 @@
 import { useFormik } from "formik";
 import { addressSchema } from "utils/schemas/addressSchema";
 
+import Button from "components/Button";
 import Input from "components/Input";
 
-import { ContentAddress, ContentState, FormAddress, InputAddress, SaveButton, SelectState } from "./styles";
+import { ContentAddress, ContentState, FormAddress, SelectState } from "./styles";
 
-export function AddressForm() {
+const AddressForm = () => {
 
   const handleSubmit = () => {
     console.log('asd')
@@ -130,8 +131,16 @@ export function AddressForm() {
           />
         </ContentState>
 
-        <SaveButton>Salvar</SaveButton>
+        <Button
+          style={{ width: '30rem', marginTop: '2rem' }}
+          disabled={!(formik.isValid && formik.dirty)}
+          type="submit"
+        >
+          Salvar
+        </Button>
       </FormAddress>
     </ContentAddress>
   );
 }
+
+export default AddressForm;

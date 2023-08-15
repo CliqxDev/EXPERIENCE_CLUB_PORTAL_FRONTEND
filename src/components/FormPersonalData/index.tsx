@@ -14,16 +14,9 @@ import FormError from 'components/FormError';
 import { masks } from 'utils/masks';
 import { createClient, clearCreateClient } from 'flux/modules/client/actions';
 import { useCreateClient } from 'hook/selectors/clientHooks';
+import PasswordRules from 'components/PasswordRules';
+import { PasswordRule } from 'components/PasswordRules/types';
 import * as S from './styles';
-
-type Rule = 'done' | 'error' | 'default';
-
-type PasswordRule = {
-  length: Rule;
-  letterAndNumber: Rule;
-  upperCaseLetter: Rule;
-  specialCharacter: Rule;
-};
 
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
@@ -76,45 +69,6 @@ const FormPersonalData = () => {
     onSubmit: handleSubmit,
     validationSchema: () => personalDataSchema
   });
-
-  useEffect(() => {
-    const { password } = formik.values;
-
-    let newRules: PasswordRule = {
-      length: 'error',
-      letterAndNumber: 'error',
-      upperCaseLetter: 'error',
-      specialCharacter: 'error'
-    };
-
-    if (password) {
-      const format = /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-
-      if (password.length >= 6) {
-        newRules.length = 'done';
-      }
-
-      if (password.search(/[A-Z]/) !== -1) {
-        newRules.upperCaseLetter = 'done';
-      }
-
-      if (password.search(/[0-9]/) !== -1 && password.search(/[a-z]/) !== -1) {
-        newRules.letterAndNumber = 'done';
-      }
-
-      if (format.test(password)) {
-        newRules.specialCharacter = 'done';
-      }
-    } else {
-      newRules = {
-        length: 'default',
-        letterAndNumber: 'default',
-        upperCaseLetter: 'default',
-        specialCharacter: 'default'
-      };
-    }
-    setPasswordRule(newRules);
-  }, [formik.values.password]);
 
   const isValidPasswordRule = () => {
     let isValid = true;
@@ -208,20 +162,9 @@ const FormPersonalData = () => {
         errorMessage={(formik.touched.password && formik.errors.password) || ''}
         type="password"
       />
-      <S.PasswordRulesWrapper>
-        <S.ItemRule variant={passwordRule.length}>
-          • Ter 8 ou mais caracteres
-        </S.ItemRule>
-        <S.ItemRule variant={passwordRule.letterAndNumber}>
-          • Letras e números
-        </S.ItemRule>
-        <S.ItemRule variant={passwordRule.upperCaseLetter}>
-          • Letra maiúscula
-        </S.ItemRule>
-        <S.ItemRule variant={passwordRule.specialCharacter}>
-          • Caracteres especiais (*,!.&%$#@)
-        </S.ItemRule>
-      </S.PasswordRulesWrapper>
+
+      <PasswordRules password={formik.values.password} onChangePassword={(param) => setPasswordRule(param)} />
+
       <Input
         required
         value={formik.values.confirmationPassword}

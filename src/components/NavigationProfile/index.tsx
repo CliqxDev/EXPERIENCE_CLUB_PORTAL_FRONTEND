@@ -5,11 +5,11 @@
 import React, { useState } from 'react'
 import { DeleteAccount } from 'styles/styles';
 
-import { AddressForm } from 'components/AddressForm';
-import { InfoProfile } from 'components/InfoProfile';
-import { PersonalData } from 'components/PersonalData';
-import { SecurityForm } from 'components/SecurityForm';
-import { SubscriberPlan } from 'components/SubscriberPlan';
+import AddressForm from 'components/AddressForm';
+import InfoProfile from 'components/InfoProfile';
+import PersonalData from 'components/PersonalData';
+import SecurityForm  from 'components/SecurityForm';
+import SubscriberPlan from 'components/SubscriberPlan';
 
 import * as S from './styles'
 

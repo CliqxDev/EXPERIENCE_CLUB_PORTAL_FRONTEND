@@ -8,7 +8,7 @@ import Input from "components/Input";
 
 import * as S from './styles';
 
-export function PersonalData() {
+const PersonalData = () => {
   const handleSubmit = () => {
     console.log("asd")
   }
@@ -39,7 +39,7 @@ export function PersonalData() {
           id="telephone"
           name="telephone"
           placeholder=""
-          style={{ width: '95%'}}
+          style={{ width: '95%' }}
           errorMessage={(formik.touched.telephone && formik.errors.telephone) || ''}
           spacing="24"
         />
@@ -54,9 +54,17 @@ export function PersonalData() {
           style={{ width: '95%', height: '5.6rem' }}
           spacing="24"
         />
-        <Button type="submit" style={{ width: '95%' }}>Salvar</Button>
+        <Button
+          type="submit"
+          disabled={!(formik.isValid && formik.dirty)}
+          style={{ width: '95%' }}
+        >
+          Salvar
+        </Button>
       </S.FormData>
 
     </S.ContainerPersonalData>
   );
 }
+
+export default PersonalData;
