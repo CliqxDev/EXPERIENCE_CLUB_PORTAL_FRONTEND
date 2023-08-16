@@ -10,5 +10,5 @@ export type StyleProps = {
 };
 
 export type Props = StyleProps & {
-  children: ReactNode;
+  children?: ReactNode;
 };

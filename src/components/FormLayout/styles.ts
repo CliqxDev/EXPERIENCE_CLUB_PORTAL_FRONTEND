@@ -43,7 +43,8 @@ const FormWrapperVariants = {
   simple: css`
     margin-top: 75px;
     width: 100%;
-  `
+    background: transparent;
+  `,
 };
 
 export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`

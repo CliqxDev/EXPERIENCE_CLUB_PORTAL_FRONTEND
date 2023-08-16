@@ -28,7 +28,7 @@ const rootVariants = {
     background-color: #10100f;
   `,
   lightDark: css`
-    background-color: #ffffff;
+    background-color: #1D1D1B;
   `
 };
 
@@ -42,7 +42,10 @@ const titleVariants = {
     text-align: center;
     color: #ffffff;
   `,
-  lightDark: css``
+  lightDark: css`
+    text-align: left;
+    color: #ffffff;
+  `
 };
 
 const subtitleVariants = {
@@ -55,7 +58,14 @@ const subtitleVariants = {
     color: #ffffff;
     text-align: center;
   `,
-  lightDark: css``
+  lightDark: css``,
+  white: css`
+    width: 32.5rem;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-align: left;
+  `,
 };
 
 export const Root = styled.main<StyleProps>`
@@ -94,21 +104,34 @@ export const InspirationDateWrapper = styled.div`
 `;
 
 export const InspirationDateWrapperColumn = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  h3 {
-    text-align: right;
+  p {
+    width: 100%;
     font-family: Work Sans;
-    font-size: 14px;
-    font-style: normal;
     font-weight: 500;
-    line-height: 20px;
-    color: #eaeeff;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: #FFFF;
+    text-align: right;
+  }
 
-    strong {
-      font-size: 24px;
-      font-weight: 500;
-    }
+  span {
+    font-family: Work Sans;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    color: #B9B9B8;
+  }
+
+  strong {
+    font-family: Work Sans;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.6rem;
+    color: #FFFF;
   }
 `;
