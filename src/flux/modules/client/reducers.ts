@@ -3,6 +3,7 @@ import { RequestStatus } from 'models/iRequest';
 import { Action, createReducer } from 'typesafe-actions';
 
 import {
+  assignNewsletter,
   clearClientInfo,
   clearCreateClient,
   clientInfo,
@@ -12,6 +13,7 @@ import { Client } from './types';
 
 const initialState: Client = {
   clientInfo: { data: null, message: null, status: RequestStatus.idle },
+  newsLetter: { data: null, message: null, status: RequestStatus.idle },
   createClient: {
     data: null,
     message: null,
@@ -74,6 +76,26 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
       data: null,
       message: null,
       status: RequestStatus.idle
+    }
+  }))
+  .handleAction(assignNewsletter.request, state => ({
+    ...state,
+    newsLetter: { data: null, message: null, status: RequestStatus.fetching }
+  }))
+  .handleAction(assignNewsletter.success, state => ({
+    ...state,
+    newsLetter: {
+      data: null,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(assignNewsletter.failure, (state, action) => ({
+    ...state,
+    newsLetter: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
     }
   }));
 

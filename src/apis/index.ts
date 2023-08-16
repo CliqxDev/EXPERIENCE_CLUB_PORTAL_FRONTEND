@@ -1,30 +1,22 @@
-/* eslint-disable import/no-anonymous-default-export */
-import axios, {
-  AxiosHeaders,
-  AxiosRequestConfig,
-  RawAxiosRequestHeaders
-} from 'axios';
-import { getToken } from 'utils/services/auth';
+import { getToken, logout } from 'utils/services/auth';
 
-const request = async (
-  params: AxiosRequestConfig,
-  affectedAccount?: string
-) => {
-  const headers: RawAxiosRequestHeaders | AxiosHeaders = {
-    'Cache-Control': 'no-cache',
-    accept: 'application/json',
-    'Content-Type': 'application/json',
-    'X-CSRFToken': process.env.X_CSRF_TOKEN
-  };
+const getBaseUrl = (baseUrl?: string) => baseUrl || process.env.API_HOST;
 
-  if (affectedAccount) {
-    headers['affected-account'] = affectedAccount;
-  }
+export async function request<TResponse>(
+  url: string,
+  config?: RequestInit,
+  baseUrl?: string
+): Promise<TResponse> {
+  const urlComplete = `${getBaseUrl(baseUrl)}${url}`;
+
+  const requestHeaders: HeadersInit = new Headers();
+  requestHeaders.set('accept', 'application/json, text/plain, */*');
+  requestHeaders.set('Content-Type', 'application/json');
 
   try {
     const token = getToken();
     if (token.access) {
-      headers.Authorization = `Bearer ${token.access}`;
+      requestHeaders.set('Authorization', `Bearer ${token.access}`);
     }
   } catch (ex) {
     if (ex !== 'No current user') {
@@ -32,94 +24,34 @@ const request = async (
     }
   }
 
-  params.headers = headers;
+  const response: any = await fetch(urlComplete, {
+    ...config,
+    headers: requestHeaders
+  });
+  if (response.status === 401) {
+    logout();
+  }
 
-  return axios({
-    ...params
-  }).then(
-    event => event,
-    error => {
-      throw error;
-    }
-  );
-};
+  if (!response.ok) {
+    throw await response.json();
+  } else if (response.status === 200) {
+    return response.json();
+  } else {
+    return response;
+  }
+}
 
-const getBaseUrl = (baseUrl?: string) => baseUrl || process.env.API_HOST;
+export const api = {
+  get: <TResponse>(url: string, baseUrl?: string) =>
+    request<TResponse>(url, undefined, baseUrl),
 
-export const get = (
-  props: AxiosRequestConfig,
-  affectedAccount?: string,
-  baseURL?: string
-) =>
-  request(
-    {
-      baseURL: getBaseUrl(baseURL),
-      ...props,
-      method: 'GET'
-    },
-    affectedAccount
-  );
-
-export const post = (
-  props: AxiosRequestConfig,
-  affectedAccount?: string,
-  baseURL?: string
-) =>
-  request(
-    {
-      baseURL: getBaseUrl(baseURL),
-      ...props,
-      method: 'POST'
-    },
-    affectedAccount
-  );
-
-export const put = (
-  props: AxiosRequestConfig,
-  affectedAccount?: string,
-  baseURL?: string
-) =>
-  request(
-    {
-      baseURL: getBaseUrl(baseURL),
-      ...props,
-      method: 'PUT'
-    },
-    affectedAccount
-  );
-
-export const patch = (
-  props: AxiosRequestConfig,
-  affectedAccount?: string,
-  baseURL?: string
-) =>
-  request(
-    {
-      baseURL: getBaseUrl(baseURL),
-      ...props,
-      method: 'PATCH'
-    },
-    affectedAccount
-  );
-
-export const del = (
-  props: AxiosRequestConfig,
-  affectedAccount?: string,
-  baseURL?: string
-) =>
-  request(
-    {
-      baseURL: getBaseUrl(baseURL),
-      ...props,
-      method: 'DELETE'
-    },
-    affectedAccount
-  );
-
-export default {
-  del,
-  get,
-  patch,
-  post,
-  put
+  post: <TBody, TResponse>(url: string, body: TBody, baseUrl?: string) =>
+    request<TResponse>(
+      url,
+      {
+        method: 'POST',
+        body: JSON.stringify(body)
+      },
+      baseUrl
+    )
 };

@@ -16,38 +16,7 @@
         "*.jsx",
         "*.ts",
         "*.tsx"
-      ],
-      "rules": {
-        "simple-import-sort/imports": [
-          "error",
-          {
-            "groups": [
-              [
-                "^react",
-                "^@?\\w"
-              ],
-              [
-                "^(@|components)(/.*|$)"
-              ],
-              [
-                "^\\u0000"
-              ],
-              [
-                "^\\.\\.(?!/?$)",
-                "^\\.\\./?$"
-              ],
-              [
-                "^\\./(?=.*/)(?!/?$)",
-                "^\\.(?!/?$)",
-                "^\\./?$"
-              ],
-              [
-                "^.+\\.?(css)$"
-              ]
-            ]
-          }
-        ]
-      }
+      ]
     }
   ],
   "parser": "@typescript-eslint/parser",
@@ -61,8 +30,7 @@
     "prettier"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off",
-    "simple-import-sort/imports": "error",
+    "simple-import-sort/imports": "off",
     "simple-import-sort/exports": "error",
     "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
@@ -71,12 +39,15 @@
     "react/destructuring-assignment": "off",
     "arrow-parens": "off",
     "no-param-reassign": "off",
+    "eslint-disable import/order": "off",
+    "import/no-anonymous-default-export": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/button-has-type": "off",
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/anchor-is-valid": "off",

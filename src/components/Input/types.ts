@@ -12,6 +12,8 @@ export type InputMode =
   | 'decimal'
   | undefined;
 
+export type Variant = 'transparent' | 'transparent2' | 'default';
+
 export type InputProps = {
   spacing?: Spacings;
   errorMessage?: string;
@@ -29,4 +31,6 @@ export type InputProps = {
   mask?: any;
   inputMode?: InputMode;
   autoFocus?: boolean | undefined;
+  variant?: Variant;
+  fullWidth?: boolean;
 };

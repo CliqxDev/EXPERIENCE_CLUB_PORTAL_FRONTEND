@@ -57,10 +57,15 @@ export interface AssignNewsletterRequest {
 }
 
 export interface AssignNewsletterResponse {
-  success: string;
+  success: string | null;
 }
 
 export interface Client {
   clientInfo: IRequest<ClientInfoResponse>;
   createClient: IRequest<ClientPersonalDataResponse>;
+  newsLetter: IRequest<AssignNewsletterResponse>;
 }
+
+export type AssignNewsletterResponseAPI = {
+  data: AssignNewsletterResponse;
+};

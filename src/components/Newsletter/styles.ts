@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const NewsletterWrapper = styled.main`
+export const NewsletterWrapper = styled.main<{ isLogged: boolean }>`
   width: 100%;
-  height: 38.8rem;
-
+  height: ${({ isLogged }) => (isLogged ? '17.8rem' : '38.8rem')};
+  padding: 1rem 2.4rem 2.4rem 2.4rem;
   background-image: url('/img/newsletter-bg.png');
   background-size: 100% 38.8rem;
   background-repeat: no-repeat;
@@ -17,33 +17,11 @@ export const FormWrapper = styled.form`
   align-items: center;
 `;
 
-export const Input = styled.input`
-  width: 36rem;
-  height: 5rem;
-
-  padding-left: 1rem;
-  margin-top: 2rem;
-  color: #FFFF;
-
-  outline: none;
-  background: none;
-  border: 1px solid #FFFF;
-  border-radius: 4px;
-
-  &::placeholder {
-    color: #FFFF;
-  }
-`;
-
 export const CheckboxContainer = styled.div`
   width: 36rem;
-  height: 5rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  margin: 1rem auto;
 `;
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
@@ -60,5 +38,76 @@ export const CustomizeLabel = styled.label`
   font-weight: 500;
   line-height: 2rem;
 
-  color: #FFFF;
+  color: #ffff;
+`;
+
+export const MessageWrapper = styled.div`
+  width: 100%;
+  height: 38.8rem;
+  padding: 1rem 2.4rem 2.4rem 2.4rem;
+  background-image: url('/img/newsletter-bg.png');
+  background-size: 100% 38.8rem;
+  background-repeat: no-repeat;
+  align-items: center;
+  display: flex;
+`;
+
+export const MessageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #ffffff;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  height: 220px;
+`;
+
+export const MessageHeader = styled.div`
+  background-color: #eaeeff;
+  padding: 1.6rem;
+
+  h1 {
+    color: #4a4a49;
+    font-family: Work Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+  }
+
+  h2 {
+    color: #5476fd;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+`;
+
+export const MessageContent = styled.div`
+  padding: 1.2rem 1.6rem;
+  p {
+    color: #686866;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
+`;
+
+export const MessageSuccess = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #ffffff;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  height: 200px;
 `;

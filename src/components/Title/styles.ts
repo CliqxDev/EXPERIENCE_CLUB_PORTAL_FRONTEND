@@ -4,26 +4,27 @@ export const Wrapper = styled.main``;
 
 const variants = {
   black400: css`
-    color: #4A4A49;
+    color: #4a4a49;
   `,
   black50: css`
-    color: #E8E8E8;
+    color: #e8e8e8;
   `,
   light: css`
-    color: #F4F4F4;
+    color: #f4f4f4;
   `,
   lightCenter: css`
-    color: #F4F4F4;
+    color: #f4f4f4;
     text-align: center;
-    margin-top: 2rem;
-  `,
-}
+  `
+};
 
-
-export const Title = styled.h1<{ variant: 'black400' | 'black50' | 'light' | 'lightCenter' }>`
+export const Title = styled.h1<{
+  variant: 'black400' | 'black50' | 'light' | 'lightCenter';
+}>`
   font-family: Work Sans;
   font-size: 2.8rem;
   font-weight: 400;
+  margin-bottom: 0.8rem;
   line-height: 3.6rem;
   ${({ variant }) => variant && variants[variant]}
 `;

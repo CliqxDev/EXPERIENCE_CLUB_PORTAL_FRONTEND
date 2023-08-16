@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react';
 
 import CardTrails from 'components/CardTrails';
 import Title from 'components/Title';
@@ -16,13 +16,13 @@ const Trails = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setOptionLabel('mercado')
-    }, 100)
-  }, [])
+      setOptionLabel('mercado');
+    }, 100);
+  }, []);
 
   return (
     <S.Wrapper labelSelected={optionLabel}>
-      <Title variant='black50'>Trilhas</Title>
+      <Title variant="black50">Trilhas</Title>
 
       <S.ContentRadio style={{ marginTop: '2rem' }}>
         {/* MERCADO */}
@@ -47,7 +47,11 @@ const Trails = () => {
           checked={optionLabel === 'gestao'}
           onChange={handleOptionChange}
         />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio2" style={{ width: '9.6rem' }}>
+        <S.RadioLabel
+          labelSelected={optionLabel}
+          htmlFor="button-radio2"
+          style={{ width: '9.6rem' }}
+        >
           Gestão
         </S.RadioLabel>
 
@@ -60,7 +64,11 @@ const Trails = () => {
           checked={optionLabel === 'tecnologia'}
           onChange={handleOptionChange}
         />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio3" style={{ width: '12rem', marginRight: '0' }}>
+        <S.RadioLabel
+          labelSelected={optionLabel}
+          htmlFor="button-radio3"
+          style={{ width: '12rem', marginRight: '0' }}
+        >
           Tecnologia
         </S.RadioLabel>
       </S.ContentRadio>
@@ -75,7 +83,11 @@ const Trails = () => {
           checked={optionLabel === 'esg'}
           onChange={handleOptionChange}
         />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio4" style={{ width: '10.7rem' }}>
+        <S.RadioLabel
+          labelSelected={optionLabel}
+          htmlFor="button-radio4"
+          style={{ width: '10.7rem' }}
+        >
           ESG
         </S.RadioLabel>
 
@@ -88,7 +100,11 @@ const Trails = () => {
           checked={optionLabel === 'startup'}
           onChange={handleOptionChange}
         />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio5" style={{ width: '10rem' }}>
+        <S.RadioLabel
+          labelSelected={optionLabel}
+          htmlFor="button-radio5"
+          style={{ width: '10rem' }}
+        >
           Startup
         </S.RadioLabel>
 
@@ -101,14 +117,16 @@ const Trails = () => {
           checked={optionLabel === 'futuro'}
           onChange={handleOptionChange}
         />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio6" style={{ width: '15.7rem', marginRight: '0' }}>
+        <S.RadioLabel
+          labelSelected={optionLabel}
+          htmlFor="button-radio6"
+          style={{ width: '15.7rem', marginRight: '0' }}
+        >
           Futuro
         </S.RadioLabel>
       </S.ContentRadio>
-      <CardTrails />
     </S.Wrapper>
-  )
+  );
 };
-
 
 export default Trails;

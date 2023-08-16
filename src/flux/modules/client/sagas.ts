@@ -1,13 +1,12 @@
-/* eslint-disable import/no-anonymous-default-export */
-import { AxiosError } from 'axios';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
+import { api } from 'apis';
 
 import { assignNewsletter, clientInfo, createClient } from './actions';
-import { getClientInfo, postAssignNewsletter, postClient } from './service';
 import {
-  AssignNewsletterResponse,
+  AssignNewsletterRequest,
   ClientInfoResponse,
-  ClientPersonalDataResponse
+  ClientPersonalDataResponse,
+  ClientPersonalDataPayload
 } from './types';
 
 type ClientInfoResponseAPI = {
@@ -18,18 +17,13 @@ type ClientPersonalDataResponseAPI = {
   data: ClientPersonalDataResponse;
 };
 
-type AssignNewsletterResponseAPI = {
-  data: AssignNewsletterResponse;
-};
-
 function* clientInfoSaga(): Generator {
   try {
-    const response: ClientInfoResponseAPI = (yield call(
-      getClientInfo
-    )) as ClientInfoResponseAPI;
-    yield put(clientInfo.success(response.data));
+    const response: any = yield api.get<ClientInfoResponseAPI>('/auth/me');
+
+    yield put(clientInfo.success(response));
   } catch (err) {
-    const errors = err as Error | AxiosError;
+    const errors = err as Error;
     yield put(clientInfo.failure(errors));
   }
 }
@@ -38,14 +32,14 @@ function* createClientSaga({
   payload
 }: ReturnType<typeof createClient.request>): Generator {
   try {
-    const response: ClientPersonalDataResponseAPI = (yield call(
-      postClient,
-      payload
-    )) as ClientPersonalDataResponseAPI;
-    debugger;
-    yield put(createClient.success(response.data));
+    const response: any = yield api.post<
+      ClientPersonalDataPayload,
+      ClientPersonalDataResponseAPI
+    >('/users/', payload);
+
+    yield put(createClient.success(response));
   } catch (err) {
-    const errors = err as Error | AxiosError;
+    const errors = err as Error;
     yield put(createClient.failure(errors));
   }
 }
@@ -54,14 +48,11 @@ function* assignNewsletterSaga({
   payload
 }: ReturnType<typeof assignNewsletter.request>): Generator {
   try {
-    const response: AssignNewsletterResponseAPI = (yield call(
-      postAssignNewsletter,
-      payload
-    )) as AssignNewsletterResponseAPI;
-    yield put(assignNewsletter.success(response.data));
-  } catch (err) {
-    const errors = err as Error | AxiosError;
-    yield put(assignNewsletter.failure(errors));
+    yield api.post<AssignNewsletterRequest, undefined>('/newsletter/', payload);
+    yield put(assignNewsletter.success());
+  } catch (err: any) {
+    const error = new Error(err);
+    yield put(assignNewsletter.failure(error));
   }
 }
 export default [

@@ -23,6 +23,8 @@ const Input: FC<InputProps> = ({
   inputMode,
   required,
   autoFocus,
+  variant,
+  fullWidth,
   type = 'text'
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -49,9 +51,16 @@ const Input: FC<InputProps> = ({
   }, [mask]);
 
   return (
-    <S.Wrapper error={errorMessage} disabled={disabled} spacing={spacing}>
-      <S.InputWrapper>
+    <S.Wrapper
+      variant={variant || 'default'}
+      error={errorMessage}
+      disabled={disabled}
+      spacing={spacing}
+      fullWidth={fullWidth}
+    >
+      <S.InputWrapper variant={variant || 'default'}>
         <S.InputText
+          variant={variant || 'default'}
           type={(showPassword && 'text') || type}
           name={name}
           id={id}
@@ -72,7 +81,7 @@ const Input: FC<InputProps> = ({
           autoFocus={autoFocus}
         />
         {!!label && (
-          <S.Label htmlFor={id}>
+          <S.Label htmlFor={id} variant={variant || 'default'}>
             <>
               {label} {required && <span>*</span>}
             </>
@@ -136,7 +145,9 @@ const Input: FC<InputProps> = ({
           </ButtonMenu>
         </S.WrapperPasswordIcon>
       )}
-      {!!errorMessage && <S.Error>{errorMessage}</S.Error>}
+      {!!errorMessage && (
+        <S.Error variant={variant || 'default'}>{errorMessage}</S.Error>
+      )}
       {!!info && !errorMessage && <S.Info>{info}</S.Info>}
     </S.Wrapper>
   );

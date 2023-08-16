@@ -1,4 +1,5 @@
 import {
+  AssignNewsletterResponse,
   ClientInfoResponse,
   ClientPersonalDataResponse
 } from 'flux/modules/client/types';
@@ -11,3 +12,6 @@ export const useClientInfo = (): IRequest<ClientInfoResponse> =>
 
 export const useCreateClient = (): IRequest<ClientPersonalDataResponse> =>
   useSelector((state: RootState) => state.client.createClient);
+
+export const useNewsLetter = (): IRequest<AssignNewsletterResponse> =>
+  useSelector((state: RootState) => state.client.newsLetter);

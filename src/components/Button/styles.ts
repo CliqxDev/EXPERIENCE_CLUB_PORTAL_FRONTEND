@@ -37,10 +37,25 @@ const variants = {
       background: rgba(103, 80, 164, 0.08);
       color: #6750a4;
     }
+  `,
+  secondary: css`
+    background: #ffffff;
+    color: #4a4a49;
+    border: none;
+
+    &:disabled {
+      cursor: default;
+      box-shadow: none;
+      background: #e8e8e8;
+      color: #686866;
+      color: rgba(102, 104, 102, 0.38);
+    }
   `
 };
 
-export const Button = styled.button<{ variant: 'default' | 'link' }>`
+export const Button = styled.button<{
+  variant: 'default' | 'link' | 'secondary';
+}>`
   outline: none;
   display: flex;
   align-items: center;

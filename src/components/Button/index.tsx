@@ -4,7 +4,7 @@ import * as S from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
-  variant?: 'default' | 'link';
+  variant?: 'default' | 'link' | 'secondary';
 };
 
 const Button: FC<ButtonProps> = ({

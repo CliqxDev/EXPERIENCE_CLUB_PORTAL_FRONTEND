@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { forEach } from 'lodash';
 import { redirect } from 'next/navigation';
+import moment from 'moment';
 import { useAppDispatch } from 'hook/store';
 import { personalDataSchema } from 'utils/schemas';
 
@@ -14,6 +15,7 @@ import FormError from 'components/FormError';
 import { masks } from 'utils/masks';
 import { createClient, clearCreateClient } from 'flux/modules/client/actions';
 import { useCreateClient } from 'hook/selectors/clientHooks';
+import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import * as S from './styles';
 
 type Rule = 'done' | 'error' | 'default';
@@ -54,8 +56,10 @@ const FormPersonalData = () => {
         password: formik.values.password,
         name: formik.values.name,
         email: formik.values.email,
-        phone: formik.values.cellphone,
-        date_birth: formik.values.birthDate,
+        phone: RemovePhoneMask(formik.values.cellphone),
+        date_birth: moment(formik.values.birthDate, 'DD/MM/YYYY').format(
+          'YYYY-MM-DD'
+        ),
         role: formik.values.role
       })
     );

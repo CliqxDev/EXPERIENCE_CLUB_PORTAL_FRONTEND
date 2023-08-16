@@ -1,19 +1,17 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { AxiosError } from 'axios';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
+import { api } from 'apis';
 
 import { sigIn } from './actions';
-import { login } from './service';
-import { SigInResponse } from './types';
-
-type Response = {
-  data: SigInResponse;
-};
+import { SigInRequest, SigInResponse } from './types';
 
 function* sigInSaga({ payload }: ReturnType<typeof sigIn.request>): Generator {
   try {
-    const response: Response = (yield call(login, payload)) as Response;
-    yield put(sigIn.success(response.data));
+    const response: any = yield api.post<SigInRequest, SigInResponse>(
+      '/auth/token',
+      payload
+    );
+    yield put(sigIn.success(response));
   } catch (err) {
     const errors = err as Error | AxiosError;
     yield put(sigIn.failure(errors));
