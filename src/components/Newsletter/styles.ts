@@ -7,11 +7,14 @@ export const NewsletterWrapper = styled.main<{ isLogged: boolean }>`
   background-image: url('/img/newsletter-bg.png');
   background-size: 100% 38.8rem;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const FormWrapper = styled.form`
   width: 100%;
-
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
