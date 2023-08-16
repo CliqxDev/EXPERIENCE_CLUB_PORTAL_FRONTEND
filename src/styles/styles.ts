@@ -11,7 +11,7 @@ export const Wrapper = styled.main`
 
   overflow-y: auto;
 
-  background: ${({ theme }) => theme.colors.black50};
+  background: #E8E8E8;
 `;
 
 export const DeleteAccount = styled.span`
@@ -25,6 +25,6 @@ export const DeleteAccount = styled.span`
 
   margin: 2rem;
 
-  color: ${({ theme }) => theme.colors.error};
+  color: #DC2626;
   cursor: pointer;
 `;

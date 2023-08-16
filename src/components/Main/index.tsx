@@ -1,5 +1,4 @@
 import Accompany from 'components/Accompany';
-import CardTrails from 'components/CardTrails';
 import CarouselSlide from 'components/Carousel';
 import Columnists from 'components/Columnists';
 import Explore from 'components/Explore';
@@ -9,14 +8,15 @@ import Newsletter from 'components/Newsletter';
 import ShowMore from 'components/ShowMore';
 import Trails from 'components/Trails';
 
+// import { NavigationProfile } from 'components/NavigationProfile';
 import * as S from './styles';
 
 const Main = () => (
   <S.Wrapper>
+    {/* <NavigationProfile /> */}
     <Header />
     <CarouselSlide />
     <Trails />
-    <CardTrails />
     <Columnists />
     <Accompany />
     <Newsletter />

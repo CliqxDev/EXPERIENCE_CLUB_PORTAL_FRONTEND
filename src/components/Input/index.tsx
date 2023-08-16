@@ -25,6 +25,7 @@ const Input: FC<InputProps> = ({
   autoFocus,
   variant,
   fullWidth,
+  style,
   type = 'text'
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -57,6 +58,7 @@ const Input: FC<InputProps> = ({
       disabled={disabled}
       spacing={spacing}
       fullWidth={fullWidth}
+      style={style}
     >
       <S.InputWrapper variant={variant || 'default'}>
         <S.InputText

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 export const ContentSecurity = styled.main`
   width: 90%;
@@ -6,39 +6,15 @@ export const ContentSecurity = styled.main`
 
   margin: 2rem 2rem 1.4rem 2rem;
 
-  background: ${({ theme }) => theme.colors.white};
+  background: #FFFF;
   border-radius: 4px;
 `;
 
-export const ContainerInput = styled.div`
-  width: 90%;
-  height: 4rem;
-
+export const FormContent = styled.form`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 
-  border: 1px solid ${({ theme }) => theme.colors.black200};
-  border-radius: 4px;
-  outline: none;
-
-  margin: 1rem 1.6rem;
-`;
-
-export const InputPassword = styled.input`
-  width: 85%;
-  height: 3.5rem;
-
-  border: none;
-  border-radius: none;
-  outline: none;
-
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.black500};
-
-  padding-left: 1.6rem;
+  padding: 2rem;
 `;
 
 export const Title = styled.h1`
@@ -46,12 +22,12 @@ export const Title = styled.h1`
   font-weight: 600;
   line-height: 2.4rem;
 
-  color: ${({ theme }) => theme.colors.black400};
-  margin: 1rem 1.6rem;
+  color: #4A4A49;
+  padding: 2rem 0 0 1.6rem;
 `;
 
 export const SaveButton = styled.button`
-  width: 90%;
+  width: 96%;
   height: 3.5rem;
 
   font-size: 1.4rem;
@@ -65,21 +41,40 @@ export const SaveButton = styled.button`
   outline: none;
   border: none;
   border-radius: 8px;
-  margin: 1.6rem;
+  margin-top: 2rem;
 
-  background: ${({ theme }) => theme.colors.blue500 };
-  color: ${({ theme }) => theme.colors.white };
+  background: #1D1D1B;
+  color: #FFFF;
   cursor: pointer;
 `;
 
-export const AlertPassword = styled.span`
+export const PasswordRulesWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
+  padding-left: 0.4rem;
+  padding-top: 0.4rem;
+`;
 
-  font-size: 1rem;
+const itemRuleVariant = {
+  done: css`
+    color: #15803d;
+  `,
+  error: css`
+    color: #dc2626;
+  `,
+  default: css`
+    color: #4a4a49;
+  `
+};
+
+export const ItemRule = styled.span<{ variant: 'done' | 'error' | 'default' }>`
+  font-family: Work Sans;
+  font-size: 11px;
+  font-style: normal;
   font-weight: 500;
-  line-height: 1.6rem;
+  line-height: 16px;
+  text-align: left;
 
-  color: ${({ theme }) => theme.colors.black400};
-  margin: 0.1rem 1.6rem;
+  ${({ variant }) => itemRuleVariant[variant]}
 `;

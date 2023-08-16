@@ -6,12 +6,12 @@ type ButtonProps = {
 
 export const ContainerPersonalData = styled.div`
   width: 90%;
-  height: 23rem;
+  height: auto;
   padding: 1.4rem 0 1.6rem 1.6rem;
 
-  margin-bottom: 2rem;
+  margin: 2rem;
 
-  background: ${({ theme }) => theme.colors.white};
+  background: #FFFF;
   border-radius: 4px;
 `;
 
@@ -20,10 +20,10 @@ export const Title = styled.h1`
   font-weight: 500;
   line-height: 2.4rem;
 
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 `;
 
-export const ContentInputs = styled.div`
+export const FormData = styled.form`
   display: flex;
   flex-direction: column;
 
@@ -34,14 +34,14 @@ export const InputData = styled.input`
   width: 95%;
   height: 4rem;
 
-  border: 1px solid ${({ theme }) => theme.colors.black200};
+  border: 1px solid #1D1D1B;
   border-radius: 4px;
   outline: none;
 
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 
   padding: 1.6rem;
 `;
@@ -63,7 +63,7 @@ export const SaveButton = styled.button<ButtonProps>`
   border-radius: 8px;
   margin-top: 2rem;
 
-  background: ${({ theme, disabled }) => (disabled ? theme.colors.black50 : theme.colors.blue500)};
-  color: ${({ theme, disabled }) => (disabled ? theme.colors.black500 : theme.colors.white)};
+  background: ${({ disabled }) => (disabled ? '#E8E8E8' : '#1D1D1B')};
+  color: ${({ disabled }) => (disabled ? '#1D1D1B' : '#FFFFFF')};
   cursor: pointer;
 `;

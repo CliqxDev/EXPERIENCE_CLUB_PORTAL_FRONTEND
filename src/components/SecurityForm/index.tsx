@@ -1,114 +1,112 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-shadow */
 import { useState } from 'react';
-import Image from 'next/image';
+import { useFormik } from 'formik'
+import { forEach } from 'lodash';
+import { securityProfileSchema } from 'utils/schemas';
 
-import passwordOffIcon from '../../../public/eye-off.svg';
-import passwordOnIcon from '../../../public/eye-on.svg';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import PasswordRules from 'components/PasswordRules';
+import { PasswordRule } from 'components/PasswordRules/types';
 
-import {
-  AlertPassword,
-  ContainerInput,
-  ContentSecurity,
-  InputPassword,
-  SaveButton,
-  Title
-} from './styles';
+import * as S from './styles';
 
-export function SecurityForm() {
-  const [password, setPassword] = useState(false);
-  const [newPassword, setNewPassword] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState(false);
+const SecurityForm = () => {
+  const [passwordRule, setPasswordRule] = useState<PasswordRule>({
+    length: 'default',
+    letterAndNumber: 'default',
+    upperCaseLetter: 'default',
+    specialCharacter: 'default'
+  });
+
+  const handleSubmit = () => {
+    console.log('asd')
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      currentPassword: '',
+      password: '',
+      confirmPassword: ''
+    },
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: handleSubmit,
+    validationSchema: () => securityProfileSchema
+  });
+
+  const isValidPasswordRule = () => {
+    let isValid = true;
+    forEach(passwordRule, rule => {
+      if (rule !== 'done') {
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
 
   return (
-    <ContentSecurity>
-      <Title>Trocar senha</Title>
+    <S.ContentSecurity>
+      <S.Title>Trocar senha</S.Title>
 
       {/* SENHA ATUAL  */}
-      <ContainerInput>
-        <InputPassword
-          type={password ? 'text' : 'password'}
-          placeholder="Senha atual"
+      <S.FormContent>
+        <Input
+          required
+          value={formik.values.currentPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          style={{ width: '95%' }}
+          label="Senha atual"
+          id="currentPassword"
+          name="currentPassword"
+          placeholder=""
+          errorMessage={(formik.touched.currentPassword && formik.errors.currentPassword) || ''}
+          type="password"
         />
-        {!password ? (
-          <Image
-            src={passwordOffIcon}
-            style={{ marginRight: '1rem', cursor: 'pointer' }}
-            width={20}
-            height={20}
-            alt="Mostrar Senha"
-            onClick={() => setPassword(!password)}
-          />
-        ) : (
-          <Image
-            src={passwordOnIcon}
-            style={{ marginRight: '1rem', cursor: 'pointer' }}
-            width={20}
-            height={20}
-            alt="Mostrar Senha"
-            onClick={() => setPassword(!password)}
-          />
-        )}
-      </ContainerInput>
 
-      {/* SENHA  */}
-      <ContainerInput>
-        <InputPassword
-          type={newPassword ? 'text' : 'password'}
-          placeholder="Senha"
+        {/* SENHA  */}
+        <Input
+          required
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          style={{ width: '95%', marginTop: '2rem' }}
+          label="Senha"
+          id="password"
+          name="password"
+          placeholder=""
+          errorMessage={(formik.touched.password && formik.errors.password) || ''}
+          type="password"
         />
-        {!newPassword ? (
-          <Image
-            src={passwordOffIcon}
-            style={{ marginRight: '1rem', cursor: 'pointer' }}
-            width={20}
-            height={20}
-            alt="Mostrar Senha"
-            onClick={() => setNewPassword(!newPassword)}
-          />
-        ) : (
-          <Image
-            src={passwordOnIcon}
-            style={{ marginRight: '1rem', cursor: 'pointer' }}
-            width={20}
-            height={20}
-            alt="Mostrar Senha"
-            onClick={() => setNewPassword(!newPassword)}
-          />
-        )}
-      </ContainerInput>
 
-      <AlertPassword>• Ter 8 ou mais caracteres</AlertPassword>
-      <AlertPassword>• Letras e números</AlertPassword>
-      <AlertPassword>• Letra maiúscula</AlertPassword>
-      <AlertPassword>• Caracteres especiais (*,!.&%$#@)</AlertPassword>
+        <PasswordRules password={formik.values.password} onChangePassword={(param) => setPasswordRule(param)} />
 
-      {/* CONFIRMAÇÃO DE SENHA  */}
-      <ContainerInput>
-        <InputPassword
-          type={confirmPassword ? 'text' : 'password'}
-          placeholder="Confirmação de senha"
+        {/* CONFIRMAÇÃO DE SENHA  */}
+        <Input
+          required
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          style={{ width: '95%', marginTop: '2rem' }}
+          label="Confirmação de senha"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder=""
+          errorMessage={(formik.touched.confirmPassword && formik.errors.confirmPassword) || ''}
+          type="password"
         />
-        {!confirmPassword ? (
-          <Image
-            src={passwordOffIcon}
-            style={{ marginRight: '1rem', cursor: 'pointer' }}
-            width={20}
-            height={20}
-            alt="Mostrar Senha"
-            onClick={() => setConfirmPassword(!confirmPassword)}
-          />
-        ) : (
-          <Image
-            src={passwordOnIcon}
-            style={{ marginRight: '1rem', cursor: 'pointer' }}
-            width={20}
-            height={20}
-            alt="Mostrar Senha"
-            onClick={() => setConfirmPassword(!confirmPassword)}
-          />
-        )}
-      </ContainerInput>
-
-      <SaveButton>Salvar</SaveButton>
-    </ContentSecurity>
+        <Button
+          style={{ width: '96%', marginTop: '2rem' }}
+          disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
+          type="submit"
+        >
+          Salvar
+        </Button>
+      </S.FormContent>
+    </S.ContentSecurity>
   );
 }
+
+export default SecurityForm;

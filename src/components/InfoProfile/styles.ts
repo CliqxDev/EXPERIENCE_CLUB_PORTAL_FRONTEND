@@ -8,7 +8,7 @@ export const ContainerInfo = styled.main`
   justify-content: space-between;
   margin: 2rem 2rem 1.4rem 2rem;
 
-  background: ${({ theme }) => theme.colors.white};
+  background: #FFFF;
   border-radius: 4px;
 `;
 
@@ -16,7 +16,7 @@ export const Avatar = styled.div`
   width: 9.2rem;
   height: 9.2rem;
 
-  background: ${({ theme }) => theme.colors.blue75};
+  background: #A7B9FE;
   border-radius: 4px;
 
   margin: 1.6rem 0 1.6rem 1.6rem;
@@ -40,7 +40,7 @@ export const ChangeAvatarLabel = styled.label`
   margin: 6.5rem -1rem;
 
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.white};
+  background: #FFFF;
 `;
 
 export const InfoContent = styled.div`
@@ -57,7 +57,7 @@ export const Name = styled.p`
   font-weight: 500;
   line-height: 2.4rem;
 
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 `;
 
 export const Email = styled.p`
@@ -68,5 +68,5 @@ export const Email = styled.p`
   font-weight: 200;
   line-height: 2.4rem;
 
-  color: ${({ theme }) => theme.colors.black500};
+  color: #1D1D1B;
 `;
