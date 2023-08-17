@@ -1,12 +1,18 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import { api } from 'apis';
 
-import { assignNewsletter, clientInfo, createClient } from './actions';
+import {
+  assignNewsletter,
+  clientInfo,
+  createClient,
+  updateClient
+} from './actions';
 import {
   AssignNewsletterRequest,
   ClientInfoResponse,
   ClientPersonalDataResponse,
-  ClientPersonalDataPayload
+  ClientPersonalDataPayload,
+  ClientPersonalDataCompletePayload
 } from './types';
 
 type ClientInfoResponseAPI = {
@@ -44,6 +50,26 @@ function* createClientSaga({
   }
 }
 
+function* updateClientSaga({
+  payload
+}: ReturnType<typeof updateClient.request>): Generator {
+  try {
+    if (!payload.address) {
+      delete payload.address;
+    }
+    const response: any = yield api.put<
+      ClientPersonalDataCompletePayload,
+      ClientPersonalDataResponseAPI
+    >(`/users/${payload?.id}`, payload);
+
+    yield put(updateClient.success(response));
+    yield put(clientInfo.success(response));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(updateClient.failure(errors));
+  }
+}
+
 function* assignNewsletterSaga({
   payload
 }: ReturnType<typeof assignNewsletter.request>): Generator {
@@ -58,5 +84,6 @@ function* assignNewsletterSaga({
 export default [
   takeEvery(clientInfo.request, clientInfoSaga),
   takeEvery(assignNewsletter.request, assignNewsletterSaga),
-  takeEvery(createClient.request, createClientSaga)
+  takeEvery(createClient.request, createClientSaga),
+  takeEvery(updateClient.request, updateClientSaga)
 ];

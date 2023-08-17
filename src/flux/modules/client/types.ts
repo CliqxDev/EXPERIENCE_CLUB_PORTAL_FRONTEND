@@ -2,7 +2,7 @@ import { IRequest } from 'models/iRequest';
 
 export interface ClientInfoResponse {
   id: number;
-  address?: string;
+  address?: Address;
   qtd_posts_read_month: number;
   last_login: string;
   name: string;
@@ -24,16 +24,31 @@ export interface ClientPersonalDataPayload {
   role?: string;
 }
 
-type Address = {
+export interface ClientPersonalDataCompletePayload {
   id: number;
-  cep: string;
-  address: string;
-  number: string;
-  district: string;
+  address?: Address;
+  qtd_posts_read_month: number;
+  last_login: string;
+  name: string;
+  email: string;
+  phone: string;
+  date_birth?: string;
+  role: string;
+  is_active: boolean;
+  is_premium: boolean;
+  is_admin: boolean;
+}
+
+type Address = {
+  id?: number;
+  cep?: string;
+  address?: string;
+  number?: string;
+  district?: string;
   complement: string;
-  state: string;
-  city: string;
-  user: number;
+  state?: string;
+  city?: string;
+  user?: number;
 };
 
 export interface ClientPersonalDataResponse {
@@ -63,6 +78,7 @@ export interface AssignNewsletterResponse {
 export interface Client {
   clientInfo: IRequest<ClientInfoResponse>;
   createClient: IRequest<ClientPersonalDataResponse>;
+  updateClient: IRequest<ClientPersonalDataResponse>;
   newsLetter: IRequest<AssignNewsletterResponse>;
 }
 

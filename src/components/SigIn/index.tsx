@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable simple-import-sort/imports */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
@@ -82,7 +80,7 @@ const SigIn = () => {
     onSubmit: handleSubmit,
     validationSchema: () => sigInSchema
   });
-  
+
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
       <h1>Entre no seu perfil</h1>

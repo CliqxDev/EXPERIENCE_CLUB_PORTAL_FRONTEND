@@ -1,11 +1,16 @@
-import { ButtonPlan, Description, PlanWrapper, Title } from "./styles";
+import Button from 'components/Button';
+import * as S from './styles';
 
 const SubscriberPlan = () => (
-    <PlanWrapper>
-      <Title>Seja nosso assinante!</Title>
-      <Description>Conheça nossos planos e tenha muito mais conteúdo.</Description>
-      <ButtonPlan>Nossos planos</ButtonPlan>
-    </PlanWrapper>
-  )
+  <S.PlanWrapper>
+    <S.Title>Seja nosso assinante!</S.Title>
+    <S.Row>
+      <S.Description>
+        Conheça nossos planos e tenha muito mais conteúdo.
+      </S.Description>
+      <Button type="button">Nossos planos</Button>
+    </S.Row>
+  </S.PlanWrapper>
+);
 
 export default SubscriberPlan;

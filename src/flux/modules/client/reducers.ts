@@ -7,18 +7,16 @@ import {
   clearClientInfo,
   clearCreateClient,
   clientInfo,
-  createClient
+  createClient,
+  updateClient
 } from './actions';
 import { Client } from './types';
 
 const initialState: Client = {
   clientInfo: { data: null, message: null, status: RequestStatus.idle },
+  updateClient: { data: null, message: null, status: RequestStatus.idle },
   newsLetter: { data: null, message: null, status: RequestStatus.idle },
-  createClient: {
-    data: null,
-    message: null,
-    status: RequestStatus.idle
-  }
+  createClient: { data: null, message: null, status: RequestStatus.idle }
 };
 
 const clientInfoReducer = createReducer<Client, Action>(initialState)
@@ -93,6 +91,26 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
   .handleAction(assignNewsletter.failure, (state, action) => ({
     ...state,
     newsLetter: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(updateClient.request, state => ({
+    ...state,
+    updateClient: { data: null, message: null, status: RequestStatus.fetching }
+  }))
+  .handleAction(updateClient.success, state => ({
+    ...state,
+    updateClient: {
+      data: null,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(updateClient.failure, (state, action) => ({
+    ...state,
+    updateClient: {
       data: null,
       message: action.payload.message,
       status: RequestStatus.error

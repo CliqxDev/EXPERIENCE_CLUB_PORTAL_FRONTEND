@@ -1,24 +1,27 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const ContainerInfo = styled.main`
-  width: 90%;
   height: 12.4rem;
 
   display: flex;
   justify-content: space-between;
-  margin: 2rem 2rem 1.4rem 2rem;
-
-  background: #FFFF;
+  background: #ffff;
   border-radius: 4px;
+  margin-bottom: 1.6rem;
+  margin-top: 2.4rem;
 `;
 
 export const Avatar = styled.div`
   width: 9.2rem;
   height: 9.2rem;
-
-  background: #A7B9FE;
+  background: #a7b9fe;
   border-radius: 4px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Work Sans;
+  font-size: 50px;
   margin: 1.6rem 0 1.6rem 1.6rem;
 `;
 
@@ -30,43 +33,25 @@ export const ChangeAvatar = styled.input`
 `;
 
 export const ChangeAvatarLabel = styled.label`
-  width: 2.4rem; 
-  height: 2.4rem; 
-
+  width: 2.4rem;
+  height: 2.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin: 6.5rem -1rem;
-
   border-radius: 8px;
-  background: #FFFF;
+  background: #ffff;
 `;
 
 export const InfoContent = styled.div`
   width: 100%;
-
   display: flex;
 `;
 
-export const Name = styled.p`
+export const Text = styled.p`
   width: 18rem;
-  height: auto;
-
   font-size: 1.6rem;
-  font-weight: 500;
   line-height: 2.4rem;
-
-  color: #1D1D1B;
-`;
-
-export const Email = styled.p`
-  width: 18rem;
-  height: 2.4rem;
-
-  font-size: 1.2rem;
-  font-weight: 200;
-  line-height: 2.4rem;
-
-  color: #1D1D1B;
+  color: #1d1d1b;
+  font-weight: 400;
 `;

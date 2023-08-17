@@ -53,5 +53,14 @@ export const api = {
         body: JSON.stringify(body)
       },
       baseUrl
+    ),
+  put: <TBody, TResponse>(url: string, body: TBody, baseUrl?: string) =>
+    request<TResponse>(
+      url,
+      {
+        method: 'PUT',
+        body: JSON.stringify(body)
+      },
+      baseUrl
     )
 };

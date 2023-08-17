@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import * as Yup from 'yup';
 
+import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import { isDate, isPastDate, minDateForBirthDate } from './date';
 
 export default {
@@ -25,12 +26,23 @@ export default {
     );
   },
   EmailNotRequired() {
-    return Yup.string()
-      .email('E-mail inválido.')
+    return Yup.string().email('E-mail inválido.');
   },
   PasswordMatch() {
     return Yup.string()
       .oneOf([Yup.ref('password')], 'As senhas não estão iguais')
       .required('Campo vazio');
+  },
+  CellPhone() {
+    return Yup.string()
+      .required('Campo vazio')
+      .test('len', 'Telefone inválido!', cel => {
+        if (cel) {
+          const celClear = RemovePhoneMask(cel);
+          const test = celClear.length >= 11;
+          return test;
+        }
+        return false;
+      });
   }
 };

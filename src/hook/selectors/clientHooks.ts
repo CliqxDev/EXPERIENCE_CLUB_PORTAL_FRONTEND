@@ -13,5 +13,8 @@ export const useClientInfo = (): IRequest<ClientInfoResponse> =>
 export const useCreateClient = (): IRequest<ClientPersonalDataResponse> =>
   useSelector((state: RootState) => state.client.createClient);
 
+export const useUpdateClient = (): IRequest<ClientPersonalDataResponse> =>
+  useSelector((state: RootState) => state.client.updateClient);
+
 export const useNewsLetter = (): IRequest<AssignNewsletterResponse> =>
   useSelector((state: RootState) => state.client.newsLetter);

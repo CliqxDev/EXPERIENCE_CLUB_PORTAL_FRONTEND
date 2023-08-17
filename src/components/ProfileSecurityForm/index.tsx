@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-shadow */
 import { useState } from 'react';
-import { useFormik } from 'formik'
+import { useFormik } from 'formik';
 import { forEach } from 'lodash';
 import { securityProfileSchema } from 'utils/schemas';
 
@@ -12,7 +12,7 @@ import { PasswordRule } from 'components/PasswordRules/types';
 
 import * as S from './styles';
 
-const SecurityForm = () => {
+const ProfileSecurityForm = () => {
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
     length: 'default',
     letterAndNumber: 'default',
@@ -21,8 +21,8 @@ const SecurityForm = () => {
   });
 
   const handleSubmit = () => {
-    console.log('asd')
-  }
+    console.log('asd');
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -49,56 +49,60 @@ const SecurityForm = () => {
   return (
     <S.ContentSecurity>
       <S.Title>Trocar senha</S.Title>
-
-      {/* SENHA ATUAL  */}
       <S.FormContent>
         <Input
           required
           value={formik.values.currentPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: '95%' }}
           label="Senha atual"
           id="currentPassword"
           name="currentPassword"
           placeholder=""
-          errorMessage={(formik.touched.currentPassword && formik.errors.currentPassword) || ''}
+          errorMessage={
+            (formik.touched.currentPassword && formik.errors.currentPassword) ||
+            ''
+          }
           type="password"
+          spacing="24"
         />
-
-        {/* SENHA  */}
         <Input
           required
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: '95%', marginTop: '2rem' }}
           label="Senha"
           id="password"
           name="password"
           placeholder=""
-          errorMessage={(formik.touched.password && formik.errors.password) || ''}
+          errorMessage={
+            (formik.touched.password && formik.errors.password) || ''
+          }
           type="password"
         />
 
-        <PasswordRules password={formik.values.password} onChangePassword={(param) => setPasswordRule(param)} />
-
-        {/* CONFIRMAÇÃO DE SENHA  */}
+        <PasswordRules
+          password={formik.values.password}
+          onChangePassword={param => setPasswordRule(param)}
+        />
         <Input
           required
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: '95%', marginTop: '2rem' }}
           label="Confirmação de senha"
           id="confirmPassword"
           name="confirmPassword"
           placeholder=""
-          errorMessage={(formik.touched.confirmPassword && formik.errors.confirmPassword) || ''}
+          errorMessage={
+            (formik.touched.confirmPassword && formik.errors.confirmPassword) ||
+            ''
+          }
           type="password"
+          spacing="24"
         />
         <Button
-          style={{ width: '96%', marginTop: '2rem' }}
+          fullWidth
           disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
           type="submit"
         >
@@ -107,6 +111,6 @@ const SecurityForm = () => {
       </S.FormContent>
     </S.ContentSecurity>
   );
-}
+};
 
-export default SecurityForm;
+export default ProfileSecurityForm;

@@ -4,6 +4,7 @@ import {
   AssignNewsletterRequest,
   ClientInfoResponse,
   ClientPersonalDataPayload,
+  ClientPersonalDataCompletePayload,
   ClientPersonalDataResponse
 } from './types';
 
@@ -26,5 +27,11 @@ export const createClient = createAsyncAction(
   'CREATE_CLIENT_SUCCESS',
   'CREATE_CLIENT_ERROR'
 )<ClientPersonalDataPayload, ClientPersonalDataResponse, Error>();
+
+export const updateClient = createAsyncAction(
+  'UPDATE_CLIENT_REQUEST',
+  'UPDATE_CLIENT_SUCCESS',
+  'UPDATE_CLIENT_ERROR'
+)<ClientPersonalDataCompletePayload, ClientInfoResponse, Error>();
 
 export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();

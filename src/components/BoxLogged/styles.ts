@@ -5,6 +5,7 @@ export const Wrapper = styled.main`
   justify-content: space-between;
   align-items: center;
   display: flex;
+  cursor: pointer;
 `;
 
 export const WrapperUserColumn = styled.div`

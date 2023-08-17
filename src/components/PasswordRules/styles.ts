@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { css, styled } from 'styled-components';
 
 export const PasswordRulesWrapper = styled.div`
   display: flex;
@@ -6,6 +6,7 @@ export const PasswordRulesWrapper = styled.div`
   margin-top: 1rem;
   padding-left: 0.4rem;
   padding-top: 0.4rem;
+  margin-bottom: 2.4rem;
 `;
 
 const itemRuleVariant = {

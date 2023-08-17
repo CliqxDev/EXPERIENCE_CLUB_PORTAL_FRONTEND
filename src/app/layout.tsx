@@ -1,6 +1,6 @@
 /* eslint-disable import/order */
 
-'use-client'
+'use-client';
 
 import { Providers } from 'flux/provider';
 import type { Metadata } from 'next';
