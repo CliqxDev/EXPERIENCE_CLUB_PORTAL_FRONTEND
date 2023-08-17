@@ -4,7 +4,7 @@ import { StyleProps } from './types';
 
 const titleSize = {
   sm: css`
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
   `,
   md: css`
@@ -80,6 +80,7 @@ export const Root = styled.main<StyleProps>`
 `;
 
 export const Title = styled.h1<StyleProps>`
+  width: 100%;
   font-family: Work Sans;
   font-style: normal;
   font-weight: 400;
@@ -100,7 +101,6 @@ export const InspirationDateWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row-reverse;
-  margin-top: 18px;
 `;
 
 export const InspirationDateWrapperColumn = styled.div`
@@ -117,6 +117,7 @@ export const InspirationDateWrapperColumn = styled.div`
     line-height: 1.6rem;
     color: #FFFF;
     text-align: right;
+
   }
 
   span {

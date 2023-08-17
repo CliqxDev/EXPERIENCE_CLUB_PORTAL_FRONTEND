@@ -1,0 +1,1 @@
+export type SelectedTypePlan = 'YEARLY' | 'MONTHLY' | 'DEFAULT'

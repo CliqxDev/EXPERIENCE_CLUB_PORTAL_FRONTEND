@@ -1,3 +1,4 @@
+import { CardPriceMonthly } from './CardPriceMonthly';
 import { CardPriceYearly } from './CardPriceYearly';
 import { CardRegisterRoot } from './CardRegisterRoot';
 import { CardRegisterSubtitle } from './CardRegisterSubtitle';
@@ -7,5 +8,6 @@ export const Card = {
   Root: CardRegisterRoot,
   Title: CardRegisterTitle,
   Subtitle: CardRegisterSubtitle,
-  PriceYearly: CardPriceYearly
+  PriceYearly: CardPriceYearly,
+  PriceMonthly: CardPriceMonthly,
 };
