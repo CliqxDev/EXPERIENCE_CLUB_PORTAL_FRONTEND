@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import CardTrails from 'components/CardTrails';
 import Title from 'components/Title';
@@ -15,95 +13,95 @@ const Trails = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setOptionLabel('mercado')
-    }, 100)
+    setOptionLabel('MERCADO')
   }, [])
+
+  const topRadiosList = [
+    {
+      id: 'button-radio1',
+      value: 'MERCADO',
+      selected: optionLabel === 'MERCADO',
+      action: handleOptionChange,
+      label: 'Mercado'
+    },
+    {
+      id: 'button-radio2',
+      value: 'GESTAO',
+      selected: optionLabel === 'GESTAO',
+      action: handleOptionChange,
+      label: 'Gestão'
+    },
+    {
+      id: 'button-radio3',
+      value: 'TECNOLOGIA',
+      selected: optionLabel === 'TECNOLOGIA',
+      action: handleOptionChange,
+      label: 'Tecnologia'
+    },
+  ]
+
+  const bottomRadiosList = [
+    {
+      id: 'button-radio4',
+      value: 'ESG',
+      selected: optionLabel === 'ESG',
+      action: handleOptionChange,
+      label: 'ESG'
+    },
+    {
+      id: 'button-radio5',
+      value: 'STARTUP',
+      selected: optionLabel === 'STARTUP',
+      action: handleOptionChange,
+      label: 'Startup'
+    },
+    {
+      id: 'button-radio6',
+      value: 'FUTURO',
+      selected: optionLabel === 'FUTURO',
+      action: handleOptionChange,
+      label: 'Futuro'
+    },
+  ]
 
   return (
     <S.Wrapper labelSelected={optionLabel}>
       <Title variant='black50'>Trilhas</Title>
 
-      <S.ContentRadio style={{ marginTop: '2rem' }}>
-        {/* MERCADO */}
-        <input
-          name="button-radio"
-          id="button-radio1"
-          type="radio"
-          value="mercado"
-          checked={optionLabel === 'mercado'}
-          onChange={handleOptionChange}
-        />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio1">
-          Mercado
-        </S.RadioLabel>
-
-        {/* GESTÃO */}
-        <input
-          name="button-radio"
-          id="button-radio2"
-          type="radio"
-          value="gestao"
-          checked={optionLabel === 'gestao'}
-          onChange={handleOptionChange}
-        />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio2" style={{ width: '9.6rem' }}>
-          Gestão
-        </S.RadioLabel>
-
-        {/* TECNOLOGIA */}
-        <input
-          name="button-radio"
-          id="button-radio3"
-          type="radio"
-          value="tecnologia"
-          checked={optionLabel === 'tecnologia'}
-          onChange={handleOptionChange}
-        />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio3" style={{ width: '12rem', marginRight: '0' }}>
-          Tecnologia
-        </S.RadioLabel>
+      <S.ContentRadio>
+        {topRadiosList.map((topRadio) => (
+          <>
+            <input
+              name="button-radio"
+              id={topRadio.id}
+              type="radio"
+              value={topRadio.value}
+              checked={topRadio.selected}
+              onChange={topRadio.action}
+            />
+            <S.RadioLabel sizes={topRadio.value} colors={topRadio.value} labelSelected={optionLabel} htmlFor={topRadio.id}>
+              {topRadio.label}
+            </S.RadioLabel>
+          </>
+        ))}
       </S.ContentRadio>
 
       <S.ContentRadio>
-        {/* ESG */}
-        <input
-          name="button-radio"
-          id="button-radio4"
-          type="radio"
-          value="esg"
-          checked={optionLabel === 'esg'}
-          onChange={handleOptionChange}
-        />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio4" style={{ width: '10.7rem' }}>
-          ESG
-        </S.RadioLabel>
-
-        {/* STARTUP */}
-        <input
-          name="button-radio"
-          id="button-radio5"
-          type="radio"
-          value="startup"
-          checked={optionLabel === 'startup'}
-          onChange={handleOptionChange}
-        />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio5" style={{ width: '10rem' }}>
-          Startup
-        </S.RadioLabel>
-
-        {/* FUTURO */}
-        <input
-          name="button-radio"
-          id="button-radio6"
-          type="radio"
-          value="futuro"
-          checked={optionLabel === 'futuro'}
-          onChange={handleOptionChange}
-        />
-        <S.RadioLabel labelSelected={optionLabel} htmlFor="button-radio6" style={{ width: '15.7rem', marginRight: '0' }}>
-          Futuro
-        </S.RadioLabel>
+        {bottomRadiosList.map((bottomRadio) => (
+          <>
+            <input
+              name="button-radio"
+              id={bottomRadio.id}
+              type="radio"
+              value={bottomRadio.value}
+              checked={bottomRadio.selected}
+              onChange={bottomRadio.action}
+            />
+            <S.RadioLabel sizes={bottomRadio.value} colors={bottomRadio.value} labelSelected={optionLabel} htmlFor={bottomRadio.id}>
+              {bottomRadio.label}
+            </S.RadioLabel>
+          </>
+        ))}
       </S.ContentRadio>
       <CardTrails />
     </S.Wrapper>
