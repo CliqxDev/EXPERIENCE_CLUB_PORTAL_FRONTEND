@@ -1,14 +1,16 @@
-/* eslint-disable import/order */
-import { RequestStatus } from 'models/iRequest';
 import { Action, createReducer } from 'typesafe-actions';
-
+import { RequestStatus } from 'models/iRequest';
 import {
   assignNewsletter,
+  changePassword,
   clearClientInfo,
   clearCreateClient,
   clientInfo,
   createClient,
-  updateClient
+  createClientAddress,
+  updateClient,
+  updateClientAddress,
+  updateClientState
 } from './actions';
 import { Client } from './types';
 
@@ -16,7 +18,18 @@ const initialState: Client = {
   clientInfo: { data: null, message: null, status: RequestStatus.idle },
   updateClient: { data: null, message: null, status: RequestStatus.idle },
   newsLetter: { data: null, message: null, status: RequestStatus.idle },
-  createClient: { data: null, message: null, status: RequestStatus.idle }
+  createClient: { data: null, message: null, status: RequestStatus.idle },
+  changePassword: { data: null, message: null, status: RequestStatus.idle },
+  updateClientAddress: {
+    data: null,
+    message: null,
+    status: RequestStatus.idle
+  },
+  createClientAddress: {
+    data: null,
+    message: null,
+    status: RequestStatus.idle
+  }
 };
 
 const clientInfoReducer = createReducer<Client, Action>(initialState)
@@ -114,6 +127,86 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
       data: null,
       message: action.payload.message,
       status: RequestStatus.error
+    }
+  }))
+
+  .handleAction(createClientAddress.failure, (state, action) => ({
+    ...state,
+    createClientAddress: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(createClientAddress.request, state => ({
+    ...state,
+    createClientAddress: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(createClientAddress.success, (state, action) => ({
+    ...state,
+    createClientAddress: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(updateClientAddress.request, state => ({
+    ...state,
+    updateClientAddress: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(updateClientAddress.success, (state, action) => ({
+    ...state,
+    updateClientAddress: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(updateClientAddress.failure, (state, action) => ({
+    ...state,
+    updateClientAddress: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(changePassword.request, state => ({
+    ...state,
+    changePassword: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(changePassword.success, state => ({
+    ...state,
+    changePassword: {
+      data: null,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(changePassword.failure, (state, action) => ({
+    ...state,
+    changePassword: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(updateClientState, (state, action) => ({
+    ...state,
+    clientInfo: {
+      ...state.clientInfo,
+      data: action.payload
     }
   }));
 

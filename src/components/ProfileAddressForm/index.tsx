@@ -15,33 +15,46 @@ import { useAddress } from 'hook/selectors/addressHooks';
 import { RequestStatus } from 'models/iRequest';
 import Select from 'components/Select';
 import { ufs } from 'utils/uf';
-import { updateClient } from 'flux/modules/client/actions';
-import { useClientInfo, useUpdateClient } from 'hook/selectors/clientHooks';
+import {
+  createClientAddress,
+  updateClientAddress,
+  updateClientState
+} from 'flux/modules/client/actions';
+import {
+  useClientInfo,
+  useCreateClientAddress,
+  useUpdateClientAddress
+} from 'hook/selectors/clientHooks';
+import { Address } from 'flux/modules/client/types';
 import * as S from './styles';
 
 const ProfileAddressForm = () => {
   const dispatch = useAppDispatch();
   const { data, status } = useAddress();
   const { data: userData } = useClientInfo();
-  const { status: statusUpdateClient } = useUpdateClient();
+  const { status: statusUpdateClientAddress, data: dataUpdateClientAddress } =
+    useUpdateClientAddress();
+  const { status: statusCreateClientAddress, data: dataCreateClientAddress } =
+    useCreateClientAddress();
 
   const onUpdate = () => {
     if (!isEmpty(userData)) {
-      const request = {
-        ...userData,
-        address: {
-          cep: formik.values.cep.replace('-', ''),
-          address: formik.values.address,
-          number: formik.values.number,
-          district: formik.values.district,
-          complement: formik.values.complement,
-          state: formik.values.state.value,
-          city: formik.values.city,
-          user: userData.id
-        }
+      const request: Address = {
+        cep: formik.values.cep.replace('-', ''),
+        address: formik.values.address,
+        number: formik.values.number,
+        district: formik.values.district,
+        complement: formik.values.complement,
+        state: formik.values.state.value,
+        city: formik.values.city,
+        user: userData.id
       };
-
-      dispatch(updateClient.request(request));
+      if (userData.address) {
+        request.id = userData.address.id;
+        dispatch(updateClientAddress.request(request));
+      } else {
+        dispatch(createClientAddress.request(request));
+      }
     }
   };
 
@@ -68,11 +81,13 @@ const ProfileAddressForm = () => {
   useEffect(() => {
     if (formik.values.cep.length === 9) {
       dispatch(getAddress.request(formik.values.cep.replace('-', '')));
-    } else {
+    } else if (formik.values.cep.length === 0) {
       formik.setFieldValue('address', '', false);
       formik.setFieldValue('district', '', false);
       formik.setFieldValue('city', '', false);
-      formik.setFieldValue('state', '', false);
+      formik.setFieldValue('number', '', false);
+      formik.setFieldValue('complement', '', false);
+      formik.setFieldValue('state', { value: '', label: '' }, false);
     }
   }, [formik.values.cep]);
 
@@ -92,10 +107,59 @@ const ProfileAddressForm = () => {
   }, [data, status]);
 
   useEffect(() => {
-    if (statusUpdateClient === RequestStatus.success) {
-      toast('Informações atualizadas.');
+    if (!isEmpty(userData)) {
+      const { address } = userData;
+      if (!isEmpty(address)) {
+        formik.setFieldValue('address', address.address, false);
+        formik.setFieldValue('district', address.district, false);
+        formik.setFieldValue('city', address.city, false);
+        formik.setFieldValue('complement', address.complement, false);
+        formik.setFieldValue('number', address.number, false);
+        formik.setFieldValue(
+          'state',
+          { label: address.state, value: address.state },
+          false
+        );
+        formik.setFieldValue('cep', address.cep, false);
+      }
     }
-  }, [status]);
+  }, [userData]);
+
+  const isUpdateSuccess =
+    (statusUpdateClientAddress === RequestStatus.success ||
+      statusCreateClientAddress === RequestStatus.success) &&
+    (!isEmpty(dataCreateClientAddress) || !isEmpty(dataUpdateClientAddress));
+
+  const newAddress = () => {
+    if (statusUpdateClientAddress === RequestStatus.success) {
+      return dataUpdateClientAddress;
+    }
+    if (statusCreateClientAddress === RequestStatus.success) {
+      return dataCreateClientAddress;
+    }
+    return userData?.address;
+  };
+
+  useEffect(() => {
+    if (isUpdateSuccess) {
+      const newAddressData = newAddress();
+      if (!isEmpty(newAddressData) && !isEmpty(userData)) {
+        dispatch(
+          updateClientState({
+            ...userData,
+            address: newAddressData
+          })
+        );
+        toast('Informações atualizadas.');
+      }
+    }
+  }, [
+    statusUpdateClientAddress,
+    dataCreateClientAddress,
+    dataUpdateClientAddress,
+    statusCreateClientAddress
+  ]);
+
   return (
     <S.ContentAddress>
       <S.FormAddress onSubmit={formik.handleSubmit}>
@@ -174,7 +238,7 @@ const ProfileAddressForm = () => {
             }}
             onBlur={formik.handleBlur}
             fullWidth
-            label="Cidade"
+            label="Estado"
             id="state"
             name="state"
             spacing="24"
@@ -184,7 +248,7 @@ const ProfileAddressForm = () => {
             value={formik.values.city}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label="Estado"
+            label="Cidade"
             required
             id="city"
             name="city"

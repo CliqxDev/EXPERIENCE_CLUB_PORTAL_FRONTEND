@@ -39,7 +39,7 @@ export interface ClientPersonalDataCompletePayload {
   is_admin: boolean;
 }
 
-type Address = {
+export type Address = {
   id?: number;
   cep?: string;
   address?: string;
@@ -66,6 +66,13 @@ export interface ClientPersonalDataResponse {
   is_admin: boolean;
 }
 
+export interface ChangePasswordResponse {
+  id: string;
+}
+export interface ChangePasswordRequest {
+  id: string;
+}
+
 export interface AssignNewsletterRequest {
   email: string;
   name: string;
@@ -80,6 +87,9 @@ export interface Client {
   createClient: IRequest<ClientPersonalDataResponse>;
   updateClient: IRequest<ClientPersonalDataResponse>;
   newsLetter: IRequest<AssignNewsletterResponse>;
+  changePassword: IRequest<ChangePasswordResponse>;
+  updateClientAddress: IRequest<Address>;
+  createClientAddress: IRequest<Address>;
 }
 
 export type AssignNewsletterResponseAPI = {

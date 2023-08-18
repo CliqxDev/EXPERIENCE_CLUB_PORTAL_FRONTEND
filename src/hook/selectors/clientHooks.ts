@@ -1,4 +1,5 @@
 import {
+  Address,
   AssignNewsletterResponse,
   ClientInfoResponse,
   ClientPersonalDataResponse
@@ -18,3 +19,9 @@ export const useUpdateClient = (): IRequest<ClientPersonalDataResponse> =>
 
 export const useNewsLetter = (): IRequest<AssignNewsletterResponse> =>
   useSelector((state: RootState) => state.client.newsLetter);
+
+export const useUpdateClientAddress = (): IRequest<Address> =>
+  useSelector((state: RootState) => state.client.updateClientAddress);
+
+export const useCreateClientAddress = (): IRequest<Address> =>
+  useSelector((state: RootState) => state.client.createClientAddress);

@@ -18,21 +18,23 @@ export const TopNavigation = styled.div`
   gap: 8px;
 `;
 
+const titlesBorderAndColor = css`
+  border-bottom: 2px #979796 solid;
+  color: #1d1d1b;
+`;
+
 const titlesVariant = {
   PROFILE: css`
     width: 4.4rem;
-    border-bottom: 2px #979796 solid;
-    color: #1d1d1b;
+    ${titlesBorderAndColor}
   `,
   ADDRESS: css`
     width: 7.8rem;
-    border-bottom: 2px #979796 solid;
-    color: #1d1d1b;
+    ${titlesBorderAndColor}
   `,
   SECURITY: css`
     width: 8.6rem;
-    border-bottom: 2px #979796 solid;
-    color: #1d1d1b;
+    ${titlesBorderAndColor}
   `,
   DEFAULT: css`
     border: none;
@@ -51,7 +53,7 @@ export const Titles = styled.span<{ variant: Tab }>`
   gap: 10px;
   cursor: pointer;
 
-  ${({ variant }) => titlesVariant[variant]}
+  width: ${({ variant }) => titlesVariant[variant]};
 `;
 
 export const Line = styled.div`

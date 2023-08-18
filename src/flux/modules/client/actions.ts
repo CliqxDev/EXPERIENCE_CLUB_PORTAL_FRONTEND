@@ -5,7 +5,8 @@ import {
   ClientInfoResponse,
   ClientPersonalDataPayload,
   ClientPersonalDataCompletePayload,
-  ClientPersonalDataResponse
+  ClientPersonalDataResponse,
+  Address
 } from './types';
 
 export const clientInfo = createAsyncAction(
@@ -34,4 +35,26 @@ export const updateClient = createAsyncAction(
   'UPDATE_CLIENT_ERROR'
 )<ClientPersonalDataCompletePayload, ClientInfoResponse, Error>();
 
+export const changePassword = createAsyncAction(
+  'CHANGE_PASSWORD_REQUEST',
+  'CHANGE_PASSWORD_SUCCESS',
+  'CHANGE_PASSWORD_ERROR'
+)<ClientPersonalDataCompletePayload, ClientInfoResponse, Error>();
+
+export const updateClientAddress = createAsyncAction(
+  'UPDATE_CLIENT_ADDRESS_REQUEST',
+  'UPDATE_CLIENT_ADDRESS_SUCCESS',
+  'UPDATE_CLIENT_ADDRESS_ERROR'
+)<Address, Address, Error>();
+
+export const createClientAddress = createAsyncAction(
+  'CREATE_CLIENT_ADDRESS_REQUEST',
+  'CREATE_CLIENT_ADDRESS_SUCCESS',
+  'CREATE_CLIENT_ADDRESS_ERROR'
+)<Address, Address, Error>();
+
 export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();
+
+export const updateClientState = createAction(
+  'UPDATE_CLIENT_STATE'
+)<ClientInfoResponse>();
