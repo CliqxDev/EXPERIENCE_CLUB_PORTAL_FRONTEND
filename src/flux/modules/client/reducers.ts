@@ -9,8 +9,12 @@ import {
   createClient,
   createClientAddress,
   updateClient,
+  clearCreateClientAddress,
   updateClientAddress,
-  updateClientState
+  updateClientState,
+  clearChangePassword,
+  clearUpdateClient,
+  clearUpdateClientAddress
 } from './actions';
 import { Client } from './types';
 
@@ -129,7 +133,14 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
       status: RequestStatus.error
     }
   }))
-
+  .handleAction(clearUpdateClient, state => ({
+    ...state,
+    updateClient: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
+    }
+  }))
   .handleAction(createClientAddress.failure, (state, action) => ({
     ...state,
     createClientAddress: {
@@ -152,6 +163,14 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
       data: action.payload,
       message: null,
       status: RequestStatus.success
+    }
+  }))
+  .handleAction(clearCreateClientAddress, state => ({
+    ...state,
+    createClientAddress: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
     }
   }))
   .handleAction(updateClientAddress.request, state => ({
@@ -178,6 +197,14 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
       status: RequestStatus.error
     }
   }))
+  .handleAction(clearUpdateClientAddress, state => ({
+    ...state,
+    updateClientAddress: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
+    }
+  }))
   .handleAction(changePassword.request, state => ({
     ...state,
     changePassword: {
@@ -200,6 +227,14 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
       data: null,
       message: action.payload.message,
       status: RequestStatus.error
+    }
+  }))
+  .handleAction(clearChangePassword, state => ({
+    ...state,
+    changePassword: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
     }
   }))
   .handleAction(updateClientState, (state, action) => ({

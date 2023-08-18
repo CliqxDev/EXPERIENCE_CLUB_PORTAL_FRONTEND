@@ -25,3 +25,6 @@ export const useUpdateClientAddress = (): IRequest<Address> =>
 
 export const useCreateClientAddress = (): IRequest<Address> =>
   useSelector((state: RootState) => state.client.createClientAddress);
+
+export const useChangePassword = (): IRequest<undefined> =>
+  useSelector((state: RootState) => state.client.changePassword);

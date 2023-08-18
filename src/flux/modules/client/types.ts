@@ -66,11 +66,9 @@ export interface ClientPersonalDataResponse {
   is_admin: boolean;
 }
 
-export interface ChangePasswordResponse {
-  id: string;
-}
 export interface ChangePasswordRequest {
-  id: string;
+  old_password: string;
+  new_password: string;
 }
 
 export interface AssignNewsletterRequest {
@@ -87,7 +85,7 @@ export interface Client {
   createClient: IRequest<ClientPersonalDataResponse>;
   updateClient: IRequest<ClientPersonalDataResponse>;
   newsLetter: IRequest<AssignNewsletterResponse>;
-  changePassword: IRequest<ChangePasswordResponse>;
+  changePassword: IRequest<undefined>;
   updateClientAddress: IRequest<Address>;
   createClientAddress: IRequest<Address>;
 }

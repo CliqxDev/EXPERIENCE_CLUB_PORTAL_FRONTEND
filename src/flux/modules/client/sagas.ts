@@ -16,7 +16,8 @@ import {
   ClientPersonalDataResponse,
   ClientPersonalDataPayload,
   Address,
-  ClientPersonalDataCompletePayload
+  ClientPersonalDataCompletePayload,
+  ChangePasswordRequest
 } from './types';
 
 type ClientInfoResponseAPI = {
@@ -58,9 +59,7 @@ function* updateClientSaga({
   payload
 }: ReturnType<typeof updateClient.request>): Generator {
   try {
-    if (!payload.address) {
-      delete payload.address;
-    }
+    delete payload.address;
     const response: any = yield api.put<
       ClientPersonalDataCompletePayload,
       ClientPersonalDataResponseAPI
@@ -90,16 +89,18 @@ function* changePasswordSaga({
   payload
 }: ReturnType<typeof changePassword.request>): Generator {
   try {
-    const response: any = yield api.put<
-      ClientPersonalDataCompletePayload,
-      ClientPersonalDataResponseAPI
-    >(`/users/${payload?.id}`, payload);
+    yield api.put<ChangePasswordRequest, undefined>(
+      '/auth/change-password',
+      payload
+    );
 
-    yield put(changePassword.success(response));
-    yield put(clientInfo.success(response));
-  } catch (err) {
-    const errors = err as Error;
-    yield put(changePassword.failure(errors));
+    yield put(changePassword.success());
+  } catch (err: any) {
+    const error = new Error();
+    if (err.old_password.length > 0) {
+      error.message = 'Senha incorreta';
+    }
+    yield put(changePassword.failure(error));
   }
 }
 

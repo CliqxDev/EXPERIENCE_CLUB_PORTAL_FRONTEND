@@ -1,18 +1,29 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-shadow */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { forEach } from 'lodash';
+import toast from 'react-hot-toast';
 import { securityProfileSchema } from 'utils/schemas';
+import { useAppDispatch } from 'hook/store';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';
 
+import {
+  changePassword,
+  clearChangePassword
+} from 'flux/modules/client/actions';
+import ToasterComponent from 'components/Toaster';
+import { useChangePassword } from 'hook/selectors/clientHooks';
+import { RequestStatus } from 'models/iRequest';
 import * as S from './styles';
 
 const ProfileSecurityForm = () => {
+  const dispatch = useAppDispatch();
+
+  const { status, message } = useChangePassword();
+
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
     length: 'default',
     letterAndNumber: 'default',
@@ -21,7 +32,12 @@ const ProfileSecurityForm = () => {
   });
 
   const handleSubmit = () => {
-    console.log('asd');
+    dispatch(
+      changePassword.request({
+        old_password: formik.values.currentPassword,
+        new_password: formik.values.password
+      })
+    );
   };
 
   const formik = useFormik({
@@ -46,10 +62,22 @@ const ProfileSecurityForm = () => {
     return isValid;
   };
 
+  useEffect(() => {
+    if (status === RequestStatus.success) {
+      toast('Informações atualizadas.');
+      dispatch(clearChangePassword());
+    }
+    if (status === RequestStatus.error) {
+      if (message === 'Senha incorreta') {
+        formik.setFieldError('currentPassword', message);
+      }
+    }
+  }, [status]);
+
   return (
     <S.ContentSecurity>
       <S.Title>Trocar senha</S.Title>
-      <S.FormContent>
+      <S.FormContent onSubmit={formik.handleSubmit}>
         <Input
           required
           value={formik.values.currentPassword}
@@ -109,6 +137,7 @@ const ProfileSecurityForm = () => {
           Salvar
         </Button>
       </S.FormContent>
+      <ToasterComponent />
     </S.ContentSecurity>
   );
 };
