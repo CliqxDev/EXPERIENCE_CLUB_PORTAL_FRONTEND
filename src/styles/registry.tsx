@@ -5,11 +5,11 @@
 import React, { useEffect, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
-import { clientInfo } from 'flux/modules/client/actions';
-import { useSigIn } from 'hook/selectors/sigInHooks';
 import { useAppDispatch } from 'hook/store';
 import GlobalStyles from 'styles/global';
 import { isAuthenticated } from 'utils/services/auth';
+import { useSigIn } from 'hook/selectors/authHooks';
+import { clientInfo } from 'flux/modules/auth/actions';
 
 export default function StyledComponentsRegistry({
   children

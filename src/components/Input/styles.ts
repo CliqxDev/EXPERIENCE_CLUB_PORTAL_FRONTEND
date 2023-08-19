@@ -223,6 +223,11 @@ export const InputWrapper = styled.div<{ variant: Variant }>`
       }
     }
 
+    input::-ms-reveal,
+    input::-ms-clear {
+      display: none;
+    }
+
     ${inputWrapperVariants[variant]}
   `}
 `;

@@ -1,8 +1,6 @@
 /* eslint-disable import/order */
 import { FC, useEffect, useState } from 'react';
 import { clearClientInfo } from 'flux/modules/client/actions';
-import { clearSigIn } from 'flux/modules/sigIn/actions';
-import { useClientInfo } from 'hook/selectors/clientHooks';
 import { useAppDispatch } from 'hook/store';
 import { isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
@@ -15,6 +13,8 @@ import { ButtonMenu } from 'components/ButtonMenu';
 import LinkMenu from 'components/LinkMenu';
 
 import * as S from './styles';
+import { clearSigIn } from 'flux/modules/auth/actions';
+import { useClientInfo } from 'hook/selectors/authHooks';
 
 type SearchMenuProps = {
   onClose: () => void;
@@ -34,6 +34,7 @@ const DEFAULT_MENU = [
 const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
+
   const [isLogged, setIsLogger] = useState(false);
   const [menuList, setMenuList] = useState(DEFAULT_MENU);
 

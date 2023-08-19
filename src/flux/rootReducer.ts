@@ -1,10 +1,10 @@
 import clientReducer from './modules/client/reducers';
-import sigInReducer from './modules/sigIn/reducers';
-import cepReducer from './modules/cep/reducers';
+import authReducer from './modules/auth/reducers';
+import addressReducer from './modules/address/reducers';
 
 const rootReducer = () => ({
-  sigIn: sigInReducer,
-  cep: cepReducer,
+  auth: authReducer,
+  address: addressReducer,
   client: clientReducer
 });
 

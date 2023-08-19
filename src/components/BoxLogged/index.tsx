@@ -1,11 +1,11 @@
 /* eslint-disable import/order */
-import { useClientInfo } from 'hook/selectors/clientHooks';
 import Link from 'next/link';
 
 import { ButtonMenu } from 'components/ButtonMenu';
 
 import * as S from './styles';
 import { sanitizeAvatar } from 'utils/formatString';
+import { useClientInfo } from 'hook/selectors/authHooks';
 
 const BoxLogged = () => {
   const { data } = useClientInfo();

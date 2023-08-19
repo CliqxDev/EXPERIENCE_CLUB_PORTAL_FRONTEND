@@ -1,73 +1,31 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
-
+import { AxiosError } from 'axios';
 import {
   AssignNewsletterRequest,
-  ClientInfoResponse,
-  ClientPersonalDataPayload,
-  ClientPersonalDataCompletePayload,
-  ClientPersonalDataResponse,
-  Address,
-  ChangePasswordRequest
+  ClientInfoRequest,
+  ClientInfo
 } from './types';
-
-export const clientInfo = createAsyncAction(
-  'CLIENT_INFO_REQUEST',
-  'CLIENT_INFO_SUCCESS',
-  'CLIENT_INFO_ERROR'
-)<undefined, ClientInfoResponse, Error>();
 
 export const assignNewsletter = createAsyncAction(
   'ASSIGN_NEWSLETTER_REQUEST',
   'ASSIGN_NEWSLETTER_SUCCESS',
   'ASSIGN_NEWSLETTER_ERROR'
-)<AssignNewsletterRequest, undefined, Error>();
-
-export const clearClientInfo = createAction('CLEAR_CLIENT_INFO')();
+)<AssignNewsletterRequest, undefined, Error | AxiosError>();
 
 export const createClient = createAsyncAction(
   'CREATE_CLIENT_REQUEST',
   'CREATE_CLIENT_SUCCESS',
   'CREATE_CLIENT_ERROR'
-)<ClientPersonalDataPayload, ClientPersonalDataResponse, Error>();
+)<ClientInfoRequest, ClientInfo, Error | AxiosError>();
 
 export const updateClient = createAsyncAction(
   'UPDATE_CLIENT_REQUEST',
   'UPDATE_CLIENT_SUCCESS',
   'UPDATE_CLIENT_ERROR'
-)<ClientPersonalDataCompletePayload, ClientInfoResponse, Error>();
+)<ClientInfo, ClientInfo, Error | AxiosError>();
 
 export const clearUpdateClient = createAction('CLEAR_UPDATE_CLIENT')();
 
-export const changePassword = createAsyncAction(
-  'CHANGE_PASSWORD_REQUEST',
-  'CHANGE_PASSWORD_SUCCESS',
-  'CHANGE_PASSWORD_ERROR'
-)<ChangePasswordRequest, undefined, Error>();
-
-export const clearChangePassword = createAction('CLEAR_CHANGE_PASSWORD')();
-
-export const updateClientAddress = createAsyncAction(
-  'UPDATE_CLIENT_ADDRESS_REQUEST',
-  'UPDATE_CLIENT_ADDRESS_SUCCESS',
-  'UPDATE_CLIENT_ADDRESS_ERROR'
-)<Address, Address, Error>();
-
-export const clearUpdateClientAddress = createAction(
-  'CLEAR_UPDATE_CLIENT_ADDRESS'
-)();
-
-export const createClientAddress = createAsyncAction(
-  'CREATE_CLIENT_ADDRESS_REQUEST',
-  'CREATE_CLIENT_ADDRESS_SUCCESS',
-  'CREATE_CLIENT_ADDRESS_ERROR'
-)<Address, Address, Error>();
-
-export const clearCreateClientAddress = createAction(
-  'CLEAR_CREATE_CLIENT_ADDRESS'
-)();
-
 export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();
 
-export const updateClientState = createAction(
-  'UPDATE_CLIENT_STATE'
-)<ClientInfoResponse>();
+export const clearClientInfo = createAction('CLEAR_CLIENT_INFO')();

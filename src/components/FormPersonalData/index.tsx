@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { forEach } from 'lodash';
 import { redirect } from 'next/navigation';
 import moment from 'moment';
+import { toast } from 'react-hot-toast';
 import { useAppDispatch } from 'hook/store';
 import { personalDataSchema } from 'utils/schemas';
 
@@ -11,20 +12,20 @@ import Button from 'components/Button';
 import Input from 'components/Input';
 import { RequestStatus } from 'models/iRequest';
 
-import FormError from 'components/FormError';
 import { masks } from 'utils/masks';
 import { createClient, clearCreateClient } from 'flux/modules/client/actions';
 import { useCreateClient } from 'hook/selectors/clientHooks';
 import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';
+import Toaster from 'components/Toaster';
+import { ClientPersonalDataPayload } from 'flux/modules/client/types';
 import * as S from './styles';
 
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
   const { status } = useCreateClient();
 
-  const [errorMessage, setErrorMessage] = useState('');
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
     length: 'default',
     letterAndNumber: 'default',
@@ -34,7 +35,7 @@ const FormPersonalData = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
-      setErrorMessage('Falha na integração');
+      toast('Falha na integração');
     }
 
     if (status === RequestStatus.success) {
@@ -44,18 +45,24 @@ const FormPersonalData = () => {
   }, [status]);
 
   const handleSubmit = () => {
-    dispatch(
-      createClient.request({
-        password: formik.values.password,
-        name: formik.values.name,
-        email: formik.values.email,
-        phone: RemovePhoneMask(formik.values.cellphone),
-        date_birth: moment(formik.values.birthDate, 'DD/MM/YYYY').format(
-          'YYYY-MM-DD'
-        ),
-        role: formik.values.role
-      })
-    );
+    const request: ClientPersonalDataPayload = {
+      password: formik.values.password,
+      name: formik.values.name,
+      email: formik.values.email
+    };
+    if (formik.values.birthDate) {
+      request.date_birth = moment(formik.values.birthDate, 'DD/MM/YYYY').format(
+        'YYYY-MM-DD'
+      );
+    }
+    if (formik.values.role) {
+      request.role = formik.values.role;
+    }
+
+    if (formik.values.cellphone) {
+      request.phone = RemovePhoneMask(formik.values.cellphone);
+    }
+    dispatch(createClient.request(request));
   };
 
   const formik = useFormik({
@@ -201,7 +208,7 @@ const FormPersonalData = () => {
       >
         Cadastrar
       </Button>
-      {errorMessage && <FormError>{errorMessage}</FormError>}
+      <Toaster variant="error" />
     </S.Wrapper>
   );
 };
