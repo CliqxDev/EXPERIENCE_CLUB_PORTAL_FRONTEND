@@ -5,6 +5,8 @@ import {
   ChangePasswordRequest,
   RecoveryPasswordSendEmailRequest,
   RecoveryPasswordSendEmailResponse,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
   SigInRequest,
   SigInResponse
 } from './types';
@@ -37,6 +39,14 @@ export const recoveryPasswordSendEmail = createAsyncAction(
   RecoveryPasswordSendEmailResponse,
   Error | AxiosError
 >();
+
+export const resetPassword = createAsyncAction(
+  'RESET_PASSWORD_REQUEST',
+  'RESET_PASSWORD_SUCCESS',
+  'RESET_PASSWORD_ERROR'
+)<ResetPasswordRequest, ResetPasswordResponse, Error | AxiosError>();
+
+export const clearResetPassword = createAction('CLEAR_RESET_PASSWORD')();
 
 export const clearRecoveryPasswordSendEmail = createAction(
   'CLEAR_RECOVERY_PASSWORD_SEND_EMAIL'

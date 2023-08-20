@@ -7,13 +7,16 @@ import {
   clearRecoveryPasswordSendEmail,
   updateClientState,
   recoveryPasswordSendEmail as recoveryPasswordSendEmailAction,
-  sigIn as sigInAction
+  sigIn as sigInAction,
+  resetPassword as resetPasswordAction,
+  clearResetPassword
 } from './actions';
 import { Auth } from './types';
 
 const initialState: Auth = {
   clientInfo: { data: null, message: null, status: RequestStatus.idle },
   sigIn: { data: null, message: null, status: RequestStatus.idle },
+  resetPassword: { data: null, message: null, status: RequestStatus.idle },
   recoveryPasswordSendEmail: {
     data: null,
     message: null,
@@ -23,6 +26,30 @@ const initialState: Auth = {
 };
 
 const clientInfoReducer = createReducer<Auth, Action>(initialState)
+  .handleAction(resetPasswordAction.request, state => ({
+    ...state,
+    resetPassword: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(resetPasswordAction.success, state => ({
+    ...state,
+    resetPassword: {
+      data: null,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(resetPasswordAction.failure, (state, action) => ({
+    ...state,
+    resetPassword: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
   .handleAction(sigInAction.request, state => ({
     ...state,
     sigIn: { data: null, message: null, status: RequestStatus.fetching }
@@ -132,6 +159,14 @@ const clientInfoReducer = createReducer<Auth, Action>(initialState)
     clientInfo: {
       ...state.clientInfo,
       data: action.payload
+    }
+  }))
+  .handleAction(clearResetPassword, state => ({
+    ...state,
+    resetPassword: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
     }
   }));
 export default clientInfoReducer;

@@ -2,7 +2,7 @@ import { get, post, put } from 'apis/axios';
 
 import {
   ChangePasswordRequest,
-  RecoveryPasswordRequest,
+  ResetPasswordRequest,
   RecoveryPasswordSendEmailRequest,
   SigInRequest
 } from './types';
@@ -24,7 +24,7 @@ export const postSigIn = (data: SigInRequest) =>
     data
   });
 
-export const postRecoveryPassword = (data: RecoveryPasswordRequest) =>
+export const postResetPassword = (data: ResetPasswordRequest) =>
   post({
     url: '/auth/recovery-password/',
     data

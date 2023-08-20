@@ -6,13 +6,19 @@ import {
   changePassword,
   clientInfo,
   sigIn,
-  recoveryPasswordSendEmail
+  recoveryPasswordSendEmail,
+  resetPassword
 } from './actions';
-import { RecoveryPasswordSendEmailResponse, SigInResponse } from './types';
+import {
+  RecoveryPasswordSendEmailResponse,
+  ResetPasswordResponse,
+  SigInResponse
+} from './types';
 import {
   getClientInfo,
   postChangePassword,
   postEmailRecovery,
+  postResetPassword,
   postSigIn
 } from './service';
 import { ClientInfo } from '../client/types';
@@ -27,6 +33,10 @@ type SigInResponseAPI = {
 
 type RecoveryPasswordSendEmailResponseAPI = {
   data: RecoveryPasswordSendEmailResponse;
+};
+
+type ResetPasswordResponseAPI = {
+  data: ResetPasswordResponse;
 };
 
 function* clientInfoSaga(): Generator {
@@ -85,9 +95,25 @@ function* recoveryPasswordSendEmailSaga({
   }
 }
 
+function* resetPasswordSaga({
+  payload
+}: ReturnType<typeof resetPassword.request>): Generator {
+  try {
+    const response: ResetPasswordResponseAPI = (yield call(
+      postResetPassword,
+      payload
+    )) as ResetPasswordResponseAPI;
+    yield put(resetPassword.success(response.data));
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(resetPassword.failure(errors));
+  }
+}
+
 export default [
   takeEvery(clientInfo.request, clientInfoSaga),
   takeEvery(changePassword.request, changePasswordSaga),
   takeEvery(recoveryPasswordSendEmail.request, recoveryPasswordSendEmailSaga),
+  takeEvery(resetPassword.request, resetPasswordSaga),
   takeEvery(sigIn.request, sigInSaga)
 ];

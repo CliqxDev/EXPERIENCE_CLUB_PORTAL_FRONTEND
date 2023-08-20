@@ -11,8 +11,12 @@ export type SigInRequest = {
   password: string;
 };
 
-export type RecoveryPasswordRequest = {
+export type ResetPasswordRequest = {
   password: string;
+};
+
+export type ResetPasswordResponse = {
+  message: string;
 };
 
 export type RecoveryPasswordSendEmailRequest = {
@@ -33,4 +37,5 @@ export interface Auth {
   changePassword: IRequest<undefined>;
   sigIn: IRequest<SigInResponse>;
   recoveryPasswordSendEmail: IRequest<RecoveryPasswordSendEmailRequest>;
+  resetPassword: IRequest<ResetPasswordResponse>;
 }
