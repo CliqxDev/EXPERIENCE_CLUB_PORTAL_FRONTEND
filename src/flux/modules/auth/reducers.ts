@@ -25,7 +25,7 @@ const initialState: Auth = {
   changePassword: { data: null, message: null, status: RequestStatus.idle }
 };
 
-const clientInfoReducer = createReducer<Auth, Action>(initialState)
+const authReducer = createReducer<Auth, Action>(initialState)
   .handleAction(resetPasswordAction.request, state => ({
     ...state,
     resetPassword: {
@@ -169,4 +169,4 @@ const clientInfoReducer = createReducer<Auth, Action>(initialState)
       status: RequestStatus.idle
     }
   }));
-export default clientInfoReducer;
+export default authReducer;

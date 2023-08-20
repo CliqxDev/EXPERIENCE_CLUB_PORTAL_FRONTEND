@@ -25,7 +25,7 @@ const initialState: AddressReducerType = {
   viaCep: { data: null, message: null, status: RequestStatus.idle }
 };
 
-const sigInReducer = createReducer<AddressReducerType, Action>(initialState)
+const addressReducer = createReducer<AddressReducerType, Action>(initialState)
   .handleAction(getAddressByCep.request, state => ({
     ...state,
     viaCep: { data: null, message: null, status: RequestStatus.fetching }
@@ -115,4 +115,4 @@ const sigInReducer = createReducer<AddressReducerType, Action>(initialState)
     }
   }));
 
-export default sigInReducer;
+export default addressReducer;

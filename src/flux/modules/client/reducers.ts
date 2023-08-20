@@ -15,7 +15,7 @@ const initialState: Client = {
   createClient: { data: null, message: null, status: RequestStatus.idle }
 };
 
-const clientInfoReducer = createReducer<Client, Action>(initialState)
+const clientReducer = createReducer<Client, Action>(initialState)
   .handleAction(createClient.request, state => ({
     ...state,
     createClient: {
@@ -97,4 +97,4 @@ const clientInfoReducer = createReducer<Client, Action>(initialState)
     }
   }));
 
-export default clientInfoReducer;
+export default clientReducer;
