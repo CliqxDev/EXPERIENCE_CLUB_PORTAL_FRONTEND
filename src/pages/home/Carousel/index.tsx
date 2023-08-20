@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Carousel } from 'react-responsive-carousel';
 
-import SlideCarousel from 'components/SlideCarousel';
+import SlideCarousel from 'pages/home/SlideCarousel';
 
 import * as S from './styles';
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import Button from 'components/Button';
-import { Card } from 'components/CardRegister';
+import { Card } from 'pages/register/CardRegister';
 
 import * as S from './styles';
 

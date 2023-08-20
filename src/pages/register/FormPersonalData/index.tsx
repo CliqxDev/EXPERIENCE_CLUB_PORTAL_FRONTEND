@@ -19,12 +19,13 @@ import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';
 import Toaster from 'components/Toaster';
-import { ClientPersonalDataPayload } from 'flux/modules/client/types';
+import { ClientInfoRequest } from 'flux/modules/client/types';
+import { ErrorMessage } from 'models/errors';
 import * as S from './styles';
 
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
-  const { status } = useCreateClient();
+  const { status, message } = useCreateClient();
 
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
     length: 'default',
@@ -35,7 +36,18 @@ const FormPersonalData = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
-      toast('Falha na integração');
+      let errorGeneric = true;
+      if (message === ErrorMessage.email) {
+        formik.setFieldError('email', message);
+        errorGeneric = false;
+      }
+      if (message === ErrorMessage.cellphone) {
+        formik.setFieldError('cellphone', message);
+        errorGeneric = false;
+      }
+      if (errorGeneric) {
+        toast(ErrorMessage.generic);
+      }
     }
 
     if (status === RequestStatus.success) {
@@ -45,7 +57,7 @@ const FormPersonalData = () => {
   }, [status]);
 
   const handleSubmit = () => {
-    const request: ClientPersonalDataPayload = {
+    const request: ClientInfoRequest = {
       password: formik.values.password,
       name: formik.values.name,
       email: formik.values.email

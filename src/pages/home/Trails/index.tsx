@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
 
-import CardTrails from 'components/CardTrails';
+import CardTrails from 'pages/home/CardTrails';
 import Title from 'components/Title';
 
 import * as S from './styles';

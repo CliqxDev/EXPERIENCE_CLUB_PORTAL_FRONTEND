@@ -99,7 +99,6 @@ overflowX: hidden;`;
 export const Container = styled.div<{ active: boolean }>`
   display: flex;
   ${({ active }) => (active ? hidden : '')}
-  height: 100%;
   position: absolute;
   width: 100%;
   flex-direction: column;

@@ -7,7 +7,7 @@ import { ButtonMenu } from 'components/ButtonMenu';
 import Menu from 'components/Menu';
 import SearchMenu from 'components/SearchMenu';
 
-import headerImg from '../../../public/img/header-exp.png'
+import headerImg from '../../../public/img/header-exp.png';
 
 import * as S from './styles';
 
@@ -20,7 +20,7 @@ const Header = () => {
       {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
 
       {showMenu && <Menu onClose={() => setShowMenu(false)} />}
-      <Image 
+      <Image
         alt="Logo Experience Club"
         src={headerImg}
         style={{ marginLeft: '1.4rem' }}

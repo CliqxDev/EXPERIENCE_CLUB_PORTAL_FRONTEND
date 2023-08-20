@@ -8,10 +8,16 @@ export type GenericError = {
 export enum GenericErrorType {
   EmDiaBadRequestException = 'EmDiaBadRequestException',
   LimitExceededException = 'LimitExceededException',
-  NoResponseException = 'NoResponseException',
+  NoResponseException = 'NoResponseException'
 }
 
 export enum LoginErrorType {
   NotAuthorizedException = 'NotAuthorizedException',
-  UserNotFoundException = 'UserNotFoundException',
+  UserNotFoundException = 'UserNotFoundException'
+}
+
+export enum ErrorMessage {
+  email = 'Email já esta cadastrado',
+  cellphone = 'Telefone já esta cadastrado',
+  generic = 'Falha na integração'
 }

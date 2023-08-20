@@ -18,7 +18,7 @@ const variants = {
   `
 };
 
-export const Title = styled.div<{
+export const Title = styled.h1<{
   variant: 'black400' | 'black50' | 'light' | 'lightCenter';
 }>`
   font-family: Work Sans;

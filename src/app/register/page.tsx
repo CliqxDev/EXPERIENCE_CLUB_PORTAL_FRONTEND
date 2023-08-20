@@ -1,7 +1,7 @@
 'use client';
 
 import FormLayout from 'components/FormLayout';
-import Register from 'components/Register';
+import Register from 'pages/register/Register';
 
 export default function RegisterPage() {
   return (

@@ -22,7 +22,7 @@ export const Title = styled.h1`
 
   margin-top: 20rem;
 
-  color: #FFFF;
+  color: #ffff;
 `;
 
 export const Description = styled.p`
@@ -33,7 +33,7 @@ export const Description = styled.p`
 
   margin-top: 1.6rem;
 
-  color: #FFFF;
+  color: #ffff;
 `;
 
 export const FooterSlide = styled.div`
@@ -56,5 +56,5 @@ export const Span = styled.span`
 
   margin-left: 0.5rem;
 
-  color: #FFFF;
+  color: #ffff;
 `;

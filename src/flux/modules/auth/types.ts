@@ -17,6 +17,10 @@ export type SigInRequest = {
   password: string;
 };
 
+export type RecoveryPasswordRequest = {
+  password: string;
+};
+
 export interface SigInResponse {
   access: string;
   refresh: string;
