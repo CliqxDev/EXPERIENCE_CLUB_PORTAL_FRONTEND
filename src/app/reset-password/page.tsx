@@ -1,19 +1,18 @@
 'use client';
 
 import FormLayout from 'components/FormLayout';
+import ResetPasswordPage from 'pages/reset-password/ResetPasswordPage';
 import { Spinner } from 'components/Spinner';
-import { useCreateClient } from 'hook/selectors/clientHooks';
+import { useRecoveryPasswordSendEmail } from 'hook/selectors/authHooks';
 import { RequestStatus } from 'models/iRequest';
-import FormPersonalData from 'pages/register/FormPersonalData';
 
 export default function Page() {
-  const { status } = useCreateClient();
+  const { status } = useRecoveryPasswordSendEmail();
   const isLoading = status === RequestStatus.fetching;
-
   return (
     <Spinner active={isLoading || false}>
-      <FormLayout onRedirectPath="/register" variant="simple">
-        <FormPersonalData />
+      <FormLayout onRedirectPath="/sigin">
+        <ResetPasswordPage />
       </FormLayout>
     </Spinner>
   );

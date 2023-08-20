@@ -2,9 +2,19 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { AxiosError } from 'axios';
 
 import { isEmpty } from 'lodash';
-import { changePassword, clientInfo, sigIn } from './actions';
-import { SigInResponse } from './types';
-import { getClientInfo, postChangePassword, postSigIn } from './service';
+import {
+  changePassword,
+  clientInfo,
+  sigIn,
+  recoveryPasswordSendEmail
+} from './actions';
+import { RecoveryPasswordSendEmailResponse, SigInResponse } from './types';
+import {
+  getClientInfo,
+  postChangePassword,
+  postEmailRecovery,
+  postSigIn
+} from './service';
 import { ClientInfo } from '../client/types';
 
 type ClientInfoResponseAPI = {
@@ -15,6 +25,10 @@ type SigInResponseAPI = {
   data: SigInResponse;
 };
 
+type RecoveryPasswordSendEmailResponseAPI = {
+  data: RecoveryPasswordSendEmailResponse;
+};
+
 function* clientInfoSaga(): Generator {
   try {
     const response: ClientInfoResponseAPI = (yield call(
@@ -22,7 +36,7 @@ function* clientInfoSaga(): Generator {
     )) as ClientInfoResponseAPI;
     yield put(clientInfo.success(response.data));
   } catch (err) {
-    const errors = err as Error;
+    const errors = err as Error | AxiosError;
     yield put(clientInfo.failure(errors));
   }
 }
@@ -56,8 +70,24 @@ function* sigInSaga({ payload }: ReturnType<typeof sigIn.request>): Generator {
   }
 }
 
+function* recoveryPasswordSendEmailSaga({
+  payload
+}: ReturnType<typeof recoveryPasswordSendEmail.request>): Generator {
+  try {
+    const response: RecoveryPasswordSendEmailResponseAPI = (yield call(
+      postEmailRecovery,
+      payload
+    )) as RecoveryPasswordSendEmailResponseAPI;
+    yield put(recoveryPasswordSendEmail.success(response.data));
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(recoveryPasswordSendEmail.failure(errors));
+  }
+}
+
 export default [
   takeEvery(clientInfo.request, clientInfoSaga),
   takeEvery(changePassword.request, changePasswordSaga),
+  takeEvery(recoveryPasswordSendEmail.request, recoveryPasswordSendEmailSaga),
   takeEvery(sigIn.request, sigInSaga)
 ];

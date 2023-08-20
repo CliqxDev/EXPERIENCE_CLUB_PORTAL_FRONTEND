@@ -1,17 +1,15 @@
 import Link from 'next/link';
 
+import { FC, ReactNode } from 'react';
 import Button from 'components/Button';
 
 import * as S from './styles';
 
-const EmailVerify = () => (
+const EmailVerify: FC<{ children: ReactNode }> = ({ children }) => (
   <S.Wrapper>
     <h1>Verifique seu e-mail</h1>
-    <h2>
-      Enviamos o link para seu e-mail, <br />
-      confirme a criação de sua conta.
-    </h2>
-    <Link href="/register" passHref>
+    {children}
+    <Link href="/" passHref>
       <Button>Ok</Button>
     </Link>
   </S.Wrapper>

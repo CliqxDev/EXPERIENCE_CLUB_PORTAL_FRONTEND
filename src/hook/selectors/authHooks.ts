@@ -1,4 +1,7 @@
-import { SigInResponse } from 'flux/modules/auth/types';
+import {
+  RecoveryPasswordSendEmailResponse,
+  SigInResponse
+} from 'flux/modules/auth/types';
 import { ClientInfo } from 'flux/modules/client/types';
 import { useSelector } from 'flux/selector';
 import { RootState } from 'flux/store';
@@ -12,3 +15,7 @@ export const useChangePassword = (): IRequest<undefined> =>
 
 export const useClientInfo = (): IRequest<ClientInfo> =>
   useSelector((state: RootState) => state.auth.clientInfo);
+
+export const useRecoveryPasswordSendEmail =
+  (): IRequest<RecoveryPasswordSendEmailResponse> =>
+    useSelector((state: RootState) => state.auth.recoveryPasswordSendEmail);

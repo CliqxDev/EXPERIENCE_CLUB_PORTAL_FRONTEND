@@ -136,12 +136,18 @@ const SigIn = () => {
         >
           Lembrar-me
         </Checkbox>
-        <Button variant="link">Redefinir senha</Button>
+        <Link
+          href="/reset-password"
+          passHref
+          style={{ textDecoration: 'none' }}
+        >
+          <Button variant="link">Redefinir senha</Button>
+        </Link>
       </S.Row>
       <Button disabled={!(formik.isValid && formik.dirty)} type="submit">
         Entrar
       </Button>
-      <Link href="/register" passHref>
+      <Link href="/register" passHref style={{ textDecoration: 'none' }}>
         <Button id="register-btn" variant="link" type="button">
           Ainda não possui uma conta? Clique aqui
         </Button>

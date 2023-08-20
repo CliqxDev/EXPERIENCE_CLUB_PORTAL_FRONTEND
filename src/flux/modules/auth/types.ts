@@ -6,12 +6,6 @@ export interface ChangePasswordRequest {
   new_password: string;
 }
 
-export interface Auth {
-  clientInfo: IRequest<ClientInfo>;
-  changePassword: IRequest<undefined>;
-  sigIn: IRequest<SigInResponse>;
-}
-
 export type SigInRequest = {
   email: string;
   password: string;
@@ -21,7 +15,22 @@ export type RecoveryPasswordRequest = {
   password: string;
 };
 
+export type RecoveryPasswordSendEmailRequest = {
+  email: string;
+};
+
+export type RecoveryPasswordSendEmailResponse = {
+  message: string;
+};
+
 export interface SigInResponse {
   access: string;
   refresh: string;
+}
+
+export interface Auth {
+  clientInfo: IRequest<ClientInfo>;
+  changePassword: IRequest<undefined>;
+  sigIn: IRequest<SigInResponse>;
+  recoveryPasswordSendEmail: IRequest<RecoveryPasswordSendEmailRequest>;
 }

@@ -53,7 +53,11 @@ const Newsletter = () => {
     <>
       {status !== RequestStatus.error && status !== RequestStatus.success && (
         <S.NewsletterWrapper isLogged={isAuthenticated()}>
-          <Title variant="lightCenter">Inscreva-se na nossa Newsletter!</Title>
+          <div style={{ width: 315 }}>
+            <Title variant="lightCenter">
+              Inscreva-se na nossa Newsletter!
+            </Title>
+          </div>
           <S.FormWrapper onSubmit={formik.handleSubmit}>
             {!isAuthenticated() && (
               <>

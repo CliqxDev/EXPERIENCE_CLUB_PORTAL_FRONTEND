@@ -1,7 +1,13 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
 
 import { AxiosError } from 'axios';
-import { ChangePasswordRequest, SigInRequest, SigInResponse } from './types';
+import {
+  ChangePasswordRequest,
+  RecoveryPasswordSendEmailRequest,
+  RecoveryPasswordSendEmailResponse,
+  SigInRequest,
+  SigInResponse
+} from './types';
 import { ClientInfo } from '../client/types';
 
 export const clientInfo = createAsyncAction(
@@ -21,6 +27,20 @@ export const sigIn = createAsyncAction(
   'SIGN_INFO_SUCCESS',
   'SIGN_INFO_ERROR'
 )<SigInRequest, SigInResponse, Error | AxiosError>();
+
+export const recoveryPasswordSendEmail = createAsyncAction(
+  'RECOVERY_PASSWORD_SEND_EMAIL_REQUEST',
+  'RECOVERY_PASSWORD_SEND_EMAIL_SUCCESS',
+  'RECOVERY_PASSWORD_SEND_EMAIL_ERROR'
+)<
+  RecoveryPasswordSendEmailRequest,
+  RecoveryPasswordSendEmailResponse,
+  Error | AxiosError
+>();
+
+export const clearRecoveryPasswordSendEmail = createAction(
+  'CLEAR_RECOVERY_PASSWORD_SEND_EMAIL'
+)();
 
 export const clearSigIn = createAction('CLEAR_SIGN_IN')();
 
