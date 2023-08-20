@@ -1,5 +1,5 @@
 import { Camera } from 'lucide-react';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import { sanitizeAvatar } from 'utils/formatString';
 import { useClientInfo } from 'hook/selectors/authHooks';
@@ -20,14 +20,14 @@ const ProfileHeader = () => {
           <S.Text>{data?.email}</S.Text>
         </div>
       </S.InfoContent>
-
+      {/* 
       <Image
         width={30}
         height={30}
         src="/user-group.svg"
         style={{ position: 'sticky', margin: '1rem 1.2rem 0 -1.2rem' }}
         alt="Colaborador"
-      />
+      /> */}
     </S.ContainerInfo>
   );
 };
