@@ -2,46 +2,40 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.main`
   width: 100%;
-  height: 60rem;
-
-  padding: 2rem;
-  margin-top: -4rem;
   background: #000000;
-
   display: flex;
   flex-direction: column;
   text-align: left;
 `;
 
 export const Title = styled.h1`
-  width: 38rem;
-
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3.2rem;
-
-  margin-top: 20rem;
-
   color: #ffff;
+  padding: 0 1.6rem;
 `;
 
 export const Description = styled.p`
-  width: 38rem;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
-
   margin-top: 1.6rem;
-
   color: #ffff;
+  padding: 0 1.6rem;
+`;
+export const FooterSlideWrapper = styled.div`
+  height: 250px;
+  display: flex;
+  flex-direction: column-reverse;
 `;
 
 export const FooterSlide = styled.div`
+  padding: 0 1.6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-top: 6rem;
+  margin: 2.4rem 0;
 `;
 
 export const SubjectSection = styled.div`
@@ -53,8 +47,17 @@ export const Span = styled.span`
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 2rem;
-
   margin-left: 0.5rem;
-
   color: #ffff;
+`;
+
+export const WrapperText = styled.div`
+  position: absolute;
+  top: -13%;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(0deg, #000000 60.94%, rgba(29, 29, 27, 0) 100%);
+`;
+export const WrapperContent = styled.div`
+  position: relative;
 `;

@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 
-import Main from '.';
+import HomePage from '.';
 
-describe('<Main />', () => {
+describe('<HomePage />', () => {
   it('should render the heading', () => {
-    render(<Main />);
+    render(<HomePage />);
 
     expect(
-      screen.getByRole('heading', { name: /Main/i })
+      screen.getByRole('heading', { name: /HomePage/i })
     ).toBeInTheDocument();
   });
 });
