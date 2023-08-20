@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 
 import { useAppDispatch } from 'hook/store';
-import { recoveryPassword } from 'utils/schemas';
+import { recoveryPasswordSchema } from 'utils/schemas';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import { RequestStatus } from 'models/iRequest';
@@ -48,7 +48,7 @@ const ResetPasswordPage = () => {
     validateOnChange: true,
     validateOnBlur: true,
     onSubmit: handleSubmit,
-    validationSchema: () => recoveryPassword
+    validationSchema: () => recoveryPasswordSchema
   });
 
   return (

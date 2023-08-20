@@ -36,6 +36,6 @@ export interface Auth {
   clientInfo: IRequest<ClientInfo>;
   changePassword: IRequest<undefined>;
   sigIn: IRequest<SigInResponse>;
-  recoveryPasswordSendEmail: IRequest<RecoveryPasswordSendEmailRequest>;
+  recoveryPasswordSendEmail: IRequest<RecoveryPasswordSendEmailResponse>;
   resetPassword: IRequest<ResetPasswordResponse>;
 }
