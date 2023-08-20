@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import CardTrails from 'pages/home/CardTrails';
-import Title from 'components/Title';
+import Title from 'components/ui/Title';
 
 import * as S from './styles';
 

@@ -6,15 +6,15 @@ import { toast } from 'react-hot-toast';
 import { forEach } from 'lodash';
 import { useAppDispatch } from 'hook/store';
 import { resetPasswordSchema } from 'utils/schemas';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 import { RequestStatus } from 'models/iRequest';
 import {
   clearRecoveryPasswordSendEmail,
   resetPassword
 } from 'flux/modules/auth/actions';
 import { useResetPassword } from 'hook/selectors/authHooks';
-import Toaster from 'components/Toaster';
+import Toaster from 'components/ui/Toaster';
 import { ErrorMessage } from 'models/errors';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';

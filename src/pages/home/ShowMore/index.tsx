@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import Title from 'components/Title';
+import Title from 'components/ui/Title';
 
 import bannerCard from '../../../../public/img/banner-card.png';
 import shareIcon from '../../../../public/img/share-icon-black.svg';

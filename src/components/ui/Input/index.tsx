@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { masks } from 'utils';
 
-import { ButtonMenu } from 'components/ButtonMenu';
+import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 
 import * as S from './styles';
 import { InputProps } from './types';

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import Image from 'next/image';
 
-import Title from 'components/Title';
+import Title from 'components/ui/Title';
 
 import bookmarkIcon from '../../../../public/img/bookmark-add.svg';
 import bannerExplore from '../../../../public/img/explore-bg.png';

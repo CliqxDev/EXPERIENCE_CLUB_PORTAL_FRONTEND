@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import Image from 'next/image';
 
-import Title from 'components/Title';
+import Title from 'components/ui/Title';
 
 import arrowRight from '../../../../public/img/arrow-right-blue.svg';
 import perfilColunista from '../../../../public/img/perfil-colunista.png';

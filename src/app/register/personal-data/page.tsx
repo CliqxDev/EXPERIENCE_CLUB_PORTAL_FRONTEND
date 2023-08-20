@@ -1,7 +1,7 @@
 'use client';
 
-import FormLayout from 'components/FormLayout';
-import { Spinner } from 'components/Spinner';
+import FormLayout from 'components/ui/FormLayout';
+import { Spinner } from 'components/ui/Spinner';
 import { useCreateClient } from 'hook/selectors/clientHooks';
 import { RequestStatus } from 'models/iRequest';
 import FormPersonalData from 'pages/register/FormPersonalData';

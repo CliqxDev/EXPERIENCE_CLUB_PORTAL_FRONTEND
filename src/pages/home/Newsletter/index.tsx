@@ -7,9 +7,9 @@ import { useAppDispatch } from 'hook/store';
 import { newsLetterSchema } from 'utils/schemas';
 import { isAuthenticated } from 'utils/services/auth';
 
-import Button from 'components/Button';
-import Input from 'components/Input';
-import Title from 'components/Title';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
+import Title from 'components/ui/Title';
 
 import { RequestStatus } from 'models/iRequest';
 import { useClientInfo } from 'hook/selectors/authHooks';

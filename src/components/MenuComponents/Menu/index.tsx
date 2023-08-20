@@ -6,11 +6,11 @@ import { isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import { logout } from 'utils/services/auth';
 
-import BoxLogged from 'components/BoxLogged';
-import BoxSign from 'components/BoxSign';
-import Button from 'components/Button';
-import { ButtonMenu } from 'components/ButtonMenu';
-import LinkMenu from 'components/LinkMenu';
+import BoxLogged from 'components/MenuComponents/BoxLogged';
+import BoxSign from 'components/MenuComponents/BoxSign';
+import Button from 'components/ui/Button';
+import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
+import LinkMenu from 'components/MenuComponents/LinkMenu';
 
 import * as S from './styles';
 import { clearSigIn } from 'flux/modules/auth/actions';

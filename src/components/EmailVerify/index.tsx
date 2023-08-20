@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { FC, ReactNode } from 'react';
-import Button from 'components/Button';
+import Button from 'components/ui/Button';
 
 import * as S from './styles';
 

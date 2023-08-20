@@ -1,8 +1,8 @@
 'use client';
 
 import ResetPasswordConfirmationPage from 'pages/reset-password-confirmation/ResetPasswordConfirmationPage';
-import FormLayout from 'components/FormLayout';
-import { Spinner } from 'components/Spinner';
+import FormLayout from 'components/ui/FormLayout';
+import { Spinner } from 'components/ui/Spinner';
 import { useResetPassword } from 'hook/selectors/authHooks';
 import { RequestStatus } from 'models/iRequest';
 

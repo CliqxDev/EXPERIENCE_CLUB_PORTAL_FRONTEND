@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import Title from 'components/Title';
+import Title from 'components/ui/Title';
 
 import attIcon from '../../../../public/img/atualize-icon.svg';
 import bookIcon from '../../../../public/img/book-icon.svg';

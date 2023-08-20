@@ -7,4 +7,4 @@ export default {
   component: Toaster
 } as Meta;
 
-export const Default: Story = () => <Toaster />;
+export const Default: Story = () => <Toaster variant="success" />;

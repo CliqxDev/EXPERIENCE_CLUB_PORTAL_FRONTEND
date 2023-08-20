@@ -3,11 +3,12 @@ import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import toast from 'react-hot-toast';
+import Toaster from 'components/ui/Toaster';
 import { addressSchema } from 'utils/schemas/addressSchema';
 import { useAppDispatch } from 'hook/store';
 
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 
 import { masks } from 'utils';
 import {
@@ -16,10 +17,9 @@ import {
   useUpdateClientAddress
 } from 'hook/selectors/addressHooks';
 import { RequestStatus } from 'models/iRequest';
-import Select from 'components/Select';
+import Select from 'components/ui/Select';
 import { ufs } from 'utils/uf';
 
-import Toaster from 'components/Toaster';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import {
   clearCreateClientAddress,

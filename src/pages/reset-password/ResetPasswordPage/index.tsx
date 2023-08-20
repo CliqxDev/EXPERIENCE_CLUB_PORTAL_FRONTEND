@@ -5,15 +5,15 @@ import { toast } from 'react-hot-toast';
 
 import { useAppDispatch } from 'hook/store';
 import { recoveryPasswordSchema } from 'utils/schemas';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 import { RequestStatus } from 'models/iRequest';
 import {
   clearRecoveryPasswordSendEmail,
   recoveryPasswordSendEmail
 } from 'flux/modules/auth/actions';
 import { useRecoveryPasswordSendEmail } from 'hook/selectors/authHooks';
-import Toaster from 'components/Toaster';
+import Toaster from 'components/ui/Toaster';
 import { ErrorMessage } from 'models/errors';
 import * as S from './styles';
 

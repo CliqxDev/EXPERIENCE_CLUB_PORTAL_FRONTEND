@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 import Link from 'next/link';
 
-import { ButtonMenu } from 'components/ButtonMenu';
+import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 
 import * as S from './styles';
 import { sanitizeAvatar } from 'utils/formatString';

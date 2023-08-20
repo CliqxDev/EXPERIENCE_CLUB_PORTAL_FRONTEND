@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-import { ButtonMenu } from 'components/ButtonMenu';
-import Menu from 'components/Menu';
+import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
+import Menu from 'components/MenuComponents/Menu';
 import SearchMenu from 'components/SearchMenu';
 
 import headerImg from '../../../public/img/header-exp.png';

@@ -5,12 +5,12 @@ import toast from 'react-hot-toast';
 import { securityProfileSchema } from 'utils/schemas';
 import { useAppDispatch } from 'hook/store';
 
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';
 
-import Toaster from 'components/Toaster';
+import Toaster from 'components/ui/Toaster';
 import { RequestStatus } from 'models/iRequest';
 import { useChangePassword } from 'hook/selectors/authHooks';
 import { changePassword, clearChangePassword } from 'flux/modules/auth/actions';

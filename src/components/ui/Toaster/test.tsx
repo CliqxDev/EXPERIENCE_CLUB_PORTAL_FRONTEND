@@ -4,7 +4,7 @@ import Toaster from '.';
 
 describe('<Toaster />', () => {
   it('should render the heading', () => {
-    render(<Toaster />);
+    render(<Toaster variant="success" />);
 
     expect(
       screen.getByRole('heading', { name: /Toaster/i })

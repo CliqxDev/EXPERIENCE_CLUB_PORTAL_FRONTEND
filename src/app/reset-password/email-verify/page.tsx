@@ -1,7 +1,7 @@
 'use client';
 
 import EmailVerify from 'components/EmailVerify';
-import FormLayout from 'components/FormLayout';
+import FormLayout from 'components/ui/FormLayout';
 
 export default function Page() {
   return (

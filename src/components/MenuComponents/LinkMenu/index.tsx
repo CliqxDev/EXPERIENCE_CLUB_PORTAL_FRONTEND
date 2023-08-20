@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 
-import { ButtonMenu } from 'components/ButtonMenu';
+import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 
 import * as S from './styles';
 

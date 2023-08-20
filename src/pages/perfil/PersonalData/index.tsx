@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { personalDataProfileSchema } from 'utils/schemas';
 import { useAppDispatch } from 'hook/store';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 
 import { masks } from 'utils';
 import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import { RequestStatus } from 'models/iRequest';
-import Toaster from 'components/Toaster';
+import Toaster from 'components/ui/Toaster';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import { useUpdateClient } from 'hook/selectors/clientHooks';
 import { clearUpdateClient, updateClient } from 'flux/modules/client/actions';

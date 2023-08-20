@@ -8,8 +8,8 @@ import { toast } from 'react-hot-toast';
 import { useAppDispatch } from 'hook/store';
 import { personalDataSchema } from 'utils/schemas';
 
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 import { RequestStatus } from 'models/iRequest';
 
 import { masks } from 'utils/masks';
@@ -18,7 +18,7 @@ import { useCreateClient } from 'hook/selectors/clientHooks';
 import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';
-import Toaster from 'components/Toaster';
+import Toaster from 'components/ui/Toaster';
 import { ClientInfoRequest } from 'flux/modules/client/types';
 import { ErrorMessage } from 'models/errors';
 import * as S from './styles';

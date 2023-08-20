@@ -6,8 +6,6 @@ describe('<Input />', () => {
   it('should render the heading', () => {
     render(<Input />);
 
-    expect(
-      screen.getByRole('heading', { name: /Input/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Input/i })).toBeInTheDocument();
   });
 });

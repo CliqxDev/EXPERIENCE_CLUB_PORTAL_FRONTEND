@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Button from 'components/Button';
+import Button from 'components/ui/Button';
 import { Card } from 'pages/register/CardRegister';
 
 import * as S from './styles';

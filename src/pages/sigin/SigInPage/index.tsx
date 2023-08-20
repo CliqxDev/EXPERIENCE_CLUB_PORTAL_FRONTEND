@@ -6,16 +6,16 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 
+import Toaster from 'components/ui/Toaster';
 import { useAppDispatch } from 'hook/store';
 import { sigInSchema } from 'utils/schemas';
-import Button from 'components/Button';
-import Checkbox from 'components/Checkbox';
-import Input from 'components/Input';
+import Button from 'components/ui/Button';
+import Checkbox from 'components/ui/Checkbox';
+import Input from 'components/ui/Input';
 import { RequestStatus } from 'models/iRequest';
 import { login } from 'utils/services/auth';
 import { clearSigIn, sigIn } from 'flux/modules/auth/actions';
 import { useSigIn } from 'hook/selectors/authHooks';
-import Toaster from 'components/Toaster';
 import * as S from './styles';
 
 type UserType = {
