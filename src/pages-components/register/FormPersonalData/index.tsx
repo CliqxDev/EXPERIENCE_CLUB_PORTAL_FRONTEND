@@ -25,7 +25,7 @@ import * as S from './styles';
 
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
-  const { plan } = useParams();
+  const { plan }: any = useParams();
   const { status, message } = useCreateClient();
 
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
