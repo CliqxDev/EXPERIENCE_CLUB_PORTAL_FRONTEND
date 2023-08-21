@@ -11,7 +11,8 @@ export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' }>`
   background-image: url('/img/form-layout-background.svg'),
     url('/img/form-layout-img.svg');
   width: 100%;
-  background-size: 100vh;
+  min-height: 100vh;
+  background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
   display: flex;
@@ -38,17 +39,18 @@ const FormWrapperVariants = {
     bottom: 1.6rem;
     left: 1.6rem;
     right: 1.6rem;
+    background-color: #ffffff;
   `,
   simple: css`
     margin-top: 75px;
     width: 100%;
-  `
+    background-color: transparent;
+  `,
 };
 
 export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
   display: flex;
   flex-direction: column;
-  // background-color: #ffffff;
   z-index: 10;
   border-radius: 4px;
   color: #4a4a49;
