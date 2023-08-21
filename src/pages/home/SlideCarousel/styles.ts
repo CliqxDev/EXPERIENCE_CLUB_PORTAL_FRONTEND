@@ -53,7 +53,7 @@ export const Span = styled.span`
 
 export const WrapperText = styled.div`
   position: absolute;
-  top: -13%;
+  top: -32%;
   left: 0;
   width: 100%;
   background: linear-gradient(0deg, #000000 60.94%, rgba(29, 29, 27, 0) 100%);
