@@ -5,7 +5,7 @@ export const ExploreWrapper = styled.main`
   height: auto;
 
   padding: 2rem;
-  background: #E8E8E8;
+  background: #e8e8e8;
 `;
 
 export const ListCard = styled.div`
@@ -25,7 +25,7 @@ export const Card = styled.div`
   justify-self: center;
 
   border-radius: 4px;
-  background: #FFF;
+  background: #fff;
   padding: 1rem;
 `;
 
@@ -34,12 +34,11 @@ export const DescriptionCard = styled.p`
   height: 10.5rem;
   margin-top: 1rem;
 
-  font-family: Work Sans;
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 2.6rem;
 
-  color: #1D1D1B;
+  color: #1d1d1b;
 `;
 
 export const FooterCard = styled.div`
@@ -52,10 +51,9 @@ export const FooterCard = styled.div`
 `;
 
 export const TextFooter = styled.p`
-  font-family: Work Sans;
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1.8rem;
 
-  color: #254CE5;
+  color: #254ce5;
 `;

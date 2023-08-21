@@ -16,7 +16,7 @@ export type SelectStyledProps = {
   label: string;
   mask?: any;
   autoFocus?: boolean | undefined;
-  fullWidth?: boolean;
+  fullwidth?: boolean;
 };
 
 export type OptionType = {

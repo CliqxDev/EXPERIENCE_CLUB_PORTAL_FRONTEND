@@ -5,17 +5,17 @@ import * as S from './styles';
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   variant?: 'default' | 'link' | 'secondary';
-  fullWidth?: boolean;
+  fullwidth?: boolean;
 };
 
 const Button: FC<ButtonProps> = ({
   children,
-  fullWidth,
+  fullwidth,
   variant = 'default',
   ...others
 }) => (
-  <S.Wrapper fullWidth={fullWidth}>
-    <S.Button {...others} variant={variant} fullWidth={fullWidth}>
+  <S.Wrapper fullwidth={fullwidth}>
+    <S.Button {...others} variant={variant} fullwidth={fullwidth}>
       {children}
     </S.Button>
   </S.Wrapper>

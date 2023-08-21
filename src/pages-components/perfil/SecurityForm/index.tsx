@@ -127,7 +127,7 @@ const ProfileSecurityForm = () => {
           spacing="24"
         />
         <Button
-          fullWidth
+          fullwidth
           disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
           type="submit"
         >

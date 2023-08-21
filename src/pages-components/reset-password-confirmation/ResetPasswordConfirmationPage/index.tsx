@@ -112,7 +112,7 @@ const ResetPasswordConfirmationPage = () => {
       />
 
       <Button
-        fullWidth
+        fullwidth
         disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
         type="submit"
       >

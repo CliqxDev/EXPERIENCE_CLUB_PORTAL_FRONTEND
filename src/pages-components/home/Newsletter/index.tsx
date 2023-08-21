@@ -52,7 +52,9 @@ const Newsletter = () => {
   return (
     <>
       {status !== RequestStatus.error && status !== RequestStatus.success && (
-        <S.NewsletterWrapper isLogged={isAuthenticated()}>
+        <S.NewsletterWrapper
+          islogged={isAuthenticated() ? '17.8rem' : '38.8rem'}
+        >
           <div style={{ width: 315 }}>
             <Title variant="lightCenter">
               Inscreva-se na nossa Newsletter!
@@ -62,7 +64,7 @@ const Newsletter = () => {
             {!isAuthenticated() && (
               <>
                 <Input
-                  fullWidth
+                  fullwidth
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -78,7 +80,7 @@ const Newsletter = () => {
                   variant="transparent"
                 />
                 <Input
-                  fullWidth
+                  fullwidth
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

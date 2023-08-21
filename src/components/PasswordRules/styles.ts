@@ -22,7 +22,6 @@ const itemRuleVariant = {
 };
 
 export const ItemRule = styled.span<{ variant: 'done' | 'error' | 'default' }>`
-  font-family: Work Sans;
   font-size: 11px;
   font-style: normal;
   font-weight: 500;

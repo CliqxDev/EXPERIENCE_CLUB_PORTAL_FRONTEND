@@ -77,7 +77,7 @@ const ProfilePersonalData = () => {
           id="cellphone"
           name="cellphone"
           placeholder=""
-          fullWidth
+          fullwidth
           errorMessage={
             (formik.touched.cellphone && formik.errors.cellphone) || ''
           }
@@ -86,7 +86,7 @@ const ProfilePersonalData = () => {
           spacing="24"
         />
         <Input
-          fullWidth
+          fullwidth
           value={formik.values.role}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -97,7 +97,7 @@ const ProfilePersonalData = () => {
           spacing="24"
         />
         <Button
-          fullWidth
+          fullwidth
           type="submit"
           disabled={
             !(formik.isValid && formik.dirty) ||

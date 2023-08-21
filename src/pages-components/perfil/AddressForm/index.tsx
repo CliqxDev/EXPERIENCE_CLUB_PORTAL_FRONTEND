@@ -176,7 +176,7 @@ const ProfileAddressForm = () => {
           label="CEP"
           required
           id="cep"
-          fullWidth
+          fullwidth
           name="cep"
           errorMessage={(formik.touched.cep && formik.errors.cep) || ''}
           inputMode="numeric"
@@ -188,7 +188,7 @@ const ProfileAddressForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           label="Endereço"
-          fullWidth
+          fullwidth
           required
           id="address"
           name="address"
@@ -200,7 +200,7 @@ const ProfileAddressForm = () => {
           value={formik.values.number}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          fullWidth
+          fullwidth
           label="Número"
           required
           id="number"
@@ -210,7 +210,7 @@ const ProfileAddressForm = () => {
           spacing="24"
         />
         <Input
-          fullWidth
+          fullwidth
           value={formik.values.district}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -225,7 +225,7 @@ const ProfileAddressForm = () => {
           spacing="24"
         />
         <Input
-          fullWidth
+          fullwidth
           value={formik.values.complement}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -243,14 +243,14 @@ const ProfileAddressForm = () => {
               formik.setFieldValue('state', option);
             }}
             onBlur={formik.handleBlur}
-            fullWidth
+            fullwidth
             label="Estado"
             id="state"
             name="state"
             spacing="24"
           />
           <Input
-            fullWidth
+            fullwidth
             value={formik.values.city}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -265,7 +265,7 @@ const ProfileAddressForm = () => {
         </S.ContentState>
 
         <Button
-          fullWidth
+          fullwidth
           disabled={!(formik.isValid && formik.dirty)}
           type="submit"
         >

@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { roboto } from 'styles/fonts';
 
 export const PlanWrapper = styled.main`
   height: 11rem;
@@ -18,7 +19,7 @@ export const Title = styled.h1`
 
 export const Description = styled.p`
   width: 15rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${roboto.style.fontFamily};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.4rem;

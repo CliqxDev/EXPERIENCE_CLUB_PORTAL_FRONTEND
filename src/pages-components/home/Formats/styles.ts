@@ -5,7 +5,7 @@ export const FormatsWrapper = styled.main`
   height: auto;
 
   padding: 2rem;
-  background: #E8E8E8;
+  background: #e8e8e8;
 `;
 
 export const ListCard = styled.div`
@@ -25,7 +25,7 @@ export const ContentCard = styled.div`
   justify-self: center;
 
   border-radius: 4px;
-  background: #FFFF;
+  background: #ffff;
   margin-top: 2rem;
   padding: 1rem;
 `;
@@ -39,7 +39,6 @@ export const TopCard = styled.div`
 `;
 
 export const ActionTitle = styled.h1`
-  font-family: Work Sans;
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 2rem;
@@ -49,11 +48,10 @@ export const ActionTitle = styled.h1`
 `;
 
 export const FormatsTitle = styled.p`
-  font-family: Work Sans;
   font-weight: 400;
   font-size: 2.2rem;
   line-height: 2.8rem;
   margin-top: 3rem;
 
-  color: #2954FC;
+  color: #2954fc;
 `;

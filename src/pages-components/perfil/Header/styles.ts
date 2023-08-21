@@ -20,7 +20,7 @@ export const Avatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Work Sans;
+
   font-size: 50px;
   margin: 1.6rem 0 1.6rem 1.6rem;
 `;

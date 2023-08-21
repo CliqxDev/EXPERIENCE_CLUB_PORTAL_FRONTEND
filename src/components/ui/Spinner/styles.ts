@@ -92,13 +92,9 @@ export const SpinnerCircle = styled.circle`
   stroke-linecap: round;
 `;
 
-const hidden = `overflow: hidden;
-overflowY: hidden;
-overflowX: hidden;`;
-
-export const Container = styled.div<{ active: boolean }>`
+export const Container = styled.div<{ overflow: string }>`
   display: flex;
-  ${({ active }) => (active ? hidden : '')}
+  overflow: ${({ overflow }) => overflow};
   position: absolute;
   width: 100%;
   flex-direction: column;

@@ -21,7 +21,6 @@ export const Input = styled.input`
   flex: 1;
   padding-left: 1.6rem;
   color: #1d1d1b;
-  font-family: Work Sans;
   font-size: 1.6rem;
   font-weight: 400;
   outline: none;

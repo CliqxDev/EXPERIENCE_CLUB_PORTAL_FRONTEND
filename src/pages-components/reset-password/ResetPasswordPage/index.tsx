@@ -67,7 +67,7 @@ const ResetPasswordPage = () => {
         spacing="24"
       />
       <Button
-        fullWidth
+        fullwidth
         disabled={!(formik.isValid && formik.dirty)}
         type="submit"
       >

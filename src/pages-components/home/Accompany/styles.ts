@@ -10,12 +10,12 @@ export const AccompanyWrapper = styled.main`
   overflow-x: auto;
 
   padding: 2rem 0 2rem 2rem;
-  background: #E8E8E8;
+  background: #e8e8e8;
 `;
 
 export const AccompanyList = styled.div`
   width: auto;
-  
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -25,24 +25,23 @@ export const AccompanyList = styled.div`
 `;
 
 export const AccompanyTitle = styled.h1`
-  font-family: Work Sans;
   font-size: 2.8rem;
   font-weight: 500;
   line-height: 3.6rem;
 
-  color: #4A4A49;
+  color: #4a4a49;
 `;
-  
-  export const AccompanyCard = styled.div`
+
+export const AccompanyCard = styled.div`
   width: 27.9rem;
   height: 44rem;
-  
+
   display: flex;
   flex-direction: column;
-  
+
   padding: 2rem;
   margin-top: 2rem;
-  background: #FFFF;
+  background: #ffff;
 `;
 
 export const TopCard = styled.div`
@@ -70,11 +69,10 @@ export const DescriptionCard = styled.p`
   width: 24rem;
   height: 11.2rem;
 
-  font-family: Work Sans;
   font-size: 2.2rem;
   font-weight: 400;
   line-height: 2.8rem;
 
   margin-top: 1rem;
-  color: #1D1D1B;
+  color: #1d1d1b;
 `;

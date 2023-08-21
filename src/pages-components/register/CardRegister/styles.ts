@@ -81,7 +81,7 @@ export const Root = styled.main<StyleProps>`
 
 export const Title = styled.h1<StyleProps>`
   width: 100%;
-  font-family: Work Sans;
+
   font-style: normal;
   font-weight: 400;
   ${({ size }) => titleSize[size || 'md']}
@@ -89,7 +89,6 @@ export const Title = styled.h1<StyleProps>`
 `;
 
 export const Subtitle = styled.h2<StyleProps>`
-  font-family: Work Sans;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -111,7 +110,7 @@ export const InspirationDateWrapperColumn = styled.div`
 
   p {
     width: 100%;
-    font-family: Work Sans;
+
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.6rem;
@@ -120,7 +119,6 @@ export const InspirationDateWrapperColumn = styled.div`
   }
 
   span {
-    font-family: Work Sans;
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.4rem;
@@ -128,7 +126,6 @@ export const InspirationDateWrapperColumn = styled.div`
   }
 
   strong {
-    font-family: Work Sans;
     font-weight: 500;
     font-size: 2rem;
     line-height: 1.6rem;

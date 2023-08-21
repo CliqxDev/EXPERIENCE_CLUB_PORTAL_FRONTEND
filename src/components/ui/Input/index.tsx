@@ -23,7 +23,7 @@ const Input: FC<InputProps> = ({
   required,
   autoFocus,
   variant,
-  fullWidth,
+  fullwidth,
   type = 'text'
 }) => {
   const [maskFormat, setMask] = useState<string>('');
@@ -51,7 +51,7 @@ const Input: FC<InputProps> = ({
       error={errorMessage}
       disabled={disabled}
       spacing={spacing}
-      fullWidth={fullWidth}
+      fullwidth={fullwidth ? '100%' : ''}
     >
       <S.InputWrapper variant={variant || 'default'}>
         <S.InputText

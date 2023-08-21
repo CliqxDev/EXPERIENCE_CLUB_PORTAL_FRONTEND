@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { forEach } from 'lodash';
-import { redirect } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
 import { useAppDispatch } from 'hook/store';
@@ -25,6 +25,7 @@ import * as S from './styles';
 
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
+  const { plan } = useParams();
   const { status, message } = useCreateClient();
 
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
@@ -105,7 +106,7 @@ const FormPersonalData = () => {
 
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
-      <h1>Plano gratuito</h1>
+      <h1>{`Plano ${plan === 'corp' ? 'corporativo' : 'individual'}`}</h1>
       <h2>Informe seus dados abaixo</h2>
       <Input
         value={formik.values.name}

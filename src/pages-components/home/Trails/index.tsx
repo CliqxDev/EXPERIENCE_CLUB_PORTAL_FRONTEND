@@ -85,7 +85,7 @@ const Trails = () => {
   }, [posts, media, categoryData]);
 
   return (
-    <S.Wrapper backgroundColor={colorsByCategoryId[trailSelectedId]}>
+    <S.Wrapper backgroundcolor={colorsByCategoryId[trailSelectedId]}>
       <Title variant="black50">Trilhas</Title>
       <S.TrailButtonWrapper>
         {categories.slice(0, 6).map(({ id, name }) => (
@@ -93,7 +93,7 @@ const Trails = () => {
             onClick={() => setTrailSelectedId(name)}
             key={id}
             id={id}
-            backgroundColor={colorsByCategoryId[name]}
+            backgroundcolor={colorsByCategoryId[name]}
           >
             <S.TrailButtonText>{name}</S.TrailButtonText>
           </S.TrailsButton>

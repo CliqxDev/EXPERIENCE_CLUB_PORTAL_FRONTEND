@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.form`
   padding: 3.2rem 2.4rem;
+  background-color: #fff;
 
   h1 {
     font-size: 2.4rem;
@@ -31,7 +32,7 @@ export const Wrapper = styled.form`
 
 export const TermsWrapper = styled.div`
   color: #686866;
-  font-family: Work Sans;
+
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -66,7 +67,6 @@ const itemRuleVariant = {
 };
 
 export const ItemRule = styled.span<{ variant: 'done' | 'error' | 'default' }>`
-  font-family: Work Sans;
   font-size: 11px;
   font-style: normal;
   font-weight: 500;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const NewsletterWrapper = styled.main<{ isLogged: boolean }>`
+export const NewsletterWrapper = styled.main<{ islogged: string }>`
   width: 100%;
-  height: ${({ isLogged }) => (isLogged ? '17.8rem' : '38.8rem')};
+  height: ${({ islogged }) => islogged};
   padding: 1rem 2.4rem 2.4rem 2.4rem;
   background-image: url('/img/newsletter-bg.png');
   background-size: 100% 38.8rem;
@@ -36,7 +36,6 @@ export const CustomizeLabel = styled.label`
   width: 31.6rem;
   margin-left: 1rem;
 
-  font-family: Work Sans;
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 2rem;
@@ -72,7 +71,7 @@ export const MessageHeader = styled.div`
 
   h1 {
     color: #4a4a49;
-    font-family: Work Sans;
+
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -82,7 +81,7 @@ export const MessageHeader = styled.div`
   h2 {
     color: #5476fd;
     text-align: center;
-    font-family: Work Sans;
+
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -95,7 +94,7 @@ export const MessageContent = styled.div`
   p {
     color: #686866;
     text-align: center;
-    font-family: Work Sans;
+
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
