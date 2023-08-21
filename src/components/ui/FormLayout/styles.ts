@@ -62,4 +62,12 @@ export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
   margin-right: auto;
   position: relative;
   ${({ variant }) => FormWrapperVariants[variant]}
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    position: sticky;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
 `;

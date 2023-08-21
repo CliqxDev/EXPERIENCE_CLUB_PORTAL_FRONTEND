@@ -25,6 +25,17 @@ export const TrailButtonWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+
+  @media (min-width: 1024px) {
+    margin-left: 1rem;
+  }
+`;
+
+export const WrapperMedia = styled.div`
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Wrapper = styled.div<{ backgroundColor: string }>`
@@ -36,6 +47,10 @@ export const Wrapper = styled.div<{ backgroundColor: string }>`
   ${TrailsButton} {
     margin-right: 0.8rem;
   }
+
+  @media (min-width: 1024px) {
+    padding: 10rem;
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -43,6 +58,12 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 24px;
+  
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+  }
 `;
 
 export const Card = styled.div`
@@ -54,6 +75,10 @@ export const Card = styled.div`
   min-height: 240px;
   padding: 16px 16px 0 16px;
   margin-top: 16px;
+
+  @media (min-width: 1024px) {
+    max-width: 95%;
+  }
 `;
 
 export const CardTitle = styled.div`

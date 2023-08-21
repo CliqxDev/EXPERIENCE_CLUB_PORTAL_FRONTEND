@@ -11,7 +11,7 @@ export default function SigInPage() {
   const isLoading = status === RequestStatus.fetching;
   return (
     <Spinner active={isLoading || false}>
-      <FormLayout variant='bottom' onRedirectPath="/">
+      <FormLayout onRedirectPath="/">
         <SigIn />
       </FormLayout>
     </Spinner>

@@ -86,19 +86,21 @@ const Trails = () => {
 
   return (
     <S.Wrapper backgroundColor={colorsByCategoryId[trailSelectedId]}>
-      <Title variant="black50">Trilhas</Title>
-      <S.TrailButtonWrapper>
-        {categories.map(({ id, name }) => (
-          <S.TrailsButton
-            onClick={() => setTrailSelectedId(name)}
-            key={id}
-            id={id}
-            backgroundColor={colorsByCategoryId[name]}
-          >
-            <S.TrailButtonText>{name}</S.TrailButtonText>
-          </S.TrailsButton>
-        ))}
-      </S.TrailButtonWrapper>
+      <S.WrapperMedia>
+        <Title variant="black50">Trilhas</Title>
+        <S.TrailButtonWrapper>
+          {categories.map(({ id, name }) => (
+            <S.TrailsButton
+              onClick={() => setTrailSelectedId(name)}
+              key={id}
+              id={id}
+              backgroundColor={colorsByCategoryId[name]}
+            >
+              <S.TrailButtonText>{name}</S.TrailButtonText>
+            </S.TrailsButton>
+          ))}
+        </S.TrailButtonWrapper>
+      </S.WrapperMedia>
       <S.CardWrapper>
         {cardData.map(item => (
           <S.Card key={uniqueId()}>
