@@ -5,7 +5,7 @@ import Register from 'pages/register/Register';
 
 export default function RegisterPage() {
   return (
-    <FormLayout onRedirectPath="/">
+    <FormLayout variant='simple' onRedirectPath="/">
       <Register />
     </FormLayout>
   );

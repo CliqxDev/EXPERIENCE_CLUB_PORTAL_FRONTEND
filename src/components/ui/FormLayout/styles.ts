@@ -11,8 +11,7 @@ export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' }>`
   background-image: url('/img/form-layout-background.svg'),
     url('/img/form-layout-img.svg');
   width: 100%;
-  min-height: 100vh;
-  background-size: cover;
+  background-size: 100vh;
   background-position: top;
   background-repeat: no-repeat;
   display: flex;
@@ -49,7 +48,7 @@ const FormWrapperVariants = {
 export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  // background-color: #ffffff;
   z-index: 10;
   border-radius: 4px;
   color: #4a4a49;
