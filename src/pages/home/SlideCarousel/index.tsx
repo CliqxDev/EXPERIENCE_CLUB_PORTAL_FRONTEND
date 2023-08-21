@@ -4,10 +4,7 @@ import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { PostItem } from 'flux/modules/post/types';
-import { useAppDispatch } from 'hook/store';
-import { media } from 'flux/modules/post/actions';
-import { useMedia } from 'hook/selectors/postHooks';
-import { Category } from 'models/posts/category';
+import { useCategory, useMedia } from 'hook/selectors/postHooks';
 import articleIcon from '../../../../public/img/article.svg';
 import shareIcon from '../../../../public/img/share.svg';
 
@@ -17,28 +14,22 @@ type Props = {
   post: PostItem;
 };
 const SlideCarousel: FC<Props> = ({ post }) => {
-  const dispatch = useAppDispatch();
-  const { data } = useMedia();
+  const { data: mediaData } = useMedia();
+  const { data: category } = useCategory();
 
   const [image, setImage] = useState('');
 
   useEffect(() => {
     if (!isEmpty(post)) {
-      dispatch(media.request(post.featured_media));
-    }
-  }, [post]);
-
-  useEffect(() => {
-    if (!isEmpty(post)) {
-      if (!isEmpty(data)) {
-        if (data[post.featured_media]) {
+      if (!isEmpty(mediaData)) {
+        if (mediaData[post.featured_media]) {
           setImage(
-            data[post.featured_media].media_details.sizes.medium.source_url
+            mediaData[post.featured_media].media_details.sizes.medium.source_url
           );
         }
       }
     }
-  }, [post, data]);
+  }, [post, mediaData]);
 
   return (
     <S.Wrapper>
@@ -56,7 +47,7 @@ const SlideCarousel: FC<Props> = ({ post }) => {
           <S.FooterSlide>
             <S.SubjectSection>
               <Image src={articleIcon} alt="Assunto" />
-              <S.Span>{Category[post.categories[0]]}</S.Span>
+              {category && <S.Span>{category[post.categories[0]]}</S.Span>}
             </S.SubjectSection>
 
             <Image

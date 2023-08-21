@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { forEach } from 'lodash';
 import Accompany from 'pages/home/Accompany';
 import CarouselSlide from 'pages/home/Carousel';
 import Columnists from 'pages/home/Columnists';
@@ -10,14 +11,27 @@ import ShowMore from 'pages/home/ShowMore';
 import Trails from 'pages/home/Trails';
 
 import { useAppDispatch } from 'hook/store';
-import { posts } from 'flux/modules/post/actions';
+import { category, media, posts } from 'flux/modules/post/actions';
+import { usePosts } from 'hook/selectors/postHooks';
 import * as S from './styles';
 
 const HomePage = () => {
+  const { data: postsData } = usePosts();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (postsData) {
+      if (postsData.length) {
+        forEach(postsData, post =>
+          dispatch(media.request(post.featured_media))
+        );
+      }
+    }
+  }, [postsData]);
+
+  useEffect(() => {
     dispatch(posts.request());
+    dispatch(category.request());
   }, [dispatch]);
   return (
     <S.Wrapper>
