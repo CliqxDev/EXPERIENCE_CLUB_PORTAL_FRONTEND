@@ -1,5 +1,6 @@
 import {
   CategoryStore,
+  ColumnistsResponse,
   MediaResponse,
   PostResponse
 } from 'flux/modules/post/types';
@@ -15,3 +16,6 @@ export const useMedia = (): IRequest<MediaResponse> =>
 
 export const useCategory = (): IRequest<CategoryStore> =>
   useSelector((state: RootState) => state.post.category);
+
+export const useColumnist = (): IRequest<ColumnistsResponse> =>
+  useSelector((state: RootState) => state.post.columnists);

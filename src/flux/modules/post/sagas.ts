@@ -3,11 +3,12 @@ import { AxiosError } from 'axios';
 
 import { forEach } from 'lodash';
 import { api } from 'apis';
-import { category, media, posts } from './actions';
+import { category, columnists, media, posts } from './actions';
 import {
   Category,
   CategoryResponse,
   CategoryStore,
+  ColumnistsResponse,
   MediaItem,
   PostResponse
 } from './types';
@@ -41,10 +42,10 @@ function* mediaSaga({ payload }: ReturnType<typeof media.request>): Generator {
 
 function* categorySaga(): Generator {
   try {
-    const response: CategoryResponse = yield api.get<CategoryResponse>(
+    const response = yield api.get<CategoryResponse>(
       '/v2/Categories?per_page=100',
       'https://expnew.net/wp-json/wp'
-    ) as CategoryResponse;
+    ) as unknown as CategoryResponse;
 
     const sanitizedResponse: CategoryStore = {};
     if (response) {
@@ -60,8 +61,23 @@ function* categorySaga(): Generator {
   }
 }
 
+function* columnistsSaga(): Generator {
+  try {
+    const response = yield api.get<ColumnistsResponse>(
+      '/v2/users?per_page=100',
+      'https://expnew.net/wp-json/wp'
+    ) as unknown as ColumnistsResponse;
+
+    yield put(columnists.success(response as ColumnistsResponse));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(columnists.failure(errors));
+  }
+}
+
 export default [
   takeEvery(posts.request, postsSaga),
   takeEvery(category.request, categorySaga),
+  takeEvery(columnists.request, columnistsSaga),
   takeEvery(media.request, mediaSaga)
 ];

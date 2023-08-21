@@ -4,7 +4,7 @@ export const ColumnistsWrapper = styled.main`
   width: 100%;
   height: 38.4rem;
 
-  background: #FFFF;
+  background: #ffff;
 `;
 
 export const TopContent = styled.div`
@@ -22,13 +22,13 @@ export const ShowMore = styled.span`
   font-weight: 500;
   line-height: 2rem;
 
-  color: #172E8B;
+  color: #172e8b;
 `;
 
 export const ListColumnists = styled.div`
   width: auto;
   height: 16rem;
-  
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -65,7 +65,7 @@ export const FooterCard = styled.div`
 `;
 
 export const Description = styled.p`
-  width: 14rem; 
+  width: 14rem;
   height: 9.2rem;
 
   margin-left: 1rem;
@@ -75,7 +75,7 @@ export const Description = styled.p`
   font-weight: 500;
   line-height: 2.4rem;
 
-  color: #1D1D1B;
+  color: #1d1d1b;
 `;
 
 export const NameColumnist = styled.p`
@@ -84,5 +84,5 @@ export const NameColumnist = styled.p`
   font-weight: 500;
   line-height: 2rem;
 
-  color: #4A4A49;
+  color: #4a4a49;
 `;

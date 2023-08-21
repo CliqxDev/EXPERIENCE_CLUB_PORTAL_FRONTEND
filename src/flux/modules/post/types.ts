@@ -159,11 +159,30 @@ export type MediaResponse = {
   [key: string]: MediaItem;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type CategoryResponse = Category[] | unknown;
+export type CategoryResponse = Category[];
+
+export type Columnists = {
+  id: number;
+  name: string;
+  url: string;
+  description: string;
+  link: string;
+  slug: string;
+  avatar_urls: {
+    [key: string]: string;
+  };
+  meta: any;
+  _links: {
+    self: LinkObj[];
+    collection: LinkObj[];
+  };
+};
+
+export type ColumnistsResponse = Columnists[];
 
 export interface Post {
   general: IRequest<PostResponse>;
   media: IRequest<MediaResponse>;
   category: IRequest<CategoryStore>;
+  columnists: IRequest<ColumnistsResponse>;
 }

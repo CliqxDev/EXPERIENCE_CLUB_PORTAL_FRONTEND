@@ -11,7 +11,7 @@ import ShowMore from 'pages/home/ShowMore';
 import Trails from 'pages/home/Trails';
 
 import { useAppDispatch } from 'hook/store';
-import { category, media, posts } from 'flux/modules/post/actions';
+import { category, columnists, media, posts } from 'flux/modules/post/actions';
 import { usePosts } from 'hook/selectors/postHooks';
 import * as S from './styles';
 
@@ -32,6 +32,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(posts.request());
     dispatch(category.request());
+    dispatch(columnists.request());
   }, [dispatch]);
   return (
     <S.Wrapper>
