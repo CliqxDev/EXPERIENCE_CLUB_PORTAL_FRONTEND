@@ -52,8 +52,8 @@ const SigIn = () => {
     const localStorageUser = localStorage.getItem('REMEMBER_SIGN');
     if (localStorageUser !== null) {
       const user: UserType = JSON.parse(localStorageUser);
-      formik.setFieldValue('email', user.email, true);
-      formik.setFieldValue('password', user.password, true);
+      formik.setFieldValue('email', user.email, false);
+      formik.setFieldValue('password', user.password, false);
 
       setCheckboxStatus(true);
     }

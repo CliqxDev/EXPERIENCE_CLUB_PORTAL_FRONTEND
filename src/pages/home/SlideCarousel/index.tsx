@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { PostItem } from 'flux/modules/post/types';
 import { useCategory, useMedia } from 'hook/selectors/postHooks';
+import { sanitizeTextByMaxLength } from 'utils/formatString';
 import articleIcon from '../../../../public/img/article.svg';
 import shareIcon from '../../../../public/img/share.svg';
 
@@ -37,10 +38,14 @@ const SlideCarousel: FC<Props> = ({ post }) => {
         <S.WrapperText>
           <S.Title>{post.title.rendered}</S.Title>
 
-          <S.Description>
-            Suspendisse potenti. Sed eleifend aliquam ultricies. Sed facilisis,
-            justo in sodales sagittis, nunc purus dictum elit,
-          </S.Description>
+          <S.Description
+            dangerouslySetInnerHTML={{
+              __html: `${sanitizeTextByMaxLength(
+                post.excerpt.rendered,
+                100
+              )}...`
+            }}
+          />
         </S.WrapperText>
         <S.FooterSlideWrapper>
           <S.FooterSlide>

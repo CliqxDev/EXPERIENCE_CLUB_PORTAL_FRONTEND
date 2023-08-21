@@ -88,7 +88,7 @@ const Trails = () => {
     <S.Wrapper backgroundColor={colorsByCategoryId[trailSelectedId]}>
       <Title variant="black50">Trilhas</Title>
       <S.TrailButtonWrapper>
-        {categories.map(({ id, name }) => (
+        {categories.slice(0, 6).map(({ id, name }) => (
           <S.TrailsButton
             onClick={() => setTrailSelectedId(name)}
             key={id}

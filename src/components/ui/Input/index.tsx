@@ -13,7 +13,6 @@ const Input: FC<InputProps> = ({
   disabled,
   label,
   name,
-  placeholder = ' ',
   value,
   onChange,
   onBlur,
@@ -27,8 +26,6 @@ const Input: FC<InputProps> = ({
   fullWidth,
   type = 'text'
 }) => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  const [maskPlaceholder, setMaskPlaceholder] = useState<string>('');
   const [maskFormat, setMask] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,7 +33,6 @@ const Input: FC<InputProps> = ({
     if (mask) {
       if (mask in masks) {
         setMask(masks[mask].mask);
-        setMaskPlaceholder(masks[mask].maskPlaceholder);
       } else {
         if (typeof mask === 'string') {
           setMask(mask);
@@ -44,7 +40,6 @@ const Input: FC<InputProps> = ({
 
         if (typeof mask === 'object') {
           setMask(mask.mask);
-          setMaskPlaceholder(mask.maskPlaceholder);
         }
       }
     }
@@ -64,15 +59,13 @@ const Input: FC<InputProps> = ({
           type={(showPassword && 'text') || type}
           name={name}
           id={id}
-          placeholder={isFocused ? maskPlaceholder : placeholder}
+          placeholder=" "
           disabled={disabled}
           value={value}
           onChange={onChange}
           onBlur={(e: any) => {
             onBlur(e);
-            setIsFocused(false);
           }}
-          onFocus={() => setIsFocused(true)}
           autoComplete={value ? 'no' : ''}
           maskPlaceholder=""
           mask={maskFormat}
