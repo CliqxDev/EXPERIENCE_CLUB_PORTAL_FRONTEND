@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { forEach } from 'lodash';
 import Accompany from 'pages/home/Accompany';
 import CarouselSlide from 'pages/home/Carousel';
-import Columnists from 'pages/home/Columnists';
 import Explore from 'pages/home/Explore';
 import Formats from 'pages/home/Formats';
 import Header from 'components/Header';
@@ -30,6 +29,16 @@ const HomePage = () => {
   }, [postsData]);
 
   useEffect(() => {
+    if (postsData) {
+      if (postsData.length) {
+        forEach(postsData, post =>
+          dispatch(media.request(post.featured_media))
+        );
+      }
+    }
+  }, [postsData]);
+
+  useEffect(() => {
     dispatch(posts.request());
     dispatch(category.request());
     dispatch(columnists.request());
@@ -39,7 +48,6 @@ const HomePage = () => {
       <Header />
       <CarouselSlide />
       <Trails />
-      <Columnists />
       <Accompany />
       <Newsletter />
       <Explore />

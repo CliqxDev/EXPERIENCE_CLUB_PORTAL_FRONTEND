@@ -1,6 +1,3 @@
-/* eslint-disable no-control-regex */
-/* eslint-disable no-irregular-whitespace */
-/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 
@@ -8,6 +5,7 @@ import { forEach, isEmpty, uniqueId } from 'lodash';
 import Title from 'components/ui/Title';
 
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
+import { sanitizeTextByMaxLength } from 'utils/formatString';
 import * as S from './styles';
 
 type Category = {
@@ -77,7 +75,7 @@ const Trails = () => {
             imgSrc:
               media[post.featured_media].media_details.sizes.thumbnail
                 .source_url,
-            description: post.content.rendered.substring(0, 150),
+            description: sanitizeTextByMaxLength(post.excerpt.rendered),
             category: categoryData[post.categories[0]]
           });
         });

@@ -10,3 +10,11 @@ export const sanitizeAvatar = (name: string) => {
   }
   return initials;
 };
+
+export const sanitizeTextByMaxLength = (value: string, maxLength = 150) => {
+  const trimmedString = value.substring(0, maxLength);
+  return trimmedString.substring(
+    0,
+    Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
+  );
+};
