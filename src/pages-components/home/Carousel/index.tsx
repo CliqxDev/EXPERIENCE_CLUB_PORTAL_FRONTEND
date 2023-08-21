@@ -1,6 +1,6 @@
 import { Carousel } from 'react-responsive-carousel';
 import { uniqueId } from 'lodash';
-import SlideCarousel from 'pages/home/SlideCarousel';
+import SlideCarousel from 'pages-components/home/SlideCarousel';
 import { usePosts } from 'hook/selectors/postHooks';
 import * as S from './styles';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';

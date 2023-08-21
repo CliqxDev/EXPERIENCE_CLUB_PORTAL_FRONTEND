@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 
-import AddressForm from 'pages/perfil/AddressForm';
-import Info from 'pages/perfil/Header';
-import PersonalData from 'pages/perfil/PersonalData';
-import SecurityForm from 'pages/perfil/SecurityForm';
-import SubscriberPlan from 'pages/perfil/SubscriberPlan';
+import AddressForm from 'pages-components/perfil/AddressForm';
+import Info from 'pages-components/perfil/Header';
+import PersonalData from 'pages-components/perfil/PersonalData';
+import SecurityForm from 'pages-components/perfil/SecurityForm';
+import SubscriberPlan from 'pages-components/perfil/SubscriberPlan';
 
 import Header from 'components/Header';
 import * as S from './styles';

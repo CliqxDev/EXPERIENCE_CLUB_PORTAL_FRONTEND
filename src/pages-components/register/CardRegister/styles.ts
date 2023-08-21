@@ -17,7 +17,7 @@ const titleSize = {
   `
 };
 
-const rootVariants = {
+const rootVariants: any = {
   default: css`
     background-color: #ffffff;
   `,
@@ -28,11 +28,11 @@ const rootVariants = {
     background-color: #10100f;
   `,
   lightDark: css`
-    background-color: #1D1D1B;
+    background-color: #1d1d1b;
   `
 };
 
-const titleVariants = {
+const titleVariants: any = {
   default: css`
     color: #4a4a49;
     text-align: center;
@@ -65,7 +65,7 @@ const subtitleVariants = {
     font-size: 1.4rem;
     font-weight: 400;
     text-align: left;
-  `,
+  `
 };
 
 export const Root = styled.main<StyleProps>`
@@ -115,9 +115,8 @@ export const InspirationDateWrapperColumn = styled.div`
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.6rem;
-    color: #FFFF;
+    color: #ffff;
     text-align: right;
-
   }
 
   span {
@@ -125,7 +124,7 @@ export const InspirationDateWrapperColumn = styled.div`
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.4rem;
-    color: #B9B9B8;
+    color: #b9b9b8;
   }
 
   strong {
@@ -133,6 +132,6 @@ export const InspirationDateWrapperColumn = styled.div`
     font-weight: 500;
     font-size: 2rem;
     line-height: 1.6rem;
-    color: #FFFF;
+    color: #ffff;
   }
 `;

@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { forEach } from 'lodash';
-import Accompany from 'pages/home/Accompany';
-import CarouselSlide from 'pages/home/Carousel';
-import Explore from 'pages/home/Explore';
-import Formats from 'pages/home/Formats';
+import Accompany from 'pages-components/home/Accompany';
+import CarouselSlide from 'pages-components/home/Carousel';
+import Explore from 'pages-components/home/Explore';
+import Formats from 'pages-components/home/Formats';
 import Header from 'components/Header';
-import Newsletter from 'pages/home/Newsletter';
-import ShowMore from 'pages/home/ShowMore';
-import Trails from 'pages/home/Trails';
+import Newsletter from 'pages-components/home/Newsletter';
+import Trails from 'pages-components/home/Trails';
 
 import { useAppDispatch } from 'hook/store';
 import { category, columnists, media, posts } from 'flux/modules/post/actions';
@@ -52,7 +51,6 @@ const HomePage = () => {
       <Newsletter />
       <Explore />
       <Formats />
-      <ShowMore />
     </S.Wrapper>
   );
 };
