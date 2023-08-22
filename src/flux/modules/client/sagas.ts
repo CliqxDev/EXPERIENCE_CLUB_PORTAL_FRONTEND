@@ -2,13 +2,27 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { isEmpty } from 'lodash';
 import { ErrorMessage } from 'models/errors';
-import { assignNewsletter, createClient, updateClient } from './actions';
-import { ClientInfo } from './types';
-import { postAssignNewsletter, postClient, putClient } from './service';
+import {
+  assignNewsletter,
+  createClient,
+  deleteClient,
+  updateClient
+} from './actions';
+import { ClientDeleteResponse, ClientInfo } from './types';
+import {
+  deleteAccount,
+  postAssignNewsletter,
+  postClient,
+  putClient
+} from './service';
 import { clientInfo } from '../auth/actions';
 
 type ClientPersonalDataResponseAPI = {
   data: ClientInfo;
+};
+
+type ClientDeleteResponseAPI = {
+  data: ClientDeleteResponse;
 };
 
 function* createClientSaga({
@@ -64,8 +78,25 @@ function* assignNewsletterSaga({
   }
 }
 
+function* deleteClientSaga({
+  payload
+}: ReturnType<typeof deleteClient.request>): Generator {
+  try {
+    const response: ClientDeleteResponseAPI = (yield call(
+      deleteAccount,
+      payload
+    )) as ClientDeleteResponseAPI;
+
+    yield put(deleteClient.success(response.data));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(deleteClient.failure(errors));
+  }
+}
+
 export default [
   takeEvery(assignNewsletter.request, assignNewsletterSaga),
   takeEvery(createClient.request, createClientSaga),
+  takeEvery(deleteClient.request, deleteClientSaga),
   takeEvery(updateClient.request, updateClientSaga)
 ];

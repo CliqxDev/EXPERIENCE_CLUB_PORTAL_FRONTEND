@@ -1,6 +1,7 @@
 import { Toaster, ToastBar } from 'react-hot-toast';
 
 import { FC } from 'react';
+import { workSans } from 'styles/fonts';
 import * as S from './styles';
 
 type Props = {
@@ -51,7 +52,7 @@ const ToasterComponent: FC<Props> = ({ variant }) => (
         style: {
           width: '100%',
           color: '#1A1A19',
-          fontFamily: 'Work Sans',
+          fontFamily: workSans.style.fontFamily,
           fontSize: 16,
           fontStyle: 'normal',
           fontWeight: 400,

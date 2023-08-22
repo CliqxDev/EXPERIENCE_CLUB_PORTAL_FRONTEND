@@ -1,24 +1,47 @@
 'use-client';
 
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import DeleteAccount from 'pages-components/perfil/DeleteAccount';
 import AddressForm from 'pages-components/perfil/AddressForm';
 import Info from 'pages-components/perfil/Header';
 import PersonalData from 'pages-components/perfil/PersonalData';
 import SecurityForm from 'pages-components/perfil/SecurityForm';
 import SubscriberPlan from 'pages-components/perfil/SubscriberPlan';
-
+import Toaster from 'components/ui/Toaster';
 import Header from 'components/Header';
+import { useAppDispatch } from 'hook/store';
+import { deleteClient } from 'flux/modules/client/actions';
+import { useDeleteClient } from 'hook/selectors/clientHooks';
+import { RequestStatus } from 'models/iRequest';
+import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
 import { Tab } from './types';
 
 const PerfilPage = () => {
+  const dispatch = useAppDispatch();
+  const { status } = useDeleteClient();
+  const { data } = useClientInfo();
+
   const [tab, setTab] = useState<Tab>('PROFILE');
+  const [showModal, setShowModal] = useState(false);
 
   const handleChangeTab = (tabSelected: Tab) => setTab(tabSelected);
 
   const verifyVariantTab = (tabSelected: Tab) =>
     (tabSelected === tab && tab) || 'DEFAULT';
+
+  const handleDeleteAccount = () => {
+    if (data?.id) {
+      dispatch(deleteClient.request(data?.id));
+    }
+  };
+
+  useEffect(() => {
+    if (status === RequestStatus.error) {
+      toast('Falha ao tentar excluir usuário');
+    }
+  }, [status]);
 
   return (
     <>
@@ -50,11 +73,19 @@ const PerfilPage = () => {
             <Info />
             <PersonalData />
             <SubscriberPlan />
-            <S.DeleteAccount>Excluir conta</S.DeleteAccount>
+            <S.DeleteAccount onClick={() => setShowModal(true)}>
+              Excluir conta
+            </S.DeleteAccount>
           </>
         )}
         {tab === 'SECURITY' && <SecurityForm />}
         {tab === 'ADDRESS' && <AddressForm />}
+        <DeleteAccount
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onSubmit={handleDeleteAccount}
+        />
+        <Toaster variant="error" />
       </S.WrapperProfile>
     </>
   );

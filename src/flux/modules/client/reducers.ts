@@ -5,6 +5,7 @@ import {
   clearCreateClient,
   createClient,
   updateClient,
+  deleteClient as deleteClientAction,
   clearUpdateClient
 } from './actions';
 import { Client } from './types';
@@ -12,10 +13,35 @@ import { Client } from './types';
 const initialState: Client = {
   updateClient: { data: null, message: null, status: RequestStatus.idle },
   newsLetter: { data: null, message: null, status: RequestStatus.idle },
+  deleteClient: { data: null, message: null, status: RequestStatus.idle },
   createClient: { data: null, message: null, status: RequestStatus.idle }
 };
 
 const clientReducer = createReducer<Client, Action>(initialState)
+  .handleAction(deleteClientAction.request, state => ({
+    ...state,
+    deleteClient: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(deleteClientAction.success, (state, action) => ({
+    ...state,
+    deleteClient: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(deleteClientAction.failure, (state, action) => ({
+    ...state,
+    deleteClient: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
   .handleAction(createClient.request, state => ({
     ...state,
     createClient: {

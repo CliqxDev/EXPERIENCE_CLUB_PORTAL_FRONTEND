@@ -13,7 +13,7 @@ const variants = {
       cursor: default;
       box-shadow: none;
       background: #e8e8e8;
-      color: #1d1d1b;
+      color: #686866;
     }
 
     &:not([disabled]):hover {
@@ -52,11 +52,29 @@ const variants = {
       color: #686866;
       color: rgba(102, 104, 102, 0.38);
     }
+  `,
+  outline: css`
+    border: 1px solid #2954fc;
+    color: rgba(41, 84, 252, 1);
+    background-color: transparent;
+  `,
+  warning: css`
+    background-color: #dc2626;
+    color: #ffffff;
+    border: none;
+
+    &:disabled {
+      cursor: default;
+      box-shadow: none;
+      background: #e8e8e8;
+      color: #686866;
+      color: rgba(102, 104, 102, 0.38);
+    }
   `
 };
 
 export const Button = styled.button<{
-  variant: 'default' | 'link' | 'secondary';
+  variant: 'default' | 'link' | 'secondary' | 'outline' | 'warning';
   fullwidth?: boolean;
 }>`
   outline: none;
