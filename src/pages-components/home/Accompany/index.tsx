@@ -29,7 +29,42 @@ const listBanners = [
     title: 'LEIA3',
     description:
       'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
-  }
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
+  {
+    title: 'LEIA3',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Maecenas nulla vitae elit enim amet.'
+  },
 ];
 
 const Accompany = () => (

@@ -108,26 +108,3 @@ export const Line = styled.div`
   height: 1px;
   background: #b9b9b8;
 `;
-
-export const RegisterFreePlan = styled.div`
-  width: 100%;
-  height: 10.8rem;
-  border-radius: 4px;
-  padding: 2.4rem;
-  margin-top: 2rem;
-  background: #b9b9b8;
-
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 2rem;
-  text-align: left;
-
-  p {
-    color: #0c0c0b;
-  }
-
-  span {
-    color: #2954fc;
-    text-decoration: underline;
-  }
-`;

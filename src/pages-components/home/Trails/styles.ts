@@ -50,7 +50,11 @@ export const Wrapper = styled.div<{ backgroundcolor: string }>`
   }
 
   @media (min-width: 1024px) {
-    padding: 10rem;
+    padding: 4rem 10rem 4rem 10rem;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 4rem 15rem 4rem 15rem;
   }
 `;
 

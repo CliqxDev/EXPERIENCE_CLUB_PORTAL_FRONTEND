@@ -57,6 +57,12 @@ export const WrapperText = styled.div`
   left: 0;
   width: 100%;
   background: linear-gradient(0deg, #000000 60.94%, rgba(29, 29, 27, 0) 100%);
+
+  @media (min-width: 1024px) {
+    position: relative;
+    margin-top: -32px;
+    padding-top: 32px;
+  }
 `;
 export const WrapperContent = styled.div`
   position: relative;

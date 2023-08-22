@@ -33,6 +33,18 @@ const listCardsExplore = [
   {
     description: 'Lorem ipsum dolor sit amet consectetur. Lorem ipsum do.',
     footerSubject: 'Tecnologia'
+  },
+  {
+    description: 'Lorem ipsum dolor sit amet consectetur. Lorem ipsum do.',
+    footerSubject: 'Tecnologia'
+  },
+  {
+    description: 'Lorem ipsum dolor sit amet consectetur. Lorem ipsum do.',
+    footerSubject: 'Tecnologia'
+  },
+  {
+    description: 'Lorem ipsum dolor sit amet consectetur. Lorem ipsum do.',
+    footerSubject: 'Tecnologia'
   }
 ];
 

@@ -11,10 +11,19 @@ export const AccompanyWrapper = styled.main`
 
   padding: 2rem 0 2rem 2rem;
   background: #e8e8e8;
+
+  @media (min-width: 1024px) {
+    padding: 2rem 10rem 2rem 10rem;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 4rem 15rem 4rem 15rem;
+  }
 `;
 
 export const AccompanyList = styled.div`
   width: auto;
+  overflow-y: hidden;
 
   display: flex;
   flex-direction: row;
@@ -40,7 +49,7 @@ export const AccompanyCard = styled.div`
   flex-direction: column;
 
   padding: 2rem;
-  margin-top: 2rem;
+  margin: 2rem 0 2rem 0;
   background: #ffff;
 `;
 

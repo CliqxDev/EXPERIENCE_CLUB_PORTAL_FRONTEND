@@ -52,8 +52,14 @@ const subtitleVariants = {
   default: css`
     color: #686866;
     text-align: center;
+    `,
+  gray: css`
+    color: #B9B9B8;
+    text-align: left;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 20px;
   `,
-  gray: css``,
   dark: css`
     color: #ffffff;
     text-align: center;
@@ -69,6 +75,7 @@ const subtitleVariants = {
 };
 
 export const Root = styled.main<StyleProps>`
+  width: 100%;
   display: flex;
   padding: 2.4rem;
   flex-direction: column;
@@ -92,7 +99,6 @@ export const Subtitle = styled.h2<StyleProps>`
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  letter-spacing: 0.5px;
   ${({ variant }) => subtitleVariants[variant || 'default']}
 `;
 

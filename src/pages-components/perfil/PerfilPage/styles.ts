@@ -9,6 +9,13 @@ export const WrapperProfile = styled.main`
   padding: 0 1.6rem;
 `;
 
+export const WrapperResponsive = styled.div`
+  @media (min-width: 1024px) {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+`;
+
 export const TopNavigation = styled.div`
   width: 100%;
   display: flex;

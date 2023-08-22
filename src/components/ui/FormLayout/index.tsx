@@ -9,14 +9,14 @@ import * as S from './styles';
 type MainProps = {
   children: ReactNode;
   onRedirectPath: string;
-  variant?: 'bottom' | 'simple';
+  variant?: 'bottom' | 'simple' | 'center';
 };
 
 const FormLayout: FC<MainProps> = ({ children, onRedirectPath, variant }) => (
-  <S.Wrapper variant={variant || 'bottom'}>
+  <>
     <S.Header>
       <Link href={onRedirectPath} passHref>
-        <ButtonMenu onClick={() => {}}>
+        <ButtonMenu onClick={() => { }}>
           <svg
             width="24"
             height="24"
@@ -74,8 +74,10 @@ const FormLayout: FC<MainProps> = ({ children, onRedirectPath, variant }) => (
 
       <div style={{ height: 48, width: 48 }} />
     </S.Header>
-    <S.FormWrapper variant={variant || 'bottom'}>{children}</S.FormWrapper>
-  </S.Wrapper>
+    <S.Wrapper variant={variant || 'bottom'}>
+      <S.FormWrapper variant={variant || 'bottom'}>{children}</S.FormWrapper>
+    </S.Wrapper>
+  </>
 );
 
 export default FormLayout;

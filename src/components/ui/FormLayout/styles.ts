@@ -2,12 +2,13 @@ import styled, { css } from 'styled-components';
 
 const WrapperVariants = {
   bottom: css``,
+  center: css``,
   simple: css`
     padding: 16px;
   `
 };
 
-export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' }>`
+export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' | 'center'}>`
   background-image: url('/img/form-layout-background.svg'),
     url('/img/form-layout-img.svg');
   width: 100%;
@@ -16,6 +17,8 @@ export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' }>`
   background-position: top;
   background-repeat: no-repeat;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 
   ${({ variant }) => WrapperVariants[variant]}
@@ -45,10 +48,14 @@ const FormWrapperVariants = {
     margin-top: 75px;
     width: 100%;
     background-color: transparent;
-  `
+  `,
+  center: css`
+    width: 100%;
+    background-color: #ffffff;
+  `,
 };
 
-export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
+export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' | 'center' }>`
   display: flex;
   flex-direction: column;
   z-index: 10;
@@ -61,12 +68,4 @@ export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
   margin-right: auto;
   position: relative;
   ${({ variant }) => FormWrapperVariants[variant]}
-
-  @media (min-width: 1024px) {
-    width: 100%;
-    position: sticky;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-  }
 `;

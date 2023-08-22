@@ -128,13 +128,13 @@ const Newsletter = () => {
         <S.MessageWrapper>
           <S.MessageBox>
             <S.MessageHeader>
-              <h1>Já existe cadastrado!</h1>
+              <h1>O seu e-mail já está no nosso cadastro!</h1>
               <h2>Você já faz parte da nossa comunidade</h2>
             </S.MessageHeader>
             <S.MessageContent>
               <p>
-                Caso não esteja recebendo nossos e-mails confira sua caixa de
-                spam e confirme nosso contato.
+                Caso não esteja recebendo nossos e-mails verifique na sua pasta de Spam e
+                salve o nosso e-mail em seus contatos.
               </p>
             </S.MessageContent>
           </S.MessageBox>
@@ -145,13 +145,13 @@ const Newsletter = () => {
         <S.MessageWrapper>
           <S.MessageSuccess>
             <S.MessageHeader>
-              <h1>Bem vindo(a)!</h1>
+              <h1>Obrigado por se cadastrar!</h1>
               <h2>Agora você está junto da nossa comunidade</h2>
             </S.MessageHeader>
             <S.MessageContent>
               <p>
-                Seu cadastro foi concluído, em breve você receberá nossos
-                conteúdos.
+                A partir de agora, você vai receber, diretamente no seu e-mail,
+                o melhor conteúdo de negócios.
               </p>
             </S.MessageContent>
           </S.MessageSuccess>

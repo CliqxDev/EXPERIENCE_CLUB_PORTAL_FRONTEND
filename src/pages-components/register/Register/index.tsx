@@ -58,7 +58,7 @@ const Register = () => {
       <Card.Root>
         <Card.Title>Escolha seu plano</Card.Title>
         <Card.Subtitle>
-          Temos planos que podem atender do individual ao corporativo.
+          Temos planos individuais e corporativos. Aumente o conhecimento da sua equipe.
         </Card.Subtitle>
       </Card.Root>
 
@@ -90,18 +90,18 @@ const Register = () => {
           )}
         </S.PlanPrice>
         <S.DescriptionPlan>
-          Você terá acesso a toda a plataforma, muito mais conteúdos e
-          personalização.
+          Você terá acesso ao melhor conteúdo de negócios.
+          Fique por dentro do que acontece no mercado
         </S.DescriptionPlan>
 
         <Link href="/register/personal-data/individual" passHref>
-          <Button onClick={() => {}} id="next-step">
+          <Button onClick={() => { }} id="next-step">
             Adquirir plano individual
           </Button>
         </Link>
         {planType === 'YEARLY' && (
           <S.EconomyPlan>
-            Economize <span>2 mensalidades</span>
+            Economize{' '}<span>2 mensalidades</span>{' '}no plano anual
           </S.EconomyPlan>
         )}
       </Card.Root>
@@ -110,8 +110,9 @@ const Register = () => {
         <Card.Title size="md" variant="lightDark">
           Plano corporativo
         </Card.Title>
-        <Card.Subtitle size="md" variant="white">
-          Possibilita a organização trazer seus líderes para nosso ecossistema.
+        <Card.Subtitle size="md" variant="gray">
+          Sua equipe muito bem-informada. 
+          Entrevistas, reportagens, tendências, vídeos, modelos de negócios inovadores
         </Card.Subtitle>
 
         {priceForUsers.map((priceUsers, idx) => (
@@ -136,8 +137,8 @@ const Register = () => {
         ))}
 
         <Link href="/register/personal-data/corp" passHref>
-          <Button onClick={() => {}} id="next-step">
-            Adquirir plano corporativo
+          <Button onClick={() => { }} id="next-step">
+          Adquirir planos corporativos
           </Button>
         </Link>
         {planType === 'YEARLY' && (
@@ -146,14 +147,6 @@ const Register = () => {
           </S.EconomyPlan>
         )}
       </Card.Root>
-
-      <S.RegisterFreePlan>
-        <p>
-          Cadastre-se gratuitamente para ter mais acesso aos nossos
-          conteúdos.&nbsp;
-          <span>Clique aqui para cadastrar-se no plano gratuito.</span>
-        </p>
-      </S.RegisterFreePlan>
     </S.Wrapper>
   );
 };
