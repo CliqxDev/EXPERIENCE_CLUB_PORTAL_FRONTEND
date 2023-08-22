@@ -44,7 +44,10 @@ export const Spinner: FC<Props> = ({ active, children }) => {
   );
 
   return (
-    <S.Container active={active} className="loading-overlay">
+    <S.Container
+      overflow={active ? 'visibility' : 'hidden'}
+      className="loading-overlay"
+    >
       {children}
       {loadNode}
     </S.Container>

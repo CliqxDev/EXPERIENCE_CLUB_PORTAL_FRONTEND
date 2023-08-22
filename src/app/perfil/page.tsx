@@ -8,7 +8,7 @@ import {
 import { useChangePassword } from 'hook/selectors/authHooks';
 import { useUpdateClient } from 'hook/selectors/clientHooks';
 import { RequestStatus } from 'models/iRequest';
-import Perfil from 'pages/perfil/PerfilPage';
+import Perfil from 'pages-components/perfil/PerfilPage';
 
 export default function PerfilPage() {
   const { status: statusUpdateClientAuth } = useUpdateClient();

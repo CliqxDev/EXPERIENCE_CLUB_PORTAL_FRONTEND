@@ -7,7 +7,7 @@ const Select: FC<SelectProps> = ({
   errorMessage,
   disabled = false,
   label,
-  fullWidth,
+  fullwidth,
   onChange,
   required,
   value,
@@ -17,7 +17,7 @@ const Select: FC<SelectProps> = ({
   <S.WrappedMain id={id}>
     <S.ReactSelect
       value={value}
-      fullWidth={fullWidth}
+      fullwidth={fullwidth}
       classNamePrefix="react-select"
       placeholder=""
       onChange={(option: OptionType) => onChange(option)}

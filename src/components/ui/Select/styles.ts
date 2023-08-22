@@ -1,9 +1,10 @@
 import Select from 'react-select';
 
 import styled, { css } from 'styled-components';
+import { roboto } from 'styles/fonts';
 
 export const ReactSelect = styled(Select)<any>`
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : '300px')};
+  width: ${({ fullwidth }) => (fullwidth ? '100%' : '300px')};
   .react-select__control {
     opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
     height: 56px;
@@ -20,7 +21,7 @@ export const ReactSelect = styled(Select)<any>`
     align-items: center;
     justify-content: center;
     padding-left: 1.6rem;
-    font-family: Roboto;
+    font-family: ${roboto.style.fontFamily};
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
@@ -40,7 +41,7 @@ export const Label = styled.label`
     transform: translate(0, 16px);
     transform-origin: top left;
     transition: 0.2s ease-in-out;
-    font-family: Work Sans;
+
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;

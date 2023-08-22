@@ -31,7 +31,6 @@ export const Header = styled.div`
 
 export const Title = styled.span`
   color: #4a4a49;
-  font-family: Work Sans;
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -45,7 +44,6 @@ export const Divider = styled.div`
 
 export const TitleSort = styled.div`
   color: #4a4a49;
-  font-family: Work Sans;
   font-size: 1.4rem;
   font-weight: 500;
   margin: 2.4rem 0;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { roboto } from 'styles/fonts';
 
 export const Wrapper = styled.div<{
   variant: string;
@@ -15,7 +16,7 @@ export const Wrapper = styled.div<{
 
   span {
     color: ${({ variant }) => (variant === 'sort' ? '#ffffff' : '#4a4a49')};
-    font-family: Roboto;
+    font-family: ${roboto.style.fontFamily};
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 20px;

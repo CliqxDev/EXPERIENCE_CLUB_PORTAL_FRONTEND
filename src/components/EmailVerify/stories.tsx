@@ -7,4 +7,4 @@ export default {
   component: EmailVerify
 } as Meta;
 
-export const Default: Story = () => <EmailVerify />;
+export const Default: Story = () => <EmailVerify>teste</EmailVerify>;

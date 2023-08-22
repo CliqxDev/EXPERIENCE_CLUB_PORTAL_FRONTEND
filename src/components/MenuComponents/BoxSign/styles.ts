@@ -16,7 +16,6 @@ export const Wrapper = styled.main`
 
   span {
     color: #1d1d1b;
-    font-family: Work Sans;
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 20px;

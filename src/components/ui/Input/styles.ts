@@ -3,13 +3,14 @@ import { NumericFormat } from 'react-number-format';
 import styled, { css } from 'styled-components';
 import { spacings } from 'utils';
 
+import { roboto } from 'styles/fonts';
 import { Variant } from './types';
 
 interface WrapperProps {
   error?: string;
   disabled?: boolean;
   spacing?: string;
-  fullWidth?: boolean;
+  fullwidth?: string;
   variant: Variant;
 }
 
@@ -34,7 +35,7 @@ export const Label = styled.label<{ variant: Variant }>`
     transform: translate(0, 16px);
     transform-origin: top left;
     transition: 0.2s ease-in-out;
-    font-family: Work Sans;
+
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
@@ -79,7 +80,7 @@ export const InputText = styled(InputMask)<{ variant: Variant }>`
     align-items: center;
     justify-content: center;
     padding-left: 1.6rem;
-    font-family: Roboto;
+    font-family: ${roboto.style.fontFamily};
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
@@ -114,7 +115,7 @@ const errorVariants = {
 
 export const Error = styled.div<{ variant: Variant }>`
   ${({ variant }) => css`
-    font-family: Roboto;
+    font-family: ${roboto.style.fontFamily};
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
@@ -128,7 +129,6 @@ export const Error = styled.div<{ variant: Variant }>`
 
 export const Info = styled.div`
   ${() => css`
-    font-family: Open Sans;
     font-weight: normal;
     font-size: 12px;
     color: #336636;
@@ -277,14 +277,14 @@ const wrapperModifiers = {
 };
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({ error, disabled, spacing, fullWidth, variant }) => css`
+  ${({ error, disabled, spacing, fullwidth, variant }) => css`
     position: relative;
 
     margin-bottom: ${spacings[spacing || '0']};
 
     ${error && wrapperModifiers.error(variant)}
     ${disabled && wrapperModifiers.disabled()}
-    width: ${fullWidth && '100%'}
+    width: ${fullwidth}
   `}
 `;
 

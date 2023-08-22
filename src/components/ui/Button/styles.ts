@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div<{ fullWidth?: boolean }>`
-  width: ${({ fullWidth }) => fullWidth && '100%'};
+export const Wrapper = styled.div<{ fullwidth?: boolean }>`
+  width: ${({ fullwidth }) => fullwidth && '100%'};
 `;
 
 const variants = {
@@ -57,7 +57,7 @@ const variants = {
 
 export const Button = styled.button<{
   variant: 'default' | 'link' | 'secondary';
-  fullWidth?: boolean;
+  fullwidth?: boolean;
 }>`
   outline: none;
   display: flex;
@@ -65,12 +65,11 @@ export const Button = styled.button<{
   justify-content: center;
   padding: 1rem 2.4rem;
   color: #ffffff;
-  font-family: Work Sans;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 20px;
   border-radius: 8px;
-  width: ${({ fullWidth }) => fullWidth && '100%'};
+  width: ${({ fullwidth }) => fullwidth && '100%'};
   cursor: pointer;
   ${({ variant }) => variant && variants[variant]}
 `;

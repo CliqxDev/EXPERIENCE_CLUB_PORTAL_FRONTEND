@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
   cursor: pointer;
   user-select: none;
   color: #8c8c8c;
-  font-family: Work Sans;
+
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 2rem;

@@ -45,7 +45,7 @@ const FormWrapperVariants = {
     margin-top: 75px;
     width: 100%;
     background-color: transparent;
-  `,
+  `
 };
 
 export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
@@ -54,7 +54,6 @@ export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' }>`
   z-index: 10;
   border-radius: 4px;
   color: #4a4a49;
-  font-family: Work Sans;
   font-style: normal;
   text-align: center;
   max-width: 500px;
