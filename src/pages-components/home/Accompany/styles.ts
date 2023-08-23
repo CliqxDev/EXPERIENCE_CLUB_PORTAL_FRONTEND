@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const AccompanyWrapper = styled.main`
   width: 100%;
@@ -11,12 +12,13 @@ export const AccompanyWrapper = styled.main`
 
   padding: 2rem 0 2rem 2rem;
   background: #e8e8e8;
+  
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     padding: 2rem 10rem 2rem 10rem;
   }
 
-  @media (min-width: 1440px) {
+  ${breakpoints.up('lg')} {
     padding: 4rem 15rem 4rem 15rem;
   }
 `;

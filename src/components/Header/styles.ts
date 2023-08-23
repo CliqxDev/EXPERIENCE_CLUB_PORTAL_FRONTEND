@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main`
   display: flex;
@@ -8,6 +9,10 @@ export const Wrapper = styled.main`
   background-color: #ffffff;
   position: relative;
   width: 100%;
+
+  ${breakpoints.up('md')} {
+    display: none;
+  }
 `;
 
 export const Actions = styled.div`

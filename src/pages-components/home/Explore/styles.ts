@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const ExploreWrapper = styled.main`
   width: 100%;
@@ -7,11 +8,11 @@ export const ExploreWrapper = styled.main`
   padding: 2rem;
   background: #e8e8e8;
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     padding: 2rem 10rem 2rem 10rem;
   }
 
-  @media (min-width: 1440px) {
+  ${breakpoints.up('lg')} {
     padding: 4rem 15rem 4rem 15rem;
   }
 `;
@@ -22,7 +23,7 @@ export const ListCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     display: flex;
     flex-direction: row;
     align-items: center;
