@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { clearClientInfo } from 'flux/modules/client/actions';
 import { useAppDispatch } from 'hook/store';
-import { isEmpty, uniqueId } from 'lodash';
+import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import { logout } from 'utils/services/auth';
 
@@ -15,6 +15,7 @@ import LinkMenu from 'components/MenuComponents/LinkMenu';
 import * as S from './styles';
 import { clearSigIn } from 'flux/modules/auth/actions';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import { useCategory } from 'hook/selectors/postHooks';
 
 type SearchMenuProps = {
   onClose: () => void;
@@ -31,12 +32,27 @@ const DEFAULT_MENU = [
   }
 ];
 
+type Category = {
+  id: number;
+  name: string;
+};
+
+const backgrounds: any = {
+  0: '#708CFD',
+  1: '#5476FD',
+  2: '#254CE5',
+  3: '#1D3CB3',
+  4: '#172E8B',
+  5: '#11236A'
+};
 const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
+  const { data: categoryData } = useCategory();
 
   const [isLogged, setIsLogger] = useState(false);
   const [menuList, setMenuList] = useState(DEFAULT_MENU);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     if (!isEmpty(data)) {
@@ -66,6 +82,18 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     logout();
     setIsLogger(false);
   };
+
+  useEffect(() => {
+    if (categoryData) {
+      const newCategories: Category[] = [];
+      let idx = 0;
+      forEach(categoryData, item => {
+        newCategories.push({ id: idx, name: item });
+        idx += 1;
+      });
+      setCategories(newCategories);
+    }
+  }, [categoryData]);
 
   return (
     <S.Wrapper>
@@ -128,24 +156,11 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       <S.Divider />
       <S.TitleSort>Trilhas</S.TitleSort>
       <S.WrapperTrail>
-        <LinkMenu variant="sort" color="#708CFD">
-          Futuro
-        </LinkMenu>
-        <LinkMenu variant="sort" color="#5476FD">
-          Startup
-        </LinkMenu>
-        <LinkMenu variant="sort" color="#254CE5">
-          ESG
-        </LinkMenu>
-        <LinkMenu variant="sort" color="#1D3CB3">
-          Tecnologia
-        </LinkMenu>
-        <LinkMenu variant="sort" color="#172E8B">
-          Gestão
-        </LinkMenu>
-        <LinkMenu variant="sort" color="#11236A">
-          Mercado
-        </LinkMenu>
+        {categories.slice(0, 6).map(({ id, name }) => (
+          <LinkMenu key={id} variant="sort" color={backgrounds[id]}>
+            {name}
+          </LinkMenu>
+        ))}
       </S.WrapperTrail>
       {isLogged && (
         <Button onClick={handleLogout} id="exit">
