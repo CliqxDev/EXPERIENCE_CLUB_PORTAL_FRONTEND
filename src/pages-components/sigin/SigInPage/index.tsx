@@ -36,6 +36,8 @@ const SigIn = () => {
         toast(
           'E-mail ou senha incorretos. Confirme suas informações ou crie uma conta.'
         );
+        formik.setFieldError('email', ' ');
+        formik.setFieldError('password', ' ');
       } else {
         toast('Falha ao tentar efetuar o login');
       }
