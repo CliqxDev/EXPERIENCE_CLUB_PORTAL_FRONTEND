@@ -7,7 +7,8 @@ import {
   clientInfo,
   sigIn,
   recoveryPasswordSendEmail,
-  resetPassword
+  resetPassword,
+  emailValidation
 } from './actions';
 import {
   RecoveryPasswordSendEmailResponse,
@@ -18,6 +19,7 @@ import {
   getClientInfo,
   postChangePassword,
   postEmailRecovery,
+  postEmailValidation,
   postResetPassword,
   postSigIn
 } from './service';
@@ -110,10 +112,23 @@ function* resetPasswordSaga({
   }
 }
 
+function* emailValidationSaga({
+  payload
+}: ReturnType<typeof emailValidation.request>): Generator {
+  try {
+    yield call(postEmailValidation, payload);
+    yield put(emailValidation.success());
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(emailValidation.failure(errors));
+  }
+}
+
 export default [
   takeEvery(clientInfo.request, clientInfoSaga),
   takeEvery(changePassword.request, changePasswordSaga),
   takeEvery(recoveryPasswordSendEmail.request, recoveryPasswordSendEmailSaga),
   takeEvery(resetPassword.request, resetPasswordSaga),
+  takeEvery(emailValidation.request, emailValidationSaga),
   takeEvery(sigIn.request, sigInSaga)
 ];

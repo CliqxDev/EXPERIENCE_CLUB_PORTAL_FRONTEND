@@ -46,6 +46,14 @@ export const resetPassword = createAsyncAction(
   'RESET_PASSWORD_ERROR'
 )<ResetPasswordRequest, ResetPasswordResponse, Error | AxiosError>();
 
+export const emailValidation = createAsyncAction(
+  'EMAIL_VALIDATION_REQUEST',
+  'EMAIL_VALIDATION_SUCCESS',
+  'EMAIL_VALIDATION_ERROR'
+)<string, undefined, Error | AxiosError>();
+
+export const clearEmailValidation = createAction('CLEAR_EMAIL_VALIDATION')();
+
 export const clearResetPassword = createAction('CLEAR_RESET_PASSWORD')();
 
 export const clearRecoveryPasswordSendEmail = createAction(

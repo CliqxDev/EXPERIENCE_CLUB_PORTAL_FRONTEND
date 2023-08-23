@@ -8,7 +8,8 @@ import { getToken } from 'utils/services/auth';
 
 const request = async (
   params: AxiosRequestConfig,
-  affectedAccount?: string
+  affectedAccount?: string,
+  token?: string
 ) => {
   const headers: RawAxiosRequestHeaders | AxiosHeaders = {
     'Cache-Control': 'no-cache',
@@ -22,9 +23,11 @@ const request = async (
   }
 
   try {
-    const token = getToken();
-    if (token.access) {
-      headers.Authorization = `Bearer ${token.access}`;
+    const tokenLocalStorage = getToken();
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    } else if (tokenLocalStorage.access) {
+      headers.Authorization = `Bearer ${tokenLocalStorage.access}`;
     }
   } catch (ex) {
     if (ex !== 'No current user') {
@@ -49,7 +52,8 @@ const getBaseUrl = (baseUrl?: string) => baseUrl || process.env.API_HOST;
 export const get = (
   props: AxiosRequestConfig,
   affectedAccount?: string,
-  baseURL?: string
+  baseURL?: string,
+  token?: string
 ) =>
   request(
     {
@@ -57,13 +61,15 @@ export const get = (
       ...props,
       method: 'GET'
     },
-    affectedAccount
+    affectedAccount,
+    token
   );
 
 export const post = (
   props: AxiosRequestConfig,
   affectedAccount?: string,
-  baseURL?: string
+  baseURL?: string,
+  token?: string
 ) =>
   request(
     {
@@ -71,13 +77,15 @@ export const post = (
       ...props,
       method: 'POST'
     },
-    affectedAccount
+    affectedAccount,
+    token
   );
 
 export const put = (
   props: AxiosRequestConfig,
   affectedAccount?: string,
-  baseURL?: string
+  baseURL?: string,
+  token?: string
 ) =>
   request(
     {
@@ -85,13 +93,15 @@ export const put = (
       ...props,
       method: 'PUT'
     },
-    affectedAccount
+    affectedAccount,
+    token
   );
 
 export const patch = (
   props: AxiosRequestConfig,
   affectedAccount?: string,
-  baseURL?: string
+  baseURL?: string,
+  token?: string
 ) =>
   request(
     {
@@ -99,13 +109,15 @@ export const patch = (
       ...props,
       method: 'PATCH'
     },
-    affectedAccount
+    affectedAccount,
+    token
   );
 
 export const del = (
   props: AxiosRequestConfig,
   affectedAccount?: string,
-  baseURL?: string
+  baseURL?: string,
+  token?: string
 ) =>
   request(
     {
@@ -113,7 +125,8 @@ export const del = (
       ...props,
       method: 'DELETE'
     },
-    affectedAccount
+    affectedAccount,
+    token
   );
 
 export default {
