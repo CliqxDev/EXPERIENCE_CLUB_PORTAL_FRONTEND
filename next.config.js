@@ -6,7 +6,6 @@ const nextConfig = { env:{
 compiler: {
   styledComponents: true,
 },
-reactStrictMode: true,
 }
 
 module.exports = nextConfig
