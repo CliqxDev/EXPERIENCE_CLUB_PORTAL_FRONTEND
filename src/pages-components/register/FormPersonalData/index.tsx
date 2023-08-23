@@ -53,7 +53,7 @@ const FormPersonalData = () => {
 
     if (status === RequestStatus.success) {
       dispatch(clearCreateClient());
-      redirect('/register/email-verify');
+      redirect(`/register/email-verify/${plan}`);
     }
   }, [status]);
 
