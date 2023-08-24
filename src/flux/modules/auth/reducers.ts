@@ -6,10 +6,12 @@ import {
   clearChangePassword,
   clearRecoveryPasswordSendEmail,
   updateClientState,
+  clearClientInfo,
   recoveryPasswordSendEmail as recoveryPasswordSendEmailAction,
   sigIn as sigInAction,
   resetPassword as resetPasswordAction,
-  clearResetPassword
+  clearResetPassword,
+  clearSigIn
 } from './actions';
 import { Auth } from './types';
 
@@ -70,6 +72,14 @@ const authReducer = createReducer<Auth, Action>(initialState)
       status: RequestStatus.error
     }
   }))
+  .handleAction(clearSigIn, state => ({
+    ...state,
+    sigIn: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
+    }
+  }))
   .handleAction(clientInfo.request, state => ({
     ...state,
     clientInfo: { data: null, message: null, status: RequestStatus.fetching }
@@ -88,6 +98,14 @@ const authReducer = createReducer<Auth, Action>(initialState)
       data: null,
       message: action.payload.message,
       status: RequestStatus.error
+    }
+  }))
+  .handleAction(clearClientInfo, state => ({
+    ...state,
+    clientInfo: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
     }
   }))
   .handleAction(changePassword.request, state => ({

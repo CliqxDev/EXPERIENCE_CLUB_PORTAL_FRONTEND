@@ -67,3 +67,5 @@ export const clearChangePassword = createAction('CLEAR_CHANGE_PASSWORD')();
 export const updateClientState = createAction(
   'UPDATE_CLIENT_STATE'
 )<ClientInfo>();
+
+export const clearClientInfo = createAction('CLEAR_CLIENT_INFO')();

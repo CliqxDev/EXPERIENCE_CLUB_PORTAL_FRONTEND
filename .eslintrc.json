@@ -55,7 +55,8 @@
     "react/no-unstable-nested-components": "off",
     "react/require-default-props": "off",
     "@next/next/no-img-element": "off",
-    "no-debugger": "off"
+    "no-debugger": "off",
+    "react/jsx-no-useless-fragment": "off"
   },
   "settings": {
     "import/parsers": {

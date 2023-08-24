@@ -37,11 +37,6 @@ export const postEmailRecovery = (data: RecoveryPasswordSendEmailRequest) =>
   });
 
 export const postEmailValidation = (token: string) =>
-  post(
-    {
-      url: '/auth/email-validation'
-    },
-    undefined,
-    undefined,
-    token
-  );
+  get({
+    url: `/email/email-verify?token=${token}`
+  });

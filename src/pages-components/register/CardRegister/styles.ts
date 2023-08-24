@@ -90,6 +90,7 @@ export const Title = styled.h1<StyleProps>`
 
 export const Subtitle = styled.h2<StyleProps>`
   font-size: 16px;
+  width: 100%;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -106,7 +107,7 @@ export const InspirationDateWrapperColumn = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-bottom: 3px;
 
   p {
     width: 100%;

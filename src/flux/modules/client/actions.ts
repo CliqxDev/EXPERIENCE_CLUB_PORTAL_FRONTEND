@@ -36,5 +36,3 @@ export const clearDeleteClient = createAction('CLEAR_DELETE_CLIENT')();
 export const clearUpdateClient = createAction('CLEAR_UPDATE_CLIENT')();
 
 export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();
-
-export const clearClientInfo = createAction('CLEAR_CLIENT_INFO')();

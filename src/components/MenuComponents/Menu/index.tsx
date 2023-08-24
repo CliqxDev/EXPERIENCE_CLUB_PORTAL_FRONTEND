@@ -1,6 +1,5 @@
 /* eslint-disable import/order */
 import { FC, useEffect, useState } from 'react';
-import { clearClientInfo } from 'flux/modules/client/actions';
 import { useAppDispatch } from 'hook/store';
 import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
@@ -13,7 +12,7 @@ import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 import LinkMenu from 'components/MenuComponents/LinkMenu';
 
 import * as S from './styles';
-import { clearSigIn } from 'flux/modules/auth/actions';
+import { clearClientInfo, clearSigIn } from 'flux/modules/auth/actions';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import { useCategory } from 'hook/selectors/postHooks';
 
