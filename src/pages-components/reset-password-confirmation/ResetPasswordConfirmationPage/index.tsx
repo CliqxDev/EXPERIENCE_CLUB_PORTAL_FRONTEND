@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { redirect } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 
 import { forEach } from 'lodash';
@@ -18,11 +18,12 @@ import Toaster from 'components/ui/Toaster';
 import { ErrorMessage } from 'models/errors';
 import PasswordRules from 'components/PasswordRules';
 import { PasswordRule } from 'components/PasswordRules/types';
+import { setProvisoryToken } from 'utils/services/auth';
 import * as S from './styles';
 
 const ResetPasswordConfirmationPage = () => {
   const dispatch = useAppDispatch();
-  // const {token} = useParams();
+  const { token }: any = useParams();
   const { status, message } = useResetPassword();
 
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
@@ -31,6 +32,10 @@ const ResetPasswordConfirmationPage = () => {
     upperCaseLetter: 'default',
     specialCharacter: 'default'
   });
+
+  useEffect(() => {
+    setProvisoryToken(token);
+  }, [token]);
 
   useEffect(() => {
     if (status === RequestStatus.error) {

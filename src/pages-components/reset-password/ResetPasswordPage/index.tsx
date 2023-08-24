@@ -15,11 +15,16 @@ import {
 import { useRecoveryPasswordSendEmail } from 'hook/selectors/authHooks';
 import Toaster from 'components/ui/Toaster';
 import { ErrorMessage } from 'models/errors';
+import { deleteProvisoryToken } from 'utils/services/auth';
 import * as S from './styles';
 
 const ResetPasswordPage = () => {
   const dispatch = useAppDispatch();
   const { status, message } = useRecoveryPasswordSendEmail();
+
+  useEffect(() => {
+    deleteProvisoryToken();
+  }, []);
 
   useEffect(() => {
     if (status === RequestStatus.error) {

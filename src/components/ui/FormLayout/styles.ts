@@ -8,7 +8,7 @@ const WrapperVariants = {
   `
 };
 
-export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' | 'center'}>`
+export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' | 'center' }>`
   background-image: url('/img/form-layout-background.svg'),
     url('/img/form-layout-img.svg');
   width: 100%;
@@ -52,10 +52,12 @@ const FormWrapperVariants = {
   center: css`
     width: 100%;
     background-color: #ffffff;
-  `,
+  `
 };
 
-export const FormWrapper = styled.div<{ variant: 'bottom' | 'simple' | 'center' }>`
+export const FormWrapper = styled.div<{
+  variant: 'bottom' | 'simple' | 'center';
+}>`
   display: flex;
   flex-direction: column;
   z-index: 10;

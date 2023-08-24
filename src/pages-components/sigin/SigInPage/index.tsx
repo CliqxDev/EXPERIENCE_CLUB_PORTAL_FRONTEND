@@ -16,6 +16,7 @@ import { RequestStatus } from 'models/iRequest';
 import { login } from 'utils/services/auth';
 import { clearSigIn, sigIn } from 'flux/modules/auth/actions';
 import { useSigIn } from 'hook/selectors/authHooks';
+import { clearAssignNewsletter } from 'flux/modules/client/actions';
 import * as S from './styles';
 
 type UserType = {
@@ -46,6 +47,7 @@ const SigIn = () => {
     if (status === RequestStatus.success && !isEmpty(data)) {
       login(data);
       dispatch(clearSigIn());
+      dispatch(clearAssignNewsletter());
       redirect('/');
     }
   }, [status, message, data]);

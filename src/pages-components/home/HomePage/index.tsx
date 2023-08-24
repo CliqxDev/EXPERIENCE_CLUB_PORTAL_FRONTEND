@@ -13,6 +13,7 @@ import { category, columnists, media, posts } from 'flux/modules/post/actions';
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
 import { SkeletonHome } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
+import { deleteProvisoryToken } from 'utils/services/auth';
 import * as S from './styles';
 import BannerDesktop from '../BannerDesktop';
 
@@ -45,6 +46,7 @@ const HomePage = () => {
   }, [postsData]);
 
   useEffect(() => {
+    deleteProvisoryToken();
     if (postsData === null) {
       dispatch(posts.request());
       dispatch(category.request());

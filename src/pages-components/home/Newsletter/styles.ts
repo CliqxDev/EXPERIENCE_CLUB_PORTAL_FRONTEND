@@ -62,7 +62,6 @@ export const MessageBox = styled.div`
   width: 100%;
   align-items: center;
   text-align: center;
-  height: 220px;
 `;
 
 export const MessageHeader = styled.div`
@@ -111,5 +110,4 @@ export const MessageSuccess = styled.div`
   width: 100%;
   align-items: center;
   text-align: center;
-  height: 200px;
 `;

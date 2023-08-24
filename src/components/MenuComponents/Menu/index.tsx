@@ -15,6 +15,7 @@ import * as S from './styles';
 import { clearClientInfo, clearSigIn } from 'flux/modules/auth/actions';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import { useCategory } from 'hook/selectors/postHooks';
+import { clearAssignNewsletter } from 'flux/modules/client/actions';
 
 type SearchMenuProps = {
   onClose: () => void;
@@ -78,6 +79,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const handleLogout = () => {
     dispatch(clearClientInfo());
     dispatch(clearSigIn());
+    dispatch(clearAssignNewsletter());
     logout();
     setIsLogger(false);
   };

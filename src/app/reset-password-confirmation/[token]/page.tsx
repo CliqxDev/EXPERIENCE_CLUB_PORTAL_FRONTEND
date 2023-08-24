@@ -11,7 +11,7 @@ export default function Page() {
   const isLoading = status === RequestStatus.fetching;
   return (
     <Spinner active={isLoading || false}>
-      <FormLayout variant='center' onRedirectPath="/">
+      <FormLayout variant="bottom" onRedirectPath="/">
         <ResetPasswordConfirmationPage />
       </FormLayout>
     </Spinner>
