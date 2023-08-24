@@ -34,7 +34,7 @@ const ShowMore = () => {
             imgSrc:
               media[post.featured_media].media_details.sizes.thumbnail
                 .source_url,
-            description: sanitizeTextByMaxLength(post.excerpt.rendered, 90),
+            description: sanitizeTextByMaxLength(post.excerpt.rendered, 80),
             category: categoryData[post.categories[0]]
           });
         });
