@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 import { roboto } from 'styles/fonts';
 
 export const ShowMoreWrapper = styled.main`
@@ -6,6 +7,14 @@ export const ShowMoreWrapper = styled.main`
   height: auto;
   background: #e8e8e8;
   padding: 2rem;
+
+  ${breakpoints.up('md')} {
+    padding: 2rem 10rem 2rem 10rem;
+  }
+
+  ${breakpoints.up('lg')} {
+    padding: 4rem 15rem 4rem 15rem;
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -13,6 +22,14 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 24px;
+  margin-bottom: 8rem;
+
+  ${breakpoints.up('md')} {
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    gap: 1.6rem;
+  }
 `;
 
 export const Card = styled.div`
@@ -25,6 +42,10 @@ export const Card = styled.div`
   padding: 16px 16px 0 16px;
   margin-top: 16px;
   justify-content: space-between;
+
+  ${breakpoints.up('md')} {
+    max-height: 440px;
+  }
 `;
 
 export const CardTitle = styled.div`
@@ -40,6 +61,11 @@ export const CardTitle = styled.div`
 export const Row = styled.div`
   display: flex;
   width: 100%;
+
+  ${breakpoints.up('md')} {
+   flex-direction: column; 
+   align-items: center;
+  }
 `;
 
 export const Subtitle = styled.div`
@@ -85,4 +111,9 @@ export const Texts = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 1.6rem;
+
+  ${breakpoints.up('md')} {
+   margin-left: 0;
+   margin-top: 16px;
+  }
 `;

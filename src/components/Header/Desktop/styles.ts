@@ -18,6 +18,7 @@ export const WrapperDesktop = styled.main`
 export const Actions = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 export const ButtonRegister = styled.button`

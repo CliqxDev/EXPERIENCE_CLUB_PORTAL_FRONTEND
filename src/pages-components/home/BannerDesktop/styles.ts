@@ -6,7 +6,7 @@ export const BannerWrapper = styled.main`
   height: 64px;
   background: #2954FC;
   display: none;
-  position: sticky;
+  position: fixed;
   bottom: 0;
 
   ${breakpoints.up('md')} {
@@ -63,4 +63,5 @@ export const PlanButton = styled.button`
   line-height: 20px;
   color: #2954FC;
   text-align: center;
+  cursor: pointer;
 `;

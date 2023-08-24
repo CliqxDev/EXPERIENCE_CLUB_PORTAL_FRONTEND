@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import Image from 'next/image';
 import { useState } from 'react';
+import Link from 'next/link';
 import * as S from './styles';
 import closeBannerIcon from '../../../../public/img/close.svg'
 
@@ -17,7 +18,9 @@ const BannerDesktop = () => {
           <S.SubTitle>Embarque agora na transformação.</S.SubTitle>
         </S.Plans>
         <S.Plans>
+          <Link href="/register" passHref>
           <S.PlanButton>CONHEÇA NOSSOS PLANOS</S.PlanButton>
+          </Link>
           <Image 
             alt="Fechar banner"
             src={closeBannerIcon}

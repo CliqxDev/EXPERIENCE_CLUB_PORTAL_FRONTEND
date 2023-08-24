@@ -84,6 +84,7 @@ export const Card = styled.div`
 
   ${breakpoints.up('md')} {
     max-width: 95%;
+    height: 95%;
   }
 `;
 
