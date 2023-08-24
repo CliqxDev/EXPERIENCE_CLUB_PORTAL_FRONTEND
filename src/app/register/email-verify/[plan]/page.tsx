@@ -20,8 +20,7 @@ export default function Page() {
       <FormLayout onRedirectPath="/">
         <EmailVerify>
           <h2>
-            Enviamos o link para seu e-mail, <br />
-            confirme a criação de sua conta.
+            Confirme a criação da sua conta <br /> clicando no link enviado.
           </h2>
         </EmailVerify>
       </FormLayout>
