@@ -3,13 +3,21 @@ import { AxiosError } from 'axios';
 
 import { forEach } from 'lodash';
 import { api } from 'apis';
-import { category, columnists, media, posts } from './actions';
+import {
+  category,
+  columnists,
+  media,
+  mediaById,
+  postById,
+  posts
+} from './actions';
 import {
   Category,
   CategoryResponse,
   CategoryStore,
   ColumnistsResponse,
   MediaItem,
+  PostItem,
   PostResponse
 } from './types';
 
@@ -75,9 +83,43 @@ function* columnistsSaga(): Generator {
   }
 }
 
+function* postByIdSaga({
+  payload
+}: ReturnType<typeof postById.request>): Generator {
+  try {
+    const response: any = yield api.get<PostItem>(
+      `/v2/posts/${payload}`,
+      'https://expnew.net/wp-json/wp'
+    );
+
+    yield put(postById.success(response));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(postById.failure(errors));
+  }
+}
+
+function* mediaByIdSaga({
+  payload
+}: ReturnType<typeof mediaById.request>): Generator {
+  try {
+    const response: any = yield api.get<MediaItem>(
+      `/v2/media/${payload}`,
+      'https://expnew.net/wp-json/wp'
+    );
+
+    yield put(mediaById.success({ [payload]: response }));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(mediaById.failure(errors));
+  }
+}
+
 export default [
   takeEvery(posts.request, postsSaga),
+  takeEvery(mediaById.request, mediaByIdSaga),
   takeEvery(category.request, categorySaga),
   takeEvery(columnists.request, columnistsSaga),
-  takeEvery(media.request, mediaSaga)
+  takeEvery(media.request, mediaSaga),
+  takeEvery(postById.request, postByIdSaga)
 ];

@@ -104,7 +104,7 @@ const Trails = () => {
         {cardData.map(item => (
           <Link
             key={uniqueId()}
-            href="/post/232323"
+            href={`/post/${item.id}`}
             style={{ textDecoration: 'none' }}
           >
             <S.Card>

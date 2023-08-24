@@ -2,6 +2,7 @@ import {
   CategoryStore,
   ColumnistsResponse,
   MediaResponse,
+  PostItem,
   PostResponse
 } from 'flux/modules/post/types';
 import { useSelector } from 'flux/selector';
@@ -19,3 +20,9 @@ export const useCategory = (): IRequest<CategoryStore> =>
 
 export const useColumnist = (): IRequest<ColumnistsResponse> =>
   useSelector((state: RootState) => state.post.columnists);
+
+export const usePostById = (): IRequest<PostItem> =>
+  useSelector((state: RootState) => state.post.postById);
+
+export const useMediaById = (): IRequest<MediaResponse> =>
+  useSelector((state: RootState) => state.post.mediaById);
