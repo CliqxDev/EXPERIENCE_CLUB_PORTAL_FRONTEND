@@ -1,26 +1,40 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { isEmpty } from 'lodash';
 import SearchMenu from 'components/SearchMenu';
 import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 import BoxSignDesktop from 'components/MenuComponents/BoxSign/BoxSignDesktop';
+import BoxLoggedDesktop from 'components/MenuComponents/BoxLogged/BoxLoggedDesktop';
+import { useClientInfo } from 'hook/selectors/authHooks';
+import MenuDesktop from 'components/MenuComponents/Menu/MenuDesktop';
 import * as S from './styles';
 import expLogo from '../../../../public/img/exp-logo-desktop.png';
 
-const DesktopHeader = () => {
+const HeaderDesktop = () => {
+  const { data } = useClientInfo();
   const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [isLogged, setIsLogger] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(data)) {
+      setIsLogger(true);
+    }
+  }, [data]);
 
   return (
     <S.WrapperDesktop>
       {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
+      {(showMenu && data) && <MenuDesktop />}
       <div />
 
       <Image
         src={expLogo}
         alt="Exp Club"
-        style={{ marginLeft: '20rem'}}
+        style={{ marginLeft: '20rem' }}
         width={150}
         height={60}
       />
@@ -41,16 +55,19 @@ const DesktopHeader = () => {
           </svg>
         </ButtonMenu>
 
-        <Link href="/register" passHref>
-          <S.ButtonRegister>
-            Cadastre-se
-          </S.ButtonRegister>
-        </Link>
-
-        <BoxSignDesktop />
+        {((isLogged && data) && <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />) ||
+          <>
+            <Link href="/register" passHref>
+              <S.ButtonRegister>
+                Cadastre-se
+              </S.ButtonRegister>
+            </Link>
+            <BoxSignDesktop />
+          </>
+        }
       </S.Actions>
     </S.WrapperDesktop>
   )
 };
 
-export default DesktopHeader;
+export default HeaderDesktop;

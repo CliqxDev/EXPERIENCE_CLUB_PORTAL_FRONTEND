@@ -10,7 +10,7 @@ import SearchMenu from 'components/SearchMenu';
 import headerImg from '../../../public/img/header-exp.png';
 
 import * as S from './styles';
-import DesktopHeader from './Desktop';
+import HeaderDesktop from './Desktop';
 
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <>
-      <DesktopHeader />
+      <HeaderDesktop />
       <S.Wrapper>
         {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
 
