@@ -30,9 +30,12 @@ const HomePage = () => {
     !dataPost ||
     (dataMedia && Object.keys(dataMedia).length !== dataPost?.length);
 
+  const isFullMedia =
+    dataMedia && Object.keys(dataMedia).length === dataPost?.length;
+
   useEffect(() => {
     if (postsData) {
-      if (postsData.length) {
+      if (postsData.length && !isFullMedia) {
         forEach(postsData, post =>
           dispatch(media.request(post.featured_media))
         );
@@ -41,10 +44,13 @@ const HomePage = () => {
   }, [postsData]);
 
   useEffect(() => {
-    dispatch(posts.request());
-    dispatch(category.request());
-    dispatch(columnists.request());
-  }, []);
+    if (postsData === null) {
+      dispatch(posts.request());
+      dispatch(category.request());
+      dispatch(columnists.request());
+    }
+  }, [postsData]);
+
   return (
     <S.Wrapper>
       <Header />
