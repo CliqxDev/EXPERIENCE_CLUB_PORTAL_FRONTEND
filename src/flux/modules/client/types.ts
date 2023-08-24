@@ -40,12 +40,17 @@ export interface AssignNewsletterResponse {
   success: string | null;
 }
 
-export interface Client {
-  createClient: IRequest<ClientInfo>;
-  updateClient: IRequest<ClientInfo>;
-  newsLetter: IRequest<AssignNewsletterResponse>;
+export interface ClientDeleteResponse {
+  success: string | null;
 }
 
 export type AssignNewsletterResponseAPI = {
   data: AssignNewsletterResponse;
 };
+
+export interface Client {
+  createClient: IRequest<ClientInfo>;
+  updateClient: IRequest<ClientInfo>;
+  deleteClient: IRequest<ClientDeleteResponse>;
+  newsLetter: IRequest<AssignNewsletterResponse>;
+}

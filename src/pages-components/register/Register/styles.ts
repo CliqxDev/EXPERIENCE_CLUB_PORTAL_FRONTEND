@@ -19,10 +19,14 @@ export const SubtitleWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   width: 100%;
-  margin: 2rem 0 1rem 0;
+  margin: 1.6rem 0 0.4rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  button:not(:last-child) {
+    margin-right: 0.4rem;
+  }
 `;
 
 const buttonSelected = css`
@@ -44,9 +48,8 @@ const buttonVariants = {
 };
 
 export const ButtonSelect = styled.button<{ variant: SelectedTypePlan }>`
-  width: 17.5rem;
   height: 4.5rem;
-
+  flex: 1;
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 2.4rem;
@@ -87,7 +90,7 @@ export const DescriptionPlan = styled.span`
   line-height: 2rem;
   color: #b9b9b8;
   text-align: left;
-  margin: 1.6rem 0 1.6rem 0;
+  margin: 0.8rem 0 1.6rem 0;
 `;
 
 export const EconomyPlan = styled.p`
@@ -96,7 +99,7 @@ export const EconomyPlan = styled.p`
   line-height: 2rem;
   color: #e8e8e8;
   text-align: center;
-  margin-top: 1.6rem;
+  margin-top: 0.4rem;
 
   span {
     text-decoration: underline;

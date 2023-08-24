@@ -1,4 +1,4 @@
-import { post, put } from 'apis/axios';
+import { del, post, put } from 'apis/axios';
 
 import {
   AssignNewsletterRequest,
@@ -16,6 +16,11 @@ export const putClient = (data: ClientInfo) =>
   put({
     url: `/users/${data?.id}`,
     data
+  });
+
+export const deleteAccount = (id: number) =>
+  del({
+    url: `/users/${id}`
   });
 
 export const postAssignNewsletter = (data: AssignNewsletterRequest) =>

@@ -4,18 +4,70 @@ import {
   media as mediaAction,
   posts,
   category as categoryAction,
-  columnists as columnistsAction
+  columnists as columnistsAction,
+  mediaById as mediaByIdAction,
+  postById as postByIdAction
 } from './actions';
 import { Post } from './types';
 
 const initialState: Post = {
   general: { data: null, message: null, status: RequestStatus.idle },
+  mediaById: { data: null, message: null, status: RequestStatus.idle },
   category: { data: null, message: null, status: RequestStatus.idle },
   columnists: { data: null, message: null, status: RequestStatus.idle },
+  postById: { data: null, message: null, status: RequestStatus.idle },
   media: { data: null, message: null, status: RequestStatus.idle }
 };
 
 const postReducer = createReducer<Post, Action>(initialState)
+  .handleAction(mediaByIdAction.request, state => ({
+    ...state,
+    mediaById: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(mediaByIdAction.success, (state, action) => ({
+    ...state,
+    mediaById: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(mediaByIdAction.request, state => ({
+    ...state,
+    mediaById: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(postByIdAction.request, state => ({
+    ...state,
+    postById: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(postByIdAction.success, (state, action) => ({
+    ...state,
+    postById: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(postByIdAction.request, state => ({
+    ...state,
+    postById: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
   .handleAction(columnistsAction.request, state => ({
     ...state,
     columnists: {

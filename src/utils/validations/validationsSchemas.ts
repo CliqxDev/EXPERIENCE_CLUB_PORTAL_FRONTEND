@@ -26,7 +26,7 @@ export default {
     );
   },
   EmailNotRequired() {
-    return Yup.string().email('E-mail inválido.');
+    return Yup.string().email('E-mail inválido');
   },
   PasswordMatch() {
     return Yup.string()
@@ -36,7 +36,7 @@ export default {
   CellPhone() {
     return Yup.string()
       .required('Campo vazio')
-      .test('len', 'Telefone inválido!', cel => {
+      .test('len', 'Telefone inválido', cel => {
         if (cel) {
           const celClear = RemovePhoneMask(cel);
           const test = celClear.length >= 11;
@@ -44,5 +44,18 @@ export default {
         }
         return false;
       });
+  },
+  CellPhoneNotRequired() {
+    return Yup.string().test('len', 'Telefone inválido', cel => {
+      if (cel) {
+        const celClear = RemovePhoneMask(cel);
+        if (celClear) {
+          const test = celClear.length >= 11;
+          return test;
+        }
+        return true;
+      }
+      return true;
+    });
   }
 };

@@ -7,5 +7,6 @@ export const personalDataSchema = Yup.object().shape({
   email: ValidationRules.Email(),
   birthDate: ValidationRules.DateNotFuture(),
   password: ValidationRules.Required(),
-  confirmationPassword: ValidationRules.PasswordMatch()
+  confirmationPassword: ValidationRules.PasswordMatch(),
+  cellphone: ValidationRules.CellPhoneNotRequired()
 });

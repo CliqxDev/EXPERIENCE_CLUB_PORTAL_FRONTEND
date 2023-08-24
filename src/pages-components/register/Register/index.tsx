@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Fragment, useState } from 'react';
 import Link from 'next/link';
 
@@ -58,7 +57,8 @@ const Register = () => {
       <Card.Root>
         <Card.Title>Escolha seu plano</Card.Title>
         <Card.Subtitle>
-          Temos planos individuais e corporativos. Aumente o conhecimento da sua equipe.
+          Temos planos individuais e corporativos. Aumente o conhecimento da sua
+          equipe.
         </Card.Subtitle>
       </Card.Root>
 
@@ -75,34 +75,29 @@ const Register = () => {
       </S.ButtonWrapper>
 
       <Card.Root variant="lightDark">
-        <S.PlanPrice>
-          <Card.Title
-            size={planType === 'YEARLY' ? 'md' : 'sm'}
-            variant="lightDark"
-          >
+        <S.PlanPrice style={{ alignItems: 'end' }}>
+          <Card.Title size="md" variant="lightDark">
             Plano individual
           </Card.Title>
 
           {planType === 'YEARLY' ? (
             <Card.PriceYearly priceInstallments="49" priceAll="499" />
           ) : (
-            <Card.PriceMonthly priceAll="49" />
+            <Card.PriceMonthly priceInstallments="49" priceAll="499" />
           )}
         </S.PlanPrice>
         <S.DescriptionPlan>
-          Você terá acesso ao melhor conteúdo de negócios.
-          Fique por dentro do que acontece no mercado
+          Você terá acesso ao melhor conteúdo de negócios. Fique por dentro do
+          que acontece no mercado
         </S.DescriptionPlan>
 
         <Link href="/register/personal-data/individual" passHref>
-          <Button onClick={() => { }} id="next-step">
+          <Button onClick={() => {}} id="next-step">
             Adquirir plano individual
           </Button>
         </Link>
         {planType === 'YEARLY' && (
-          <S.EconomyPlan>
-            Economize{' '}<span>2 mensalidades</span>{' '}no plano anual
-          </S.EconomyPlan>
+          <S.EconomyPlan>Economize 2 mensalidades no plano anual</S.EconomyPlan>
         )}
       </Card.Root>
 
@@ -110,10 +105,10 @@ const Register = () => {
         <Card.Title size="md" variant="lightDark">
           Plano corporativo
         </Card.Title>
-        <Card.Subtitle size="md" variant="gray">
-          Sua equipe muito bem-informada. 
-          Entrevistas, reportagens, tendências, vídeos, modelos de negócios inovadores
-        </Card.Subtitle>
+        <S.DescriptionPlan>
+          Sua equipe muito bem-informada. Entrevistas, reportagens, tendências,
+          vídeos, modelos de negócios inovadores{' '}
+        </S.DescriptionPlan>
 
         {priceForUsers.map((priceUsers, idx) => (
           <Fragment key={uniqueId()}>
@@ -137,14 +132,12 @@ const Register = () => {
         ))}
 
         <Link href="/register/personal-data/corp" passHref>
-          <Button onClick={() => { }} id="next-step">
-          Adquirir planos corporativos
+          <Button onClick={() => {}} id="next-step">
+            Adquirir plano corporativo
           </Button>
         </Link>
         {planType === 'YEARLY' && (
-          <S.EconomyPlan>
-            Economize <span>2 mensalidades</span> por usuário
-          </S.EconomyPlan>
+          <S.EconomyPlan>Economize 2 mensalidades por usuário</S.EconomyPlan>
         )}
       </Card.Root>
     </S.Wrapper>

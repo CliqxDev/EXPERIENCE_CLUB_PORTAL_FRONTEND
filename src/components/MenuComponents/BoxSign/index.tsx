@@ -11,7 +11,7 @@ const BoxSign = () => (
       transformação.
     </span>
     <Link href="/sigin" passHref>
-      <Button onClick={() => {}} id="sign">
+      <Button type="button" id="sign">
         Entrar
       </Button>
     </Link>

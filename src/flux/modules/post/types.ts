@@ -183,6 +183,8 @@ export type ColumnistsResponse = Columnists[];
 export interface Post {
   general: IRequest<PostResponse>;
   media: IRequest<MediaResponse>;
+  mediaById: IRequest<MediaResponse>;
   category: IRequest<CategoryStore>;
   columnists: IRequest<ColumnistsResponse>;
+  postById: IRequest<PostItem>;
 }

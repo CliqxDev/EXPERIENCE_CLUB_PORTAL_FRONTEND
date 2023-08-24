@@ -1,5 +1,6 @@
 import {
   AssignNewsletterResponse,
+  ClientDeleteResponse,
   ClientInfo
 } from 'flux/modules/client/types';
 import { useSelector } from 'flux/selector';
@@ -14,3 +15,6 @@ export const useUpdateClient = (): IRequest<ClientInfo> =>
 
 export const useNewsLetter = (): IRequest<AssignNewsletterResponse> =>
   useSelector((state: RootState) => state.client.newsLetter);
+
+export const useDeleteClient = (): IRequest<ClientDeleteResponse> =>
+  useSelector((state: RootState) => state.client.deleteClient);

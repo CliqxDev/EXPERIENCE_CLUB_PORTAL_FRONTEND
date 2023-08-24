@@ -3,7 +3,8 @@ import { AxiosError } from 'axios';
 import {
   AssignNewsletterRequest,
   ClientInfoRequest,
-  ClientInfo
+  ClientInfo,
+  ClientDeleteResponse
 } from './types';
 
 export const assignNewsletter = createAsyncAction(
@@ -24,8 +25,14 @@ export const updateClient = createAsyncAction(
   'UPDATE_CLIENT_ERROR'
 )<ClientInfo, ClientInfo, Error | AxiosError>();
 
+export const deleteClient = createAsyncAction(
+  'DELETE_CLIENT_REQUEST',
+  'DELETE_CLIENT_SUCCESS',
+  'DELETE_CLIENT_ERROR'
+)<number, ClientDeleteResponse, Error | AxiosError>();
+
+export const clearDeleteClient = createAction('CLEAR_DELETE_CLIENT')();
+
 export const clearUpdateClient = createAction('CLEAR_UPDATE_CLIENT')();
 
 export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();
-
-export const clearClientInfo = createAction('CLEAR_CLIENT_INFO')();
