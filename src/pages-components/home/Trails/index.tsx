@@ -90,7 +90,7 @@ const Trails = () => {
       <S.WrapperMedia>
         <Title variant="black50">Trilhas</Title>
         <S.TrailButtonWrapper>
-          {categories.map(({ id, name }) => (
+          {categories.splice(0, 6).map(({ id, name }) => (
             <S.TrailsButton
               onClick={() => setTrailSelectedId(name)}
               key={id}

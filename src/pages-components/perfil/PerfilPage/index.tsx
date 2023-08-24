@@ -74,7 +74,7 @@ const PerfilPage = () => {
               <Info />
               <PersonalData />
               <SubscriberPlan />
-              <S.DeleteAccount>Excluir conta</S.DeleteAccount>
+              <S.DeleteAccount onClick={() => setShowModal(true)}>Excluir conta</S.DeleteAccount>
             </>
           )}
           {tab === 'SECURITY' && <SecurityForm />}
