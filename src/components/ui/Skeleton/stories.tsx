@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react';
 
-import Skeleton from '.';
+import { SkeletonHome } from '.';
 
 export default {
-  title: 'Skeleton ',
-  component: Skeleton
+  title: 'SkeletonHome ',
+  component: SkeletonHome
 } as Meta;
 
-export const Default: Story = () => <Skeleton />;
+export const Default: Story = () => <SkeletonHome />;
