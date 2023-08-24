@@ -26,7 +26,7 @@ export const postSigIn = (data: SigInRequest) =>
 
 export const postResetPassword = (data: ResetPasswordRequest) =>
   post({
-    url: '/auth/recovery-password/',
+    url: `/auth/recovery-password/?token=${data.token}`,
     data
   });
 

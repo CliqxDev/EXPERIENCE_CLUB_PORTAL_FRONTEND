@@ -13,6 +13,7 @@ export type SigInRequest = {
 
 export type ResetPasswordRequest = {
   password: string;
+  token: string;
 };
 
 export type ResetPasswordResponse = {

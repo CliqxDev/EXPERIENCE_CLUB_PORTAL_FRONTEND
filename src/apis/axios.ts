@@ -4,7 +4,7 @@ import axios, {
   AxiosRequestConfig,
   RawAxiosRequestHeaders
 } from 'axios';
-import { getProvisoryToken, getToken } from 'utils/services/auth';
+import { getToken } from 'utils/services/auth';
 
 const request = async (
   params: AxiosRequestConfig,
@@ -22,11 +22,8 @@ const request = async (
   }
 
   try {
-    const provisoryToken = getProvisoryToken();
     const token = getToken();
-    if (provisoryToken) {
-      headers.Authorization = `Bearer ${provisoryToken}`;
-    } else if (token.access) {
+    if (token.access) {
       headers.Authorization = `Bearer ${token.access}`;
     }
   } catch (ex) {

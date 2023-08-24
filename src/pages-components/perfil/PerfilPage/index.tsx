@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { redirect } from 'next/navigation';
 import DeleteAccount from 'pages-components/perfil/DeleteAccount';
 import AddressForm from 'pages-components/perfil/AddressForm';
 import Info from 'pages-components/perfil/Header';
@@ -25,6 +26,7 @@ const PerfilPage = () => {
 
   const [tab, setTab] = useState<Tab>('PROFILE');
   const [showModal, setShowModal] = useState(false);
+  const [toastType, setToastType] = useState<'success' | 'error'>('');
 
   const handleChangeTab = (tabSelected: Tab) => setTab(tabSelected);
 
@@ -39,7 +41,14 @@ const PerfilPage = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
+      setToastType('error');
       toast('Falha ao tentar excluir usuário');
+    }
+
+    if (status === RequestStatus.success) {
+      setToastType('success');
+      toast('Conta deletada com sucesso');
+      setTimeout(() => redirect('/'), 2000);
     }
   }, [status]);
 
@@ -74,7 +83,9 @@ const PerfilPage = () => {
               <Info />
               <PersonalData />
               <SubscriberPlan />
-              <S.DeleteAccount onClick={() => setShowModal(true)}>Excluir conta</S.DeleteAccount>
+              <S.DeleteAccount onClick={() => setShowModal(true)}>
+                Excluir conta
+              </S.DeleteAccount>
             </>
           )}
           {tab === 'SECURITY' && <SecurityForm />}
@@ -85,7 +96,7 @@ const PerfilPage = () => {
           onClose={() => setShowModal(false)}
           onSubmit={handleDeleteAccount}
         />
-        <Toaster variant="error" />
+        <Toaster variant={toastType} />
       </S.WrapperProfile>
     </>
   );

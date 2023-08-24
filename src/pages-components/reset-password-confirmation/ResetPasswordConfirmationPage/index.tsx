@@ -52,7 +52,8 @@ const ResetPasswordConfirmationPage = () => {
   const handleSubmit = () => {
     dispatch(
       resetPassword.request({
-        password: formik.values.password
+        password: formik.values.password,
+        token
       })
     );
   };
