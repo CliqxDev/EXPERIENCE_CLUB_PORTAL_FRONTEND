@@ -3,7 +3,7 @@ import { breakpoints } from 'styles';
 
 export const WrapperDesktop = styled.main`
   display: none;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 72px;
   background-color: #ffffff;
@@ -18,8 +18,6 @@ export const WrapperDesktop = styled.main`
 export const Actions = styled.div`
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 8rem;
 `;
 
 export const ButtonRegister = styled.button`
@@ -33,4 +31,5 @@ export const ButtonRegister = styled.button`
   font-size: 16px;
   line-height: 24px;
   color: #0C0C0B;
+  cursor: pointer;
 `;

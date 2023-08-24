@@ -11,7 +11,9 @@ import Trails from 'pages-components/home/Trails';
 import { useAppDispatch } from 'hook/store';
 import { category, columnists, media, posts } from 'flux/modules/post/actions';
 import { usePosts } from 'hook/selectors/postHooks';
+
 import * as S from './styles';
+import BannerDesktop from '../BannerDesktop';
 
 const HomePage = () => {
   const { data: postsData } = usePosts();
@@ -51,6 +53,7 @@ const HomePage = () => {
       <Newsletter />
       <Explore />
       <Formats />
+      <BannerDesktop />
     </S.Wrapper>
   );
 };

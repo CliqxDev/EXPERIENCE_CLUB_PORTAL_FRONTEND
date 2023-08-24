@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { css, styled } from 'styled-components';
+import { breakpoints } from 'styles';
 import { Tab } from './types';
 
 export const WrapperProfile = styled.main`
@@ -10,7 +11,7 @@ export const WrapperProfile = styled.main`
 `;
 
 export const WrapperResponsive = styled.div`
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     max-width: 720px;
     margin: 0 auto;
   }

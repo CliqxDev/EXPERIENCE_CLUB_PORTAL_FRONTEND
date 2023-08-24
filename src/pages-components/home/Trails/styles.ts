@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 import { roboto } from 'styles/fonts';
 
 export const TrailsButton = styled.div<{ backgroundcolor: string }>`
@@ -27,13 +28,13 @@ export const TrailButtonWrapper = styled.div`
   width: 100%;
   flex-wrap: wrap;
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     margin-left: 1rem;
   }
 `;
 
 export const WrapperMedia = styled.div`
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     display: flex;
     align-items: center;
   }
@@ -49,11 +50,11 @@ export const Wrapper = styled.div<{ backgroundcolor: string }>`
     margin-right: 0.8rem;
   }
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     padding: 4rem 10rem 4rem 10rem;
   }
 
-  @media (min-width: 1440px) {
+  ${breakpoints.up('lg')} {
     padding: 4rem 15rem 4rem 15rem;
   }
 `;
@@ -64,7 +65,7 @@ export const CardWrapper = styled.div`
   width: 100%;
   margin-top: 24px;
   
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
@@ -81,7 +82,7 @@ export const Card = styled.div`
   padding: 16px 16px 0 16px;
   margin-top: 16px;
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     max-width: 95%;
   }
 `;

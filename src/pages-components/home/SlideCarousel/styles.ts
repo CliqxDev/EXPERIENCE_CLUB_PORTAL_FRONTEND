@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main`
   width: 100%;
@@ -58,10 +59,10 @@ export const WrapperText = styled.div`
   width: 100%;
   background: linear-gradient(0deg, #000000 60.94%, rgba(29, 29, 27, 0) 100%);
 
-  @media (min-width: 1024px) {
+  ${breakpoints.up('md')} {
     position: relative;
     margin-top: -32px;
-    padding-top: 32px;
+    padding-top: 32px;a
   }
 `;
 export const WrapperContent = styled.div`

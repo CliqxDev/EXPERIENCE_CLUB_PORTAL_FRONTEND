@@ -7,7 +7,7 @@ import SearchMenu from 'components/SearchMenu';
 import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 import BoxSignDesktop from 'components/MenuComponents/BoxSign/BoxSignDesktop';
 import * as S from './styles';
-import expLogo from '../../../../public/img/exp-logo-desktop.png'
+import expLogo from '../../../../public/img/exp-logo-desktop.png';
 
 const DesktopHeader = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -16,9 +16,11 @@ const DesktopHeader = () => {
     <S.WrapperDesktop>
       {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
       <div />
+
       <Image
         src={expLogo}
         alt="Exp Club"
+        style={{ marginLeft: '20rem'}}
         width={150}
         height={60}
       />
@@ -41,7 +43,7 @@ const DesktopHeader = () => {
 
         <Link href="/register" passHref>
           <S.ButtonRegister>
-          Cadastre-se
+            Cadastre-se
           </S.ButtonRegister>
         </Link>
 
