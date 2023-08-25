@@ -1,6 +1,7 @@
-import { Toaster, ToastBar } from 'react-hot-toast';
+import toast, { Toaster, ToastBar } from 'react-hot-toast';
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { workSans } from 'styles/fonts';
 import * as S from './styles';
 
@@ -43,36 +44,43 @@ const icon = {
   )
 };
 
-const ToasterComponent: FC<Props> = ({ variant }) => (
-  <S.ToasterWrapper>
-    <Toaster
-      position="bottom-center"
-      toastOptions={{
-        className: '',
-        style: {
-          width: '100%',
-          color: '#1A1A19',
-          fontFamily: workSans.style.fontFamily,
-          fontSize: 16,
-          fontStyle: 'normal',
-          fontWeight: 400,
-          textAlign: 'left',
-          marginRight: 0
-        }
-      }}
-    >
-      {t => (
-        <ToastBar toast={t}>
-          {({ message }) => (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {icon[variant]}
-              <S.MessageWrapper>{message}</S.MessageWrapper>
-            </div>
-          )}
-        </ToastBar>
-      )}
-    </Toaster>
-  </S.ToasterWrapper>
-);
+const ToasterComponent: FC<Props> = ({ variant }) => {
+  const router = usePathname();
 
+  useEffect(() => {
+    toast.remove();
+  }, [router]);
+
+  return (
+    <S.ToasterWrapper>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          className: '',
+          style: {
+            width: '100%',
+            color: '#1A1A19',
+            fontFamily: workSans.style.fontFamily,
+            fontSize: 16,
+            fontStyle: 'normal',
+            fontWeight: 400,
+            textAlign: 'left',
+            marginRight: 0
+          }
+        }}
+      >
+        {t => (
+          <ToastBar toast={t}>
+            {({ message }) => (
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                {icon[variant]}
+                <S.MessageWrapper>{message}</S.MessageWrapper>
+              </div>
+            )}
+          </ToastBar>
+        )}
+      </Toaster>
+    </S.ToasterWrapper>
+  );
+};
 export default ToasterComponent;

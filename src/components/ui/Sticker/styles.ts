@@ -11,7 +11,7 @@ export const StickWrapper = styled.div<{ bottom: string }>`
 `;
 
 export const Stick = styled.div`
-  background-color: #fff;
+  background-color: #eaeeff;
 
   z-index: 100;
   display: flex;

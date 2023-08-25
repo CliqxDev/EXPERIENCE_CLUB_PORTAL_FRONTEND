@@ -9,7 +9,7 @@ const EmailVerify: FC<{ children: ReactNode }> = ({ children }) => (
   <S.Wrapper>
     <h1>Verifique seu e-mail</h1>
     {children}
-    <Link href="/" passHref>
+    <Link href="/" passHref style={{ textDecoration: 'none' }}>
       <Button>Ok</Button>
     </Link>
   </S.Wrapper>

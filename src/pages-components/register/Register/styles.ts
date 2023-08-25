@@ -50,7 +50,7 @@ const buttonVariants = {
 export const ButtonSelect = styled.button<{ variant: SelectedTypePlan }>`
   height: 4.5rem;
   flex: 1;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.8rem;
   line-height: 2.4rem;
   outline: none;

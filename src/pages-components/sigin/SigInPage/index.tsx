@@ -58,9 +58,12 @@ const SigIn = () => {
       const user: UserType = JSON.parse(localStorageUser);
       formik.setFieldValue('email', user.email, false);
       formik.setFieldValue('password', user.password, false);
-
       setCheckboxStatus(true);
     }
+
+    return () => {
+      dispatch(clearSigIn());
+    };
   }, []);
 
   const handleSubmit = () => {
@@ -145,7 +148,9 @@ const SigIn = () => {
           passHref
           style={{ textDecoration: 'none' }}
         >
-          <Button variant="link">Redefinir senha</Button>
+          <Button type="button" variant="link">
+            Redefinir senha
+          </Button>
         </Link>
       </S.Row>
       <Button disabled={!(formik.isValid && formik.dirty)} type="submit">
