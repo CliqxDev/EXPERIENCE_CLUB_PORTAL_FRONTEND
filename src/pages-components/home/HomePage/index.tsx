@@ -13,8 +13,10 @@ import { category, columnists, media, posts } from 'flux/modules/post/actions';
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
 import { SkeletonHome } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
+
 import * as S from './styles';
 import BannerDesktop from '../BannerDesktop';
+import TrailsDesktop from '../Trails/TrailsDesktop';
 
 const HomePage = () => {
   const { data: postsData } = usePosts();
@@ -55,6 +57,7 @@ const HomePage = () => {
   return (
     <S.Wrapper>
       <Header />
+      <TrailsDesktop />
       {(isLoading && <SkeletonHome />) || (
         <>
           <CarouselSlide />

@@ -60,7 +60,7 @@ const MenuDesktop = () => {
         </S.MenuList>
       ))}
       <S.MenuList>
-        <S.MenuLabel onClick={handleLogout}>
+        <S.MenuLabel onClick={handleLogout} style={{ cursor: 'pointer' }}>
           <span>Sair</span>
           <Image
             src={arrowRightIcon}
