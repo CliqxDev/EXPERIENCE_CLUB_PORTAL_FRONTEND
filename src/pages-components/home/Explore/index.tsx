@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { forEach, isEmpty, uniqueId } from 'lodash';
 import Title from 'components/ui/Title';
 
@@ -18,7 +18,12 @@ type Card = {
   category: string;
 };
 
-const Explore = () => {
+type Props = {
+  title: string;
+  variant: 'scroll' | 'default';
+};
+
+const Explore: FC<Props> = ({ title, variant }) => {
   const { data: categoryData } = useCategory();
   const { data: posts } = usePosts();
   const { data: media } = useMedia();
@@ -48,9 +53,9 @@ const Explore = () => {
 
   return (
     <S.ExploreWrapper>
-      <Title variant="black400">Explore</Title>
+      <Title variant="black400">{title}</Title>
 
-      <S.ListCard>
+      <S.ListCard variant={variant}>
         {cardData.slice(0, 4).map(item => (
           <S.Card key={uniqueId()}>
             <img src={item.imgSrc} alt="card imagem" />

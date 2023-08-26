@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { breakpoints } from 'styles';
 
 export const ExploreWrapper = styled.main`
@@ -17,20 +17,6 @@ export const ExploreWrapper = styled.main`
   }
 `;
 
-export const ListCard = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  ${breakpoints.up('md')} {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    overflow-x: auto;
-    gap: 1.6rem;
-  }
-`;
-
 export const Card = styled.div`
   width: 166px;
   height: 273px;
@@ -43,6 +29,34 @@ export const Card = styled.div`
   background: #fff;
   padding: 1rem;
   margin-bottom: 1rem;
+`;
+
+const listCardVariants = {
+  default: css`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  `,
+  scroll: css`
+    display: flex;
+    overflow: scroll;
+
+    ${Card}:not(:last-child) {
+      margin-right: 1.6rem;
+    }
+  `
+};
+
+export const ListCard = styled.div<{ variant: 'default' | 'scroll' }>`
+  width: 100%;
+  ${({ variant }) => listCardVariants[variant]}
+
+  ${breakpoints.up('md')} {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    gap: 1.6rem;
+  }
 `;
 
 export const DescriptionCard = styled.p`

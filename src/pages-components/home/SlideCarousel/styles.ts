@@ -62,7 +62,7 @@ export const WrapperText = styled.div`
   ${breakpoints.up('md')} {
     position: relative;
     margin-top: -32px;
-    padding-top: 32px;a
+    padding-top: 32px;
   }
 `;
 export const WrapperContent = styled.div`

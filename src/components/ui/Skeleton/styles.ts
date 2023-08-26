@@ -9,6 +9,7 @@ export const LoaderWrapper = styled.div`
   height: 100%;
   justify-content: center;
   width: 100%;
+  position: relative;
 `;
 
 export const LoaderInfo = styled.div`
@@ -108,6 +109,27 @@ export const Placeholder = styled.div`
   &.circle {
     height: 16px;
     margin-bottom: 1.4rem;
+  }
+
+  &.header-image {
+    height: 550px;
+    margin-bottom: 1.4rem;
+  }
+
+  &.header {
+    height: 72px;
+    margin-bottom: 1.4rem;
+  }
+
+  &.post-title {
+    height: 150px;
+  }
+
+  &.action {
+    height: 56px;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
   }
 `;
 

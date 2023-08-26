@@ -8,6 +8,7 @@ export const Wrapper = styled.main`
   background-color: #ffffff;
   position: absolute;
   width: 100%;
+  left: 0;
 
   input:focus {
     border: 1px solid #2954fc;

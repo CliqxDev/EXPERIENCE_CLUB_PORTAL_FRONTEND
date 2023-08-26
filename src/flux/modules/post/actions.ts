@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 
 import { AxiosError } from 'axios';
 import {
@@ -44,3 +44,5 @@ export const columnists = createAsyncAction(
   'COLUMNISTS_SUCCESS',
   'COLUMNISTS_ERROR'
 )<undefined, ColumnistsResponse, Error | AxiosError>();
+
+export const clearPostById = createAction('CLEAR_POST_BY_ID')();

@@ -6,7 +6,8 @@ import {
   category as categoryAction,
   columnists as columnistsAction,
   mediaById as mediaByIdAction,
-  postById as postByIdAction
+  postById as postByIdAction,
+  clearPostById
 } from './actions';
 import { Post } from './types';
 
@@ -154,6 +155,14 @@ const postReducer = createReducer<Post, Action>(initialState)
       data: null,
       message: action.payload.message,
       status: RequestStatus.error
+    }
+  }))
+  .handleAction(clearPostById, state => ({
+    ...state,
+    postById: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
     }
   }));
 

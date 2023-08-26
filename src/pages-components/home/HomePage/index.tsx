@@ -9,7 +9,7 @@ import Newsletter from 'pages-components/home/Newsletter';
 import Trails from 'pages-components/home/Trails';
 
 import { useAppDispatch } from 'hook/store';
-import { category, columnists, media, posts } from 'flux/modules/post/actions';
+import { category, media, posts } from 'flux/modules/post/actions';
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
 import { SkeletonHome } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
@@ -50,7 +50,6 @@ const HomePage = () => {
     if (postsData === null) {
       dispatch(posts.request());
       dispatch(category.request());
-      dispatch(columnists.request());
     }
   }, [postsData]);
 
@@ -63,7 +62,7 @@ const HomePage = () => {
           <Trails />
           <Accompany />
           <Newsletter />
-          <Explore />
+          <Explore title="Explore" variant="default" />
           <BannerDesktop />
           <ShowMore />
         </>

@@ -3,7 +3,7 @@
 import { Spinner } from 'components/ui/Spinner';
 import { useSigIn } from 'hook/selectors/authHooks';
 import { RequestStatus } from 'models/iRequest';
-import Post from 'pages-components/Post';
+import Post from 'pages-components/post/PostPage';
 
 export default function Pade() {
   const { status } = useSigIn();
