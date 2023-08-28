@@ -66,6 +66,9 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push({
         label: 'Assinatura',
         path: '/'
+      },{
+        label: 'Colaboradores',
+        path: '/employees'
       });
     } else {
       newMenuList.push({

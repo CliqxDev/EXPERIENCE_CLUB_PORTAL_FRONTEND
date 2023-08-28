@@ -1,4 +1,5 @@
 export { addressSchema } from './addressSchema';
+export { newEmployeeSchema } from './newEmployeeSchema';
 export { newsLetterSchema } from './newsLetterSchema';
 export { personalDataProfileSchema } from './personalDataProfileSchema';
 export { personalDataSchema } from './personalDataSchema';

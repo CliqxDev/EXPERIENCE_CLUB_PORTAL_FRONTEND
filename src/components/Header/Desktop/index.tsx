@@ -34,7 +34,7 @@ const HeaderDesktop = () => {
       <Image
         src={expLogo}
         alt="Exp Club"
-        style={{ marginLeft: '20rem' }}
+        style={{ marginLeft: '10rem' }}
         width={150}
         height={60}
       />
