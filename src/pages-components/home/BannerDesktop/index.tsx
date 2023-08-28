@@ -1,16 +1,28 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { isEmpty } from 'lodash';
+import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
 import closeBannerIcon from '../../../../public/img/close.svg'
 
 const BannerDesktop = () => {
-  const [closeBanner, setCloseBanner] = useState(true)
+  const [closeBanner, setCloseBanner] = useState(true);
+  const { data } = useClientInfo();
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(data)) {
+      setIsLogged(true);
+    } else {
+      setIsLogged(false)
+    }
+  }, [data]);
 
   return (
   <>
-    {closeBanner && 
+    {(closeBanner && !isLogged) && 
       <S.BannerWrapper>
       <S.Assign>
         <S.Plans>

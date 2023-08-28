@@ -5,7 +5,7 @@ export const WrapperDesktop = styled.main`
   display: none;
   justify-content: space-around;
   align-items: center;
-  height: 72px;
+  height: 120px;
   background-color: #ffffff;
   position: relative;
   width: 100%;

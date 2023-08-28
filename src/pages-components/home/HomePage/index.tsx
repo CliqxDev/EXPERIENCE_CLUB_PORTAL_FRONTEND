@@ -16,6 +16,7 @@ import { RequestStatus } from 'models/iRequest';
 import { deleteProvisoryToken } from 'utils/services/auth';
 import * as S from './styles';
 import BannerDesktop from '../BannerDesktop';
+import TrailsDesktop from '../Trails/TrailsDesktop';
 
 const HomePage = () => {
   const { data: postsData } = usePosts();
@@ -56,6 +57,7 @@ const HomePage = () => {
   return (
     <S.Wrapper>
       <Header />
+      <TrailsDesktop />
       {(isLoading && <SkeletonHome />) || (
         <>
           <CarouselSlide />
