@@ -104,6 +104,9 @@ const FormPersonalData = () => {
     return isValid;
   };
 
+  const isDisabled = () =>
+    !(formik.isValid && formik.dirty) || !isValidPasswordRule();
+
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
       <h1>{`Plano ${plan === 'corp' ? 'corporativo' : 'individual'}`}</h1>
@@ -215,11 +218,8 @@ const FormPersonalData = () => {
         <span> Termos de uso </span>e a <span>Política de privacidade</span>.
       </S.TermsWrapper>
 
-      <Button
-        disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
-        type="submit"
-      >
-        Cadastrar
+      <Button disabled={isDisabled()} type="submit">
+        {(isDisabled() && 'Próximo') || 'Cadastrar'}
       </Button>
       <Toaster variant="error" />
     </S.Wrapper>

@@ -10,7 +10,7 @@ export default function Page() {
 
   const textH2: any = {
     individual:
-      'Você está a um passo de ter acesso ao melhor conteúdo de negócios domercado.',
+      'Você está a um passo de ter acesso ao melhor conteúdo de negócios do mercado.',
     corp: 'Sua equipe está a um passo de ter acesso ao melhor conteúdo de negócios do mercado.'
   };
 
