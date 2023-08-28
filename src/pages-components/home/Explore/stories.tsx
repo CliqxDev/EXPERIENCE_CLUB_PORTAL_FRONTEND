@@ -7,4 +7,4 @@ export default {
   component: Explore
 } as Meta;
 
-export const Default: Story = () => <Explore />;
+export const Default: Story = () => <Explore variant="default" title="" />;
