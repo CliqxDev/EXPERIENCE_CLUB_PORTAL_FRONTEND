@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import { forEach, isEmpty, uniqueId } from 'lodash';
+import Link from 'next/link';
 import Title from 'components/ui/Title';
 
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
@@ -52,42 +53,48 @@ const Accompany = () => {
 
       <S.AccompanyList>
         {cardData.slice(0, 4).map(item => (
-          <S.AccompanyCard key={uniqueId()}>
-            <S.TopCard>
-              <S.AccompanyTitle
-                style={{
-                  color: '#686866',
-                  fontSize: '1.4rem',
-                  lineHeight: '2rem'
-                }}
-              >
-                {item.category}
-              </S.AccompanyTitle>
-              <Image src={readIcon} alt="Leia" />
-            </S.TopCard>
-            <img src={item.imgSrc} alt="card imagem" />
-            <S.DescriptionCard
-              dangerouslySetInnerHTML={{ __html: item.title }}
-            />
-            <S.FooterCard>
-              <S.AccompanyTitle
-                style={{
-                  fontSize: '1.4rem',
-                  lineHeight: '2rem',
-                  marginRight: '1.6rem'
-                }}
-              >
-                Veja
-              </S.AccompanyTitle>
-              <Image
-                src={arrowRight}
-                alt="Veja"
-                width={16}
-                height={16}
-                style={{ marginTop: '2px' }}
+          <Link
+            key={uniqueId()}
+            href={`/post/${item.id}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <S.AccompanyCard>
+              <S.TopCard>
+                <S.AccompanyTitle
+                  style={{
+                    color: '#686866',
+                    fontSize: '1.4rem',
+                    lineHeight: '2rem'
+                  }}
+                >
+                  {item.category}
+                </S.AccompanyTitle>
+                <Image src={readIcon} alt="Leia" />
+              </S.TopCard>
+              <img src={item.imgSrc} alt="card imagem" />
+              <S.DescriptionCard
+                dangerouslySetInnerHTML={{ __html: item.title }}
               />
-            </S.FooterCard>
-          </S.AccompanyCard>
+              <S.FooterCard>
+                <S.AccompanyTitle
+                  style={{
+                    fontSize: '1.4rem',
+                    lineHeight: '2rem',
+                    marginRight: '1.6rem'
+                  }}
+                >
+                  Veja
+                </S.AccompanyTitle>
+                <Image
+                  src={arrowRight}
+                  alt="Veja"
+                  width={16}
+                  height={16}
+                  style={{ marginTop: '2px' }}
+                />
+              </S.FooterCard>
+            </S.AccompanyCard>
+          </Link>
         ))}
       </S.AccompanyList>
     </S.AccompanyWrapper>

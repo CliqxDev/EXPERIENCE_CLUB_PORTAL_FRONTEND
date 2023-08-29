@@ -25,6 +25,7 @@ import ShowMore from 'pages-components/home/ShowMore';
 import Explore from 'pages-components/home/Explore';
 import { SkeletonPost } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
+import TrailFilter from 'components/TrailFilter';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
 
@@ -57,6 +58,8 @@ const Post = () => {
   const { data: categoryData, status: statusCategory } = useCategory();
   const { data: columnistData } = useColumnist();
   const { data: dataPosts, status: statusPosts } = usePosts();
+
+  const [showTrailFilter, setShowTrailFilter] = useState(false);
 
   const isFullMedia =
     listMedia && Object.keys(listMedia).length === dataPosts?.length;
@@ -114,12 +117,7 @@ const Post = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      !isEmpty(post) &&
-      !isEmpty(listMedia) &&
-      !isEmpty(categoryData) &&
-      columnistData
-    ) {
+    if (!isEmpty(post) && !isEmpty(listMedia)) {
       if (isFullMedia) {
         setPostSelected({
           id: post.id,
@@ -128,8 +126,9 @@ const Post = () => {
             listMedia[post.featured_media].media_details.sizes.medium_large
               .source_url,
           description: post.excerpt.rendered,
-          category: categoryData[post.categories[0]],
-          columnist: getColumnist(post.author),
+          category:
+            (!isEmpty(categoryData) && categoryData[post.categories[0]]) || '',
+          columnist: (columnistData && getColumnist(post.author)) || '',
           date: moment(post.date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
           content: post.content.rendered,
           hour: moment(post.date, 'YYYY-MM-DDh:mm:ss A').format('HH:mm:ss')
@@ -197,12 +196,20 @@ const Post = () => {
               />
               <S.Button>Compartilhar</S.Button>
             </S.ButtonWrapper>
-            <S.ButtonWrapper>
+            <S.ButtonWrapper onClick={() => setShowTrailFilter(true)}>
               <img src="/img/icon-compass.svg" alt="ícone de compasso" />
               <S.Button>Trilhas</S.Button>
             </S.ButtonWrapper>
           </S.Action>
         </>
+      )}
+
+      {categoryData !== null && (
+        <TrailFilter
+          categories={categoryData}
+          show={showTrailFilter}
+          onClose={() => setShowTrailFilter(false)}
+        />
       )}
     </S.Wrapper>
   );

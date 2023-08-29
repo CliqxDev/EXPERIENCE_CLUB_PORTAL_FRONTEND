@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { FC, useEffect, useState } from 'react';
 import { forEach, isEmpty, uniqueId } from 'lodash';
+import Link from 'next/link';
 import Title from 'components/ui/Title';
 
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
@@ -57,16 +58,22 @@ const Explore: FC<Props> = ({ title, variant }) => {
 
       <S.ListCard variant={variant}>
         {cardData.slice(0, 4).map(item => (
-          <S.Card key={uniqueId()}>
-            <img src={item.imgSrc} alt="card imagem" />
-            <S.DescriptionCard
-              dangerouslySetInnerHTML={{ __html: `${item.title}...` }}
-            />
-            <S.FooterCard>
-              <S.TextFooter> {item.category}</S.TextFooter>
-              <Image src={shareIcon} alt="Compartilhar" />
-            </S.FooterCard>
-          </S.Card>
+          <Link
+            key={uniqueId()}
+            href={`/post/${item.id}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <S.Card>
+              <img src={item.imgSrc} alt="card imagem" />
+              <S.DescriptionCard
+                dangerouslySetInnerHTML={{ __html: `${item.title}...` }}
+              />
+              <S.FooterCard>
+                <S.TextFooter> {item.category}</S.TextFooter>
+                <Image src={shareIcon} alt="Compartilhar" />
+              </S.FooterCard>
+            </S.Card>
+          </Link>
         ))}
       </S.ListCard>
     </S.ExploreWrapper>
