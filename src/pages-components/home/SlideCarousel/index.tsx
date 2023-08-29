@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { PostItem } from 'flux/modules/post/types';
 import { useCategory, useMedia } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
+import { useAppDispatch } from 'hook/store';
+import { setShowShare } from 'flux/modules/post/actions';
 import articleIcon from '../../../../public/img/article.svg';
 import shareIcon from '../../../../public/img/share.svg';
 
@@ -15,6 +17,7 @@ type Props = {
   post: PostItem;
 };
 const SlideCarousel: FC<Props> = ({ post }) => {
+  const dispatch = useAppDispatch();
   const { data: mediaData } = useMedia();
   const { data: category } = useCategory();
 
@@ -38,26 +41,32 @@ const SlideCarousel: FC<Props> = ({ post }) => {
         {image && <img src={image} alt="Assunto" />}
       </Link>
       <S.WrapperContent>
-        <S.WrapperText>
-          <S.Title>{post.title.rendered}</S.Title>
+        <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
+          <S.WrapperText>
+            <S.Title>{post.title.rendered}</S.Title>
 
-          <S.Description
-            dangerouslySetInnerHTML={{
-              __html: `${sanitizeTextByMaxLength(
-                post.excerpt.rendered,
-                100
-              )}...`
-            }}
-          />
-        </S.WrapperText>
+            <S.Description
+              dangerouslySetInnerHTML={{
+                __html: `${sanitizeTextByMaxLength(
+                  post.excerpt.rendered,
+                  100
+                )}...`
+              }}
+            />
+          </S.WrapperText>
+        </Link>
+
         <S.FooterSlideWrapper>
           <S.FooterSlide>
-            <S.SubjectSection>
-              <Image src={articleIcon} alt="Assunto" />
-              {category && <S.Span>{category[post.categories[0]]}</S.Span>}
-            </S.SubjectSection>
-
-            <Image src={shareIcon} alt="Compartilhar" />
+            <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
+              <S.SubjectSection>
+                <Image src={articleIcon} alt="Assunto" />
+                {category && <S.Span>{category[post.categories[0]]}</S.Span>}
+              </S.SubjectSection>
+            </Link>
+            <S.WrapperImagem onClick={() => dispatch(setShowShare(true))}>
+              <Image src={shareIcon} alt="Compartilhar" />
+            </S.WrapperImagem>
           </S.FooterSlide>
         </S.FooterSlideWrapper>
       </S.WrapperContent>

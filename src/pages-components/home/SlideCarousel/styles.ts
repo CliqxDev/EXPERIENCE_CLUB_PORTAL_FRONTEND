@@ -68,3 +68,12 @@ export const WrapperText = styled.div`
 export const WrapperContent = styled.div`
   position: relative;
 `;
+
+export const WrapperImagem = styled.div`
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

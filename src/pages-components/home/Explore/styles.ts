@@ -29,6 +29,12 @@ export const Card = styled.div`
   background: #fff;
   padding: 1rem;
   margin-bottom: 1rem;
+
+  a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const listCardVariants = {

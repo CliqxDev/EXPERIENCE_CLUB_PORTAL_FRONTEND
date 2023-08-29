@@ -187,4 +187,5 @@ export interface Post {
   category: IRequest<CategoryStore>;
   columnists: IRequest<ColumnistsResponse>;
   postById: IRequest<PostItem>;
+  showShare: boolean;
 }

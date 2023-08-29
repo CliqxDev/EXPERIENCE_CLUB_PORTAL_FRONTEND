@@ -9,7 +9,8 @@ import {
   useColumnist,
   useMedia,
   usePostById,
-  usePosts
+  usePosts,
+  useShowShare
 } from 'hook/selectors/postHooks';
 import { useAppDispatch } from 'hook/store';
 import {
@@ -18,7 +19,8 @@ import {
   columnists,
   media,
   posts,
-  clearPostById
+  clearPostById,
+  setShowShare
 } from 'flux/modules/post/actions';
 
 import ShowMore from 'pages-components/home/ShowMore';
@@ -59,9 +61,9 @@ const Post = () => {
   const { data: categoryData, status: statusCategory } = useCategory();
   const { data: columnistData } = useColumnist();
   const { data: dataPosts, status: statusPosts } = usePosts();
+  const showShare = useShowShare();
 
   const [showTrailFilter, setShowTrailFilter] = useState(false);
-  const [showShare, setShowShare] = useState(false);
 
   const isFullMedia =
     listMedia && Object.keys(listMedia).length === dataPosts?.length;
@@ -191,7 +193,7 @@ const Post = () => {
               />
               <S.Button>Diminuir</S.Button>
             </S.ButtonWrapper>
-            <S.ButtonWrapper onClick={() => setShowShare(true)}>
+            <S.ButtonWrapper onClick={() => dispatch(setShowShare(true))}>
               <img
                 src="/img/icon-post-share-action.svg"
                 alt="ícone compartilhar"
@@ -209,7 +211,10 @@ const Post = () => {
         show={showTrailFilter}
         onClose={() => setShowTrailFilter(false)}
       />
-      <ShareDialog show={showShare} onClose={() => setShowShare(false)} />
+      <ShareDialog
+        show={showShare}
+        onClose={() => dispatch(setShowShare(false))}
+      />
     </S.Wrapper>
   );
 };

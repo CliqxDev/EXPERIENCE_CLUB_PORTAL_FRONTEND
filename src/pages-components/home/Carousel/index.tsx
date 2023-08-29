@@ -1,6 +1,5 @@
 import { Carousel } from 'react-responsive-carousel';
 import { uniqueId } from 'lodash';
-import Link from 'next/link';
 import SlideCarousel from 'pages-components/home/SlideCarousel';
 import { usePosts } from 'hook/selectors/postHooks';
 import * as S from './styles';
@@ -46,13 +45,7 @@ const CarouselSlide = () => {
           }}
         >
           {data.slice(0, 5).map(item => (
-            <Link
-              key={uniqueId()}
-              href={`/post/${item.id}`}
-              style={{ textDecoration: 'none' }}
-            >
-              <SlideCarousel post={item} />
-            </Link>
+            <SlideCarousel post={item} key={uniqueId()} />
           ))}
         </Carousel>
       )}

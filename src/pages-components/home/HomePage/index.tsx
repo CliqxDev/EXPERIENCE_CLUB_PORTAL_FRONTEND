@@ -9,11 +9,22 @@ import Newsletter from 'pages-components/home/Newsletter';
 import Trails from 'pages-components/home/Trails';
 
 import { useAppDispatch } from 'hook/store';
-import { category, media, posts } from 'flux/modules/post/actions';
-import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
+import {
+  category,
+  media,
+  posts,
+  setShowShare
+} from 'flux/modules/post/actions';
+import {
+  useCategory,
+  useMedia,
+  usePosts,
+  useShowShare
+} from 'hook/selectors/postHooks';
 import { SkeletonHome } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
 import { deleteProvisoryToken } from 'utils/services/auth';
+import ShareDialog from 'components/ShareDialog';
 import * as S from './styles';
 import BannerDesktop from '../BannerDesktop';
 import TrailsDesktop from '../Trails/TrailsDesktop';
@@ -24,6 +35,7 @@ const HomePage = () => {
   const { status: statusPosts, data: dataPost } = usePosts();
   const { status: statusCategory } = useCategory();
   const { status: statusMedia, data: dataMedia } = useMedia();
+  const showShare = useShowShare();
 
   const isLoading =
     statusPosts === RequestStatus.fetching ||
@@ -69,6 +81,10 @@ const HomePage = () => {
           <ShowMore />
         </>
       )}
+      <ShareDialog
+        show={showShare}
+        onClose={() => dispatch(setShowShare(false))}
+      />
     </S.Wrapper>
   );
 };

@@ -7,7 +7,8 @@ import {
   columnists as columnistsAction,
   mediaById as mediaByIdAction,
   postById as postByIdAction,
-  clearPostById
+  clearPostById,
+  setShowShare
 } from './actions';
 import { Post } from './types';
 
@@ -17,7 +18,8 @@ const initialState: Post = {
   category: { data: null, message: null, status: RequestStatus.idle },
   columnists: { data: null, message: null, status: RequestStatus.idle },
   postById: { data: null, message: null, status: RequestStatus.idle },
-  media: { data: null, message: null, status: RequestStatus.idle }
+  media: { data: null, message: null, status: RequestStatus.idle },
+  showShare: false
 };
 
 const postReducer = createReducer<Post, Action>(initialState)
@@ -164,6 +166,10 @@ const postReducer = createReducer<Post, Action>(initialState)
       message: null,
       status: RequestStatus.idle
     }
+  }))
+  .handleAction(setShowShare, (state, action) => ({
+    ...state,
+    showShare: action.payload
   }));
 
 export default postReducer;

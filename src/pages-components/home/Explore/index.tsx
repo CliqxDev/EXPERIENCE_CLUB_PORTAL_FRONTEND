@@ -7,6 +7,8 @@ import Title from 'components/ui/Title';
 
 import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
+import { useAppDispatch } from 'hook/store';
+import { setShowShare } from 'flux/modules/post/actions';
 import shareIcon from '../../../../public/img/share-icon-black.svg';
 
 import * as S from './styles';
@@ -28,6 +30,7 @@ const Explore: FC<Props> = ({ title, variant }) => {
   const { data: categoryData } = useCategory();
   const { data: posts } = usePosts();
   const { data: media } = useMedia();
+  const dispatch = useAppDispatch();
 
   const [cardData, setCardData] = useState<Card[]>([]);
 
@@ -58,22 +61,23 @@ const Explore: FC<Props> = ({ title, variant }) => {
 
       <S.ListCard variant={variant}>
         {cardData.slice(0, 4).map(item => (
-          <Link
-            key={uniqueId()}
-            href={`/post/${item.id}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <S.Card>
+          <S.Card key={uniqueId()}>
+            <Link href={`/post/${item.id}`}>
               <img src={item.imgSrc} alt="card imagem" />
               <S.DescriptionCard
                 dangerouslySetInnerHTML={{ __html: `${item.title}...` }}
               />
-              <S.FooterCard>
-                <S.TextFooter> {item.category}</S.TextFooter>
-                <Image src={shareIcon} alt="Compartilhar" />
-              </S.FooterCard>
-            </S.Card>
-          </Link>
+            </Link>
+
+            <S.FooterCard>
+              <S.TextFooter> {item.category}</S.TextFooter>
+              <Image
+                src={shareIcon}
+                alt="Compartilhar"
+                onClick={() => dispatch(setShowShare(true))}
+              />
+            </S.FooterCard>
+          </S.Card>
         ))}
       </S.ListCard>
     </S.ExploreWrapper>
