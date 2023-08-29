@@ -16,6 +16,15 @@ type ButtonShare = {
   link: string;
 };
 
+const SOCIAL_MEDIA_ICONS: any = {
+  Facebook: '/img/facebook.svg',
+  Linkedin: '/img/linkedin.svg',
+  Instagram: '/img/instagram.svg',
+  Telegram: '/img/telegram.svg',
+  WhatsApp: '/img/whatsapp.svg',
+  Twitter: '/img/twitter.svg',
+}
+
 const BUTTONS_SHARE: ButtonShare[] = [
   {
     label: 'Linkedin',
@@ -76,7 +85,7 @@ const ShareDialog: FC<Props> = ({ show, onClose }) => (
 
                   <S.ImageWrapper>
                     <img
-                      src={`/img/${item.label}.svg`}
+                      src={SOCIAL_MEDIA_ICONS[item.label]}
                       alt="ícone da rede social"
                     />
                   </S.ImageWrapper>
