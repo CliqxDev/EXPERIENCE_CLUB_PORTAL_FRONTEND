@@ -76,7 +76,7 @@ const ShareDialog: FC<Props> = ({ show, onClose }) => (
 
                   <S.ImageWrapper>
                     <img
-                      src={`/img/share_page/${item.label}.svg`}
+                      src={`/img/${item.label}.svg`}
                       alt="ícone da rede social"
                     />
                   </S.ImageWrapper>
