@@ -18,6 +18,10 @@ const DEFAULT_MENU = [
     path: '/perfil'
   },
   {
+    label: 'Colaboradores',
+    path: '/employees'
+  },
+  {
     label: 'Assinatura',
     path: '/'
   },
