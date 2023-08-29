@@ -2,8 +2,8 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import { findIndex, forEach, isEmpty } from 'lodash';
-
 import moment from 'moment';
+
 import {
   useCategory,
   useColumnist,
@@ -26,6 +26,7 @@ import Explore from 'pages-components/home/Explore';
 import { SkeletonPost } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
 import TrailFilter from 'components/TrailFilter';
+import ShareDialog from 'components/ShareDialog';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
 
@@ -60,6 +61,7 @@ const Post = () => {
   const { data: dataPosts, status: statusPosts } = usePosts();
 
   const [showTrailFilter, setShowTrailFilter] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   const isFullMedia =
     listMedia && Object.keys(listMedia).length === dataPosts?.length;
@@ -189,7 +191,7 @@ const Post = () => {
               />
               <S.Button>Diminuir</S.Button>
             </S.ButtonWrapper>
-            <S.ButtonWrapper>
+            <S.ButtonWrapper onClick={() => setShowShare(true)}>
               <img
                 src="/img/icon-post-share-action.svg"
                 alt="ícone compartilhar"
@@ -203,14 +205,11 @@ const Post = () => {
           </S.Action>
         </>
       )}
-
-      {categoryData !== null && (
-        <TrailFilter
-          categories={categoryData}
-          show={showTrailFilter}
-          onClose={() => setShowTrailFilter(false)}
-        />
-      )}
+      <TrailFilter
+        show={showTrailFilter}
+        onClose={() => setShowTrailFilter(false)}
+      />
+      <ShareDialog show={showShare} onClose={() => setShowShare(false)} />
     </S.Wrapper>
   );
 };

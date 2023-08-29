@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
+import Link from 'next/link';
 import { PostItem } from 'flux/modules/post/types';
 import { useCategory, useMedia } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
@@ -33,7 +34,9 @@ const SlideCarousel: FC<Props> = ({ post }) => {
 
   return (
     <S.Wrapper>
-      {image && <img src={image} alt="Assunto" />}
+      <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
+        {image && <img src={image} alt="Assunto" />}
+      </Link>
       <S.WrapperContent>
         <S.WrapperText>
           <S.Title>{post.title.rendered}</S.Title>
@@ -54,11 +57,7 @@ const SlideCarousel: FC<Props> = ({ post }) => {
               {category && <S.Span>{category[post.categories[0]]}</S.Span>}
             </S.SubjectSection>
 
-            <Image
-              src={shareIcon}
-              alt="Compartilhar"
-              style={{ width: '15%' }}
-            />
+            <Image src={shareIcon} alt="Compartilhar" />
           </S.FooterSlide>
         </S.FooterSlideWrapper>
       </S.WrapperContent>

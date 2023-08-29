@@ -139,7 +139,6 @@ export const Content = styled.div`
 export const Action = styled.div`
   display: flex;
   width: 100%;
-  height: 56px;
   position: fixed;
   bottom: 0;
   background-color: #ffffff;
@@ -152,6 +151,7 @@ export const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  padding: 0.8rem;
 `;
 
 export const Button = styled.div`
@@ -160,4 +160,6 @@ export const Button = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  margin: 0 4px;
+  z-index: 100;
 `;

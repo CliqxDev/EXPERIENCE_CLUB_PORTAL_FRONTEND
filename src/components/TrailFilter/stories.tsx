@@ -7,4 +7,4 @@ export default {
   component: TrailFilter
 } as Meta;
 
-export const Default: Story = () => <TrailFilter />;
+export const Default: Story = () => <TrailFilter show onClose={() => {}} />;
