@@ -1,15 +1,17 @@
 import { useFormik } from 'formik';
+import Image from 'next/image';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 import { masks } from 'utils';
 import { newEmployeeSchema } from 'utils/schemas';
 import ToasterComponent from 'components/ui/Toaster';
 import * as S from './styles';
+import newPhoto from '../../../../public/img/photo.svg'
 
 const AddNewEmployee = () => {
 
   const handleSubmit = () => {
-    
+
   };
 
   const formik = useFormik({
@@ -25,6 +27,15 @@ const AddNewEmployee = () => {
 
   return (
     <S.Wrapper>
+      <S.AddNewPhoto>
+        <S.Avatar>
+          <S.ChangeAvatarLabel htmlFor="avatar">
+            <S.ChangeAvatar type='file' id='avatar' name='avatar' />
+            <Image src={newPhoto} alt="Adicionar Foto" />
+          </S.ChangeAvatarLabel>
+        </S.Avatar>
+        <S.AddPhoto>Adicione uma foto</S.AddPhoto>
+      </S.AddNewPhoto>
       <S.ContainerData>
         <S.FormData onSubmit={formik.handleSubmit}>
           <Input
