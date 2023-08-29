@@ -53,6 +53,7 @@ const Trails = () => {
 
   useEffect(() => {
     if (categoryData) {
+      debugger;
       const newCategories: Category[] = [];
       const newColorsByCategoryId: any = {};
       let idx = 0;
@@ -63,7 +64,7 @@ const Trails = () => {
         idx += 1;
       });
       setColorsByCategoryId(newColorsByCategoryId);
-      setCategories(newCategories);
+      setCategories(newCategories.splice(0, 6));
       setTrailSelectedId(newCategories[0].name);
     }
   }, [categoryData]);
@@ -93,7 +94,7 @@ const Trails = () => {
       <S.WrapperMedia>
         <Title variant="black50">Trilhas</Title>
         <S.TrailButtonWrapper>
-          {categories.splice(0, 6).map(({ id, name }) => (
+          {categories.map(({ id, name }) => (
             <S.TrailsButton
               onClick={() => setTrailSelectedId(name)}
               key={id}
