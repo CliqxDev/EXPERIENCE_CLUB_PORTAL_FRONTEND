@@ -7,4 +7,8 @@ export default {
   component: EmployeeConfirm
 } as Meta;
 
-export const Default: Story = () => <EmployeeConfirm />;
+export const Default: Story = () => (
+  <EmployeeConfirm>
+    asd
+  </EmployeeConfirm>
+);

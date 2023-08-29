@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { uniqueId } from 'lodash';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
+import Link from 'next/link';
 import Dialog from 'components/Dialog';
 import * as S from './styles';
 
@@ -51,7 +52,7 @@ const ShareDialog: FC<Props> = ({ show, onClose }) => (
           <S.Subtitle>
             Compartilhe essa publicação nas redes ou envie para seus contatos.
           </S.Subtitle>
-          <CopyToClipboard text={window.location.href}>
+          <CopyToClipboard text={typeof window !== 'undefined' && window.location.href || ''}>
             <S.Button>
               <img src="/img/copy-icon.svg" alt="ícone copia" />
             </S.Button>
@@ -63,21 +64,27 @@ const ShareDialog: FC<Props> = ({ show, onClose }) => (
 
         <S.SocialMediaWrapper>
           {BUTTONS_SHARE.map(item => (
-            <S.ButtonSocialMediaWrapper
+            <Link
+              style={{ textDecoration: 'none' }}
+              href={item.link}
+              rel="noopener noreferrer"
+              target="_blank"
               key={uniqueId()}
-              onClick={() => window.open(item.link, '_blank')}
             >
-              <S.ButtonSocialMedia>
-                <S.ImageWrapper>
-                  <img
-                    src={`/img/share_page/${item.label}.svg`}
-                    alt="ícone da rede social"
-                  />
-                </S.ImageWrapper>
+              <S.ButtonSocialMediaWrapper>
+                <S.ButtonSocialMedia>
 
-                {item.label}
-              </S.ButtonSocialMedia>
-            </S.ButtonSocialMediaWrapper>
+                  <S.ImageWrapper>
+                    <img
+                      src={`/img/share_page/${item.label}.svg`}
+                      alt="ícone da rede social"
+                    />
+                  </S.ImageWrapper>
+
+                  {item.label}
+                </S.ButtonSocialMedia>
+              </S.ButtonSocialMediaWrapper>
+            </Link>
           ))}
           <S.ButtonSocialMedia
             style={{ backgroundColor: '#ffffff', cursor: 'default' }}
