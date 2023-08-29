@@ -53,7 +53,6 @@ const Trails = () => {
 
   useEffect(() => {
     if (categoryData) {
-      debugger;
       const newCategories: Category[] = [];
       const newColorsByCategoryId: any = {};
       let idx = 0;
