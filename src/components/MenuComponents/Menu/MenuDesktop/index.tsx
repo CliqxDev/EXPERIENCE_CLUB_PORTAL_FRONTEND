@@ -21,10 +21,10 @@ const DEFAULT_MENU = [
     label: 'Colaboradores',
     path: '/employees'
   },
-  {
-    label: 'Assinatura',
-    path: '/'
-  },
+  // {
+  //   label: 'Assinatura',
+  //   path: '/'
+  // },
   {
     label: 'Sobre',
     path: '/'

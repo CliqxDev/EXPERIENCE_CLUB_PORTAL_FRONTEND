@@ -3,15 +3,11 @@ import { breakpoints } from 'styles';
 
 export const BannerWrapper = styled.main`
   width: 100%;
-  height: 64px;
+  height: 65px;
   background: #2954FC;
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 0;
-
-  ${breakpoints.up('md')} {
-    display: flex;
-  }
 `;
 
 export const Assign = styled.div`
@@ -22,10 +18,6 @@ export const Assign = styled.div`
 
   ${breakpoints.up('md')} {
     padding: 2rem 10rem 2rem 10rem;
-  }
-
-  ${breakpoints.up('lg')} {
-    padding: 4rem 15rem 4rem 15rem;
   }
 `;
 
@@ -40,6 +32,13 @@ export const Title = styled.h1`
   font-size: 32px;
   line-height: 40px;
   color: #FFFFFF;
+
+  ${breakpoints.down('md')} {
+    font-family: Work Sans/headline/small;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 8px;
+  }
 `;
 
 export const SubTitle = styled.h2`
@@ -50,6 +49,10 @@ export const SubTitle = styled.h2`
   margin-left: 10px;
   margin-top: 10px;
   color: #0C0C0B;
+
+  ${breakpoints.down('md')} {
+    display: none;
+  }
 `;
 
 export const PlanButton = styled.button`

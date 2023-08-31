@@ -28,7 +28,7 @@ const DEFAULT_MENU = [
   },
   {
     label: 'Planos',
-    path: '/'
+    path: '/register'
   }
 ];
 
@@ -73,7 +73,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     } else {
       newMenuList.push({
         label: 'Cadastre-se',
-        path: '/register'
+        path: '/register/user'
       });
     }
     setMenuList(newMenuList);

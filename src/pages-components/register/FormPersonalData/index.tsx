@@ -53,7 +53,11 @@ const FormPersonalData = () => {
 
     if (status === RequestStatus.success) {
       dispatch(clearCreateClient());
-      redirect(`/register/email-verify/${plan}`);
+      if (plan) {
+        redirect(`/register/email-verify/${plan}`);
+      } else {
+        redirect(`/register/email-verify`);
+      }
     }
   }, [status]);
 
@@ -109,7 +113,10 @@ const FormPersonalData = () => {
 
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
-      <h1>{`Plano ${plan === 'corp' ? 'corporativo' : 'individual'}`}</h1>
+      {plan ?
+        <h1>{`${plan === 'corp' ? 'Plano corporativo' : 'Plano individual'}`}</h1> :
+        <h1>Cadastro</h1>
+      }
       <h2>Informe seus dados abaixo</h2>
       <Input
         value={formik.values.name}

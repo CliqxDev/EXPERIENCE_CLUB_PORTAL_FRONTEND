@@ -35,8 +35,8 @@ const HeaderDesktop = () => {
         src={expLogo}
         alt="Exp Club"
         style={{ marginLeft: '10rem' }}
-        width={150}
-        height={60}
+        width={200}
+        height={90}
       />
 
       <S.Actions>
@@ -57,7 +57,7 @@ const HeaderDesktop = () => {
 
         {((isLogged && data) && <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />) ||
           <>
-            <Link href="/register" passHref>
+            <Link href="/register/user" passHref>
               <S.ButtonRegister>
                 Cadastre-se
               </S.ButtonRegister>

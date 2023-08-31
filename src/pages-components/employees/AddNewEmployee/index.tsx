@@ -10,7 +10,7 @@ import newPhoto from '../../../../public/img/photo.svg'
 const AddNewEmployee = () => {
 
   const handleSubmit = () => {
-
+    
   };
 
   const formik = useFormik({

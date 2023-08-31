@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 import { Carousel } from 'react-responsive-carousel';
 import { uniqueId } from 'lodash';
 import SlideCarousel from 'pages-components/home/SlideCarousel';

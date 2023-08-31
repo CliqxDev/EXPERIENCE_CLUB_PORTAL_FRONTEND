@@ -11,7 +11,7 @@ export const AccompanyWrapper = styled.main`
   overflow-x: auto;
 
   padding: 2rem 0 2rem 2rem;
-  background: #e8e8e8;
+  background: #F4F4F4;
   
 
   ${breakpoints.up('md')} {

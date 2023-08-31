@@ -6,7 +6,7 @@ export const ExploreWrapper = styled.main`
   height: auto;
 
   padding: 2rem;
-  background: #e8e8e8;
+  background: #F4F4F4;
 
   ${breakpoints.up('md')} {
     padding: 2rem 10rem 2rem 10rem;

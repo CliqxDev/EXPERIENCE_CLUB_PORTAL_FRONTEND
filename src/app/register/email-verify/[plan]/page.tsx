@@ -17,7 +17,10 @@ export default function Page() {
   return (
     <>
       <Sticker bottom="24.6rem">
-        <h1>{`Plano ${plan === 'corp' ? 'corporativo' : 'individual'}`}</h1>
+      {plan ?
+        <h1>{`${plan === 'corp' ? 'Plano corporativo' : 'Plano individual'}`}</h1> :
+        <h1>Cadastro</h1>
+      }
         <h2>{textH2[plan]}</h2>
       </Sticker>
       <FormLayout onRedirectPath="/">

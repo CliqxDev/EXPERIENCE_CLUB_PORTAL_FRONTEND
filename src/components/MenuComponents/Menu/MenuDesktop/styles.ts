@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { breakpoints } from 'styles';
 
 export const WrapperDesktop = styled.main`
-  width: 260px;;
-  height: 290px;
+  width: 260px;
+  height: auto;
   position: absolute;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px 0px #00000040;

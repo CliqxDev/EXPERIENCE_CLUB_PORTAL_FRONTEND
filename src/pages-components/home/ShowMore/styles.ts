@@ -5,7 +5,7 @@ import { roboto } from 'styles/fonts';
 export const ShowMoreWrapper = styled.main`
   width: 100%;
   height: auto;
-  background: #e8e8e8;
+  background: #F4F4F4;
   padding: 2rem;
 
   ${breakpoints.up('md')} {
