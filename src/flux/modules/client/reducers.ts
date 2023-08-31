@@ -7,7 +7,8 @@ import {
   updateClient,
   deleteClient as deleteClientAction,
   clearUpdateClient,
-  clearAssignNewsletter
+  clearAssignNewsletter,
+  clearDeleteClient
 } from './actions';
 import { Client } from './types';
 
@@ -126,6 +127,14 @@ const clientReducer = createReducer<Client, Action>(initialState)
   .handleAction(clearAssignNewsletter, state => ({
     ...state,
     newsLetter: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
+    }
+  }))
+  .handleAction(clearDeleteClient, state => ({
+    ...state,
+    deleteClient: {
       data: null,
       message: null,
       status: RequestStatus.idle

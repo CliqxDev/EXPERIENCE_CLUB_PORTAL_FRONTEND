@@ -45,7 +45,7 @@ const ResetPasswordConfirmationPage = () => {
     if (status === RequestStatus.success) {
       dispatch(clearRecoveryPasswordSendEmail());
 
-      redirect('/reset-password/email-verify');
+      redirect('/sigin');
     }
   }, [status, message]);
 
@@ -122,7 +122,7 @@ const ResetPasswordConfirmationPage = () => {
         disabled={!(formik.isValid && formik.dirty) || !isValidPasswordRule()}
         type="submit"
       >
-        Enviar
+        Salvar
       </Button>
       <Toaster variant="error" />
     </S.Wrapper>

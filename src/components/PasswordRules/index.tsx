@@ -22,7 +22,7 @@ const PasswordRules: FC<Props> = ({ password, onChangePassword }) => {
     if (password) {
       const format = /[ `!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
 
-      if (password.length >= 6) {
+      if (password.length >= 8) {
         newRules.length = 'done';
       }
 
@@ -65,6 +65,6 @@ const PasswordRules: FC<Props> = ({ password, onChangePassword }) => {
       </S.ItemRule>
     </S.PasswordRulesWrapper>
   );
-}
+};
 
 export default PasswordRules;

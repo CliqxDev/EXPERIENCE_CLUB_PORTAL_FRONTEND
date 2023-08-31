@@ -22,10 +22,11 @@ const DeleteAccount: FC<Props> = ({ onClose, onSubmit, show = false }) => {
     <Dialog show={show} onClose={onClose}>
       <S.Form>
         <S.Title>Excluir conta</S.Title>
-        <S.Subtitle>Você tem certeza que seja excluir esta conta?</S.Subtitle>
+        <S.Subtitle>Você tem certeza que deseja excluir esta conta?</S.Subtitle>
         <Input
           fullwidth
           value={value}
+          onBlur={() => {}}
           onChange={(e: any) => setValue(e.target.value)}
           label="Digite o texto"
           id="delete"
@@ -33,8 +34,8 @@ const DeleteAccount: FC<Props> = ({ onClose, onSubmit, show = false }) => {
           spacing="16"
         />
         <S.AlertMessage>
-          É necessário confirmar sua ação com a palavra DELETAR no campo acima,
-          após isso clicar em “Excluir”.
+          É necessário confirmar sua ação escrevendo DELETAR no campo acima. Em
+          seguida, clique em Excluir.
         </S.AlertMessage>
         <S.Action>
           <Button

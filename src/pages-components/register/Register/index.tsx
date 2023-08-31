@@ -1,8 +1,9 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import { uniqueId } from 'lodash';
 import Button from 'components/ui/Button';
+import { logout } from 'utils/services/auth';
 import * as S from './styles';
 import { SelectedTypePlan } from './types';
 import { Card } from '../CardRegister';
@@ -51,6 +52,10 @@ const Register = () => {
       priceAll: '499'
     }
   ];
+
+  useEffect(() => {
+    logout();
+  }, []);
 
   return (
     <S.Wrapper>

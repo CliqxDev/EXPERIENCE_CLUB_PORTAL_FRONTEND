@@ -12,15 +12,10 @@ import SubscriberPlan from 'pages-components/perfil/SubscriberPlan';
 import Toaster from 'components/ui/Toaster';
 import Header from 'components/Header';
 import { useAppDispatch } from 'hook/store';
-import {
-  clearAssignNewsletter,
-  deleteClient
-} from 'flux/modules/client/actions';
+import { deleteClient } from 'flux/modules/client/actions';
 import { useDeleteClient } from 'hook/selectors/clientHooks';
 import { RequestStatus } from 'models/iRequest';
 import { useClientInfo } from 'hook/selectors/authHooks';
-import { clearClientInfo, clearSigIn } from 'flux/modules/auth/actions';
-import { logout } from 'utils/services/auth';
 import * as S from './styles';
 import { Tab } from './types';
 
@@ -51,13 +46,7 @@ const PerfilPage = () => {
     }
 
     if (status === RequestStatus.success) {
-      setToastType('success');
-      toast('Conta deletada com sucesso');
-      dispatch(clearClientInfo());
-      dispatch(clearSigIn());
-      dispatch(clearAssignNewsletter());
-      logout();
-      setTimeout(() => redirect('/'), 2000);
+      redirect('/perfil/delete-account-confirmation');
     }
   }, [status]);
 

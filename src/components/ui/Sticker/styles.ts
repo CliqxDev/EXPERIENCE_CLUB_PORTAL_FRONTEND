@@ -10,14 +10,14 @@ export const StickWrapper = styled.div<{ bottom: string }>`
   position: absolute;
 `;
 
-export const Stick = styled.div`
+export const Stick = styled.div<{ padding: string }>`
   background-color: #eaeeff;
 
   z-index: 100;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 1.6rem;
+  padding: ${({ padding }) => padding};
   border-radius: 4px;
   max-width: 500px;
 
