@@ -5,6 +5,12 @@ type StatusObj = {
   protected?: boolean;
 };
 
+type AcfObj = {
+  autores_colunistas: number;
+  exibir_no_banner: boolean;
+  tempo_leitura: string;
+}
+
 type LinkObj = {
   embeddable?: boolean;
   href: string;
@@ -27,6 +33,7 @@ type Meta = {
 };
 
 export type PostItem = {
+  acf: AcfObj;
   id: number;
   date: string;
   date_gmt: string;
@@ -47,6 +54,7 @@ export type PostItem = {
   sticky: false;
   template: string;
   format: string;
+  formatos: number[];
   meta: Meta;
   categories: number[];
   tags: number[];

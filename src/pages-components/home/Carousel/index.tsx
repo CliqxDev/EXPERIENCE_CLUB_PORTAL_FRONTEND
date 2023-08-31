@@ -7,6 +7,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const CarouselSlide = () => {
   const { data } = usePosts();
+  
   return (
     <S.Wrapper>
       {data && data.length > 0 && (

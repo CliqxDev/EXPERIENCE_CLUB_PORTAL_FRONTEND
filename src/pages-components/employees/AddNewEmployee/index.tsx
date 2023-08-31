@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import Image from 'next/image';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
-import { masks } from 'utils';
 import { newEmployeeSchema } from 'utils/schemas';
 import ToasterComponent from 'components/ui/Toaster';
 import * as S from './styles';
@@ -51,8 +50,6 @@ const AddNewEmployee = () => {
             errorMessage={
               (formik.touched.name && formik.errors.name) || ''
             }
-            inputMode="numeric"
-            mask={{ mask: masks.cel.mask, maskPlaceholder: '' }}
             spacing="24"
           />
           <Input

@@ -34,6 +34,8 @@ import PostHeader from '../PostHeader';
 
 type Card = {
   id: number;
+  tempo_leitura: string;
+  rendered: string;
   title: string;
   imgSrc: string;
   description: string;
@@ -79,6 +81,8 @@ const Post = () => {
 
   const [postSelected, setPostSelected] = useState<Card>({
     id: 0,
+    tempo_leitura: '',
+    rendered: '',
     title: '',
     imgSrc: '',
     description: '',
@@ -125,6 +129,8 @@ const Post = () => {
       if (isFullMedia) {
         setPostSelected({
           id: post.id,
+          tempo_leitura: post.acf.tempo_leitura,
+          rendered: post.excerpt.rendered,
           title: post.title.rendered,
           imgSrc:
             listMedia[post.featured_media].media_details.sizes.medium_large
@@ -167,10 +173,10 @@ const Post = () => {
             <S.DateHourTextWrapper>
               <S.Text>{postSelected.date}</S.Text>
               <S.Divider />
-              <S.Text>{postSelected.hour}</S.Text>
+              <S.Text>{`${postSelected.tempo_leitura} minutos`}</S.Text>
             </S.DateHourTextWrapper>
             <S.Excerpt
-              dangerouslySetInnerHTML={{ __html: postSelected.description }}
+              dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
             />
             <S.Text>{`Por ${postSelected.columnist}`}</S.Text>
           </S.ExcerptWrapper>

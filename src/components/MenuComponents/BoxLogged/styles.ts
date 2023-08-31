@@ -1,11 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.main`
+const wrapperVariant = {
+  default: css``,
+  myHome: css`
+    padding: 2rem;
+  `,
+}
+
+export const Wrapper = styled.main<{ variant: 'default' | 'myHome' }>`
   width: 100%;
   justify-content: space-between;
   align-items: center;
   display: flex;
   cursor: pointer;
+
+  ${({ variant }) => wrapperVariant[variant]}
 `;
 
 export const WrapperUserColumn = styled.div`
@@ -46,4 +55,19 @@ export const Avatar = styled.div`
   background-color: #a7b9fe;
   font-size: 38px;
   margin-right: 1.2rem;
+`;
+
+export const RedirectProfile = styled.p`
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+
+  p {
+    font-family: Work Sans/label/large;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #2954FC;
+    margin-right: 12px;
+  }
 `;

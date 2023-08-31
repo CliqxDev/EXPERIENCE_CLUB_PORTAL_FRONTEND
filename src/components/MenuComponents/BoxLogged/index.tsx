@@ -6,13 +6,20 @@ import { ButtonMenu } from 'components/MenuComponents/ButtonMenu';
 import * as S from './styles';
 import { sanitizeAvatar } from 'utils/formatString';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import { FC } from 'react';
+import arrowRight from '../../../../public/img/arrow-right-blue.svg'
+import Image from 'next/image';
 
-const BoxLogged = () => {
+type BoxLoggedProps = {
+  variant?: "default" | "myHome";
+}
+
+const BoxLogged: FC<BoxLoggedProps> = ({ variant }) => {
   const { data } = useClientInfo();
 
   return (
-    <Link href="/perfil">
-      <S.Wrapper>
+    <Link href="/my-home" style={{ textDecoration: 'none' }}>
+      <S.Wrapper variant={variant || 'default'}>
         <S.WrapperUserColumn>
           <S.Avatar>{sanitizeAvatar(data?.name || '')}</S.Avatar>
           <S.WrapperUserData>
@@ -20,8 +27,8 @@ const BoxLogged = () => {
             <h3>Aproveite sua jornada.</h3>
           </S.WrapperUserData>
         </S.WrapperUserColumn>
-        <ButtonMenu onClick={() => {}}>
-          <svg
+        <ButtonMenu onClick={() => { }}>
+          {variant === 'default' ? <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -45,6 +52,19 @@ const BoxLogged = () => {
               />
             </g>
           </svg>
+            :
+            <Link href="/perfil" style={{ textDecoration: 'none' }}>
+              <S.RedirectProfile>
+                <p>Perfil</p>
+                <Image
+                  src={arrowRight}
+                  alt="Perfil"
+                  width={14}
+                  height={10}
+                />
+              </S.RedirectProfile>
+            </Link>
+          }
         </ButtonMenu>
       </S.Wrapper>
     </Link>

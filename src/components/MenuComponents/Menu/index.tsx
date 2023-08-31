@@ -149,7 +149,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         </ButtonMenu>
       </S.Header>
 
-      {(isLogged && <BoxLogged />) || <BoxSign />}
+      {(isLogged && <BoxLogged variant='default' />) || <BoxSign />}
 
       {menuList.map(({ path, label }) => (
         <Link href={path} passHref key={uniqueId()}>
