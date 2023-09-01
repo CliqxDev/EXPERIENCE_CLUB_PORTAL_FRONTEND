@@ -129,12 +129,15 @@ export const Content = styled.div`
   font-weight: 350;
   line-height: 33px;
   letter-spacing: 0.8px;
+  max-height: 450px;
+  z-index: -1;
 
   img {
     width: 100%;
     height: auto;
   }
 `;
+
 
 export const Action = styled.div`
   display: flex;
@@ -162,4 +165,22 @@ export const Button = styled.div`
   line-height: 16px;
   margin: 0 4px;
   z-index: 100;
+`;
+
+export const LimitedRead = styled.div`
+  width: 100%;
+  height: 60px;
+  border-radius: 8px 8px 0px 0px;
+  background: #1D3CB3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Work Sans/title/large;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+  color: #EAEEFF;
+  padding: 0 2rem 0 1rem;
+  position: fixed;
+  bottom: 0;
 `;

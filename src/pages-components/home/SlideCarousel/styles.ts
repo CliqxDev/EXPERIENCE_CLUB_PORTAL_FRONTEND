@@ -7,6 +7,20 @@ export const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   text-align: left;
+  
+  /* ${breakpoints.up('md')} {
+    height: 415px;
+    flex-direction: row-reverse;
+  } */
+`;
+
+export const ImgPost = styled.div`
+  /* img {
+    ${breakpoints.up('md')} {
+      height: 415px;
+      width: 800px;
+    }
+  } */
 `;
 
 export const Title = styled.h1`
@@ -60,11 +74,15 @@ export const WrapperText = styled.div`
   background: linear-gradient(0deg, #000000 60.94%, rgba(29, 29, 27, 0) 100%);
 
   ${breakpoints.up('md')} {
+    /* position: relative; */
+    /* top: 0; */
+    /* background: transparent; */
     position: relative;
     margin-top: -32px;
     padding-top: 32px;
   }
 `;
+
 export const WrapperContent = styled.div`
   position: relative;
 `;

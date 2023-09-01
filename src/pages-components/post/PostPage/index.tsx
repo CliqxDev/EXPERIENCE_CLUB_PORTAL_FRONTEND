@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { findIndex, forEach, isEmpty } from 'lodash';
 import moment from 'moment';
 
+import Image from 'next/image';
 import {
   useCategory,
   useColumnist,
@@ -31,6 +32,8 @@ import TrailFilter from 'components/TrailFilter';
 import ShareDialog from 'components/ShareDialog';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
+import limitedIcon from '../../../../public/img/limited-read.svg'
+import CardLimitedRead from './CardLimitedRead';
 
 type Card = {
   id: number;
@@ -185,6 +188,21 @@ const Post = () => {
               dangerouslySetInnerHTML={{ __html: postSelected.content }}
             />
           </S.ContentWrapper>
+
+          {/* LIMITE LEITURA */}
+          {/* <CardLimitedRead
+            title='Faça seu cadastro para ter acesso a mais 4 conteúdos gratuitos.'
+            titleCard='Ou conheça nossos planos e tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports.'
+            variant="sigin"
+          /> */}
+          <CardLimitedRead
+            title='Você esgotou os seus conteúdos gratuitos.'
+            titleCard='Conheça nossos planos e continue navegando sem limites na plataforma [EXP].'
+            subTitleCard='Tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports.'
+            variant="plan"
+          />
+          {/* LIMITE LEITURA */}
+
           <ShowMore />
           <Explore title="Relacionados" variant="scroll" />
           <S.Action>
@@ -221,6 +239,14 @@ const Post = () => {
         show={showShare}
         onClose={() => dispatch(setShowShare(false))}
       />
+
+      <S.LimitedRead>
+        Limite de leitura excedido.
+        <Image
+          src={limitedIcon}
+          alt="Limite de leitura excedido"
+        />
+      </S.LimitedRead>
     </S.Wrapper>
   );
 };

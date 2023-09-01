@@ -8,6 +8,7 @@ export const BannerWrapper = styled.main`
   display: flex;
   position: fixed;
   bottom: 0;
+  z-index: 99;
 `;
 
 export const Assign = styled.div`

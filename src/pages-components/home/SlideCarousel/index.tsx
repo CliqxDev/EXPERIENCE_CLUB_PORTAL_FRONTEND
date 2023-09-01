@@ -38,7 +38,14 @@ const SlideCarousel: FC<Props> = ({ post }) => {
   return (
     <S.Wrapper>
       <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-        {image && <img src={image} alt="Assunto" />}
+        {image &&
+          <S.ImgPost>
+            <img
+              src={image}
+              alt="Assunto"
+            />
+          </S.ImgPost>
+        }
       </Link>
       <S.WrapperContent>
         <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
