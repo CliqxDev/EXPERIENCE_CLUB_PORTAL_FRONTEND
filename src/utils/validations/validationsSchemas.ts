@@ -6,7 +6,7 @@ import { isDate, isPastDate, minDateForBirthDate } from './date';
 
 export default {
   Required() {
-    return Yup.string().required('Campo vazio');
+    return Yup.string().required('Campo não pode estar vazio.');
   },
   Email() {
     return Yup.string().email('E-mail incorreto').required('Campo vazio');
@@ -57,5 +57,16 @@ export default {
       }
       return true;
     });
+  },
+  Cep() {
+    return Yup.string()
+      .required('Campo não pode estar vazio.')
+      .test('validCep', 'CEP está incorreto.', value => {
+        if (value) {
+          const cepNoMask = value.replace('-', '');
+          return cepNoMask.length === 8;
+        }
+        return false;
+      });
   }
 };

@@ -7,7 +7,10 @@ const SubscriberPlan = () => (
       <S.Description>
         Conheça nossos planos e tenha acesso ilimitado a todo nosso conteúdo.
       </S.Description>
-      <S.ButtonPlan type="button">Conheça nossos planos</S.ButtonPlan>
+      <S.ButtonPlan type="button">
+        Conheça <br />
+        nossos planos
+      </S.ButtonPlan>
     </S.Row>
   </S.PlanWrapper>
 );

@@ -19,3 +19,8 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const ButtonBack = styled.div<{ showIconSearch: boolean }>`
+  width: ${({ showIconSearch }) => (showIconSearch ? '96px' : '48px')};
+  padding-left: 2rem;
+`;

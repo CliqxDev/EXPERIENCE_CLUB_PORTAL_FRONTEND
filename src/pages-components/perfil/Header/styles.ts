@@ -46,6 +46,7 @@ export const ChangeAvatarLabel = styled.label`
 export const InfoContent = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
 `;
 
 export const Text = styled.p`
@@ -54,4 +55,14 @@ export const Text = styled.p`
   line-height: 2.4rem;
   color: #1d1d1b;
   font-weight: 400;
+`;
+
+export const ContentText = styled.div`
+  margin: 5.5rem 1.4rem;
+  overflow-wrap: anywhere;
+  width: 60%;
+
+  p {
+    width: 100%;
+  }
 `;

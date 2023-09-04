@@ -53,7 +53,7 @@ const titlesVariant = {
 export const Titles = styled.span<{ variant: Tab }>`
   height: 4.8rem;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -26,7 +26,7 @@ const PerfilPage = () => {
 
   const [tab, setTab] = useState<Tab>('PROFILE');
   const [showModal, setShowModal] = useState(false);
-  const [toastType, setToastType] = useState<'success' | 'error'>('error');
+  const [toastType, setToastType] = useState<'success' | 'error' | null>(null);
 
   const handleChangeTab = (tabSelected: Tab) => setTab(tabSelected);
 
@@ -52,7 +52,7 @@ const PerfilPage = () => {
 
   return (
     <>
-      <Header />
+      <Header showBack showIconSearch={false} />
       <S.WrapperProfile>
         <S.WrapperResponsive>
           <S.TopNavigation>
@@ -94,7 +94,7 @@ const PerfilPage = () => {
           onClose={() => setShowModal(false)}
           onSubmit={handleDeleteAccount}
         />
-        <Toaster variant={toastType} />
+        {toastType !== null && <Toaster variant={toastType} />}
       </S.WrapperProfile>
     </>
   );

@@ -100,7 +100,8 @@ const ProfilePersonalData = () => {
           fullwidth
           type="submit"
           disabled={
-            !(formik.isValid && formik.dirty) ||
+            !formik.isValid ||
+            (!formik.touched.cellphone && !formik.touched.role) ||
             status === RequestStatus.fetching
           }
         >

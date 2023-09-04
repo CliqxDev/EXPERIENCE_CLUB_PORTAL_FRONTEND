@@ -21,10 +21,10 @@ export const Title = styled.h1`
 export const Description = styled.p`
   width: 15rem;
   font-family: ${roboto.style.fontFamily};
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.4rem;
-  margin-top: 0.6rem;
+  margin-top: 0.2rem;
   color: #ffff;
 `;
 
@@ -40,7 +40,7 @@ export const ButtonPlan = styled.button`
   border: none;
   outline: none;
   color: #ffffff;
-  background: #2954FC;
+  background: #2954fc;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 20px;
