@@ -1,15 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, FC } from 'react';
+import { useState, FC, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { forEach, isEmpty } from 'lodash';
 import Title from 'components/ui/Title';
+import { useAppDispatch } from 'hook/store';
+import { employeeInfo } from 'flux/modules/collaborator/actions';
+import { useEmployeeInfo } from 'hook/selectors/employeeHooks';
 import * as S from './styles';
-import employeeIcon from '../../../../public/img/employee.svg'
+import employeeImg from '../../../../public/img/employee.svg'
 import employeeIconLightblue from '../../../../public/img/employee-icon-lightblue.svg'
 
-type Card = {
-  id: string;
+type EmployeesDataCard = {
+  id: number;
+  email: string;
   name: string;
+  subscription_user_plan_id: string;
+  user: number;
+  subscription_user_plan: number;
+  company: number;
 }
 
 type TitleVariant = {
@@ -42,17 +51,49 @@ const listEmployee = [
 const licenseKeyQtd = 5;
 
 const EmployeeList: FC<TitleVariant> = ({ variant }) => {
-  const [cardData, setCardData] = useState<Card[]>([]);
+  const dispatch = useAppDispatch();
+  const { data: employeesInfo } = useEmployeeInfo();
+  const [employeeData, setEmployeeData] = useState<EmployeesDataCard[]>([{
+    id: 0,
+    email: '',
+    name: '',
+    subscription_user_plan_id: '',
+    user: 0,
+    subscription_user_plan: 0,
+    company: 0
+  }]);
+
+  useEffect(() => {
+    dispatch(employeeInfo.request())
+  }, [dispatch, employeeInfo])
+
+  useEffect(() => {
+    if (!isEmpty(employeesInfo)) {
+      const newEmployeeData: EmployeesDataCard[] = [];
+      forEach(employeesInfo.slice(0, 9), employee => {
+        newEmployeeData.push({
+          id: employee.id,
+          email: employee.email,
+          name: employee.name,
+          subscription_user_plan_id: employee.subscription_user_plan_id,
+          user: employee.user,
+          subscription_user_plan: employee.subscription_user_plan,
+          company: employee.company
+        });
+      });
+      setEmployeeData(newEmployeeData);
+    }
+  }, [employeesInfo, employeeInfo])
 
   return (
     <S.Wrapper>
       <Title variant='black400'>Colaboradores</Title>
       <S.CardGrid>
-        {listEmployee.map((employee) => (
+        {employeeData.map((employee) => (
           <S.Card key={employee.id}>
             <Link href="employees/employee-info" style={{ textDecoration: 'none' }}>
               <Image
-                src={employeeIcon}
+                src={employeeImg}
                 alt={`Colaborador ${employee.name}`}
               />
               <S.EmployeeName>{employee.name}</S.EmployeeName>

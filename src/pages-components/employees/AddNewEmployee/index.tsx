@@ -1,16 +1,41 @@
 import { useFormik } from 'formik';
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
+import { redirect } from 'next/navigation';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 import { newEmployeeSchema } from 'utils/schemas';
-import ToasterComponent from 'components/ui/Toaster';
+import Toaster from 'components/ui/Toaster';
+import { useAppDispatch } from 'hook/store';
+import { addEmployee, clearAddEmployee } from 'flux/modules/collaborator/actions';
+import { useAddEmployee } from 'hook/selectors/employeeHooks';
+import { RequestStatus } from 'models/iRequest';
 import * as S from './styles';
 import newPhoto from '../../../../public/img/photo.svg'
 
 const AddNewEmployee = () => {
+  const dispatch = useAppDispatch();
+  const { status, message, data } = useAddEmployee();
+
+  useEffect(() => {
+    if (status === RequestStatus.error) {
+      toast('Falha ao tentar efetuar o login');
+    }
+
+    if (status === RequestStatus.success) {
+      dispatch(clearAddEmployee());
+      redirect('/employees/employee-added');
+    }
+  }, [status, message, data])
 
   const handleSubmit = () => {
-    
+    dispatch(
+      addEmployee.request({
+        email: formik.values.email,
+        name: formik.values.name
+      })
+    );
   };
 
   const formik = useFormik({
@@ -73,7 +98,7 @@ const AddNewEmployee = () => {
             Salvar
           </Button>
         </S.FormData>
-        <ToasterComponent variant="success" />
+        <Toaster variant="error" />
       </S.ContainerData>
     </S.Wrapper>
   );
