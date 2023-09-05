@@ -8,7 +8,7 @@ import Button from 'components/ui/Button';
 import { newEmployeeSchema } from 'utils/schemas';
 import Toaster from 'components/ui/Toaster';
 import { useAppDispatch } from 'hook/store';
-import { addEmployee, clearAddEmployee } from 'flux/modules/collaborator/actions';
+import { addEmployee, clearAddEmployee } from 'flux/modules/employee/actions';
 import { useAddEmployee } from 'hook/selectors/employeeHooks';
 import { RequestStatus } from 'models/iRequest';
 import * as S from './styles';

@@ -26,7 +26,7 @@ const HeaderDesktop = () => {
   }, [data]);
 
   return (
-    <S.WrapperDesktop>
+    <S.WrapperDesktop >
       {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
       {(showMenu && data) && <MenuDesktop />}
       <div />

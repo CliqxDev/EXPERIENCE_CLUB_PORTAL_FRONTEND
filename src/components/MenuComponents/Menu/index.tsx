@@ -21,17 +21,6 @@ type SearchMenuProps = {
   onClose: () => void;
 };
 
-const DEFAULT_MENU = [
-  {
-    label: 'Sobre',
-    path: '/'
-  },
-  {
-    label: 'Planos',
-    path: '/register'
-  }
-];
-
 type Category = {
   id: number;
   name: string;
@@ -51,7 +40,10 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const { data: categoryData } = useCategory();
 
   const [isLogged, setIsLogger] = useState(false);
-  const [menuList, setMenuList] = useState(DEFAULT_MENU);
+  const [menuList, setMenuList] = useState([{
+    label: '',
+    path: ''
+  }]);
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -61,21 +53,84 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   }, [data]);
 
   useEffect(() => {
-    const newMenuList = [...DEFAULT_MENU];
-    if (isLogged) {
+    const newMenuList = [];
+
+    if (!isLogged) {
       newMenuList.push({
-        label: 'Assinatura',
+        label: 'Sobre',
         path: '/'
-      },{
-        label: 'Colaboradores',
-        path: '/employees'
-      });
-    } else {
-      newMenuList.push({
+      }, {
+        label: 'Planos',
+        path: '/register'
+      }, {
         label: 'Cadastre-se',
         path: '/register/user'
       });
     }
+
+    if (isLogged && (!data?.is_admin && !data?.is_premium)) {
+      newMenuList.push(
+        //   {
+        //   label: 'Assinatura',
+        //   path: '/'
+        // }
+        {
+          label: 'Sobre',
+          path: '/'
+        }, {
+        label: 'Planos',
+        path: '/register'
+      });
+    }
+
+    if (isLogged && (!data?.is_admin && data?.is_premium)) {
+      newMenuList.push({
+        label: 'Biblioteca',
+        path: '/'
+      }, {
+        label: 'Minhas Trilhas',
+        path: '/'
+      }, {
+        label: 'Compartilhados',
+        path: '/'
+      }, {
+        label: 'Vídeos',
+        path: '/'
+      }, 
+      // {
+      //   label: 'Assinatura',
+      //   path: '/'
+      // },
+      {
+        label: 'Sobre',
+        path: '/'
+      });
+    }
+
+    if (isLogged && (data?.is_admin && data?.is_premium)) {
+      newMenuList.push({
+        label: 'Biblioteca',
+        path: '/'
+      }, {
+        label: 'Minhas Trilhas',
+        path: '/'
+      }, {
+        label: 'Colaboradores',
+        path: '/employees'
+      }, {
+        label: 'Compartilhados',
+        path: '/'
+      }, 
+      // {
+      //   label: 'Assinatura',
+      //   path: '/'
+      // }, 
+      {
+        label: 'Sobre',
+        path: '/'
+      });
+    }
+
     setMenuList(newMenuList);
   }, [isLogged]);
 

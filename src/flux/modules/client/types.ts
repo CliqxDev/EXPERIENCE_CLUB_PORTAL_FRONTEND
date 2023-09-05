@@ -14,6 +14,7 @@ export interface ClientInfo {
   is_active: boolean;
   is_premium: boolean;
   is_admin: boolean;
+  remaining_vacancy_count: number;
 }
 
 export interface ClientInfoRequest {

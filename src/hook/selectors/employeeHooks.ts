@@ -1,4 +1,4 @@
-import { AddEmployeeInRequest, EmployeeInfo } from "flux/modules/collaborator/types";
+import { AddEmployeeInRequest, EmployeeInfo } from "flux/modules/employee/types";
 import { useSelector } from "flux/selector";
 import { RootState } from "flux/store";
 import { IRequest } from "models/iRequest";

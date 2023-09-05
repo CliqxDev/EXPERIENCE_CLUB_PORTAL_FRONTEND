@@ -8,7 +8,7 @@ export const WrapperDesktop = styled.main`
   background-color: #ffffff;
   box-shadow: 0px 0px 5px 0px #00000040;
   padding: 1.6rem;
-  top: 70px;
+  top: 85px;
   z-index: 999;
 
   ${breakpoints.up('md')} {

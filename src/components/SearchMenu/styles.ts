@@ -9,6 +9,7 @@ export const Wrapper = styled.main`
   position: absolute;
   width: 100%;
   left: 0;
+  z-index: 1;
 
   input:focus {
     border: 1px solid #2954fc;

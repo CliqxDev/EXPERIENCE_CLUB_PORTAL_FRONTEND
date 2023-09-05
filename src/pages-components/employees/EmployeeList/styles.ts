@@ -60,8 +60,16 @@ export const AddEmployee = styled.div`
   align-items: center;
 `;
 
-export const LimitEmployee = styled.div`
-  width: 84px;
+const variantLimited = {
+  default: css``,
+  limited: css`
+    width: 104px;
+    height: 64px;
+  `
+}
+
+export const LimitEmployee = styled.div<{ variant: "default" | "limited"}>`
+  width: 94px;
   height: 64px;
   background: #11236A;
   display: flex;
@@ -72,13 +80,15 @@ export const LimitEmployee = styled.div`
   font-size: 32px;
   line-height: 40px;
   color: #BDCAFE;
+  ${({ variant }) => variant && variantLimited[variant]}
 `;
 
 const variants = {
   default: css`
+    padding-left: 16px;
   `,
   add: css`
-    width: auto;
+    width: 90%;
     font-family: Work Sans/title/medium;
     font-weight: 500;
     font-size: 16px;
@@ -94,7 +104,6 @@ export const TitleLimit = styled.h1<{variant: 'default' | 'add' }>`
   font-size: 22px;
   line-height: 28px;
   color: #BDCAFE;
-  margin-left: 16px;
   ${({ variant }) => variant && variants[variant]}
 `;
 
@@ -102,7 +111,7 @@ const cardAddVariant = {
   default: css`
   `,
   limit: css`
-    height: 128px;
+    height: 140px;
   `,
 }
 

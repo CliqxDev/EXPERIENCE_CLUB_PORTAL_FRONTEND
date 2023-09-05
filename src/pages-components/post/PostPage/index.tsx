@@ -132,7 +132,7 @@ const Post = () => {
       if (isFullMedia) {
         setPostSelected({
           id: post.id,
-          tempo_leitura: post.acf.tempo_leitura,
+          tempo_leitura: post.acf?.tempo_leitura,
           rendered: post.excerpt.rendered,
           title: post.title.rendered,
           imgSrc:
@@ -176,7 +176,7 @@ const Post = () => {
             <S.DateHourTextWrapper>
               <S.Text>{postSelected.date}</S.Text>
               <S.Divider />
-              <S.Text>{`${postSelected.tempo_leitura} minutos`}</S.Text>
+              <S.Text>{postSelected.tempo_leitura ? `${postSelected.tempo_leitura} minutos` : `0 minutos`}</S.Text>
             </S.DateHourTextWrapper>
             <S.Excerpt
               dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
