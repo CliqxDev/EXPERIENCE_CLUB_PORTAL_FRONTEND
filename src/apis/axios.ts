@@ -4,7 +4,7 @@ import axios, {
   AxiosRequestConfig,
   RawAxiosRequestHeaders
 } from 'axios';
-import { getToken } from 'utils/services/auth';
+import { getToken, logout } from 'utils/services/auth';
 
 const request = async (
   params: AxiosRequestConfig,
@@ -38,7 +38,12 @@ const request = async (
     ...params
   }).then(
     event => event,
-    error => {
+    (error: any) => {
+      if (error.response.status === 401) {
+        logout();
+        window.location.href = '/sigin';
+      }
+
       throw error;
     }
   );

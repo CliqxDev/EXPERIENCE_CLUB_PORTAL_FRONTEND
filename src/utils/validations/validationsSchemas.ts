@@ -9,7 +9,9 @@ export default {
     return Yup.string().required('Campo não pode estar vazio.');
   },
   Email() {
-    return Yup.string().email('E-mail incorreto').required('Campo vazio');
+    return Yup.string()
+      .email('E-mail incorreto')
+      .required('Campo não pode estar vazio.');
   },
   DateNotFuture() {
     return Yup.string().test(
@@ -31,11 +33,11 @@ export default {
   PasswordMatch() {
     return Yup.string()
       .oneOf([Yup.ref('password')], 'As senhas não estão iguais')
-      .required('Campo vazio');
+      .required('Campo não pode estar vazio.');
   },
   CellPhone() {
     return Yup.string()
-      .required('Campo vazio')
+      .required('Campo não pode estar vazio.')
       .test('len', 'Telefone inválido', cel => {
         if (cel) {
           const celClear = RemovePhoneMask(cel);
