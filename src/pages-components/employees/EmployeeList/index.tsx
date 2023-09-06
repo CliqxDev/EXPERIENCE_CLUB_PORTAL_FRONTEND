@@ -49,7 +49,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
     if (!isEmpty(data)) {
       licenseKeyQtdLimited = data.remaining_vacancy_count;
     }
-  }, [])
+  }, [data])
 
   useEffect(() => {
     dispatch(employeeInfo.request())
@@ -91,7 +91,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
       </S.CardGrid>
       <S.WarningLicense>
         Você utilizou {employeeData.length} licenças de{' '}
-        <strong style={{ color: '#1D1D1B' }}>{licenseKeyQtdLimited} disponíveis</strong>
+        <strong style={{ color: '#1D1D1B' }}>{data?.remaining_vacancy_count} disponíveis</strong>
       </S.WarningLicense>
 
       {employeeData.length >= licenseKeyQtdLimited && (

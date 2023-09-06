@@ -28,20 +28,20 @@ export interface ClientInfoRequest {
 }
 
 export type ClientCheckoutIndividualInfo = {
-    id: number;
-    link: string;
-    name: string;
-    price: string;
-    type: number;
-    period: number;
-    description: string;
-    is_active: boolean;
-    qtd_gifts: number;
-    qtd_min_members: number;
-    qtd_max_members: number;
-    qtd_max_installments: number;
-    created_at: string;
-    updated_at: string;
+  id: number;
+  link: string;
+  name: string;
+  price: string;
+  type: number;
+  period: number;
+  description: string;
+  is_active: boolean;
+  qtd_gifts: number;
+  qtd_min_members: number;
+  qtd_max_members: number;
+  qtd_max_installments: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ChangePasswordRequest {
@@ -71,5 +71,5 @@ export interface Client {
   updateClient: IRequest<ClientInfo>;
   deleteClient: IRequest<ClientDeleteResponse>;
   newsLetter: IRequest<AssignNewsletterResponse>;
-  checkoutIndividual: IRequest<ClientCheckoutIndividualInfo>; 
+  checkoutIndividual: IRequest<ClientCheckoutIndividualInfo>;
 }

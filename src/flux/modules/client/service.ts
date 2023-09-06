@@ -31,5 +31,5 @@ export const postAssignNewsletter = (data: AssignNewsletterRequest) =>
 
   export const getCheckoutIndividual = () =>
   get({
-    url: `/subscription-plans/?type=1&qtd_members=1`,
+    url: '/subscription-plans/?type=1&qtd_members=1',
   });

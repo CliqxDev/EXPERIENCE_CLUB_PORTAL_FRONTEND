@@ -12,7 +12,7 @@ import { useAppDispatch } from 'hook/store';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
 import { clearClientCheckoutIndividual, clientCheckoutIndividual } from 'flux/modules/client/actions';
-import { useCheckoutIndividualClient } from 'hook/selectors/clientHooks';
+import { useClientCheckoutIndividual } from 'hook/selectors/clientHooks';
 import { RequestStatus } from 'models/iRequest';
 import ResumePlan from '../ResumePlan';
 import * as S from './styles';
@@ -20,8 +20,8 @@ import * as S from './styles';
 const CheckoutPage = () => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
-  const { status, data: checkoutData } = useCheckoutIndividualClient();
-  
+  const { status, data: checkoutData } = useClientCheckoutIndividual();
+
   const handleSubmit = () => {
     dispatch(clientCheckoutIndividual.request())
   };
@@ -47,9 +47,11 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     if (!isEmpty(checkoutData)) {
-      redirect('/register')
+      if (status === RequestStatus.success) {
+        redirect(`${checkoutData?.link}?email=${data?.email}&doc=${formik.values.cpf}`)
+      }
     }
-  }, [checkoutData, status])
+  }, [status, checkoutData])
 
   return (
     <S.Wrapper>
