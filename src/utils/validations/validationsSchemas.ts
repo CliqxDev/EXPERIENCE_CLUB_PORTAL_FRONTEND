@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 
 import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import { isDate, isPastDate, minDateForBirthDate } from './date';
+import { validCpf } from './cpf';
 
 export default {
   Required() {
@@ -69,6 +70,16 @@ export default {
           return cepNoMask.length === 8;
         }
         return false;
+      });
+  },
+  Cpf() {
+    return Yup.string()
+      .required('Campo não pode estar vazio.')
+      .test('cpf', 'Cpf inválido.', value => {
+        if (value) {
+          return validCpf(value);
+        }
+        return true;
       });
   }
 };

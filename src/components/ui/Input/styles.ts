@@ -54,6 +54,12 @@ const inputTextVariants = {
   default: css`
     border: 1px solid #79747e;
     color: #1d1b20;
+
+    &:disabled {
+      border-color: rgba(185, 185, 184, 1);
+      opacity: 0.38;
+      user-select: none;
+    }
   `,
   transparent: css`
     border: 1px solid #ffffff;
@@ -195,8 +201,11 @@ const inputWrapperVariants = {
   `
 };
 
-export const InputWrapper = styled.div<{ variant: Variant }>`
-  ${({ variant }) => css`
+export const InputWrapper = styled.div<{
+  variant: Variant;
+  disabled?: boolean;
+}>`
+  ${({ variant, disabled }) => css`
     display: flex;
     flex-direction: column;
     position: relative;
@@ -228,7 +237,7 @@ export const InputWrapper = styled.div<{ variant: Variant }>`
       display: none;
     }
 
-    ${inputWrapperVariants[variant]}
+    ${!disabled && inputWrapperVariants[variant]}
   `}
 `;
 
@@ -260,7 +269,6 @@ const wrapperModifiers = {
   `,
   disabled: () => css`
     ${InputWrapper} {
-      border-color: #e0e0e0;
     }
 
     ${Label} {

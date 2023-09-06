@@ -70,11 +70,30 @@ const variants = {
       color: #686866;
       color: rgba(102, 104, 102, 0.38);
     }
+  `,
+  'warning-outline': css`
+    background-color: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+
+    &:disabled {
+      cursor: default;
+      box-shadow: none;
+      background: #e8e8e8;
+      color: #686866;
+      color: rgba(102, 104, 102, 0.38);
+    }
   `
 };
 
 export const Button = styled.button<{
-  variant: 'default' | 'link' | 'secondary' | 'outline' | 'warning';
+  variant:
+    | 'default'
+    | 'link'
+    | 'secondary'
+    | 'outline'
+    | 'warning'
+    | 'warning-outline';
   fullwidth?: boolean;
 }>`
   outline: none;

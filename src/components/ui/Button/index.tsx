@@ -4,7 +4,13 @@ import * as S from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
-  variant?: 'default' | 'link' | 'secondary' | 'outline' | 'warning';
+  variant?:
+    | 'default'
+    | 'link'
+    | 'secondary'
+    | 'outline'
+    | 'warning'
+    | 'warning-outline';
   fullwidth?: boolean;
 };
 

@@ -53,7 +53,7 @@ const Input: FC<InputProps> = ({
       spacing={spacing}
       fullwidth={fullwidth ? '100%' : ''}
     >
-      <S.InputWrapper variant={variant || 'default'}>
+      <S.InputWrapper variant={variant || 'default'} disabled={disabled}>
         <S.InputText
           variant={variant || 'default'}
           type={(showPassword && 'text') || type}
