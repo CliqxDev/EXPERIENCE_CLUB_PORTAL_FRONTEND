@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
+import axios from 'axios';
 import Button from 'components/ui/Button';
 import { checkoutSchema } from 'utils/schemas';
 import { useClientInfo } from 'hook/selectors/authHooks';
@@ -17,14 +18,43 @@ import { RequestStatus } from 'models/iRequest';
 import ResumePlan from '../ResumePlan';
 import * as S from './styles';
 
+type CheckoutData = {
+  id: number;
+  link: string;
+  name: string;
+  price: string;
+  type: number;
+  period: number;
+  description: string;
+  is_active: boolean;
+  qtd_gifts: number;
+  qtd_min_members: number;
+  qtd_max_members: number;
+  qtd_max_installments: number;
+  created_at: string;
+  updated_at: string;
+}
+
 const CheckoutPage = () => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
-  const { status, data: checkoutData } = useClientCheckoutIndividual();
+  const [dataCheckout, setDataCheckout] = useState<CheckoutData[]>([])
+  // const { status, data: checkoutData } = useClientCheckoutIndividual();
 
   const handleSubmit = () => {
-    dispatch(clientCheckoutIndividual.request())
+    handleGetCheckout();
   };
+
+  const handleGetCheckout = () => {
+    axios.get('https://devexpclubplatform.cliqx.com.br/api/subscription-plans/?type=1&qtd_members=1')
+      .then((response) => {
+        setDataCheckout(response.data)
+        if (response.data && dataCheckout) {
+          window.location.href = `https://checkout.experienceclub.com.br/subscribe/9a07e5c5-d7ab-4a5a-879e-dd34a5adf6df?email=${data?.email}&doc=${formik.values.cpf}`;
+        }
+        })
+      .then(error => { })
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -45,13 +75,13 @@ const CheckoutPage = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (!isEmpty(checkoutData)) {
-      if (status === RequestStatus.success) {
-        redirect(`${checkoutData?.link}?email=${data?.email}&doc=${formik.values.cpf}`)
-      }
-    }
-  }, [status, checkoutData])
+  // useEffect(() => {
+  //   if (!isEmpty(checkoutData)) {
+  //     if (status === RequestStatus.success) {
+  //       redirect(`${checkoutData?.link}?email=${data?.email}&doc=${formik.values.cpf}`)
+  //     }
+  //   }
+  // }, [status, checkoutData])
 
   return (
     <S.Wrapper>
