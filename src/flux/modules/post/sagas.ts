@@ -25,7 +25,7 @@ function* postsSaga(): Generator {
   try {
     const response: any = yield api.get<PostResponse>(
       '/v2/posts?per_page=11',
-      'https://expnew.net/wp-json/wp'
+      'https://expnew.com.br/wp-json/wp'
     );
     yield put(posts.success(response));
   } catch (err) {
@@ -38,7 +38,7 @@ function* mediaSaga({ payload }: ReturnType<typeof media.request>): Generator {
   try {
     const response: any = yield api.get<MediaItem>(
       `/v2/media/${payload}`,
-      'https://expnew.net/wp-json/wp'
+      'https://expnew.com.br/wp-json/wp'
     );
 
     yield put(media.success({ [payload]: response }));
@@ -52,7 +52,7 @@ function* categorySaga(): Generator {
   try {
     const response = yield api.get<CategoryResponse>(
       '/v2/Categories?per_page=100',
-      'https://expnew.net/wp-json/wp'
+      'https://expnew.com.br/wp-json/wp'
     ) as unknown as CategoryResponse;
 
     const sanitizedResponse: CategoryStore = {};
@@ -73,7 +73,7 @@ function* columnistsSaga(): Generator {
   try {
     const response = yield api.get<ColumnistsResponse>(
       '/v2/users?per_page=100',
-      'https://expnew.net/wp-json/wp'
+      'https://expnew.com.br/wp-json/wp'
     ) as unknown as ColumnistsResponse;
 
     yield put(columnists.success(response as ColumnistsResponse));
@@ -89,7 +89,7 @@ function* postByIdSaga({
   try {
     const response: any = yield api.get<PostItem>(
       `/v2/posts/${payload}`,
-      'https://expnew.net/wp-json/wp'
+      'https://expnew.com.br/wp-json/wp'
     );
 
     yield put(postById.success(response));
@@ -105,7 +105,7 @@ function* mediaByIdSaga({
   try {
     const response: any = yield api.get<MediaItem>(
       `/v2/media/${payload}`,
-      'https://expnew.net/wp-json/wp'
+      'https://expnew.com.br/wp-json/wp'
     );
 
     yield put(mediaById.success({ [payload]: response }));
