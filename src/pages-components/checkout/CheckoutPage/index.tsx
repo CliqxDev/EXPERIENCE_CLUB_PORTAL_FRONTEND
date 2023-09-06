@@ -1,20 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
 import { useEffect } from 'react';
+import { redirect } from 'next/navigation';
 import Button from 'components/ui/Button';
 import { checkoutSchema } from 'utils/schemas';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import { useAppDispatch } from 'hook/store';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
+import { clearClientCheckoutIndividual, clientCheckoutIndividual } from 'flux/modules/client/actions';
+import { useCheckoutIndividualClient } from 'hook/selectors/clientHooks';
+import { RequestStatus } from 'models/iRequest';
 import ResumePlan from '../ResumePlan';
 import * as S from './styles';
 
 const CheckoutPage = () => {
+  const dispatch = useAppDispatch();
   const { data } = useClientInfo();
-
-  const handleSubmit = () => {};
+  const { status, data: checkoutData } = useCheckoutIndividualClient();
+  
+  const handleSubmit = () => {
+    dispatch(clientCheckoutIndividual.request())
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -34,6 +44,12 @@ const CheckoutPage = () => {
       formik.setFieldValue('email', data.email, false);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (!isEmpty(checkoutData)) {
+      redirect('/register')
+    }
+  }, [checkoutData, status])
 
   return (
     <S.Wrapper>
@@ -92,15 +108,15 @@ const CheckoutPage = () => {
           errorMessage={(formik.touched.email && formik.errors.email) || ''}
           spacing="24"
         />
+        <S.Action>
+          <Link passHref href="/">
+            <Button type="button" variant="warning-outline">
+              Cancelar
+            </Button>
+          </Link>
+          <Button type="submit" id="next">Próximo</Button>
+        </S.Action>
       </S.Form>
-      <S.Action>
-        <Link passHref href="/">
-          <Button type="button" variant="warning-outline">
-            Cancelar
-          </Button>
-        </Link>
-        <Button id="next">Próximo</Button>
-      </S.Action>
     </S.Wrapper>
   );
 };

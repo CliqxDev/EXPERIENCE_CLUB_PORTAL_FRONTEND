@@ -1,15 +1,18 @@
 import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { uniqueId } from 'lodash';
+import { isEmpty, uniqueId } from 'lodash';
 import Button from 'components/ui/Button';
-import { logout } from 'utils/services/auth';
+// import { logout } from 'utils/services/auth';
+import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
 import { SelectedTypePlan } from './types';
 import { Card } from '../CardRegister';
 
 const Register = () => {
+  const { data } = useClientInfo();
   const [planType, setPlanType] = useState<SelectedTypePlan>('YEARLY');
+  const [isLogged, setIsLogged] = useState(false);
 
   const handleChangeTypePlan = (planSelected: SelectedTypePlan) =>
     setPlanType(planSelected);
@@ -54,8 +57,10 @@ const Register = () => {
   ];
 
   useEffect(() => {
-    logout();
-  }, []);
+    if (!isEmpty(data)) {
+      setIsLogged(true);
+    }
+  }, [data]);
 
   return (
     <S.Wrapper>
@@ -96,7 +101,7 @@ const Register = () => {
           que acontece no mercado
         </S.DescriptionPlan>
 
-        <Link href="/register/personal-data/individual" passHref>
+        <Link href={isLogged ? "/checkout/individual" : "/register/personal-data/individual"} passHref>
           <Button onClick={() => {}} id="next-step">
             Adquirir plano individual
           </Button>

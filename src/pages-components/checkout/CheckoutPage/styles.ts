@@ -34,6 +34,7 @@ export const Form = styled.form`
   padding: 1.6rem;
   width: 100%;
   max-width: 500px;
+  height: 300px;
 `;
 
 export const Title = styled.h1`

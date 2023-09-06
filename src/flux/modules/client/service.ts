@@ -1,4 +1,4 @@
-import { del, post, put } from 'apis/axios';
+import { del, get, post, put } from 'apis/axios';
 
 import {
   AssignNewsletterRequest,
@@ -27,4 +27,9 @@ export const postAssignNewsletter = (data: AssignNewsletterRequest) =>
   post({
     url: '/newsletter/',
     data
+  });
+
+  export const getCheckoutIndividual = () =>
+  get({
+    url: `/subscription-plans/?type=1&qtd_members=1`,
   });

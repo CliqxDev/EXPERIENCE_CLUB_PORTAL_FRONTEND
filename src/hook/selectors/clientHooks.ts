@@ -1,5 +1,6 @@
 import {
   AssignNewsletterResponse,
+  ClientCheckoutIndividualInfo,
   ClientDeleteResponse,
   ClientInfo
 } from 'flux/modules/client/types';
@@ -18,3 +19,6 @@ export const useNewsLetter = (): IRequest<AssignNewsletterResponse> =>
 
 export const useDeleteClient = (): IRequest<ClientDeleteResponse> =>
   useSelector((state: RootState) => state.client.deleteClient);
+
+export const useCheckoutIndividualClient = (): IRequest<ClientCheckoutIndividualInfo> =>
+  useSelector((state: RootState) => state.client.checkoutIndividual);

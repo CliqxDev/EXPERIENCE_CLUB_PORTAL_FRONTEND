@@ -1,16 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { isEmpty } from 'lodash';
+import { AxiosError } from 'axios';
 import { ErrorMessage } from 'models/errors';
 import {
   assignNewsletter,
+  clientCheckoutIndividual,
   createClient,
   deleteClient,
   updateClient
 } from './actions';
-import { ClientDeleteResponse, ClientInfo } from './types';
+import { ClientCheckoutIndividualInfo, ClientDeleteResponse, ClientInfo } from './types';
 import {
   deleteAccount,
+  getCheckoutIndividual,
   postAssignNewsletter,
   postClient,
   putClient
@@ -24,6 +27,10 @@ type ClientPersonalDataResponseAPI = {
 type ClientDeleteResponseAPI = {
   data: ClientDeleteResponse;
 };
+
+type ClientCheckoutIndividualInfoAPI = {
+  data: ClientCheckoutIndividualInfo;
+}
 
 function* createClientSaga({
   payload
@@ -94,9 +101,22 @@ function* deleteClientSaga({
   }
 }
 
+function* clientCheckoutIndividualSaga(): Generator {
+  try {
+    const response: ClientCheckoutIndividualInfoAPI = (yield call(
+      getCheckoutIndividual
+    )) as ClientCheckoutIndividualInfoAPI;
+    yield put(clientCheckoutIndividual.success(response.data));
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(clientCheckoutIndividual.failure(errors));
+  }
+}
+
 export default [
   takeEvery(assignNewsletter.request, assignNewsletterSaga),
   takeEvery(createClient.request, createClientSaga),
   takeEvery(deleteClient.request, deleteClientSaga),
-  takeEvery(updateClient.request, updateClientSaga)
+  takeEvery(updateClient.request, updateClientSaga),
+  takeEvery(clientCheckoutIndividual.request, clientCheckoutIndividualSaga)
 ];
