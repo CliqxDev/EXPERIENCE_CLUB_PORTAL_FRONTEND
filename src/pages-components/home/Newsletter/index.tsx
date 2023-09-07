@@ -114,7 +114,8 @@ const Newsletter = () => {
               </>
             )}
             <Button
-              style={{ width: '36.4rem', height: '4rem', margin: '2rem auto' }}
+              style={{ height: '4rem', margin: '2rem auto' }}
+              fullwidth
               variant="secondary"
               onClick={handleSubmit}
               disabled={isDisabled()}

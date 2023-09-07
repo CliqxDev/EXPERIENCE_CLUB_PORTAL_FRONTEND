@@ -33,34 +33,38 @@ const MenuDesktop = () => {
 
     if (!isLogged) {
       newMenuList.push({
-        label: 'Sobre',
-        path: '/'
-      }, {
-        label: 'Planos',
+        label: 'Assine',
         path: '/register'
       }, {
         label: 'Cadastre-se',
         path: '/register/user'
+      }, {
+        label: 'Sobre',
+        path: '/'
       });
     }
 
     if (isLogged && (!data?.is_admin && !data?.is_premium)) {
       newMenuList.push(
-        //   {
-        //   label: 'Assinatura',
-        //   path: '/'
-        // },
         {
-          label: 'Sobre',
-          path: '/'
+          label: 'Perfil',
+          path: '/perfil',
+        },
+        {
+          label: 'Assine',
+          path: '/register'
         }, {
-        label: 'Planos',
-        path: '/register'
+        label: 'Sobre',
+        path: '/'
       });
     }
 
     if (isLogged && (!data?.is_admin && data?.is_premium)) {
-      newMenuList.push({
+      newMenuList.push(
+        {
+          label: 'Perfil',
+          path: '/perfil',
+        }, {
         label: 'Biblioteca',
         path: '/'
       }, {
@@ -84,7 +88,11 @@ const MenuDesktop = () => {
     }
 
     if (isLogged && (data?.is_admin && data?.is_premium)) {
-      newMenuList.push({
+      newMenuList.push(
+        {
+          label: 'Perfil',
+          path: '/perfil',
+        }, {
         label: 'Biblioteca',
         path: '/'
       }, {

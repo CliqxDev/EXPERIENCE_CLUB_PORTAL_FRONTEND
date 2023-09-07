@@ -57,14 +57,14 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
 
     if (!isLogged) {
       newMenuList.push({
-        label: 'Sobre',
-        path: '/'
-      }, {
         label: 'Planos',
         path: '/register'
       }, {
         label: 'Cadastre-se',
         path: '/register/user'
+      }, {
+        label: 'Sobre',
+        path: '/'
       });
     }
 
@@ -75,11 +75,11 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         //   path: '/'
         // }
         {
-          label: 'Sobre',
-          path: '/'
+          label: 'Planos',
+          path: '/register'
         }, {
-        label: 'Planos',
-        path: '/register'
+        label: 'Sobre',
+        path: '/'
       });
     }
 
@@ -96,15 +96,15 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       }, {
         label: 'Vídeos',
         path: '/'
-      }, 
-      // {
-      //   label: 'Assinatura',
-      //   path: '/'
-      // },
-      {
-        label: 'Sobre',
-        path: '/'
-      });
+      },
+        // {
+        //   label: 'Assinatura',
+        //   path: '/'
+        // },
+        {
+          label: 'Sobre',
+          path: '/'
+        });
     }
 
     if (isLogged && (data?.is_admin && data?.is_premium)) {
@@ -120,15 +120,15 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       }, {
         label: 'Compartilhados',
         path: '/'
-      }, 
-      // {
-      //   label: 'Assinatura',
-      //   path: '/'
-      // }, 
-      {
-        label: 'Sobre',
-        path: '/'
-      });
+      },
+        // {
+        //   label: 'Assinatura',
+        //   path: '/'
+        // }, 
+        {
+          label: 'Sobre',
+          path: '/'
+        });
     }
 
     setMenuList(newMenuList);
