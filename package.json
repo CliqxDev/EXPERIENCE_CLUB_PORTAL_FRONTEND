@@ -50,6 +50,7 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-input-mask": "^3.0.0-alpha.2",
+    "react-loading": "^2.0.3",
     "react-loading-skeleton": "^3.3.1",
     "react-number-format": "^5.2.2",
     "react-redux": "^8.1.2",
