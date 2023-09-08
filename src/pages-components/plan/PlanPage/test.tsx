@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 
-import Register from '.';
+import PlanPage from '.';
 
-describe('<Register />', () => {
+describe('<PlanPage />', () => {
   it('should render the heading', () => {
-    render(<Register />);
+    render(<PlanPage />);
 
     expect(
-      screen.getByRole('heading', { name: /Register/i })
+      screen.getByRole('heading', { name: /PlanPage/i })
     ).toBeInTheDocument();
   });
 });

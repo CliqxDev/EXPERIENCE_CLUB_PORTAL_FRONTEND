@@ -40,10 +40,12 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const { data: categoryData } = useCategory();
 
   const [isLogged, setIsLogger] = useState(false);
-  const [menuList, setMenuList] = useState([{
-    label: '',
-    path: ''
-  }]);
+  const [menuList, setMenuList] = useState([
+    {
+      label: '',
+      path: ''
+    }
+  ]);
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -56,19 +58,23 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     const newMenuList = [];
 
     if (!isLogged) {
-      newMenuList.push({
-        label: 'Planos',
-        path: '/register'
-      }, {
-        label: 'Cadastre-se',
-        path: '/register/user'
-      }, {
-        label: 'Sobre',
-        path: '/'
-      });
+      newMenuList.push(
+        {
+          label: 'Planos',
+          path: '/plan'
+        },
+        {
+          label: 'Cadastre-se',
+          path: '/register-plan'
+        },
+        {
+          label: 'Sobre',
+          path: '/'
+        }
+      );
     }
 
-    if (isLogged && (!data?.is_admin && !data?.is_premium)) {
+    if (isLogged && !data?.is_admin && !data?.is_premium) {
       newMenuList.push(
         //   {
         //   label: 'Assinatura',
@@ -76,27 +82,33 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         // }
         {
           label: 'Planos',
-          path: '/register'
-        }, {
-        label: 'Sobre',
-        path: '/'
-      });
+          path: '/plan'
+        },
+        {
+          label: 'Sobre',
+          path: '/'
+        }
+      );
     }
 
-    if (isLogged && (!data?.is_admin && data?.is_premium)) {
-      newMenuList.push({
-        label: 'Biblioteca',
-        path: '/'
-      }, {
-        label: 'Minhas Trilhas',
-        path: '/'
-      }, {
-        label: 'Compartilhados',
-        path: '/'
-      }, {
-        label: 'Vídeos',
-        path: '/'
-      },
+    if (isLogged && !data?.is_admin && data?.is_premium) {
+      newMenuList.push(
+        {
+          label: 'Biblioteca',
+          path: '/'
+        },
+        {
+          label: 'Minhas Trilhas',
+          path: '/'
+        },
+        {
+          label: 'Compartilhados',
+          path: '/'
+        },
+        {
+          label: 'Vídeos',
+          path: '/'
+        },
         // {
         //   label: 'Assinatura',
         //   path: '/'
@@ -104,31 +116,37 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         {
           label: 'Sobre',
           path: '/'
-        });
+        }
+      );
     }
 
-    if (isLogged && (data?.is_admin && data?.is_premium)) {
-      newMenuList.push({
-        label: 'Biblioteca',
-        path: '/'
-      }, {
-        label: 'Minhas Trilhas',
-        path: '/'
-      }, {
-        label: 'Colaboradores',
-        path: '/employees'
-      }, {
-        label: 'Compartilhados',
-        path: '/'
-      },
+    if (isLogged && data?.is_admin && data?.is_premium) {
+      newMenuList.push(
+        {
+          label: 'Biblioteca',
+          path: '/'
+        },
+        {
+          label: 'Minhas Trilhas',
+          path: '/'
+        },
+        {
+          label: 'Colaboradores',
+          path: '/employees'
+        },
+        {
+          label: 'Compartilhados',
+          path: '/'
+        },
         // {
         //   label: 'Assinatura',
         //   path: '/'
-        // }, 
+        // },
         {
           label: 'Sobre',
           path: '/'
-        });
+        }
+      );
     }
 
     setMenuList(newMenuList);
@@ -204,7 +222,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         </ButtonMenu>
       </S.Header>
 
-      {(isLogged && <BoxLogged variant='default' />) || <BoxSign />}
+      {(isLogged && <BoxLogged variant="default" />) || <BoxSign />}
 
       {menuList.map(({ path, label }) => (
         <Link href={path} passHref key={uniqueId()}>

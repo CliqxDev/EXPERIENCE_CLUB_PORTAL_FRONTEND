@@ -34,7 +34,6 @@ export const Form = styled.form`
   padding: 1.6rem;
   width: 100%;
   max-width: 500px;
-  height: 300px;
 `;
 
 export const Title = styled.h1`
@@ -54,4 +53,23 @@ export const Action = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2.5rem 1.6rem;
+`;
+
+export const RadioGroup = styled.form`
+  display: flex;
+  color: #4a4a49;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 0.8rem;
+
+  input[type='radio'] {
+    accent-color: #2954fc;
+  }
+
+  label {
+    margin-left: 0.8rem;
+    margin-right: 1.6rem;
+  }
 `;

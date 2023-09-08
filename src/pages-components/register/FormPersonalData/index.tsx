@@ -111,12 +111,16 @@ const FormPersonalData = () => {
   const isDisabled = () =>
     !(formik.isValid && formik.dirty) || !isValidPasswordRule();
 
+  const title: any = {
+    1: 'Plano individual',
+    2: 'Plano individual',
+    3: 'Plano corporativo',
+    4: 'Plano corporativo'
+  };
+
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
-      {plan ?
-        <h1>{`${plan === 'corp' ? 'Plano corporativo' : 'Plano individual'}`}</h1> :
-        <h1>Cadastro</h1>
-      }
+      {plan ? <h1>{title[plan]}</h1> : <h1>Cadastro</h1>}
       <h2>Informe seus dados abaixo</h2>
       <Input
         value={formik.values.name}

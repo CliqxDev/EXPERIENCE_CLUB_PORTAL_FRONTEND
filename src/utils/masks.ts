@@ -20,6 +20,10 @@ export const masks: any = {
     mask: '999.999.999-99',
     maskPlaceholder: ''
   },
+  cnpj: {
+    mask: '99.999.999/9999-99',
+    maskPlaceholder: ''
+  },
   rg: {
     mask: '************',
     maskPlaceholder: ''

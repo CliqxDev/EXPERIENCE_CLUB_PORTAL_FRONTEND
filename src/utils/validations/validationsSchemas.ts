@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import RemovePhoneMask from 'utils/mask/removePhoneMask';
 import { isDate, isPastDate, minDateForBirthDate } from './date';
 import { validCpf } from './cpf';
+import { validCNPJ } from './cnpj';
 
 export default {
   Required() {
@@ -81,5 +82,10 @@ export default {
         }
         return true;
       });
+  },
+  Cnpj() {
+    return Yup.string()
+      .required('Campo não pode estar vazio.')
+      .test('Cnpj', 'Cnpj inválido.', value => validCNPJ(value));
   }
 };

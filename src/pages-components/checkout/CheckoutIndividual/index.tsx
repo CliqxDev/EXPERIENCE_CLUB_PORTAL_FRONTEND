@@ -74,7 +74,7 @@ const CheckoutIndividual = () => {
   return (
     <S.Wrapper>
       <S.Header>
-        <Link passHref href="/register">
+        <Link passHref href="/plan">
           <Button variant="outline">Planos</Button>
         </Link>
         <Link passHref href="/">

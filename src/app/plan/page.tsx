@@ -1,12 +1,12 @@
 'use client';
 
 import FormLayout from 'components/ui/FormLayout';
-import Register from 'pages-components/register/Register';
+import PlanPage from 'pages-components/plan/PlanPage';
 
-export default function RegisterPage() {
+export default function Page() {
   return (
     <FormLayout variant="simple" onRedirectPath="/">
-      <Register />
+      <PlanPage />
     </FormLayout>
   );
 }

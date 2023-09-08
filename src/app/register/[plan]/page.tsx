@@ -12,7 +12,7 @@ export default function Page() {
 
   return (
     <Spinner active={isLoading || false}>
-      <FormLayout onRedirectPath="/register" variant="simple">
+      <FormLayout onRedirectPath="/register-plan" variant="simple">
         <FormPersonalData />
       </FormLayout>
     </Spinner>

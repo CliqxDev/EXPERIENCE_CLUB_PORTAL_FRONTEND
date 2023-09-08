@@ -8,8 +8,8 @@ type CardProps = {
   title: string;
   titleCard: string;
   subTitleCard?: string;
-  variant: "sigin" | "plan";
-}
+  variant: 'sigin' | 'plan';
+};
 
 const CardLimitedRead: FC<CardProps> = ({
   title,
@@ -21,22 +21,21 @@ const CardLimitedRead: FC<CardProps> = ({
     <S.BgImg />
     <S.Title>{title}</S.Title>
     <S.CardContent>
-      <S.TitleCard>
-        {titleCard}
-      </S.TitleCard>
-      <S.SubTitleCard>
-        {subTitleCard}
-      </S.SubTitleCard>
-      {variant === 'sigin' &&
-        <Link href="/register/user" style={{ textDecoration: 'none', width: '100%' }}>
+      <S.TitleCard>{titleCard}</S.TitleCard>
+      <S.SubTitleCard>{subTitleCard}</S.SubTitleCard>
+      {variant === 'sigin' && (
+        <Link
+          href="/register/user"
+          style={{ textDecoration: 'none', width: '100%' }}
+        >
           <Button fullwidth>Entrar</Button>
         </Link>
-      }
-      {variant === 'plan' &&
-        <Link href="/register" style={{ textDecoration: 'none', width: '100%' }}>
+      )}
+      {variant === 'plan' && (
+        <Link href="/plan" style={{ textDecoration: 'none', width: '100%' }}>
           <Button fullwidth>Conheça nossos planos</Button>
         </Link>
-      }
+      )}
     </S.CardContent>
   </S.Wrapper>
 );

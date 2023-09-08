@@ -8,11 +8,11 @@ const SubscriberPlan = () => (
       <S.Description>
         Conheça nossos planos e tenha acesso ilimitado a todo nosso conteúdo.
       </S.Description>
-      <Link href="/register" passHref style={{ textDecoration: 'none' }}>
-      <S.ButtonPlan type="button">
-        Conheça <br />
-        nossos planos
-      </S.ButtonPlan>
+      <Link href="/plan" passHref style={{ textDecoration: 'none' }}>
+        <S.ButtonPlan type="button">
+          Conheça <br />
+          nossos planos
+        </S.ButtonPlan>
       </Link>
     </S.Row>
   </S.PlanWrapper>

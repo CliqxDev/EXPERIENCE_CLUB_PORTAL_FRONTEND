@@ -1,13 +1,14 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { isEmpty } from 'lodash';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Button from 'components/ui/Button';
-import { checkoutSchema } from 'utils/schemas';
-import { useClientInfo } from 'hook/selectors/authHooks';
+import { checkoutCorpSchema } from 'utils/schemas';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
 import ResumePlan from './ResumePlan';
@@ -31,8 +32,8 @@ type CheckoutData = {
 };
 
 const CheckoutIndividual = () => {
-  const { data } = useClientInfo();
   const [dataCheckout, setDataCheckout] = useState<CheckoutData[]>([]);
+  const [radio, setRadio] = useState('estadual');
 
   const handleSubmit = () => {
     handleGetCheckout();
@@ -54,27 +55,20 @@ const CheckoutIndividual = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      cpf: '',
-      email: ''
+      cnpj: '',
+      role: '',
+      company: ''
     },
     validateOnChange: true,
     validateOnBlur: true,
     onSubmit: handleSubmit,
-    validationSchema: () => checkoutSchema
+    validationSchema: () => checkoutCorpSchema
   });
-
-  useEffect(() => {
-    if (!isEmpty(data)) {
-      formik.setFieldValue('name', data.name, false);
-      formik.setFieldValue('email', data.email, false);
-    }
-  }, [data]);
 
   return (
     <S.Wrapper>
       <S.Header>
-        <Link passHref href="/register">
+        <Link passHref href="/plan">
           <Button variant="outline">Planos</Button>
         </Link>
         <Link passHref href="/">
@@ -86,59 +80,80 @@ const CheckoutIndividual = () => {
       </S.Header>
       <ResumePlan />
       <S.Form onSubmit={formik.handleSubmit}>
-        <S.Title>Dados do comprador</S.Title>
+        <S.Title>Dados da empresa</S.Title>
         <Input
-          value={formik.values.name}
+          value={formik.values.cnpj}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          label=""
-          disabled
-          id="name"
-          name="name"
-          placeholder=""
-          fullwidth
-          errorMessage={(formik.touched.name && formik.errors.name) || ''}
-          spacing="24"
-        />
-        <Input
-          value={formik.values.cpf}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="CPF"
+          label="CNPJ"
           required
-          id="cpf"
-          name="cpf"
+          id="cnpj"
+          name="cnpj"
           placeholder=""
           fullwidth
-          errorMessage={(formik.touched.cpf && formik.errors.cpf) || ''}
+          errorMessage={(formik.touched.cnpj && formik.errors.cnpj) || ''}
           inputMode="numeric"
-          mask={{ mask: masks.cpf.mask, maskPlaceholder: '' }}
+          mask={{ mask: masks.cnpj.mask, maskPlaceholder: '' }}
           spacing="24"
         />
         <Input
-          value={formik.values.email}
+          value={formik.values.company}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          label=""
-          disabled
-          id="email"
-          name="email"
+          label="Razão social"
+          required
+          id="company"
+          name="company"
           placeholder=""
           fullwidth
-          errorMessage={(formik.touched.email && formik.errors.email) || ''}
+          errorMessage={(formik.touched.company && formik.errors.company) || ''}
           spacing="24"
         />
-        <S.Action>
-          <Link passHref href="/">
-            <Button type="button" variant="warning-outline">
-              Cancelar
-            </Button>
-          </Link>
-          <Button type="submit" id="next">
-            Próximo
+        <S.RadioGroup>
+          <input
+            type="radio"
+            checked={radio === 'estadual'}
+            value="estadual"
+            name="choose"
+            onChange={() => setRadio('estadual')}
+          />
+          <label htmlFor="estadual" onClick={() => setRadio('estadual')}>
+            Insc. estadual
+          </label>
+          <input
+            type="radio"
+            value="municipal"
+            name="choose"
+            checked={radio === 'municipal'}
+            onChange={() => setRadio('municipal')}
+          />
+          <label htmlFor="municipal" onClick={() => setRadio('municipal')}>
+            Insc. municipal
+          </label>
+        </S.RadioGroup>
+        <Input
+          value={formik.values.role}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label={`Inscrição ${radio}`}
+          required
+          id="role"
+          name="role"
+          placeholder=""
+          fullwidth
+          errorMessage={(formik.touched.role && formik.errors.role) || ''}
+        />
+      </S.Form>
+      <S.Action>
+        <Link passHref href="/">
+          <Button type="button" variant="warning-outline">
+            Cancelar
           </Button>
-        </S.Action>
-      </S.Form>{' '}
+        </Link>
+        <Button type="submit" id="next">
+          Próximo
+        </Button>
+      </S.Action>
     </S.Wrapper>
   );
 };

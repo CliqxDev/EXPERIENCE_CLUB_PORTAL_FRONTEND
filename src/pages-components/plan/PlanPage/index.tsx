@@ -1,18 +1,47 @@
 import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
-
+import { usePathname } from 'next/navigation';
 import { isEmpty, uniqueId } from 'lodash';
+
 import Button from 'components/ui/Button';
-// import { logout } from 'utils/services/auth';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import { Card } from 'pages-components/register/CardRegister';
+import { PlanType } from 'models/plan';
 import * as S from './styles';
 import { SelectedTypePlan } from './types';
-import { Card } from '../CardRegister';
 
-const Register = () => {
+const priceForUsers = [
+  {
+    id: '50+',
+    labelUsers: '+ 50 usuários',
+    priceInstallments: '29',
+    priceAll: '299'
+  },
+  {
+    id: '11-50',
+    labelUsers: '11 a 50 usuários',
+    priceInstallments: '39',
+    priceAll: '399'
+  },
+  {
+    id: '10',
+    labelUsers: 'até 10 usuários',
+    priceInstallments: '49',
+    priceAll: '499'
+  }
+];
+
+const PlanPage = () => {
+  const pathname = usePathname();
   const { data } = useClientInfo();
   const [planType, setPlanType] = useState<SelectedTypePlan>('YEARLY');
   const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(data)) {
+      setIsLogged(true);
+    }
+  }, [data]);
 
   const handleChangeTypePlan = (planSelected: SelectedTypePlan) =>
     setPlanType(planSelected);
@@ -35,32 +64,29 @@ const Register = () => {
     }
   ];
 
-  const priceForUsers = [
-    {
-      id: '50+',
-      labelUsers: '+ 50 usuários',
-      priceInstallments: '29',
-      priceAll: '299'
-    },
-    {
-      id: '11-50',
-      labelUsers: '11 a 50 usuários',
-      priceInstallments: '39',
-      priceAll: '399'
-    },
-    {
-      id: '10',
-      labelUsers: 'até 10 usuários',
-      priceInstallments: '49',
-      priceAll: '499'
-    }
-  ];
+  const handleRedirectIndividual = () => {
+    const plan =
+      planType === 'YEARLY'
+        ? PlanType.INDIVIDUAL_YEARLY
+        : PlanType.INDIVIDUAL_MONTHLY;
+    const path = pathname === '/register-plan' ? 'register' : 'sigin';
 
-  useEffect(() => {
-    if (!isEmpty(data)) {
-      setIsLogged(true);
+    if (isLogged) {
+      return `/checkout/${plan}`;
     }
-  }, [data]);
+    return `/${path}/${plan}`;
+  };
+
+  const handleRedirectCorp = () => {
+    const plan =
+      planType === 'YEARLY' ? PlanType.CORP_YEARLY : PlanType.CORP_MONTHLY;
+    const path = pathname === '/register-plan' ? 'register' : 'sigin';
+
+    if (isLogged) {
+      return `/checkout/${plan}`;
+    }
+    return `/${path}/${plan}`;
+  };
 
   return (
     <S.Wrapper>
@@ -101,7 +127,7 @@ const Register = () => {
           que acontece no mercado
         </S.DescriptionPlan>
 
-        <Link href={isLogged ? "/checkout/individual" : "/register/personal-data/individual"} passHref>
+        <Link href={`${handleRedirectIndividual()}`} passHref>
           <Button onClick={() => {}} id="next-step">
             Adquirir plano individual
           </Button>
@@ -141,7 +167,7 @@ const Register = () => {
           </Fragment>
         ))}
 
-        <Link href="/register/personal-data/corp" passHref>
+        <Link href={`${handleRedirectCorp()}`} passHref>
           <Button onClick={() => {}} id="next-step">
             Adquirir plano corporativo
           </Button>
@@ -154,4 +180,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default PlanPage;

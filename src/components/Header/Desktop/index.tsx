@@ -26,9 +26,9 @@ const HeaderDesktop = () => {
   }, [data]);
 
   return (
-    <S.WrapperDesktop >
+    <S.WrapperDesktop>
       {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
-      {(showMenu && data) && <MenuDesktop />}
+      {showMenu && data && <MenuDesktop />}
       <div />
 
       <Image
@@ -55,19 +55,19 @@ const HeaderDesktop = () => {
           </svg>
         </ButtonMenu>
 
-        {((isLogged && data) && <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />) ||
+        {(isLogged && data && (
+          <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />
+        )) || (
           <>
-            <Link href="/register/user" passHref>
-              <S.ButtonRegister>
-                Cadastre-se
-              </S.ButtonRegister>
+            <Link href="/plan" passHref>
+              <S.ButtonRegister>Cadastre-se</S.ButtonRegister>
             </Link>
             <BoxSignDesktop />
           </>
-        }
+        )}
       </S.Actions>
     </S.WrapperDesktop>
-  )
+  );
 };
 
 export default HeaderDesktop;

@@ -11,16 +11,18 @@ import { clearClientInfo, clearSigIn } from 'flux/modules/auth/actions';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
 
-import arrowRightIcon from '../../../../../public/img/arrow-right-gray.svg'
+import arrowRightIcon from '../../../../../public/img/arrow-right-gray.svg';
 
 const MenuDesktop = () => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
   const [isLogged, setIsLogger] = useState(false);
-  const [menuList, setMenuList] = useState([{
-    label: '',
-    path: ''
-  }]);
+  const [menuList, setMenuList] = useState([
+    {
+      label: '',
+      path: ''
+    }
+  ]);
 
   useEffect(() => {
     if (!isEmpty(data)) {
@@ -32,51 +34,61 @@ const MenuDesktop = () => {
     const newMenuList = [];
 
     if (!isLogged) {
-      newMenuList.push({
-        label: 'Assine',
-        path: '/register'
-      }, {
-        label: 'Cadastre-se',
-        path: '/register/user'
-      }, {
-        label: 'Sobre',
-        path: '/'
-      });
+      newMenuList.push(
+        {
+          label: 'Assine',
+          path: '/plan'
+        },
+        {
+          label: 'Cadastre-se',
+          path: '/register-plan'
+        },
+        {
+          label: 'Sobre',
+          path: '/'
+        }
+      );
     }
 
-    if (isLogged && (!data?.is_admin && !data?.is_premium)) {
+    if (isLogged && !data?.is_admin && !data?.is_premium) {
       newMenuList.push(
         {
           label: 'Perfil',
-          path: '/perfil',
+          path: '/perfil'
         },
         {
           label: 'Assine',
-          path: '/register'
-        }, {
-        label: 'Sobre',
-        path: '/'
-      });
+          path: '/plan'
+        },
+        {
+          label: 'Sobre',
+          path: '/'
+        }
+      );
     }
 
-    if (isLogged && (!data?.is_admin && data?.is_premium)) {
+    if (isLogged && !data?.is_admin && data?.is_premium) {
       newMenuList.push(
         {
           label: 'Perfil',
-          path: '/perfil',
-        }, {
-        label: 'Biblioteca',
-        path: '/'
-      }, {
-        label: 'Minhas Trilhas',
-        path: '/'
-      }, {
-        label: 'Compartilhados',
-        path: '/'
-      }, {
-        label: 'Vídeos',
-        path: '/'
-      },
+          path: '/perfil'
+        },
+        {
+          label: 'Biblioteca',
+          path: '/'
+        },
+        {
+          label: 'Minhas Trilhas',
+          path: '/'
+        },
+        {
+          label: 'Compartilhados',
+          path: '/'
+        },
+        {
+          label: 'Vídeos',
+          path: '/'
+        },
         // {
         //   label: 'Assinatura',
         //   path: '/'
@@ -84,27 +96,32 @@ const MenuDesktop = () => {
         {
           label: 'Sobre',
           path: '/'
-        });
+        }
+      );
     }
 
-    if (isLogged && (data?.is_admin && data?.is_premium)) {
+    if (isLogged && data?.is_admin && data?.is_premium) {
       newMenuList.push(
         {
           label: 'Perfil',
-          path: '/perfil',
-        }, {
-        label: 'Biblioteca',
-        path: '/'
-      }, {
-        label: 'Minhas Trilhas',
-        path: '/'
-      }, {
-        label: 'Colaboradores',
-        path: '/employees'
-      }, {
-        label: 'Compartilhados',
-        path: '/'
-      },
+          path: '/perfil'
+        },
+        {
+          label: 'Biblioteca',
+          path: '/'
+        },
+        {
+          label: 'Minhas Trilhas',
+          path: '/'
+        },
+        {
+          label: 'Colaboradores',
+          path: '/employees'
+        },
+        {
+          label: 'Compartilhados',
+          path: '/'
+        },
         // {
         //   label: 'Assinatura',
         //   path: '/'
@@ -112,7 +129,8 @@ const MenuDesktop = () => {
         {
           label: 'Sobre',
           path: '/'
-        });
+        }
+      );
     }
 
     setMenuList(newMenuList);
@@ -123,7 +141,7 @@ const MenuDesktop = () => {
     dispatch(clearSigIn());
     logout();
     setIsLogger(false);
-    redirect('/')
+    redirect('/');
   };
 
   return (
@@ -133,10 +151,7 @@ const MenuDesktop = () => {
           <Link href={path} passHref style={{ textDecoration: 'none' }}>
             <S.MenuLabel>
               <span>{label}</span>
-              <Image
-                src={arrowRightIcon}
-                alt="Acesso"
-              />
+              <Image src={arrowRightIcon} alt="Acesso" />
             </S.MenuLabel>
           </Link>
         </S.MenuList>
@@ -144,10 +159,7 @@ const MenuDesktop = () => {
       <S.MenuList>
         <S.MenuLabel onClick={handleLogout} style={{ cursor: 'pointer' }}>
           <span>Sair</span>
-          <Image
-            src={arrowRightIcon}
-            alt="Acesso"
-          />
+          <Image src={arrowRightIcon} alt="Acesso" />
         </S.MenuLabel>
       </S.MenuList>
     </S.WrapperDesktop>

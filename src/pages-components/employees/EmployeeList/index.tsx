@@ -9,8 +9,8 @@ import { employeeInfo } from 'flux/modules/employee/actions';
 import { useEmployeeInfo } from 'hook/selectors/employeeHooks';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
-import employeeImg from '../../../../public/img/employee.svg'
-import employeeIconLightblue from '../../../../public/img/employee-icon-lightblue.svg'
+import employeeImg from '../../../../public/img/employee.svg';
+import employeeIconLightblue from '../../../../public/img/employee-icon-lightblue.svg';
 
 type EmployeesDataCard = {
   id: number;
@@ -20,40 +20,42 @@ type EmployeesDataCard = {
   user: number;
   subscription_user_plan: number;
   company: number;
-}
+};
 
 type TitleVariant = {
   variant?: 'default' | 'add';
-}
+};
 
 type CardLicenseVariant = {
   variant?: 'default' | 'limit';
-}
+};
 
 const EmployeeList: FC<TitleVariant> = ({ variant }) => {
   const dispatch = useAppDispatch();
   const { data: employeesInfo } = useEmployeeInfo();
   const { data } = useClientInfo();
   let licenseKeyQtdLimited = 0;
-  const [employeeData, setEmployeeData] = useState<EmployeesDataCard[]>([{
-    id: 0,
-    email: '',
-    name: '',
-    subscription_user_plan_id: '',
-    user: 0,
-    subscription_user_plan: 0,
-    company: 0
-  }]);
+  const [employeeData, setEmployeeData] = useState<EmployeesDataCard[]>([
+    {
+      id: 0,
+      email: '',
+      name: '',
+      subscription_user_plan_id: '',
+      user: 0,
+      subscription_user_plan: 0,
+      company: 0
+    }
+  ]);
 
   useEffect(() => {
     if (!isEmpty(data)) {
       licenseKeyQtdLimited = data.remaining_vacancy_count;
     }
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
-    dispatch(employeeInfo.request())
-  }, [dispatch, employeeInfo])
+    dispatch(employeeInfo.request());
+  }, [dispatch, employeeInfo]);
 
   useEffect(() => {
     if (!isEmpty(employeesInfo)) {
@@ -71,19 +73,19 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
       });
       setEmployeeData(newEmployeeData);
     }
-  }, [employeesInfo, employeeInfo])
+  }, [employeesInfo, employeeInfo]);
 
   return (
     <S.Wrapper>
-      <Title variant='black400'>Colaboradores</Title>
+      <Title variant="black400">Colaboradores</Title>
       <S.CardGrid>
-        {employeeData.map((employee) => (
+        {employeeData.map(employee => (
           <S.Card key={employee.id}>
-            <Link href="employees/employee-info" style={{ textDecoration: 'none' }}>
-              <Image
-                src={employeeImg}
-                alt={`Colaborador ${employee.name}`}
-              />
+            <Link
+              href="employees/employee-info"
+              style={{ textDecoration: 'none' }}
+            >
+              <Image src={employeeImg} alt={`Colaborador ${employee.name}`} />
               <S.EmployeeName>{employee.name}</S.EmployeeName>
             </Link>
           </S.Card>
@@ -91,13 +93,15 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
       </S.CardGrid>
       <S.WarningLicense>
         Você utilizou {employeeData.length} licenças de{' '}
-        <strong style={{ color: '#1D1D1B' }}>{data?.remaining_vacancy_count} disponíveis</strong>
+        <strong style={{ color: '#1D1D1B' }}>
+          {data?.remaining_vacancy_count} disponíveis
+        </strong>
       </S.WarningLicense>
 
       {employeeData.length >= licenseKeyQtdLimited && (
         <S.CardLicense>
           <S.AddEmployee>
-            <S.LimitEmployee variant='limited'>
+            <S.LimitEmployee variant="limited">
               <Image
                 src={employeeIconLightblue}
                 alt="Adicionar mais colaboradores"
@@ -109,10 +113,11 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
           </S.AddEmployee>
           <S.CardAddEmployee variant="limit">
             <S.TitleLimit variant="add">
-              Limite de licenças excedido, porém é possível adicionar mais pessoas.
+              Limite de licenças excedido, porém é possível adicionar mais
+              pessoas.
             </S.TitleLimit>
-            <Link href="/register" style={{ width: '100%'}}>
-            <S.AddButton>Adquirir licença</S.AddButton>
+            <Link href="/plan" style={{ width: '100%' }}>
+              <S.AddButton>Adquirir licença</S.AddButton>
             </Link>
           </S.CardAddEmployee>
         </S.CardLicense>
@@ -121,7 +126,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
       {employeeData.length < licenseKeyQtdLimited && (
         <S.CardLicense>
           <S.AddEmployee>
-            <S.LimitEmployee variant='default'>
+            <S.LimitEmployee variant="default">
               {licenseKeyQtdLimited - employeeData.length}
             </S.LimitEmployee>
             <S.TitleLimit variant="default">
@@ -130,9 +135,14 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
           </S.AddEmployee>
           <S.CardAddEmployee variant="default">
             <S.TitleLimit variant="add">
-              Você ainda tem licenças que pode compartilhar com seus colaboradores
+              Você ainda tem licenças que pode compartilhar com seus
+              colaboradores
             </S.TitleLimit>
-            <Link href="employees/new-employee" passHref style={{ width: '100%' }}>
+            <Link
+              href="employees/new-employee"
+              passHref
+              style={{ width: '100%' }}
+            >
               <S.AddButton>Adicionar colaborador</S.AddButton>
             </Link>
           </S.CardAddEmployee>
@@ -140,6 +150,6 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
       )}
     </S.Wrapper>
   );
-}
+};
 
 export default EmployeeList;

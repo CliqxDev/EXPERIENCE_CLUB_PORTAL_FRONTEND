@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
-import { redirect } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 
@@ -25,6 +25,7 @@ type UserType = {
 };
 
 const SigIn = () => {
+  const { plan }: any = useParams();
   const dispatch = useAppDispatch();
   const { status, message, data } = useSigIn();
   const [checkboxStatus, setCheckboxStatus] = useState<boolean | undefined>(
@@ -85,6 +86,13 @@ const SigIn = () => {
     onSubmit: handleSubmit,
     validationSchema: () => sigInSchema
   });
+
+  const handleRedirect = () => {
+    if (plan) {
+      return `/register/${plan}`;
+    }
+    return '/register-plan';
+  };
 
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
@@ -156,7 +164,11 @@ const SigIn = () => {
       <Button disabled={!(formik.isValid && formik.dirty)} type="submit">
         Entrar
       </Button>
-      <Link href="/register" passHref style={{ textDecoration: 'none' }}>
+      <Link
+        href={`${handleRedirect()}`}
+        passHref
+        style={{ textDecoration: 'none' }}
+      >
         <Button id="register-btn" variant="link" type="button">
           Ainda não possui uma conta? Clique aqui
         </Button>
