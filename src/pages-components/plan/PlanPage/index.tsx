@@ -1,12 +1,18 @@
 import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { isEmpty, uniqueId } from 'lodash';
+import { findIndex, isEmpty, uniqueId, filter } from 'lodash';
 
 import Button from 'components/ui/Button';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import { Card } from 'pages-components/register/CardRegister';
 import { PlanType } from 'models/plan';
+import { useAppDispatch } from 'hook/store';
+import { getPlans } from 'flux/modules/plan/actions';
+import { usePlans } from 'hook/selectors/planHooks';
+import { RequestStatus } from 'models/iRequest';
+import { SkeletonPlan } from 'components/ui/Skeleton';
+import { Plan } from 'flux/modules/plan/types';
 import * as S from './styles';
 import { SelectedTypePlan } from './types';
 
@@ -32,8 +38,13 @@ const priceForUsers = [
 ];
 
 const PlanPage = () => {
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
   const { data } = useClientInfo();
+  const { status: planStatus, data: dataStatus } = usePlans();
+
+  const isLoading = planStatus === RequestStatus.fetching;
+
   const [planType, setPlanType] = useState<SelectedTypePlan>('YEARLY');
   const [isLogged, setIsLogged] = useState(false);
 
@@ -42,6 +53,25 @@ const PlanPage = () => {
       setIsLogged(true);
     }
   }, [data]);
+
+  useEffect(() => {
+    dispatch(getPlans.request());
+  }, []);
+
+  const filterIndividualDataStatus = (type: number) => {
+    if (dataStatus) {
+      const idx = findIndex(dataStatus, ['type', type]);
+      return dataStatus[idx];
+    }
+    return null;
+  };
+
+  const filterCorpDataStatus = (type: number) => {
+    if (dataStatus) {
+      return filter(dataStatus, ['type', type]);
+    }
+    return [];
+  };
 
   const handleChangeTypePlan = (planSelected: SelectedTypePlan) =>
     setPlanType(planSelected);
@@ -88,95 +118,127 @@ const PlanPage = () => {
     return `/${path}/${plan}`;
   };
 
+  const sanitizeLabelUsersQtd = (item: Plan) => {
+    if (item.qtd_max_members <= 10) {
+      return `Até  ${item.qtd_max_members} usuários`;
+    }
+    return `de ${item.qtd_min_members} a ${item.qtd_max_members} usuários`;
+  };
+
   return (
-    <S.Wrapper>
-      <Card.Root>
-        <Card.Title>Escolha seu plano</Card.Title>
-        <Card.Subtitle>
-          Temos planos individuais e corporativos. Aumente o conhecimento da sua
-          equipe.
-        </Card.Subtitle>
-      </Card.Root>
+    <>
+      {(isLoading && <SkeletonPlan />) ||
+        (dataStatus && dataStatus?.length > 0 && (
+          <S.Wrapper>
+            <Card.Root>
+              <Card.Title>Escolha seu plano</Card.Title>
+              <Card.Subtitle>
+                Temos planos individuais e corporativos. Aumente o conhecimento
+                da sua equipe.
+              </Card.Subtitle>
+            </Card.Root>
 
-      <S.ButtonWrapper>
-        {buttonsType.map(button => (
-          <S.ButtonSelect
-            key={uniqueId()}
-            onClick={button.action}
-            variant={button.variant}
-          >
-            {button.label}
-          </S.ButtonSelect>
-        ))}
-      </S.ButtonWrapper>
+            <S.ButtonWrapper>
+              {buttonsType.map(button => (
+                <S.ButtonSelect
+                  key={uniqueId()}
+                  onClick={button.action}
+                  variant={button.variant}
+                >
+                  {button.label}
+                </S.ButtonSelect>
+              ))}
+            </S.ButtonWrapper>
 
-      <Card.Root variant="lightDark">
-        <S.PlanPrice style={{ alignItems: 'end' }}>
-          <Card.Title size="md" variant="lightDark">
-            Plano individual
-          </Card.Title>
+            <Card.Root variant="lightDark">
+              <S.PlanPrice style={{ alignItems: 'end' }}>
+                <Card.Title size="md" variant="lightDark">
+                  Plano individual
+                </Card.Title>
 
-          {planType === 'YEARLY' ? (
-            <Card.PriceYearly priceInstallments="49" priceAll="499" />
-          ) : (
-            <Card.PriceMonthly priceInstallments="49" priceAll="499" />
-          )}
-        </S.PlanPrice>
-        <S.DescriptionPlan>
-          Você terá acesso ao melhor conteúdo de negócios. Fique por dentro do
-          que acontece no mercado
-        </S.DescriptionPlan>
+                {planType === 'YEARLY' ? (
+                  <Card.PriceYearly data={filterIndividualDataStatus(1)} />
+                ) : (
+                  <Card.PriceMonthly data={filterIndividualDataStatus(2)} />
+                )}
+              </S.PlanPrice>
+              <S.DescriptionPlan>
+                Você terá acesso ao melhor conteúdo de negócios. Fique por
+                dentro do que acontece no mercado
+              </S.DescriptionPlan>
 
-        <Link href={`${handleRedirectIndividual()}`} passHref>
-          <Button onClick={() => {}} id="next-step">
-            Adquirir plano individual
-          </Button>
-        </Link>
-        {planType === 'YEARLY' && (
-          <S.EconomyPlan>Economize 2 mensalidades no plano anual</S.EconomyPlan>
-        )}
-      </Card.Root>
-
-      <Card.Root variant="dark">
-        <Card.Title size="md" variant="lightDark">
-          Plano corporativo
-        </Card.Title>
-        <S.DescriptionPlan>
-          Sua equipe muito bem-informada. Entrevistas, reportagens, tendências,
-          vídeos, modelos de negócios inovadores{' '}
-        </S.DescriptionPlan>
-
-        {priceForUsers.map((priceUsers, idx) => (
-          <Fragment key={uniqueId()}>
-            <S.PriceForUsers>
-              <h4>{priceUsers.labelUsers}</h4>
-              {planType === 'YEARLY' ? (
-                <Card.PriceYearly
-                  priceInstallments={priceUsers.priceInstallments}
-                  priceAll={priceUsers.priceAll}
-                  forUserSpan="Valor por usuário"
-                />
-              ) : (
-                <Card.PriceMonthly
-                  priceAll={priceUsers.priceInstallments}
-                  forUserSpan="Valor por usuário"
-                />
+              <Link href={`${handleRedirectIndividual()}`} passHref>
+                <Button onClick={() => {}} id="next-step">
+                  Adquirir plano individual
+                </Button>
+              </Link>
+              {planType === 'YEARLY' && (
+                <S.EconomyPlan>
+                  Economize 2 mensalidades no plano anual
+                </S.EconomyPlan>
               )}
-            </S.PriceForUsers>
-            {idx < priceForUsers.length - 1 && <S.Line />}
-          </Fragment>
-        ))}
+            </Card.Root>
 
-        <Link href={`${handleRedirectCorp()}`} passHref>
-          <Button onClick={() => {}} id="next-step">
-            Adquirir plano corporativo
-          </Button>
-        </Link>
-        {planType === 'YEARLY' && (
-          <S.EconomyPlan>Economize 2 mensalidades por usuário</S.EconomyPlan>
-        )}
-      </Card.Root>
-    </S.Wrapper>
+            <Card.Root variant="dark">
+              <Card.Title size="md" variant="lightDark">
+                Plano corporativo
+              </Card.Title>
+              <S.DescriptionPlan>
+                Sua equipe muito bem-informada. Entrevistas, reportagens,
+                tendências, vídeos, modelos de negócios inovadores{' '}
+              </S.DescriptionPlan>
+
+              {planType === 'YEARLY' && (
+                <div
+                  style={{ display: 'flex', flexDirection: 'column-reverse' }}
+                >
+                  {filterCorpDataStatus(3).map((item, idx) => (
+                    <Fragment key={uniqueId()}>
+                      <S.PriceForUsers>
+                        <h4>{sanitizeLabelUsersQtd(item)}</h4>
+                        <Card.PriceYearly
+                          data={item}
+                          forUserSpan="Valor por usuário"
+                        />
+                      </S.PriceForUsers>
+                      {idx < priceForUsers.length - 1 && <S.Line />}
+                    </Fragment>
+                  ))}
+                </div>
+              )}
+
+              {planType === 'MONTHLY' && (
+                <div
+                  style={{ display: 'flex', flexDirection: 'column-reverse' }}
+                >
+                  {filterCorpDataStatus(4).map((item, idx) => (
+                    <Fragment key={uniqueId()}>
+                      <S.PriceForUsers>
+                        <h4>{sanitizeLabelUsersQtd(item)}</h4>
+                        <Card.PriceMonthly
+                          data={item}
+                          forUserSpan="Valor por usuário"
+                        />
+                      </S.PriceForUsers>
+                      {idx < priceForUsers.length - 1 && <S.Line />}
+                    </Fragment>
+                  ))}
+                </div>
+              )}
+              <Link href={`${handleRedirectCorp()}`} passHref>
+                <Button onClick={() => {}} id="next-step">
+                  Adquirir plano corporativo
+                </Button>
+              </Link>
+              {planType === 'YEARLY' && (
+                <S.EconomyPlan>
+                  Economize 2 mensalidades por usuário
+                </S.EconomyPlan>
+              )}
+            </Card.Root>
+          </S.Wrapper>
+        ))}
+    </>
   );
 };
 

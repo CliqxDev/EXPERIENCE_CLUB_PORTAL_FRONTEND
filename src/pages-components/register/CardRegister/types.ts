@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Plan } from 'flux/modules/plan/types';
 
 export type Variants = 'default' | 'dark' | 'gray' | 'lightDark' | 'white';
 
@@ -11,8 +12,7 @@ export type StyleProps = {
 
 export type Props = StyleProps & {
   children?: ReactNode;
-  priceInstallments?: string;
-  priceAll?: string;
   forUserSpan?: string;
   style?: object;
+  data?: Plan | null;
 };

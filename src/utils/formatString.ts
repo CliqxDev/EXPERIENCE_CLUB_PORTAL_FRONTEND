@@ -18,3 +18,9 @@ export const sanitizeTextByMaxLength = (value: string, maxLength = 150) => {
     Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
   );
 };
+
+export const formatInstallmentsValor = (value: string, qtd: number) => {
+  const valueParse = parseFloat(value);
+  const parcelValue = (valueParse / qtd).toFixed(2);
+  return parcelValue.replace('.', ',');
+};

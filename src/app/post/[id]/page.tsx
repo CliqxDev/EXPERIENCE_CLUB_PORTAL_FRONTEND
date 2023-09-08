@@ -5,7 +5,7 @@ import { useSigIn } from 'hook/selectors/authHooks';
 import { RequestStatus } from 'models/iRequest';
 import Post from 'pages-components/post/PostPage';
 
-export default function Pade() {
+export default function Page() {
   const { status } = useSigIn();
   const isLoading = status === RequestStatus.fetching;
   return (

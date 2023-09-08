@@ -26,3 +26,11 @@ export const SkeletonPost = () => (
     <S.Placeholder className="action" />
   </S.LoaderWrapper>
 );
+
+export const SkeletonPlan = () => (
+  <S.LoaderWrapper>
+    <S.Placeholder className="post-title" />
+    <S.Placeholder className="input" />
+    <S.Placeholder className="header-image" />
+  </S.LoaderWrapper>
+);
