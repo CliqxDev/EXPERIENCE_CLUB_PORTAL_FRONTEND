@@ -175,6 +175,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   return (
     <S.Wrapper>
       <S.Header>
+        <Link href="/">
         <svg
           width="45"
           height="32"
@@ -203,6 +204,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
             fill="#1D1D1B"
           />
         </svg>
+        </Link>
 
         <S.Title>Menu</S.Title>
 

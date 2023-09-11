@@ -34,7 +34,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
   const dispatch = useAppDispatch();
   const { data: employeesInfo } = useEmployeeInfo();
   const { data } = useClientInfo();
-  let licenseKeyQtdLimited = 0;
+  let licenseKeyQtdLimited = 5;
   const [employeeData, setEmployeeData] = useState<EmployeesDataCard[]>([
     {
       id: 0,
@@ -98,7 +98,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
         </strong>
       </S.WarningLicense>
 
-      {/* {employeeData.length >= licenseKeyQtdLimited && (
+      {licenseKeyQtdLimited - employeeData.length === 0 ?
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="limited">
@@ -121,9 +121,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
             </Link>
           </S.CardAddEmployee>
         </S.CardLicense>
-      )} */}
-
-      {employeeData.length >= licenseKeyQtdLimited && (
+        :
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="default">
@@ -147,7 +145,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
             </Link>
           </S.CardAddEmployee>
         </S.CardLicense>
-      )}
+      }
     </S.Wrapper>
   );
 };

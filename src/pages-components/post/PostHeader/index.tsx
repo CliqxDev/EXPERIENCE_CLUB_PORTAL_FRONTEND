@@ -21,10 +21,12 @@ const PostHeader = () => {
           />
         </Link>
       </S.HeaderAction>
+      <Link href="/">
       <img
         src="/img/icon-logo-exp.svg"
         alt="ícone do logo reduzido da exp-club"
       />
+      </Link>
 
       <S.HeaderAction>
         <S.Action onClick={() => setShowSearch(true)}>

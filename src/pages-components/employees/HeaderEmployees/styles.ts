@@ -8,4 +8,5 @@ export const Wrapper = styled.main`
   background-color: #ffffff;
   position: relative;
   width: 100%;
+  z-index: 999;
 `;

@@ -31,13 +31,15 @@ const HeaderDesktop = () => {
       {showMenu && data && <MenuDesktop />}
       <div />
 
-      <Image
-        src={expLogo}
-        alt="Exp Club"
-        style={{ marginLeft: '10rem' }}
-        width={200}
-        height={90}
-      />
+      <Link href="/" style={{ textDecoration: 'none' }}>
+        <Image
+          src={expLogo}
+          alt="Exp Club"
+          style={{ marginLeft: '10rem' }}
+          width={200}
+          height={90}
+        />
+      </Link>
 
       <S.Actions>
         <ButtonMenu onClick={() => setShowSearch(true)}>
@@ -58,13 +60,13 @@ const HeaderDesktop = () => {
         {(isLogged && data && (
           <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />
         )) || (
-          <>
-            <Link href="/plan" passHref>
-              <S.ButtonRegister>Cadastre-se</S.ButtonRegister>
-            </Link>
-            <BoxSignDesktop />
-          </>
-        )}
+            <>
+              <Link href="/plan" passHref>
+                <S.ButtonRegister>Cadastre-se</S.ButtonRegister>
+              </Link>
+              <BoxSignDesktop />
+            </>
+          )}
       </S.Actions>
     </S.WrapperDesktop>
   );

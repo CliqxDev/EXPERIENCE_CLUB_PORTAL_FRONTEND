@@ -15,7 +15,7 @@ const ConfirmAdded = () => (
     <S.CardVerify>
       <S.TitleCard>Enviamos um e-mail</S.TitleCard>
       <S.SubTitleCard>Foi enviado um link para o e-mail cadastrado. Seu colaborador necessita validar seu registo a partir de agora.</S.SubTitleCard>
-      <Link href="/" style={{ width: '100%', textDecoration: 'underline' }}>
+      <Link href="/employees" style={{ width: '100%', textDecoration: 'underline' }}>
         <Button fullwidth>
           Ok
         </Button>
