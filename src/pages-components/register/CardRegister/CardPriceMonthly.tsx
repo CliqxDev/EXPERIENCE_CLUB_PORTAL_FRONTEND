@@ -18,24 +18,29 @@ const sanitizeInstallment = (qtd_max_installments: number) => {
   );
 };
 
-export const CardPriceMonthly: FC<Props> = ({ style, forUserSpan, data }) => (
-  <S.InspirationDateWrapper style={style}>
-    {data && (
-      <S.InspirationDateWrapperColumn>
+export const CardPriceMonthly: FC<Props> = ({ style, forUserSpan, data }) => {
+  const valueConvert = data?.price.toString();
+
+  return (
+    <S.InspirationDateWrapper style={style}>
+      {data && (
         <S.InspirationDateWrapperColumn>
-          <div>
-            <p>
-              {sanitizeInstallment(data.qtd_max_installments)}
-              <strong>{data.price.replace('.', ',')}</strong>
-            </p>
-          </div>
-          <span
-            style={{ width: '100%', textAlign: 'right', fontSize: '1.2rem' }}
-          >
-            {forUserSpan}
-          </span>
+          <S.InspirationDateWrapperColumn>
+            <div>
+              <p>
+                {sanitizeInstallment(data.qtd_max_installments)}
+                <strong>{valueConvert?.replace('.', ',')}</strong>
+              </p>
+            </div>
+            <span
+              style={{ width: '100%', textAlign: 'right', fontSize: '1.2rem' }}
+            >
+              {forUserSpan}
+            </span>
+          </S.InspirationDateWrapperColumn>
         </S.InspirationDateWrapperColumn>
-      </S.InspirationDateWrapperColumn>
-    )}
-  </S.InspirationDateWrapper>
-);
+      )}
+    </S.InspirationDateWrapper>
+  );
+}
+

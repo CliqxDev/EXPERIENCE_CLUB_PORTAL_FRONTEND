@@ -19,8 +19,9 @@ export const sanitizeTextByMaxLength = (value: string, maxLength = 150) => {
   );
 };
 
-export const formatInstallmentsValor = (value: string, qtd: number) => {
-  const valueParse = parseFloat(value);
+export const formatInstallmentsValor = (value: number, qtd: number) => {
+  const valueConvert = value.toString();
+  const valueParse = parseFloat(valueConvert);
   const parcelValue = (valueParse / qtd).toFixed(2);
   return parcelValue.replace('.', ',');
 };

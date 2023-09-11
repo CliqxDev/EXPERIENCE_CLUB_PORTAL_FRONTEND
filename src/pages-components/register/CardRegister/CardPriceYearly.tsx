@@ -34,7 +34,7 @@ export const CardPriceYearly: FC<Props> = ({ style, data, forUserSpan }) => (
           <p>
             <span>ou R$ </span>
             <strong style={{ fontSize: '1.6rem' }}>
-              {data.price.replace('.', ',')}
+              {data.price}
             </strong>
           </p>
           <span
