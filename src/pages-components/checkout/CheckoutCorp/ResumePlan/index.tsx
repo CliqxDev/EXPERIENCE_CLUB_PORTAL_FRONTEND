@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import { useState, useEffect, FC } from 'react';
 import { Plan } from 'flux/modules/plan/types';
 import { useSelectedPlan } from 'hook/selectors/planHooks';
@@ -23,9 +24,21 @@ const ResumePlan: FC<Props> = ({ onCounter }) => {
   const sanitizeInstallment = () => {
     if (selectedPlan) {
       if (selectedPlan.qtd_max_installments === 1) {
+        const newPrice = selectedPlan.price * counter;
+
         return (
           <p>
-            <span>R$</span> <strong>49,90</strong>
+            <span>R$</span> <strong>{newPrice.toFixed(2)}</strong>
+          </p>
+        );
+      }
+
+      if (counter > 2) {
+        const newPrice = selectedPlan.price * counter / selectedPlan.qtd_max_installments;
+
+        return (
+          <p>
+            10x <span>ou R$</span> <strong>{newPrice.toFixed(2)}</strong>
           </p>
         );
       }
@@ -45,9 +58,19 @@ const ResumePlan: FC<Props> = ({ onCounter }) => {
         return null;
       }
 
+      if (counter > 2) {
+        const newPrice = selectedPlan.price * counter;
+
+        return (
+          <p>
+            <span>ou R$</span> {newPrice.toFixed(2)}
+          </p>
+        );
+      }
+
       return (
         <p>
-          <span>ou R$</span> 499,00
+          <span>ou R$</span> {selectedPlan.price}
         </p>
       );
     }

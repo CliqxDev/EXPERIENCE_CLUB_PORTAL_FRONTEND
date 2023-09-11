@@ -20,7 +20,7 @@ const ResumePlan = () => {
       if (selectedPlan.qtd_max_installments === 1) {
         return (
           <p>
-            <span>R$</span> <strong>49,90</strong>
+            <span>R$</span> <strong>{selectedPlan.price}</strong>
           </p>
         );
       }

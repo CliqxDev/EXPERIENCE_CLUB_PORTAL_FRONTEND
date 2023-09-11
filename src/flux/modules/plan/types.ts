@@ -4,7 +4,7 @@ export type Plan = {
   id: number;
   link: string;
   name: string;
-  price: string;
+  price: number;
   type: number;
   period: number;
   description: string;
