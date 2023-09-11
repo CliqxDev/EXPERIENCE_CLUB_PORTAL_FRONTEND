@@ -55,7 +55,7 @@ const PasswordRules: FC<Props> = ({ password, onChangePassword }) => {
         • Ter 8 ou mais caracteres
       </S.ItemRule>
       <S.ItemRule variant={passwordRule.letterAndNumber}>
-        • Letras e números
+        • Letra minúscula
       </S.ItemRule>
       <S.ItemRule variant={passwordRule.upperCaseLetter}>
         • Letra maiúscula

@@ -78,7 +78,7 @@ const Trails = () => {
             title: post.title.rendered,
             imgSrc:
               media[post.featured_media].media_details.sizes.thumbnail
-                .source_url,
+                ?.source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
             category: categoryData[post.categories[0]]
           });

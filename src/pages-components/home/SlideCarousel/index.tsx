@@ -28,7 +28,7 @@ const SlideCarousel: FC<Props> = ({ post }) => {
       if (!isEmpty(mediaData)) {
         if (mediaData[post.featured_media]) {
           setImage(
-            mediaData[post.featured_media].media_details.sizes.medium.source_url
+            mediaData[post.featured_media].media_details.sizes.medium?.source_url
           );
         }
       }

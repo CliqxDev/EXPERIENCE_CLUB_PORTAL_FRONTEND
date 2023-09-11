@@ -98,7 +98,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
         </strong>
       </S.WarningLicense>
 
-      {employeeData.length >= licenseKeyQtdLimited && (
+      {/* {employeeData.length >= licenseKeyQtdLimited && (
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="limited">
@@ -121,9 +121,9 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
             </Link>
           </S.CardAddEmployee>
         </S.CardLicense>
-      )}
+      )} */}
 
-      {employeeData.length < licenseKeyQtdLimited && (
+      {employeeData.length >= licenseKeyQtdLimited && (
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="default">

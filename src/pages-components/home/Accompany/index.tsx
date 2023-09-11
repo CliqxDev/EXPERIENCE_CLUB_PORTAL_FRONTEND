@@ -37,7 +37,7 @@ const Accompany = () => {
             id: post.id,
             title: post.title.rendered,
             imgSrc:
-              media[post.featured_media].media_details.sizes.medium.source_url,
+              media[post.featured_media].media_details.sizes.medium?.source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
             category: categoryData[post.categories[0]]
           });

@@ -183,4 +183,5 @@ export const LimitedRead = styled.div`
   padding: 0 2rem 0 1rem;
   position: fixed;
   bottom: 0;
+  z-index: 2;
 `;

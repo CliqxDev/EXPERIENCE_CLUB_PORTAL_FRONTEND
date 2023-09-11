@@ -137,7 +137,7 @@ const Post = () => {
           title: post.title.rendered,
           imgSrc:
             listMedia[post.featured_media].media_details.sizes.medium_large
-              .source_url,
+              ?.source_url,
           description: post.excerpt.rendered,
           category:
             (!isEmpty(categoryData) && categoryData[post.categories[0]]) || '',

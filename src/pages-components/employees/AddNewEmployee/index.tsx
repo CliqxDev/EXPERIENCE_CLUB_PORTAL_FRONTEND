@@ -20,7 +20,7 @@ const AddNewEmployee = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
-      toast('Falha ao tentar efetuar o login');
+      toast('Falha ao tentar adicionar colaborador');
     }
 
     if (status === RequestStatus.success) {

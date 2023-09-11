@@ -120,7 +120,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       );
     }
 
-    if (isLogged && data?.is_admin && data?.is_premium) {
+    if (isLogged && data?.is_admin || data?.is_premium) {
       newMenuList.push(
         {
           label: 'Biblioteca',

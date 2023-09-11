@@ -50,8 +50,10 @@ export const Title = styled.h1`
 export const Action = styled.div`
   max-width: 500px;
   width: 100%;
+  height: 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2.5rem 1.6rem;
+
 `;
