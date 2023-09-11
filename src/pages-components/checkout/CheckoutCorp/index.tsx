@@ -5,12 +5,17 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import axios from 'axios';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
 import Button from 'components/ui/Button';
 import { checkoutCorpSchema } from 'utils/schemas';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
+import { useAppDispatch } from 'hook/store';
+import { getSpecificPlan } from 'flux/modules/plan/actions';
+import { Plan } from 'flux/modules/plan/types';
+import { useClientInfo } from 'hook/selectors/authHooks';
 import ResumePlan from './ResumePlan';
 import * as S from './styles';
 
@@ -32,25 +37,19 @@ type CheckoutData = {
 };
 
 const CheckoutIndividual = () => {
-  const [dataCheckout, setDataCheckout] = useState<CheckoutData[]>([]);
   const [radio, setRadio] = useState('estadual');
+  const dispatch = useAppDispatch();
+  const { plan }: any = useParams();
+  const { data: dataClient } = useClientInfo();
+
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
   const handleSubmit = () => {
-    handleGetCheckout();
-  };
-
-  const handleGetCheckout = () => {
-    axios
-      .get(
-        'https://devexpclubplatform.cliqx.com.br/api/subscription-plans/?type=1&qtd_members=1'
-      )
-      .then(response => {
-        setDataCheckout(response.data);
-        if (response.data && dataCheckout) {
-          window.location.href = `https://checkout.experienceclub.com.br/subscribe/9a07e5c5-d7ab-4a5a-879e-dd34a5adf6df?email=${data?.email}&doc=${formik.values.cpf}`;
-        }
-      })
-      .then(error => {});
+    if (selectedPlan) {
+      if (selectedPlan.link) {
+        window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cnpj}`;
+      }
+    }
   };
 
   const formik = useFormik({
@@ -65,8 +64,25 @@ const CheckoutIndividual = () => {
     validationSchema: () => checkoutCorpSchema
   });
 
+  const getPlan = (qtd_members: number) => {
+    dispatch(
+      getSpecificPlan.request({
+        type: plan,
+        qtd_members
+      })
+    );
+  };
+
+  useEffect(() => {
+    getPlan(2);
+  }, []);
+
+  const handleCounter = (newCounter: number) => {
+    getPlan(newCounter);
+  };
+
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={formik.handleSubmit}>
       <S.Header>
         <Link passHref href="/plan">
           <Button variant="outline">Planos</Button>
@@ -78,8 +94,8 @@ const CheckoutIndividual = () => {
           />
         </Link>
       </S.Header>
-      <ResumePlan />
-      <S.Form onSubmit={formik.handleSubmit}>
+      <ResumePlan onCounter={handleCounter} />
+      <S.Form>
         <S.Title>Dados da empresa</S.Title>
         <Input
           value={formik.values.cnpj}

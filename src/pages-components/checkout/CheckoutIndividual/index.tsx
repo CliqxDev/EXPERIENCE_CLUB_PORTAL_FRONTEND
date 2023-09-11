@@ -20,9 +20,7 @@ import * as S from './styles';
 const CheckoutIndividual = () => {
   const { data: dataClient } = useClientInfo();
   const { data: dataSelectedPlan } = useSelectedPlan();
-
   const dispatch = useAppDispatch();
-
   const { plan }: any = useParams();
 
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
@@ -72,7 +70,7 @@ const CheckoutIndividual = () => {
   }, []);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={formik.handleSubmit}>
       <S.Header>
         <Link passHref href="/plan">
           <Button variant="outline">Planos</Button>
@@ -85,7 +83,7 @@ const CheckoutIndividual = () => {
         </Link>
       </S.Header>
       <ResumePlan />
-      <S.Form onSubmit={formik.handleSubmit}>
+      <S.Form>
         <S.Title>Dados do comprador</S.Title>
         <Input
           value={formik.values.name}
@@ -128,17 +126,17 @@ const CheckoutIndividual = () => {
           errorMessage={(formik.touched.email && formik.errors.email) || ''}
           spacing="24"
         />
-        <S.Action>
-          <Link passHref href="/">
-            <Button type="button" variant="warning-outline">
-              Cancelar
-            </Button>
-          </Link>
-          <Button type="submit" id="next">
-            Próximo
+      </S.Form>
+      <S.Action>
+        <Link passHref href="/">
+          <Button type="button" variant="warning-outline">
+            Cancelar
           </Button>
-        </S.Action>
-      </S.Form>{' '}
+        </Link>
+        <Button type="submit" id="next">
+          Próximo
+        </Button>
+      </S.Action>
     </S.Wrapper>
   );
 };
