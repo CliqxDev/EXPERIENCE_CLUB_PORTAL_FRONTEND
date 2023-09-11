@@ -1,6 +1,6 @@
 export enum PlanType {
-  INDIVIDUAL_MONTHLY = '1',
-  INDIVIDUAL_YEARLY = '2',
-  CORP_MONTHLY = '3',
-  CORP_YEARLY = '4'
+  INDIVIDUAL_YEARLY = '1',
+  INDIVIDUAL_MONTHLY = '2',
+  CORP_YEARLY = '3',
+  CORP_MONTHLY = '4'
 }

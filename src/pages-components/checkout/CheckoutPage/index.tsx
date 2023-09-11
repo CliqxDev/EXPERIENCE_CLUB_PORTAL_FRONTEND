@@ -7,8 +7,8 @@ const CheckoutPage = () => {
 
   return (
     <>
-      {plan === 1 || (plan === 2 && <CheckoutIndividual />)}
-      {plan === 3 || (plan === 3 && <CheckoutCorp />)}
+      {(plan === '1' || plan === '2') && <CheckoutIndividual />}
+      {(plan === '3' || plan === '4') && <CheckoutCorp />}
     </>
   );
 };

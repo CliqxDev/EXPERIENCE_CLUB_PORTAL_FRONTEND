@@ -1,55 +1,38 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useParams } from 'next/navigation';
+
 import Button from 'components/ui/Button';
 import { checkoutSchema } from 'utils/schemas';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
+import { useAppDispatch } from 'hook/store';
+import { getSpecificPlan } from 'flux/modules/plan/actions';
+import { useSelectedPlan } from 'hook/selectors/planHooks';
+import { Plan } from 'flux/modules/plan/types';
 import ResumePlan from './ResumePlan';
 import * as S from './styles';
 
-type CheckoutData = {
-  id: number;
-  link: string;
-  name: string;
-  price: string;
-  type: number;
-  period: number;
-  description: string;
-  is_active: boolean;
-  qtd_gifts: number;
-  qtd_min_members: number;
-  qtd_max_members: number;
-  qtd_max_installments: number;
-  created_at: string;
-  updated_at: string;
-};
-
 const CheckoutIndividual = () => {
-  const { data } = useClientInfo();
-  const [dataCheckout, setDataCheckout] = useState<CheckoutData[]>([]);
+  const { data: dataClient } = useClientInfo();
+  const { data: dataSelectedPlan } = useSelectedPlan();
+
+  const dispatch = useAppDispatch();
+
+  const { plan }: any = useParams();
+
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
   const handleSubmit = () => {
-    handleGetCheckout();
-  };
-
-  const handleGetCheckout = () => {
-    axios
-      .get(
-        'https://devexpclubplatform.cliqx.com.br/api/subscription-plans/?type=1&qtd_members=1'
-      )
-      .then(response => {
-        setDataCheckout(response.data);
-        if (response.data && dataCheckout) {
-          window.location.href = `https://checkout.experienceclub.com.br/subscribe/9a07e5c5-d7ab-4a5a-879e-dd34a5adf6df?email=${data?.email}&doc=${formik.values.cpf}`;
-        }
-      })
-      .then(error => {});
+    if (selectedPlan) {
+      if (selectedPlan.link) {
+        window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cpf}`;
+      }
+    }
   };
 
   const formik = useFormik({
@@ -65,11 +48,28 @@ const CheckoutIndividual = () => {
   });
 
   useEffect(() => {
-    if (!isEmpty(data)) {
-      formik.setFieldValue('name', data.name, false);
-      formik.setFieldValue('email', data.email, false);
+    if (dataSelectedPlan) {
+      if (dataSelectedPlan.length > 0) {
+        setSelectedPlan(dataSelectedPlan[0]);
+      }
     }
-  }, [data]);
+  }, [dataSelectedPlan]);
+
+  useEffect(() => {
+    if (!isEmpty(dataClient)) {
+      formik.setFieldValue('name', dataClient.name, false);
+      formik.setFieldValue('email', dataClient.email, false);
+    }
+  }, [dataClient]);
+
+  useEffect(() => {
+    dispatch(
+      getSpecificPlan.request({
+        type: plan,
+        qtd_members: 1
+      })
+    );
+  }, []);
 
   return (
     <S.Wrapper>

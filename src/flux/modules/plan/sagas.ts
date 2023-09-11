@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { AxiosError } from 'axios';
-import { getPlans } from './actions';
-import { getAllPlans } from './service';
+import { getPlans, getSpecificPlan } from './actions';
+import { getAllPlans, getPlan } from './service';
 import { PlanResponse } from './types';
 
 type PlanResponseAPI = {
@@ -20,4 +20,22 @@ function* getPlansSaga(): Generator {
   }
 }
 
-export default [takeEvery(getPlans.request, getPlansSaga)];
+function* getSpecificPlanSaga({
+  payload
+}: ReturnType<typeof getSpecificPlan.request>): Generator {
+  try {
+    const response: PlanResponseAPI = (yield call(
+      getPlan,
+      payload
+    )) as PlanResponseAPI;
+    yield put(getSpecificPlan.success(response.data));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(getSpecificPlan.failure(errors));
+  }
+}
+
+export default [
+  takeEvery(getPlans.request, getPlansSaga),
+  takeEvery(getSpecificPlan.request, getSpecificPlanSaga)
+];

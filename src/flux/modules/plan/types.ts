@@ -17,8 +17,14 @@ export type Plan = {
   updated_at: string;
 };
 
+export type PlanRequest = {
+  type: number;
+  qtd_members: number;
+};
+
 export type PlanResponse = Plan[];
 
 export type Plans = {
   plans: IRequest<PlanResponse>;
+  selectedPlan: IRequest<PlanResponse>;
 };
