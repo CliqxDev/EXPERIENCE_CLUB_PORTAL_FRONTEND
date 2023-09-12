@@ -39,7 +39,11 @@ const request = async (
   }).then(
     event => event,
     (error: any) => {
-      if (error.response.status === 401) {
+      if (
+        error.response.status === 401 &&
+        error.response.data.detail !==
+          'No active account found with the given credentials'
+      ) {
         logout();
         window.location.href = '/sigin';
       }
