@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import { findIndex, forEach, isEmpty } from 'lodash';
 import moment from 'moment';
 
-import Image from 'next/image';
+// import Image from 'next/image';
 import {
   useCategory,
   useColumnist,
@@ -32,8 +32,8 @@ import TrailFilter from 'components/TrailFilter';
 import ShareDialog from 'components/ShareDialog';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
-import limitedIcon from '../../../../public/img/limited-read.svg'
-import CardLimitedRead from './CardLimitedRead';
+// import limitedIcon from '../../../../public/img/limited-read.svg';
+// import CardLimitedRead from './CardLimitedRead';
 
 type Card = {
   id: number;
@@ -176,7 +176,11 @@ const Post = () => {
             <S.DateHourTextWrapper>
               <S.Text>{postSelected.date}</S.Text>
               <S.Divider />
-              <S.Text>{postSelected.tempo_leitura ? `${postSelected.tempo_leitura} minutos` : `0 minutos`}</S.Text>
+              <S.Text>
+                {postSelected.tempo_leitura
+                  ? `${postSelected.tempo_leitura} minutos`
+                  : `0 minutos`}
+              </S.Text>
             </S.DateHourTextWrapper>
             <S.Excerpt
               dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
@@ -184,9 +188,39 @@ const Post = () => {
             <S.Text>{`Por ${postSelected.columnist}`}</S.Text>
           </S.ExcerptWrapper>
           <S.ContentWrapper>
-            <S.Content
-              dangerouslySetInnerHTML={{ __html: postSelected.content }}
-            />
+            <S.Content>
+              <S.Post
+                dangerouslySetInnerHTML={{ __html: postSelected.content }}
+              />
+
+              <S.Action>
+                <S.ButtonWrapper>
+                  <img
+                    src="/img/icon-a+.svg"
+                    alt="ícone letra A e sinal de mais"
+                  />
+                  <S.Button>Aumentar</S.Button>
+                </S.ButtonWrapper>
+                <S.ButtonWrapper>
+                  <img
+                    src="/img/icon-a-.svg"
+                    alt="ícone letra A e sinal de menos"
+                  />
+                  <S.Button>Diminuir</S.Button>
+                </S.ButtonWrapper>
+                <S.ButtonWrapper onClick={() => dispatch(setShowShare(true))}>
+                  <img
+                    src="/img/icon-post-share-action.svg"
+                    alt="ícone compartilhar"
+                  />
+                  <S.Button>Compartilhar</S.Button>
+                </S.ButtonWrapper>
+                <S.ButtonWrapper onClick={() => setShowTrailFilter(true)}>
+                  <img src="/img/icon-compass.svg" alt="ícone de compasso" />
+                  <S.Button>Trilhas</S.Button>
+                </S.ButtonWrapper>
+              </S.Action>
+            </S.Content>
           </S.ContentWrapper>
 
           {/* LIMITE LEITURA */}
@@ -195,40 +229,16 @@ const Post = () => {
             titleCard='Ou conheça nossos planos e tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports.'
             variant="sigin"
           /> */}
-          <CardLimitedRead
+          {/* <CardLimitedRead
             title='Você esgotou os seus conteúdos gratuitos.'
             titleCard='Conheça nossos planos e continue navegando sem limites na plataforma [EXP].'
             subTitleCard='Tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports.'
             variant="plan"
-          />
+          /> */}
           {/* LIMITE LEITURA */}
 
           <ShowMore />
           <Explore title="Relacionados" variant="scroll" />
-          <S.Action>
-            <S.ButtonWrapper>
-              <img src="/img/icon-a+.svg" alt="ícone letra A e sinal de mais" />
-              <S.Button>Aumentar</S.Button>
-            </S.ButtonWrapper>
-            <S.ButtonWrapper>
-              <img
-                src="/img/icon-a-.svg"
-                alt="ícone letra A e sinal de menos"
-              />
-              <S.Button>Diminuir</S.Button>
-            </S.ButtonWrapper>
-            <S.ButtonWrapper onClick={() => dispatch(setShowShare(true))}>
-              <img
-                src="/img/icon-post-share-action.svg"
-                alt="ícone compartilhar"
-              />
-              <S.Button>Compartilhar</S.Button>
-            </S.ButtonWrapper>
-            <S.ButtonWrapper onClick={() => setShowTrailFilter(true)}>
-              <img src="/img/icon-compass.svg" alt="ícone de compasso" />
-              <S.Button>Trilhas</S.Button>
-            </S.ButtonWrapper>
-          </S.Action>
         </>
       )}
       <TrailFilter
@@ -240,13 +250,10 @@ const Post = () => {
         onClose={() => dispatch(setShowShare(false))}
       />
 
-      <S.LimitedRead>
+      {/* <S.LimitedRead>
         Limite de leitura excedido.
-        <Image
-          src={limitedIcon}
-          alt="Limite de leitura excedido"
-        />
-      </S.LimitedRead>
+        <Image src={limitedIcon} alt="Limite de leitura excedido" />
+      </S.LimitedRead> */}
     </S.Wrapper>
   );
 };
