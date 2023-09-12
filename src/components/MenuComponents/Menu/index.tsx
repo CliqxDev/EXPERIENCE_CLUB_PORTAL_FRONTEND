@@ -65,7 +65,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         },
         {
           label: 'Cadastre-se',
-          path: '/register-plan'
+          path: '/register/user'
         },
         {
           label: 'Sobre',
