@@ -24,6 +24,7 @@ const Input: FC<InputProps> = ({
   autoFocus,
   variant,
   fullwidth,
+  maxLength,
   type = 'text'
 }) => {
   const [maskFormat, setMask] = useState<string>('');
@@ -72,6 +73,7 @@ const Input: FC<InputProps> = ({
           aria-label={name}
           inputMode={inputMode}
           autoFocus={autoFocus}
+          maxLength={maxLength}
         />
         {!!label && (
           <S.Label htmlFor={id} variant={variant || 'default'}>

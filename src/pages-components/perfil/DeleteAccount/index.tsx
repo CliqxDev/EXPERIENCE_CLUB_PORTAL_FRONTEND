@@ -32,6 +32,7 @@ const DeleteAccount: FC<Props> = ({ onClose, onSubmit, show = false }) => {
           id="delete"
           name="delete"
           spacing="16"
+          maxLength="7"
         />
         <S.AlertMessage>
           É necessário confirmar sua ação escrevendo DELETAR no campo acima. Em

@@ -64,17 +64,16 @@ const CheckoutIndividual = () => {
 
   useEffect(() => {
     if (status === RequestStatus.error) {
-      toast(
-        'Erro ao cadastrar plano'
-      );
+      if (message === "Request failed with status code 400") {
+        toast(
+          'O usuário já tem uma assinatura.'
+        );
+      }
     }
-
-    if (status === RequestStatus.success && !isEmpty(subscriptionUser)) {
-      if (selectedPlan && subscriptionUser) {
-        if (selectedPlan.link) {
-          window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cpf}`;
-          dispatch(clearSubscriptionUserPlans());
-        }
+    if (selectedPlan && status === RequestStatus.success) {
+      if (selectedPlan.link) {
+        window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cpf}`;
+        dispatch(clearSubscriptionUserPlans());
       }
     }
   }, [status, message, selectedPlan, subscriptionUser]);

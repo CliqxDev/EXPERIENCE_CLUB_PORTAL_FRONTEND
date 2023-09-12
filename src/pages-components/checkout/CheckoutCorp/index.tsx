@@ -7,16 +7,20 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+
+import Toaster from 'components/ui/Toaster';
 
 import Button from 'components/ui/Button';
 import { checkoutCorpSchema } from 'utils/schemas';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
 import { useAppDispatch } from 'hook/store';
-import { getSpecificPlan } from 'flux/modules/plan/actions';
+import { clearSubscriptionUserPlans, getSpecificPlan, postSubscriptionUserPlans } from 'flux/modules/plan/actions';
 import { Plan } from 'flux/modules/plan/types';
 import { useClientInfo } from 'hook/selectors/authHooks';
-import { useSelectedPlan } from 'hook/selectors/planHooks';
+import { useSelectedPlan, useSubscriptionUserPlan } from 'hook/selectors/planHooks';
+import { RequestStatus } from 'models/iRequest';
 import ResumePlan from './ResumePlan';
 import * as S from './styles';
 
@@ -38,26 +42,26 @@ type CheckoutData = {
 };
 
 const CheckoutIndividual = () => {
-  const [radio, setRadio] = useState('estadual');
   const dispatch = useAppDispatch();
   const { plan }: any = useParams();
   const { data: dataSelectedPlan } = useSelectedPlan();
   const { data: dataClient } = useClientInfo();
+  const { message, status, data: subscriptionUser } = useSubscriptionUserPlan();
 
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
   const handleSubmit = () => {
-    if (selectedPlan) {
-      if (selectedPlan.link) {
-        window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cnpj}`;
-      }
-    }
+    dispatch(
+      postSubscriptionUserPlans.request({
+        subscription_plan: plan,
+        qtd_members: 1
+      })
+    );
   };
 
   const formik = useFormik({
     initialValues: {
       cnpj: '',
-      role: '',
       company: ''
     },
     validateOnChange: true,
@@ -73,6 +77,22 @@ const CheckoutIndividual = () => {
       }
     }
   }, [dataSelectedPlan]);
+
+  useEffect(() => {
+    if (status === RequestStatus.error) {
+      if (message === "Request failed with status code 400") {
+        toast(
+          'O usuário já tem uma assinatura.'
+        );
+      }
+    }
+    if (selectedPlan && status === RequestStatus.success) {
+      if (selectedPlan.link) {
+        window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cnpj}`;
+        dispatch(clearSubscriptionUserPlans());
+      }
+    }
+  }, [status, message, selectedPlan, subscriptionUser]);
 
   const getPlan = (qtd_members: number) => {
     dispatch(
@@ -135,40 +155,6 @@ const CheckoutIndividual = () => {
           errorMessage={(formik.touched.company && formik.errors.company) || ''}
           spacing="24"
         />
-        <S.RadioGroup>
-          <input
-            type="radio"
-            checked={radio === 'estadual'}
-            value="estadual"
-            name="choose"
-            onChange={() => setRadio('estadual')}
-          />
-          <label htmlFor="estadual" onClick={() => setRadio('estadual')}>
-            Insc. estadual
-          </label>
-          <input
-            type="radio"
-            value="municipal"
-            name="choose"
-            checked={radio === 'municipal'}
-            onChange={() => setRadio('municipal')}
-          />
-          <label htmlFor="municipal" onClick={() => setRadio('municipal')}>
-            Insc. municipal
-          </label>
-        </S.RadioGroup>
-        <Input
-          value={formik.values.role}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label={`Inscrição ${radio}`}
-          required
-          id="role"
-          name="role"
-          placeholder=""
-          fullwidth
-          errorMessage={(formik.touched.role && formik.errors.role) || ''}
-        />
       </S.Form>
       <S.Action>
         <Link passHref href="/">
@@ -180,6 +166,7 @@ const CheckoutIndividual = () => {
           Próximo
         </Button>
       </S.Action>
+      <Toaster variant="error" />
     </S.Wrapper>
   );
 };

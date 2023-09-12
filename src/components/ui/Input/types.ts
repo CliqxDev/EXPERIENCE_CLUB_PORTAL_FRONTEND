@@ -33,4 +33,5 @@ export type InputProps = {
   autoFocus?: boolean | undefined;
   variant?: Variant;
   fullwidth?: boolean;
+  maxLength?: string;
 };
