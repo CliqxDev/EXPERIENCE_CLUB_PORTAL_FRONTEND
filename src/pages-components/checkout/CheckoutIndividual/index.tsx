@@ -73,7 +73,7 @@ const CheckoutIndividual = () => {
     <S.Wrapper onSubmit={formik.handleSubmit}>
       <S.Header>
         <Link passHref href="/plan">
-          <Button variant="outline">Planos</Button>
+          <Button variant="outline">Assine</Button>
         </Link>
         <Link passHref href="/">
           <img
