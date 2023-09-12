@@ -16,6 +16,7 @@ import { useAppDispatch } from 'hook/store';
 import { getSpecificPlan } from 'flux/modules/plan/actions';
 import { Plan } from 'flux/modules/plan/types';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import { useSelectedPlan } from 'hook/selectors/planHooks';
 import ResumePlan from './ResumePlan';
 import * as S from './styles';
 
@@ -40,6 +41,7 @@ const CheckoutIndividual = () => {
   const [radio, setRadio] = useState('estadual');
   const dispatch = useAppDispatch();
   const { plan }: any = useParams();
+  const { data: dataSelectedPlan } = useSelectedPlan();
   const { data: dataClient } = useClientInfo();
 
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
@@ -64,6 +66,14 @@ const CheckoutIndividual = () => {
     validationSchema: () => checkoutCorpSchema
   });
 
+  useEffect(() => {
+    if (dataSelectedPlan) {
+      if (dataSelectedPlan.length > 0) {
+        setSelectedPlan(dataSelectedPlan[0]);
+      }
+    }
+  }, [dataSelectedPlan]);
+
   const getPlan = (qtd_members: number) => {
     dispatch(
       getSpecificPlan.request({
@@ -85,7 +95,7 @@ const CheckoutIndividual = () => {
     <S.Wrapper onSubmit={formik.handleSubmit}>
       <S.Header>
         <Link passHref href="/plan">
-          <Button variant="outline">Planos</Button>
+          <Button variant="outline">Assine</Button>
         </Link>
         <Link passHref href="/">
           <img

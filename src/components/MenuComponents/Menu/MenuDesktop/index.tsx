@@ -100,7 +100,7 @@ const MenuDesktop = () => {
       );
     }
 
-    if (isLogged && data?.is_admin && data?.is_premium) {
+    if (isLogged && data?.is_admin) {
       newMenuList.push(
         {
           label: 'Perfil',

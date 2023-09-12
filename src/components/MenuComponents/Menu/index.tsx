@@ -60,7 +60,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     if (!isLogged) {
       newMenuList.push(
         {
-          label: 'Planos',
+          label: 'Assine',
           path: '/plan'
         },
         {
@@ -81,7 +81,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         //   path: '/'
         // }
         {
-          label: 'Planos',
+          label: 'Assine',
           path: '/plan'
         },
         {
@@ -120,7 +120,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       );
     }
 
-    if (isLogged && data?.is_admin || data?.is_premium) {
+    if (isLogged && data?.is_admin) {
       newMenuList.push(
         {
           label: 'Biblioteca',

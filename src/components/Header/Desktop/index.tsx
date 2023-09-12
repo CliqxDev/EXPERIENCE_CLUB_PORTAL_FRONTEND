@@ -61,7 +61,7 @@ const HeaderDesktop = () => {
           <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />
         )) || (
             <>
-              <Link href="/plan" passHref>
+              <Link href="/register/user" passHref>
                 <S.ButtonRegister>Cadastre-se</S.ButtonRegister>
               </Link>
               <BoxSignDesktop />
