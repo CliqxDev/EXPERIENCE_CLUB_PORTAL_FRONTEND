@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 import { roboto } from 'styles/fonts';
 
 export const Wrapper = styled.main`
@@ -80,6 +81,10 @@ export const ButtonCategory = styled.div`
 export const ExcerptWrapper = styled.div<{ $background: string }>`
   padding: 3.2rem 2.4rem;
   background: ${({ $background }) => $background || '#11236A'};
+
+  ${breakpoints.up('md')} {
+    padding-left: 15rem;
+  }
 `;
 
 export const Excerpt = styled.div`
@@ -91,6 +96,10 @@ export const Excerpt = styled.div`
   line-height: 42px;
   letter-spacing: 1px;
   margin-bottom: 1.6rem;
+
+  ${breakpoints.up('md')} {
+    max-width: 75rem;
+  }
 `;
 
 export const Text = styled.div`
@@ -119,9 +128,13 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3.2rem 1.6rem;
+
+  ${breakpoints.up('md')} {
+    align-items: center;
+  }
 `;
 
-export const Content = styled.div`
+export const Post = styled.div`
   color: #1d1d1b;
   font-family: ${roboto.style.fontFamily};
   font-size: 20px;
@@ -129,24 +142,52 @@ export const Content = styled.div`
   font-weight: 350;
   line-height: 33px;
   letter-spacing: 0.8px;
-  max-height: 450px;
-  z-index: -1;
 
   img {
     width: 100%;
     height: auto;
   }
+
+  ${breakpoints.up('md')} {
+    width: 75rem;
+
+    img {
+      width: auto;
+      height: auto;
+    }
+  }
 `;
 
+export const Content = styled.div`
+  position: relative;
+
+  ${breakpoints.up('md')} {
+    width: 75rem;
+  }
+`;
 
 export const Action = styled.div`
   display: flex;
   width: 100%;
   position: fixed;
   bottom: 0;
+  left: 0;
   background-color: #ffffff;
   justify-content: space-around;
   align-items: center;
+
+  ${breakpoints.up('md')} {
+    width: 100px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    justify-content: flex-start;
+    width: 94px;
+    height: 230px;
+    right: -82px;
+    left: auto;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -171,7 +212,7 @@ export const LimitedRead = styled.div`
   width: 100%;
   height: 60px;
   border-radius: 8px 8px 0px 0px;
-  background: #1D3CB3;
+  background: #1d3cb3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,7 +220,7 @@ export const LimitedRead = styled.div`
   font-weight: 400;
   font-size: 22px;
   line-height: 28px;
-  color: #EAEEFF;
+  color: #eaeeff;
   padding: 0 2rem 0 1rem;
   position: fixed;
   bottom: 0;
