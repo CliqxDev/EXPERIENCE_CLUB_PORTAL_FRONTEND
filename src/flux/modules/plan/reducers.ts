@@ -1,11 +1,12 @@
 import { Action, createReducer } from 'typesafe-actions';
 import { RequestStatus } from 'models/iRequest';
 import { Plans } from './types';
-import { getPlans, getSpecificPlan } from './actions';
+import { clearSubscriptionUserPlans, getPlans, getSpecificPlan, postSubscriptionUserPlans } from './actions';
 
 const initialState: Plans = {
   plans: { data: null, message: null, status: RequestStatus.idle },
-  selectedPlan: { data: null, message: null, status: RequestStatus.idle }
+  selectedPlan: { data: null, message: null, status: RequestStatus.idle },
+  subscriptionUserPlan: { data: null, message: null, status: RequestStatus.idle },
 };
 
 const planReducer = createReducer<Plans, Action>(initialState)
@@ -47,6 +48,38 @@ const planReducer = createReducer<Plans, Action>(initialState)
       data: null,
       message: action.payload.message,
       status: RequestStatus.error
+    }
+  }))
+  .handleAction(postSubscriptionUserPlans.request, state => ({
+    ...state,
+    subscriptionUserPlan: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(postSubscriptionUserPlans.success, (state, action) => ({
+    ...state,
+    subscriptionUserPlan: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(postSubscriptionUserPlans.failure, (state, action) => ({
+    ...state,
+    subscriptionUserPlan: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(clearSubscriptionUserPlans, state => ({
+    ...state,
+    subscriptionUserPlan: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
     }
   }));
 

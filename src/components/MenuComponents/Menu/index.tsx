@@ -60,6 +60,10 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     if (!isLogged) {
       newMenuList.push(
         {
+          label: 'Vídeos',
+          path: '/'
+        },
+        {
           label: 'Assine',
           path: '/plan'
         },
@@ -68,7 +72,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
           path: '/register/user'
         },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
         }
       );
@@ -76,16 +80,16 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
 
     if (isLogged && !data?.is_admin && !data?.is_premium) {
       newMenuList.push(
-        //   {
-        //   label: 'Assinatura',
-        //   path: '/'
-        // }
+        {
+          label: 'Vídeos',
+          path: '/'
+        },
         {
           label: 'Assine',
           path: '/plan'
         },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
         }
       );
@@ -93,6 +97,10 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
 
     if (isLogged && !data?.is_admin && data?.is_premium) {
       newMenuList.push(
+        {
+          label: 'Vídeos',
+          path: '/'
+        },
         {
           label: 'Biblioteca',
           path: '/'
@@ -105,16 +113,12 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
           label: 'Compartilhados',
           path: '/'
         },
-        {
-          label: 'Vídeos',
-          path: '/'
-        },
         // {
         //   label: 'Assinatura',
         //   path: '/'
         // },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
         }
       );
@@ -122,6 +126,10 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
 
     if (isLogged && data?.is_admin) {
       newMenuList.push(
+        {
+          label: 'Vídeos',
+          path: '/'
+        },
         {
           label: 'Biblioteca',
           path: '/'
@@ -143,7 +151,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         //   path: '/'
         // },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
         }
       );
@@ -176,34 +184,34 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     <S.Wrapper>
       <S.Header>
         <Link href="/">
-        <svg
-          width="45"
-          height="32"
-          viewBox="0 0 45 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M6.46641 3.82919H14.0806V0H2.66663V30.6777H14.0806V26.8485H6.46641V3.82919Z"
-            fill="#1D1D1B"
-          />
-          <path
-            d="M31.2227 3.82919H38.8222V26.8485H31.2227V30.6777H42.6366V0H31.2227V3.82919Z"
-            fill="#1D1D1B"
-          />
-          <path
-            d="M14.139 16.0238H16.682V14.3154H14.139V11.3109H17.4565V9.60254H12.1953V21.1638H17.6758V19.4259H14.139V16.0238Z"
-            fill="#1D1D1B"
-          />
-          <path
-            d="M25.4944 9.60254H23.5506L22.4692 13.255H22.4399L21.2269 9.60254H19.2832L21.3877 15.096L19.1224 21.1638H21.0369L22.4399 16.9222H22.4692L23.7991 21.1638H25.7136L23.5214 15.096L25.4944 9.60254Z"
-            fill="#1D1D1B"
-          />
-          <path
-            d="M33.7222 13.0046C33.7222 10.5451 32.6115 9.60254 30.1708 9.60254H27.3502V21.1638H29.3232V16.4214H30.1854C32.5968 16.4214 33.7075 15.4494 33.7075 12.9899M30.0539 14.772H29.2793V11.2226H30.0539C31.3546 11.2226 31.72 11.635 31.72 13.0046C31.72 14.3743 31.3546 14.7867 30.0539 14.7867"
-            fill="#1D1D1B"
-          />
-        </svg>
+          <svg
+            width="45"
+            height="32"
+            viewBox="0 0 45 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.46641 3.82919H14.0806V0H2.66663V30.6777H14.0806V26.8485H6.46641V3.82919Z"
+              fill="#1D1D1B"
+            />
+            <path
+              d="M31.2227 3.82919H38.8222V26.8485H31.2227V30.6777H42.6366V0H31.2227V3.82919Z"
+              fill="#1D1D1B"
+            />
+            <path
+              d="M14.139 16.0238H16.682V14.3154H14.139V11.3109H17.4565V9.60254H12.1953V21.1638H17.6758V19.4259H14.139V16.0238Z"
+              fill="#1D1D1B"
+            />
+            <path
+              d="M25.4944 9.60254H23.5506L22.4692 13.255H22.4399L21.2269 9.60254H19.2832L21.3877 15.096L19.1224 21.1638H21.0369L22.4399 16.9222H22.4692L23.7991 21.1638H25.7136L23.5214 15.096L25.4944 9.60254Z"
+              fill="#1D1D1B"
+            />
+            <path
+              d="M33.7222 13.0046C33.7222 10.5451 32.6115 9.60254 30.1708 9.60254H27.3502V21.1638H29.3232V16.4214H30.1854C32.5968 16.4214 33.7075 15.4494 33.7075 12.9899M30.0539 14.772H29.2793V11.2226H30.0539C31.3546 11.2226 31.72 11.635 31.72 13.0046C31.72 14.3743 31.3546 14.7867 30.0539 14.7867"
+              fill="#1D1D1B"
+            />
+          </svg>
         </Link>
 
         <S.Title>Menu</S.Title>

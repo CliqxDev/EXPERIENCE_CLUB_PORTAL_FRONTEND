@@ -9,12 +9,13 @@ export const Wrapper = styled.main`
   left: 0;
   z-index: 999;
   height: 100vh;
+  overflow-x: scroll;
 
   #exit {
     width: 100%;
     height: 40px;
     background-color: #1d1d1b;
-    margin-top: 2.4rem;
+    margin-top: 1rem;
   }
   a {
     text-decoration: none;
@@ -53,6 +54,5 @@ export const TitleSort = styled.div`
 export const WrapperTrail = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: scroll;
-  height: 250px;
+  height: 350px;
 `;

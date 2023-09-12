@@ -33,45 +33,36 @@ const MenuDesktop = () => {
   useEffect(() => {
     const newMenuList = [];
 
-    if (!isLogged) {
-      newMenuList.push(
-        {
-          label: 'Assine',
-          path: '/plan'
-        },
-        {
-          label: 'Cadastre-se',
-          path: '/register-plan'
-        },
-        {
-          label: 'Sobre',
-          path: '/'
-        }
-      );
-    }
-
     if (isLogged && !data?.is_admin && !data?.is_premium) {
       newMenuList.push(
         {
-          label: 'Perfil',
-          path: '/perfil'
+          label: 'Minha conta',
+          path: '/my-home'
+        },
+        {
+          label: 'Vídeos',
+          path: '/'
         },
         {
           label: 'Assine',
           path: '/plan'
         },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
-        }
+        },
       );
     }
 
     if (isLogged && !data?.is_admin && data?.is_premium) {
       newMenuList.push(
         {
-          label: 'Perfil',
-          path: '/perfil'
+          label: 'Minha conta',
+          path: '/my-home'
+        },
+        {
+          label: 'Vídeos',
+          path: '/'
         },
         {
           label: 'Biblioteca',
@@ -86,25 +77,25 @@ const MenuDesktop = () => {
           path: '/'
         },
         {
-          label: 'Vídeos',
+          label: 'Assinatura',
           path: '/'
         },
-        // {
-        //   label: 'Assinatura',
-        //   path: '/'
-        // },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
-        }
+        },
       );
     }
 
     if (isLogged && data?.is_admin) {
       newMenuList.push(
         {
-          label: 'Perfil',
-          path: '/perfil'
+          label: 'Minha conta',
+          path: '/my-home'
+        },
+        {
+          label: 'Vídeos',
+          path: '/'
         },
         {
           label: 'Biblioteca',
@@ -127,7 +118,7 @@ const MenuDesktop = () => {
         //   path: '/'
         // },
         {
-          label: 'Sobre',
+          label: 'Eventos',
           path: '/'
         }
       );

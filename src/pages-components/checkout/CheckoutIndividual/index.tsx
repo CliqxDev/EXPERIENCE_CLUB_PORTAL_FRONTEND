@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+
+import Toaster from 'components/ui/Toaster';
 
 import Button from 'components/ui/Button';
 import { checkoutSchema } from 'utils/schemas';
@@ -11,15 +15,17 @@ import { useClientInfo } from 'hook/selectors/authHooks';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
 import { useAppDispatch } from 'hook/store';
-import { getSpecificPlan } from 'flux/modules/plan/actions';
-import { useSelectedPlan } from 'hook/selectors/planHooks';
+import { clearSubscriptionUserPlans, getSpecificPlan, postSubscriptionUserPlans } from 'flux/modules/plan/actions';
+import { useSelectedPlan, useSubscriptionUserPlan } from 'hook/selectors/planHooks';
 import { Plan } from 'flux/modules/plan/types';
+import { RequestStatus } from 'models/iRequest';
 import ResumePlan from './ResumePlan';
 import * as S from './styles';
 
 const CheckoutIndividual = () => {
   const { data: dataClient } = useClientInfo();
   const { data: dataSelectedPlan } = useSelectedPlan();
+  const { message, status, data: subscriptionUser } = useSubscriptionUserPlan();
   const dispatch = useAppDispatch();
   const { plan }: any = useParams();
 
@@ -27,9 +33,12 @@ const CheckoutIndividual = () => {
 
   const handleSubmit = () => {
     if (selectedPlan) {
-      if (selectedPlan.link) {
-        window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cpf}`;
-      }
+      dispatch(
+        postSubscriptionUserPlans.request({
+          subscription_plan: plan,
+          qtd_members: 1
+        })
+      );
     }
   };
 
@@ -52,6 +61,23 @@ const CheckoutIndividual = () => {
       }
     }
   }, [dataSelectedPlan]);
+
+  useEffect(() => {
+    if (status === RequestStatus.error) {
+      toast(
+        'Erro ao cadastrar plano'
+      );
+    }
+
+    if (status === RequestStatus.success && !isEmpty(subscriptionUser)) {
+      if (selectedPlan && subscriptionUser) {
+        if (selectedPlan.link) {
+          window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cpf}`;
+          dispatch(clearSubscriptionUserPlans());
+        }
+      }
+    }
+  }, [status, message, selectedPlan, subscriptionUser]);
 
   useEffect(() => {
     if (!isEmpty(dataClient)) {
@@ -137,6 +163,7 @@ const CheckoutIndividual = () => {
           Próximo
         </Button>
       </S.Action>
+      <Toaster variant="error" />
     </S.Wrapper>
   );
 };

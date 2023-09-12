@@ -22,9 +22,20 @@ export type PlanRequest = {
   qtd_members: number;
 };
 
+export interface SubscriptionUser {
+  qtd_members: number;
+  subscription_plan: number;
+}
+
+export interface SubscriptionUserRequest {
+  qtd_members: number;
+  subscription_plan: number;
+}
+
 export type PlanResponse = Plan[];
 
 export type Plans = {
   plans: IRequest<PlanResponse>;
   selectedPlan: IRequest<PlanResponse>;
+  subscriptionUserPlan: IRequest<SubscriptionUser>;
 };

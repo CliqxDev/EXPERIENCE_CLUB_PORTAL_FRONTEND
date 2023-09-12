@@ -1,12 +1,16 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { AxiosError } from 'axios';
-import { getPlans, getSpecificPlan } from './actions';
-import { getAllPlans, getPlan } from './service';
-import { PlanResponse } from './types';
+import { getPlans, getSpecificPlan, postSubscriptionUserPlans } from './actions';
+import { getAllPlans, getPlan, postSubscriptionUserPlan } from './service';
+import { PlanResponse, SubscriptionUserRequest } from './types';
 
 type PlanResponseAPI = {
   data: PlanResponse;
 };
+
+type SubscriptionUserAPI = {
+  data: SubscriptionUserRequest;
+}
 
 function* getPlansSaga(): Generator {
   try {
@@ -35,7 +39,23 @@ function* getSpecificPlanSaga({
   }
 }
 
+function* postSubscriptionUserSaga({
+  payload
+}: ReturnType<typeof postSubscriptionUserPlans.request>): Generator {
+  try {
+    const response: SubscriptionUserAPI = (yield call(
+      postSubscriptionUserPlan,
+      payload
+    )) as SubscriptionUserAPI;
+    yield put(postSubscriptionUserPlans.success(response.data));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(postSubscriptionUserPlans.failure(errors));
+  }
+}
+
 export default [
   takeEvery(getPlans.request, getPlansSaga),
-  takeEvery(getSpecificPlan.request, getSpecificPlanSaga)
+  takeEvery(getSpecificPlan.request, getSpecificPlanSaga),
+  takeEvery(postSubscriptionUserPlans.request, postSubscriptionUserSaga)
 ];

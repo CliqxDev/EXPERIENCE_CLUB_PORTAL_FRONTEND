@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, FC, useEffect } from 'react';
 import Image from 'next/image';
@@ -34,7 +35,6 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
   const dispatch = useAppDispatch();
   const { data: employeesInfo } = useEmployeeInfo();
   const { data } = useClientInfo();
-  let licenseKeyQtdLimited = 5;
   const [employeeData, setEmployeeData] = useState<EmployeesDataCard[]>([
     {
       id: 0,
@@ -46,12 +46,6 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
       company: 0
     }
   ]);
-
-  useEffect(() => {
-    if (!isEmpty(data)) {
-      licenseKeyQtdLimited = data.remaining_vacancy_count;
-    }
-  }, [data]);
 
   useEffect(() => {
     dispatch(employeeInfo.request());
@@ -98,7 +92,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
         </strong>
       </S.WarningLicense>
 
-      {licenseKeyQtdLimited - employeeData.length === 0 ?
+      {data?.remaining_vacancy_count && data?.remaining_vacancy_count - employeeData.length === 0 ?
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="limited">
@@ -125,7 +119,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="default">
-              {licenseKeyQtdLimited - employeeData.length}
+              {data?.remaining_vacancy_count && data?.remaining_vacancy_count - employeeData.length}
             </S.LimitEmployee>
             <S.TitleLimit variant="default">
               Adicione seus colaboradores
