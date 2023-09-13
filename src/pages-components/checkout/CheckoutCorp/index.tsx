@@ -86,6 +86,7 @@ const CheckoutIndividual = () => {
         );
       }
     }
+    
     if (selectedPlan && status === RequestStatus.success) {
       if (selectedPlan.link) {
         window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cnpj}`;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable simple-import-sort/imports */
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
@@ -23,9 +24,11 @@ import { ClientInfoRequest } from 'flux/modules/client/types';
 import { ErrorMessage } from 'models/errors';
 import * as S from './styles';
 
+
 const FormPersonalData = () => {
   const dispatch = useAppDispatch();
   const { plan }: any = useParams();
+  const { email, name }: any = useParams();
   const { status, message } = useCreateClient();
 
   const [passwordRule, setPasswordRule] = useState<PasswordRule>({
@@ -34,6 +37,13 @@ const FormPersonalData = () => {
     upperCaseLetter: 'default',
     specialCharacter: 'default'
   });
+
+  useEffect(() => {
+    if (email) {
+      formik.setFieldValue('email', decodeURIComponent(email), false);
+      formik.setFieldValue('name', decodeURIComponent(name), false);
+    }
+  }, [name, email])
 
   useEffect(() => {
     if (status === RequestStatus.error) {
@@ -120,12 +130,15 @@ const FormPersonalData = () => {
 
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
-      {plan ? <h1>{title[plan]}</h1> : <h1>Cadastro</h1>}
-      <h2>Informe seus dados abaixo</h2>
+      {plan && <h1>{title[plan]}</h1>}
+      {email && <h1>Complete seu cadastro</h1>}
+      {(!email && !plan) && <h1>Cadastro</h1>}
+      {email ? <h2>Você recebeu um presente, aproveite essa oportunidade</h2> : <h2>Informe seus dados abaixo</h2>}
       <Input
         value={formik.values.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
+        disabled={name && true}
         label="Nome Completo"
         required
         id="name"
@@ -138,6 +151,7 @@ const FormPersonalData = () => {
         value={formik.values.email}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
+        disabled={email && true}
         label="E-mail"
         required
         id="email"
