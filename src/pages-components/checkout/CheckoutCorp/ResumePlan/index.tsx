@@ -6,9 +6,10 @@ import * as S from './styles';
 
 type Props = {
   onCounter: (newCounter: number) => void;
+  counterQtdMembers: (counterMembers: number) => void;
 };
 
-const ResumePlan: FC<Props> = ({ onCounter }) => {
+const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
   const [counter, setCounter] = useState(2);
   const { data } = useSelectedPlan();
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
@@ -80,6 +81,7 @@ const ResumePlan: FC<Props> = ({ onCounter }) => {
   const handleChangeCounter = (newCounter: number) => {
     setCounter(newCounter);
     onCounter(newCounter);
+    counterQtdMembers(newCounter)
   };
 
   return (

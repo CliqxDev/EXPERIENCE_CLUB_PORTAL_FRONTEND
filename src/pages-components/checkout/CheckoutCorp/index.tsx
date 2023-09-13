@@ -42,6 +42,7 @@ type CheckoutData = {
 };
 
 const CheckoutIndividual = () => {
+  const [counter, setCounter] = useState(2);
   const dispatch = useAppDispatch();
   const { plan }: any = useParams();
   const { data: dataSelectedPlan } = useSelectedPlan();
@@ -54,10 +55,14 @@ const CheckoutIndividual = () => {
     dispatch(
       postSubscriptionUserPlans.request({
         subscription_plan: plan,
-        qtd_members: 1
-      })
+        qtd_members: counter
+      }) 
     );
   };
+
+  const handleCounterQtdMembers = (counterMembers: number) => {
+    setCounter(counterMembers);
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -125,7 +130,7 @@ const CheckoutIndividual = () => {
           />
         </Link>
       </S.Header>
-      <ResumePlan onCounter={handleCounter} />
+      <ResumePlan onCounter={handleCounter} counterQtdMembers={handleCounterQtdMembers} />
       <S.Form>
         <S.Title>Dados da empresa</S.Title>
         <Input
