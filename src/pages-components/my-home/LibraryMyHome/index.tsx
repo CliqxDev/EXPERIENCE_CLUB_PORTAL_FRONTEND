@@ -1,5 +1,6 @@
 
 import Image from 'next/image';
+import Link from 'next/link';
 import Title from 'components/ui/Title';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
@@ -48,13 +49,15 @@ const LibraryMyHome = () => {
     <S.Wrapper>
       {userIsAdmin === true &&
         <S.AdminUser>
-          <S.CardAdminUser>
-            <Image
-              src={employeesIcon}
-              alt="Colaboradores"
-            />
-            <p>Colaboradores</p>
-          </S.CardAdminUser>
+          <Link href="/employees" style={{ textDecoration: 'none' }}>
+            <S.CardAdminUser>
+              <Image
+                src={employeesIcon}
+                alt="Colaboradores"
+              />
+              <p style={{ marginTop: '8px'}}>Colaboradores</p>
+            </S.CardAdminUser>
+          </Link>
           <S.CardAdminUser>
             <Image
               src={shareIcon}
@@ -88,7 +91,7 @@ const LibraryMyHome = () => {
           </>
         ))}
       </S.LibraryList>
-      
+
       <S.ReadButtons>
         <S.Button variant='blue400'>Ler Depois</S.Button>
         <S.Button variant='blue500'>Favoritos</S.Button>

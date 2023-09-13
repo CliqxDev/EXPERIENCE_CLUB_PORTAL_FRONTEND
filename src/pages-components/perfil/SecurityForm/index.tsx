@@ -71,6 +71,10 @@ const ProfileSecurityForm = () => {
     }
   }, [status]);
 
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <S.ContentSecurity>
       <S.Title>Trocar senha</S.Title>
