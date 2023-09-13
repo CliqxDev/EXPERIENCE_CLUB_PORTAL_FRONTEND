@@ -80,8 +80,8 @@ const CheckoutIndividual = () => {
 
   useEffect(() => {
     if (!isEmpty(dataClient)) {
-      formik.setFieldValue('name', dataClient.name, false);
-      formik.setFieldValue('email', dataClient.email, false);
+      formik.setFieldValue('name', dataClient.name, false)
+      formik.setFieldValue('email', dataClient.email, false)
     }
   }, [dataClient]);
 
