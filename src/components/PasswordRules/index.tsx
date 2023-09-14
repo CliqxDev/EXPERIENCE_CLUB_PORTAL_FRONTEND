@@ -30,7 +30,10 @@ const PasswordRules: FC<Props> = ({ password, onChangePassword }) => {
         newRules.upperCaseLetter = 'done';
       }
 
-      if (password.search(/[0-9]/) !== -1 && password.search(/[a-z]/) !== -1) {
+      if (
+        password.search(/[0-9]/) !== -1 &&
+        (password.search(/[a-z]/) !== -1 || password.search(/[A-Z]/) !== -1)
+      ) {
         newRules.letterAndNumber = 'done';
       }
 
@@ -55,7 +58,7 @@ const PasswordRules: FC<Props> = ({ password, onChangePassword }) => {
         • Ter 8 ou mais caracteres
       </S.ItemRule>
       <S.ItemRule variant={passwordRule.letterAndNumber}>
-        • Letra minúscula
+        • Letra e números
       </S.ItemRule>
       <S.ItemRule variant={passwordRule.upperCaseLetter}>
         • Letra maiúscula

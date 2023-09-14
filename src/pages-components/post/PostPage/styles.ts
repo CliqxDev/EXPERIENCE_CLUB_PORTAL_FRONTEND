@@ -152,7 +152,7 @@ export const Post = styled.div`
     width: 75rem;
 
     img {
-      width: auto;
+      max-width: 75rem;
       height: auto;
     }
   }

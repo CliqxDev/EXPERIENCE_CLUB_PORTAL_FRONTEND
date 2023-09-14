@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main`
   display: flex;
@@ -13,6 +14,10 @@ export const Wrapper = styled.main`
 
   input:focus {
     border: 1px solid #2954fc;
+  }
+
+  ${breakpoints.up('md')} {
+    height: 120px;
   }
 `;
 
