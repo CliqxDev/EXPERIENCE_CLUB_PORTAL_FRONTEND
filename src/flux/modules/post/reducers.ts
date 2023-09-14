@@ -6,6 +6,7 @@ import {
   columnists as columnistsAction,
   mediaById as mediaByIdAction,
   postById as postByIdAction,
+  postSearch as postSearchAction,
   clearPostById,
   setShowShare
 } from './actions';
@@ -16,11 +17,36 @@ const initialState: Post = {
   mediaById: { data: null, message: null, status: RequestStatus.idle },
   columnists: { data: null, message: null, status: RequestStatus.idle },
   postById: { data: null, message: null, status: RequestStatus.idle },
+  postSearch: { data: null, message: null, status: RequestStatus.idle },
   media: { data: null, message: null, status: RequestStatus.idle },
   showShare: false
 };
 
 const postReducer = createReducer<Post, Action>(initialState)
+  .handleAction(postSearchAction.request, state => ({
+    ...state,
+    postSearch: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(postSearchAction.success, (state, action) => ({
+    ...state,
+    postSearch: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(postSearchAction.failure, state => ({
+    ...state,
+    postSearch: {
+      data: null,
+      message: null,
+      status: RequestStatus.error
+    }
+  }))
   .handleAction(mediaByIdAction.request, state => ({
     ...state,
     mediaById: {
@@ -37,12 +63,12 @@ const postReducer = createReducer<Post, Action>(initialState)
       status: RequestStatus.success
     }
   }))
-  .handleAction(mediaByIdAction.request, state => ({
+  .handleAction(mediaByIdAction.failure, state => ({
     ...state,
     mediaById: {
       data: null,
       message: null,
-      status: RequestStatus.fetching
+      status: RequestStatus.error
     }
   }))
   .handleAction(postByIdAction.request, state => ({
@@ -61,12 +87,12 @@ const postReducer = createReducer<Post, Action>(initialState)
       status: RequestStatus.success
     }
   }))
-  .handleAction(postByIdAction.request, state => ({
+  .handleAction(postByIdAction.failure, state => ({
     ...state,
     postById: {
       data: null,
       message: null,
-      status: RequestStatus.fetching
+      status: RequestStatus.error
     }
   }))
   .handleAction(columnistsAction.request, state => ({
@@ -85,9 +111,17 @@ const postReducer = createReducer<Post, Action>(initialState)
       status: RequestStatus.success
     }
   }))
-  .handleAction(columnistsAction.request, state => ({
+  .handleAction(columnistsAction.failure, state => ({
     ...state,
     columnists: {
+      data: null,
+      message: null,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(posts.request, state => ({
+    ...state,
+    general: {
       data: null,
       message: null,
       status: RequestStatus.fetching

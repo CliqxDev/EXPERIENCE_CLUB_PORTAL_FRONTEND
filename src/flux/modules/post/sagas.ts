@@ -2,7 +2,14 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { AxiosError } from 'axios';
 
 import { api } from 'apis';
-import { columnists, media, mediaById, postById, posts } from './actions';
+import {
+  columnists,
+  media,
+  mediaById,
+  postById,
+  postSearch,
+  posts
+} from './actions';
 import { ColumnistsResponse, MediaItem, PostItem, PostResponse } from './types';
 
 function* postsSaga(): Generator {
@@ -78,10 +85,26 @@ function* mediaByIdSaga({
   }
 }
 
+function* postSearchSaga({
+  payload
+}: ReturnType<typeof postSearch.request>): Generator {
+  try {
+    const response: any = yield api.get<PostResponse>(
+      `/v2/posts?search=${payload}&per_page=11`,
+      'https://expnew.com.br/wp-json/wp'
+    );
+    yield put(postSearch.success(response));
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(postSearch.failure(errors));
+  }
+}
+
 export default [
   takeEvery(posts.request, postsSaga),
   takeEvery(mediaById.request, mediaByIdSaga),
   takeEvery(columnists.request, columnistsSaga),
   takeEvery(media.request, mediaSaga),
+  takeEvery(postSearch.request, postSearchSaga),
   takeEvery(postById.request, postByIdSaga)
 ];

@@ -60,13 +60,13 @@ const HeaderDesktop = () => {
         {(isLogged && data && (
           <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />
         )) || (
-            <>
-              <Link href="/register/user" passHref>
-                <S.ButtonRegister>Cadastre-se</S.ButtonRegister>
-              </Link>
-              <BoxSignDesktop />
-            </>
-          )}
+          <>
+            <Link href="/register/user" passHref>
+              <S.ButtonRegister>Cadastre-se</S.ButtonRegister>
+            </Link>
+            <BoxSignDesktop />
+          </>
+        )}
       </S.Actions>
     </S.WrapperDesktop>
   );

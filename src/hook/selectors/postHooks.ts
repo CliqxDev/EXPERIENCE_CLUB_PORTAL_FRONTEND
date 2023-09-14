@@ -25,3 +25,6 @@ export const useMediaById = (): IRequest<MediaResponse> =>
 
 export const useShowShare = (): boolean =>
   useSelector((state: RootState) => state.post.showShare);
+
+export const usePostSearch = (): IRequest<PostResponse> =>
+  useSelector((state: RootState) => state.post.postSearch);

@@ -5,7 +5,7 @@ import Button from 'components/ui/Button';
 import * as S from './styles';
 
 const BoxSignDesktop = () => (
-  <S.WrapperDesktop>
+  <S.WrapperDesktop id="box-sign-desktop">
     <Link href="/sigin" passHref>
       <Button onClick={() => {}} id="sign">
         Entrar

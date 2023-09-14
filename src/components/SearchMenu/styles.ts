@@ -19,6 +19,10 @@ export const Wrapper = styled.main`
   ${breakpoints.up('md')} {
     height: 120px;
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Input = styled.input`

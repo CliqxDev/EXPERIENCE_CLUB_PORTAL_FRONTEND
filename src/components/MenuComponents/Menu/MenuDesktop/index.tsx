@@ -50,7 +50,7 @@ const MenuDesktop = () => {
         {
           label: 'Eventos',
           path: '/'
-        },
+        }
       );
     }
 
@@ -83,7 +83,7 @@ const MenuDesktop = () => {
         {
           label: 'Eventos',
           path: '/'
-        },
+        }
       );
     }
 

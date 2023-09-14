@@ -57,10 +57,7 @@ const Header: FC<Props> = ({ showBack, showIconSearch = true }) => {
           )}
         </S.ButtonBack>
         <Link href="/" passHref>
-          <img
-            src="/img/icon-logo-preto-exp.svg"
-            alt="ícone do logo da expclub"
-          />
+          <img src="icon-logo-white.svg" alt="ícone do logo da expclub" />
         </Link>
         <S.Actions>
           {showIconSearch && (

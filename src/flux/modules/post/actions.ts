@@ -38,6 +38,12 @@ export const columnists = createAsyncAction(
   'COLUMNISTS_ERROR'
 )<undefined, ColumnistsResponse, Error | AxiosError>();
 
+export const postSearch = createAsyncAction(
+  'POST_SEARCH_REQUEST',
+  'POST_SEARCH_SUCCESS',
+  'POST_SEARCH_ERROR'
+)<string, PostResponse, Error | AxiosError>();
+
 export const clearPostById = createAction('CLEAR_POST_BY_ID')();
 
 export const setShowShare = createAction('SET_SHOW_SHARE')<boolean>();

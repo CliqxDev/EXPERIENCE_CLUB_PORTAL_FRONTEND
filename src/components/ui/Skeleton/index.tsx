@@ -34,3 +34,11 @@ export const SkeletonPlan = () => (
     <S.Placeholder className="header-image" />
   </S.LoaderWrapper>
 );
+
+export const SkeletonCardList = () => (
+  <S.CardLoaderWrapper id="skeleton-wrapper">
+    <S.Placeholder className="card" />
+    <S.Placeholder className="card" />
+    <S.Placeholder className="card" />
+  </S.CardLoaderWrapper>
+);

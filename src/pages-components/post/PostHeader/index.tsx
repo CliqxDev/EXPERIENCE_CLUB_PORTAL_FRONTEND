@@ -9,7 +9,7 @@ const PostHeader = () => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
-    <S.Header>
+    <S.Header id="header">
       {showMenu && <Menu onClose={() => setShowMenu(false)} />}
       {showSearch && <SearchMenu onClose={() => setShowSearch(false)} />}
 
@@ -22,10 +22,10 @@ const PostHeader = () => {
         </Link>
       </S.HeaderAction>
       <Link href="/">
-      <img
-        src="/img/icon-logo-exp.svg"
-        alt="ícone do logo reduzido da exp-club"
-      />
+        <img
+          src="/img/icon-logo-exp.svg"
+          alt="ícone do logo reduzido da exp-club"
+        />
       </Link>
 
       <S.HeaderAction>

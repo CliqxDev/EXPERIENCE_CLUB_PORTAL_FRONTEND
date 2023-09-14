@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const LoaderWrapper = styled.div`
   align-content: center;
@@ -131,6 +132,16 @@ export const Placeholder = styled.div`
     bottom: 0;
     margin: 0;
   }
+
+  &.card {
+    height: 240px;
+    margin-bottom: 1.4rem;
+
+    ${breakpoints.up('md')} {
+      max-width: 360px;
+      margin-right: 1.4rem;
+    }
+  }
 `;
 
 export const Box = styled.div`
@@ -143,4 +154,22 @@ export const Box = styled.div`
 export const Content = styled.div`
   width: 100%;
   padding: 1.6rem;
+`;
+
+export const CardLoaderWrapper = styled.div`
+  align-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+  ${breakpoints.up('md')} {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
 `;
