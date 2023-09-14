@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { createAction, createAsyncAction } from 'typesafe-actions';
-import { PlanRequest, PlanResponse, SubscriptionUser, SubscriptionUserRequest } from './types';
+import { CompaniesRequest, CompaniesResponse, PlanRequest, PlanResponse, SubscriptionUser, SubscriptionUserRequest } from './types';
 
 export const getPlans = createAsyncAction(
   'GET_PLANS_REQUEST',
@@ -19,5 +19,13 @@ export const postSubscriptionUserPlans = createAsyncAction(
   'POST_SUBSCRIPTION_USER_PLANS_SUCCESS',
   'POST_SUBSCRIPTION_USER_PLANS_ERROR'
 )<SubscriptionUserRequest, SubscriptionUser, Error | AxiosError>();
+
+export const postCompaniesUser = createAsyncAction(
+  'POST_COMPANIES_USER_REQUEST',
+  'POST_COMPANIES_USER_SUCCESS',
+  'POST_COMPANIES_USER_ERROR'
+)<CompaniesRequest, CompaniesResponse, Error | AxiosError>();
+
+export const clearCompaniesUser = createAction('CLEAR_POST_COMPANIES_USER')();
 
 export const clearSubscriptionUserPlans = createAction('CLEAR_POST_SUBSCRIPTION_USER_PLANS')();

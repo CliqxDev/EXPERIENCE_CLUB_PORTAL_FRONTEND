@@ -32,10 +32,24 @@ export interface SubscriptionUserRequest {
   subscription_plan: number;
 }
 
+export interface CompaniesRequest {
+  cnpj: string;
+  company_name: string;
+  qtd_members: number;
+}
+
+export interface CompaniesResponse {
+  id: number;
+  cnpj: string;
+  company_name: string;
+  qtd_members: number;
+}
+
 export type PlanResponse = Plan[];
 
 export type Plans = {
   plans: IRequest<PlanResponse>;
   selectedPlan: IRequest<PlanResponse>;
   subscriptionUserPlan: IRequest<SubscriptionUser>;
+  companiesUser: IRequest<CompaniesResponse>;
 };

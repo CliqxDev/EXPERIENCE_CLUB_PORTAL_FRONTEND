@@ -1,4 +1,4 @@
-import { PlanResponse, SubscriptionUser } from 'flux/modules/plan/types';
+import { CompaniesResponse, PlanResponse, SubscriptionUser } from 'flux/modules/plan/types';
 import { useSelector } from 'flux/selector';
 import { RootState } from 'flux/store';
 import { IRequest } from 'models/iRequest';
@@ -11,3 +11,6 @@ export const useSelectedPlan = (): IRequest<PlanResponse> =>
 
 export const useSubscriptionUserPlan = (): IRequest<SubscriptionUser> =>
   useSelector((state: RootState) => state.plan.subscriptionUserPlan);
+
+export const useCompaniesUser = (): IRequest<CompaniesResponse> =>
+  useSelector((state: RootState) => state.plan.companiesUser);

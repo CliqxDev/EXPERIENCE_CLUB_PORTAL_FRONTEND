@@ -16,11 +16,12 @@ import { checkoutCorpSchema } from 'utils/schemas';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
 import { useAppDispatch } from 'hook/store';
-import { clearSubscriptionUserPlans, getSpecificPlan, postSubscriptionUserPlans } from 'flux/modules/plan/actions';
+import { clearSubscriptionUserPlans, getSpecificPlan, postCompaniesUser, postSubscriptionUserPlans } from 'flux/modules/plan/actions';
 import { Plan } from 'flux/modules/plan/types';
 import { useClientInfo } from 'hook/selectors/authHooks';
-import { useSelectedPlan, useSubscriptionUserPlan } from 'hook/selectors/planHooks';
+import { useCompaniesUser, useSelectedPlan, useSubscriptionUserPlan } from 'hook/selectors/planHooks';
 import { RequestStatus } from 'models/iRequest';
+import RemoveCnpjMask from 'utils/mask/removeCnpjMask';
 import ResumePlan from './ResumePlan';
 import * as S from './styles';
 
@@ -48,15 +49,17 @@ const CheckoutIndividual = () => {
   const { data: dataSelectedPlan } = useSelectedPlan();
   const { data: dataClient } = useClientInfo();
   const { message, status, data: subscriptionUser } = useSubscriptionUserPlan();
+  const { message: messageCompanies, status: statusCompanies, data: dataCompanies } = useCompaniesUser();
 
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
   const handleSubmit = () => {
     dispatch(
-      postSubscriptionUserPlans.request({
-        subscription_plan: plan,
+      postCompaniesUser.request({
+        cnpj: RemoveCnpjMask(formik.values.cnpj),
+        company_name: formik.values.company,
         qtd_members: counter
-      }) 
+      })
     );
   };
 
@@ -84,6 +87,18 @@ const CheckoutIndividual = () => {
   }, [dataSelectedPlan]);
 
   useEffect(() => {
+
+    if (selectedPlan && statusCompanies === RequestStatus.success) {
+      dispatch(
+        postSubscriptionUserPlans.request({
+          subscription_plan: plan,
+          qtd_members: counter
+        })
+      );
+    }
+  }, [statusCompanies, messageCompanies, selectedPlan, dataCompanies]);
+
+  useEffect(() => {
     if (status === RequestStatus.error) {
       if (message === "Request failed with status code 400") {
         toast(
@@ -91,14 +106,14 @@ const CheckoutIndividual = () => {
         );
       }
     }
-    
+
     if (selectedPlan && status === RequestStatus.success) {
       if (selectedPlan.link) {
         window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cnpj}`;
         dispatch(clearSubscriptionUserPlans());
       }
     }
-  }, [status, message, selectedPlan, subscriptionUser]);
+  }, [status, message, subscriptionUser])
 
   const getPlan = (qtd_members: number) => {
     dispatch(

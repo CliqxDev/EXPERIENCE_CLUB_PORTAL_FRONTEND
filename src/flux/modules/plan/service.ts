@@ -1,5 +1,5 @@
 import { get, post } from 'apis/axios';
-import { PlanRequest, SubscriptionUserRequest } from './types';
+import { CompaniesRequest, PlanRequest, SubscriptionUserRequest } from './types';
 
 export const getAllPlans = () =>
   get({
@@ -14,5 +14,11 @@ export const getPlan = (plan: PlanRequest) =>
   export const postSubscriptionUserPlan = (data: SubscriptionUserRequest) => 
   post({
     url: `/subscription-user-plans/`,
+    data
+  })
+
+  export const postCompaniesUserPlan = (data: CompaniesRequest) => 
+  post({
+    url: `/companies/`,
     data
   })
