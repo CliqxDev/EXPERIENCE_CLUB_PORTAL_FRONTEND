@@ -5,17 +5,21 @@ import {
   posts,
   columnists as columnistsAction,
   mediaById as mediaByIdAction,
+  mediaCategory as mediaCategoryAction,
   postById as postByIdAction,
   postSearch as postSearchAction,
   clearPostById,
   setShowShare,
-  postByCategories
+  postByCategories,
+  clearPostCategory,
+  clearMediaCategory
 } from './actions';
 import { Post } from './types';
 
 const initialState: Post = {
   general: { data: null, message: null, status: RequestStatus.idle },
   mediaById: { data: null, message: null, status: RequestStatus.idle },
+  mediaCategory: { data: null, message: null, status: RequestStatus.idle },
   columnists: { data: null, message: null, status: RequestStatus.idle },
   postById: { data: null, message: null, status: RequestStatus.idle },
   postSearch: { data: null, message: null, status: RequestStatus.idle },
@@ -46,6 +50,30 @@ const postReducer = createReducer<Post, Action>(initialState)
     postSearch: {
       data: null,
       message: null,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(mediaCategoryAction.request, state => ({
+    ...state,
+    mediaCategory: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(mediaCategoryAction.success, (state, action) => ({
+    ...state,
+    mediaCategory: {
+      data: { ...state.mediaCategory.data, ...action.payload },
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(mediaCategoryAction.failure, (state, action) => ({
+    ...state,
+    mediaCategory: {
+      data: null,
+      message: action.payload.message,
       status: RequestStatus.error
     }
   }))
@@ -196,6 +224,22 @@ const postReducer = createReducer<Post, Action>(initialState)
   .handleAction(clearPostById, state => ({
     ...state,
     postById: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
+    }
+  }))
+  .handleAction(clearPostCategory, state => ({
+    ...state,
+    postCategories: {
+      data: null,
+      message: null,
+      status: RequestStatus.idle
+    }
+  }))
+  .handleAction(clearMediaCategory, state => ({
+    ...state,
+    mediaCategory: {
       data: null,
       message: null,
       status: RequestStatus.idle

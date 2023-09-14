@@ -142,6 +142,11 @@ export const Placeholder = styled.div`
       margin-right: 1.4rem;
     }
   }
+
+  &.cardTrail {
+    height: 260px;
+    margin-bottom: 1.4rem;
+  }
 `;
 
 export const Box = styled.div`

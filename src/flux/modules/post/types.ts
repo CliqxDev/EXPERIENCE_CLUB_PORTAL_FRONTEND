@@ -176,6 +176,7 @@ export interface Post {
   postCategories: IRequest<PostResponse>;
   media: IRequest<MediaResponse>;
   mediaById: IRequest<MediaResponse>;
+  mediaCategory: IRequest<MediaResponse>;
   columnists: IRequest<ColumnistsResponse>;
   postById: IRequest<PostItem>;
   showShare: boolean;

@@ -31,3 +31,6 @@ export const usePostSearch = (): IRequest<PostResponse> =>
 
 export const usePostCategories = (): IRequest<PostResponse> =>
   useSelector((state: RootState) => state.post.postCategories);
+
+export const useMediaCategory = (): IRequest<MediaResponse> =>
+  useSelector((state: RootState) => state.post.mediaCategory);

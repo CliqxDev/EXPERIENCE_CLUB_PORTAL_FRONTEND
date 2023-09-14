@@ -57,6 +57,11 @@ export const Wrapper = styled.div<{ backgroundcolor: string }>`
   ${breakpoints.up('lg')} {
     padding: 4rem 15rem 4rem 15rem;
   }
+
+  #skeleton-wrapper {
+    margin-top: 4.2rem;
+    background-color: ${({ backgroundcolor }) => backgroundcolor};
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -64,7 +69,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 24px;
-  
+
   ${breakpoints.up('md')} {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

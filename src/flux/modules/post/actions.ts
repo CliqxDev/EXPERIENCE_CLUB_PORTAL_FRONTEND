@@ -26,6 +26,12 @@ export const mediaById = createAsyncAction(
   'MEDIA_BY_ID_ERROR'
 )<number, MediaResponse, Error | AxiosError>();
 
+export const mediaCategory = createAsyncAction(
+  'MEDIA_CATEGORY_REQUEST',
+  'MEDIA_CATEGORY_SUCCESS',
+  'MEDIA_CATEGORY_ERROR'
+)<number, MediaResponse, Error | AxiosError>();
+
 export const media = createAsyncAction(
   'MEDIA_REQUEST',
   'MEDIA_SUCCESS',
@@ -53,3 +59,7 @@ export const postByCategories = createAsyncAction(
 export const clearPostById = createAction('CLEAR_POST_BY_ID')();
 
 export const setShowShare = createAction('SET_SHOW_SHARE')<boolean>();
+
+export const clearPostCategory = createAction('CLEAR_POST_CATEGORY')();
+
+export const clearMediaCategory = createAction('CLEAR_MEDIA_CATEGORY')();

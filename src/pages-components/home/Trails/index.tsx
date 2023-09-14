@@ -5,31 +5,46 @@ import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import Title from 'components/ui/Title';
 
-import { useMedia, usePosts } from 'hook/selectors/postHooks';
+import { useMediaCategory, usePostCategories } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { useAppDispatch } from 'hook/store';
-import { setShowShare } from 'flux/modules/post/actions';
+import {
+  clearMediaCategory,
+  clearPostCategory,
+  mediaCategory,
+  postByCategories,
+  setShowShare
+} from 'flux/modules/post/actions';
 import { Card, POST_CATEGORIES, findCategoryById } from 'models/post';
+import { RequestStatus } from 'models/iRequest';
+import { SkeletonTrailList } from 'components/ui/Skeleton';
 import * as S from './styles';
 
 const Trails = () => {
-  const { data: posts } = usePosts();
-  const { data: media } = useMedia();
+  const { data: posts, status: statusCategory } = usePostCategories();
+  const { data: dataMedia, status: statusMedia } = useMediaCategory();
   const dispatch = useAppDispatch();
 
-  const [trailSelectedId, setTrailSelectedId] = useState(0);
+  const [trailSelectedId, setTrailSelectedId] = useState(2620);
   const [cardData, setCardData] = useState<Card[]>([]);
 
+  const isLoading =
+    statusCategory === RequestStatus.fetching ||
+    statusMedia === RequestStatus.fetching;
+
+  const isFullMedia =
+    dataMedia && Object.keys(dataMedia).length === posts?.length;
+
   useEffect(() => {
-    if (!isEmpty(posts) && !isEmpty(media)) {
-      if (Object.keys(media).length === posts?.length) {
+    if (!isEmpty(posts) && !isEmpty(dataMedia)) {
+      if (Object.keys(dataMedia).length === posts?.length) {
         const newCardData: Card[] = [];
-        forEach(posts.slice(5), post => {
+        forEach(posts, post => {
           newCardData.push({
             id: post.id,
             title: post.title.rendered,
             imgSrc:
-              media[post.featured_media].media_details.sizes.thumbnail
+              dataMedia[post.featured_media].media_details.sizes.thumbnail
                 ?.source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
             categoryId: post.categories[0]
@@ -38,7 +53,28 @@ const Trails = () => {
         setCardData(newCardData);
       }
     }
-  }, [posts, media]);
+  }, [posts, dataMedia]);
+
+  useEffect(() => {
+    if (posts) {
+      if (posts.length && !isFullMedia) {
+        forEach(posts, post =>
+          dispatch(mediaCategory.request(post.featured_media))
+        );
+      }
+    }
+  }, [posts]);
+
+  useEffect(() => {
+    dispatch(postByCategories.request(trailSelectedId));
+  }, []);
+
+  const handleChangeCategory = (id: number) => {
+    setTrailSelectedId(id);
+    dispatch(clearMediaCategory());
+    dispatch(clearPostCategory());
+    dispatch(postByCategories.request(id));
+  };
 
   return (
     <S.Wrapper backgroundcolor={findCategoryById(trailSelectedId).color}>
@@ -47,7 +83,7 @@ const Trails = () => {
         <S.TrailButtonWrapper>
           {POST_CATEGORIES.map(({ id, label, color }) => (
             <S.TrailsButton
-              onClick={() => setTrailSelectedId(id)}
+              onClick={() => handleChangeCategory(id)}
               key={id}
               backgroundcolor={color}
             >
@@ -56,6 +92,7 @@ const Trails = () => {
           ))}
         </S.TrailButtonWrapper>
       </S.WrapperMedia>
+      {isLoading && <SkeletonTrailList />}
       <S.CardWrapper>
         {cardData.map(item => (
           <S.Card key={uniqueId()}>

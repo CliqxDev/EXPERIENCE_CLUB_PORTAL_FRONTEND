@@ -6,6 +6,7 @@ import {
   columnists,
   media,
   mediaById,
+  mediaCategory,
   postByCategories,
   postById,
   postSearch,
@@ -37,6 +38,22 @@ function* mediaSaga({ payload }: ReturnType<typeof media.request>): Generator {
   } catch (err) {
     const errors = err as Error;
     yield put(media.failure(errors));
+  }
+}
+
+function* mediaCategorySaga({
+  payload
+}: ReturnType<typeof mediaCategory.request>): Generator {
+  try {
+    const response: any = yield api.get<MediaItem>(
+      `/v2/media/${payload}`,
+      'https://expnew.com.br/wp-json/wp'
+    );
+
+    yield put(mediaCategory.success({ [payload]: response }));
+  } catch (err) {
+    const errors = err as Error;
+    yield put(mediaCategory.failure(errors));
   }
 }
 
@@ -106,7 +123,7 @@ function* postByCategoriesSaga({
 }: ReturnType<typeof postByCategories.request>): Generator {
   try {
     const response: any = yield api.get<PostResponse>(
-      `/v2/posts?categories=${payload}&per_page=11`,
+      `/v2/posts?categories=${payload}&per_page=6`,
       'https://expnew.com.br/wp-json/wp'
     );
     yield put(postByCategories.success(response));
@@ -119,6 +136,7 @@ function* postByCategoriesSaga({
 export default [
   takeEvery(posts.request, postsSaga),
   takeEvery(mediaById.request, mediaByIdSaga),
+  takeEvery(mediaCategory.request, mediaCategorySaga),
   takeEvery(columnists.request, columnistsSaga),
   takeEvery(media.request, mediaSaga),
   takeEvery(postByCategories.request, postByCategoriesSaga),

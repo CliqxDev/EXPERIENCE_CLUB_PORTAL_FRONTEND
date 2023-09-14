@@ -42,3 +42,14 @@ export const SkeletonCardList = () => (
     <S.Placeholder className="card" />
   </S.CardLoaderWrapper>
 );
+
+export const SkeletonTrailList = () => (
+  <S.CardLoaderWrapper id="skeleton-wrapper">
+    <S.Placeholder className="cardTrail" />
+    <S.Placeholder className="cardTrail" />
+    <S.Placeholder className="cardTrail" />
+    <S.Placeholder className="cardTrail" />
+    <S.Placeholder className="cardTrail" />
+    <S.Placeholder className="cardTrail" />
+  </S.CardLoaderWrapper>
+);
