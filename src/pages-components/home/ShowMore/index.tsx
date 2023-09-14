@@ -3,24 +3,16 @@ import parse from 'html-react-parser';
 import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import Title from 'components/ui/Title';
+import { Card, findCategoryById } from 'models/post';
 
-import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
+import { useMedia, usePosts } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 
 import { useAppDispatch } from 'hook/store';
 import { setShowShare } from 'flux/modules/post/actions';
 import * as S from './styles';
 
-type Card = {
-  id: number;
-  title: string;
-  imgSrc: string;
-  description: string;
-  category: string;
-};
-
 const ShowMore = () => {
-  const { data: categoryData } = useCategory();
   const { data: posts } = usePosts();
   const { data: media } = useMedia();
   const dispatch = useAppDispatch();
@@ -28,7 +20,7 @@ const ShowMore = () => {
   const [cardData, setCardData] = useState<Card[]>([]);
 
   useEffect(() => {
-    if (!isEmpty(posts) && !isEmpty(media) && !isEmpty(categoryData)) {
+    if (!isEmpty(posts) && !isEmpty(media)) {
       if (Object.keys(media).length === posts?.length) {
         const newCardData: Card[] = [];
         forEach(posts.slice(5), post => {
@@ -39,13 +31,13 @@ const ShowMore = () => {
               media[post.featured_media].media_details.sizes.thumbnail
                 .source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered, 80),
-            category: categoryData[post.categories[0]]
+            categoryId: post.categories[0]
           });
         });
         setCardData(newCardData);
       }
     }
-  }, [posts, media, categoryData]);
+  }, [posts, media]);
 
   return (
     <S.ShowMoreWrapper>
@@ -93,7 +85,7 @@ const ShowMore = () => {
                     />
                   </g>
                 </svg>
-                {item.category}
+                {findCategoryById(item.categoryId).label}
               </S.CardCategory>
               <svg
                 onClick={() => dispatch(setShowShare(true))}

@@ -4,9 +4,7 @@ import parse from 'html-react-parser';
 import { findIndex, forEach, isEmpty } from 'lodash';
 import moment from 'moment';
 
-// import Image from 'next/image';
 import {
-  useCategory,
   useColumnist,
   useMedia,
   usePostById,
@@ -16,7 +14,6 @@ import {
 import { useAppDispatch } from 'hook/store';
 import {
   postById,
-  category,
   columnists,
   media,
   posts,
@@ -30,10 +27,9 @@ import { SkeletonPost } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
 import TrailFilter from 'components/TrailFilter';
 import ShareDialog from 'components/ShareDialog';
+import { findCategoryById } from 'models/post';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
-// import limitedIcon from '../../../../public/img/limited-read.svg';
-// import CardLimitedRead from './CardLimitedRead';
 
 type Card = {
   id: number;
@@ -42,20 +38,11 @@ type Card = {
   title: string;
   imgSrc: string;
   description: string;
-  category: string;
+  categoryId: number;
   columnist: string;
   date: string;
   hour: string;
   content: string;
-};
-
-const backgrounds: any = {
-  0: '#708CFD',
-  1: '#5476FD',
-  2: '#254CE5',
-  3: '#1D3CB3',
-  4: '#172E8B',
-  5: '#11236A'
 };
 
 const Post = () => {
@@ -63,7 +50,6 @@ const Post = () => {
   const { data: post, status: statusPostById } = usePostById();
   const { id }: any = useParams();
   const { data: listMedia, status: statusMedia } = useMedia();
-  const { data: categoryData, status: statusCategory } = useCategory();
   const { data: columnistData } = useColumnist();
   const { data: dataPosts, status: statusPosts } = usePosts();
   const showShare = useShowShare();
@@ -77,7 +63,6 @@ const Post = () => {
     statusPosts === RequestStatus.fetching ||
     statusMedia === RequestStatus.fetching ||
     statusPostById === RequestStatus.fetching ||
-    statusCategory === RequestStatus.fetching ||
     !listMedia ||
     !dataPosts ||
     (listMedia && Object.keys(listMedia).length !== dataPosts?.length);
@@ -89,7 +74,7 @@ const Post = () => {
     title: '',
     imgSrc: '',
     description: '',
-    category: '',
+    categoryId: 0,
     columnist: '',
     hour: '',
     date: '',
@@ -118,7 +103,6 @@ const Post = () => {
   useEffect(() => {
     dispatch(postById.request(id));
     if (dataPosts === null) {
-      dispatch(category.request());
       dispatch(columnists.request());
       dispatch(posts.request());
     }
@@ -139,8 +123,7 @@ const Post = () => {
             listMedia[post.featured_media].media_details.sizes.medium_large
               ?.source_url,
           description: post.excerpt.rendered,
-          category:
-            (!isEmpty(categoryData) && categoryData[post.categories[0]]) || '',
+          categoryId: post.categories[0],
           columnist: (columnistData && getColumnist(post.author)) || '',
           date: moment(post.date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
           content: post.content.rendered,
@@ -148,7 +131,7 @@ const Post = () => {
         });
       }
     }
-  }, [post, listMedia, categoryData, columnistData]);
+  }, [post, listMedia, columnistData]);
 
   return (
     <S.Wrapper>
@@ -162,17 +145,21 @@ const Post = () => {
               <S.Image $backgroundImage={postSelected.imgSrc}>teste</S.Image>
             )}
             <S.HeaderContent>
-              {postSelected.category && (
+              {postSelected.categoryId && (
                 <S.ButtonCategoryWrapper
-                  $background={backgrounds[postSelected.id]}
+                  $background={findCategoryById(postSelected.categoryId).color}
                 >
-                  <S.ButtonCategory>{postSelected.category}</S.ButtonCategory>
+                  <S.ButtonCategory>
+                    {findCategoryById(postSelected.categoryId).label}
+                  </S.ButtonCategory>
                 </S.ButtonCategoryWrapper>
               )}
               {postSelected.title && <span>{parse(postSelected.title)}</span>}
             </S.HeaderContent>
           </S.HeaderImage>
-          <S.ExcerptWrapper $background={backgrounds[postSelected.id]}>
+          <S.ExcerptWrapper
+            $background={findCategoryById(postSelected.categoryId).color}
+          >
             <S.DateHourTextWrapper>
               <S.Text>{postSelected.date}</S.Text>
               <S.Divider />

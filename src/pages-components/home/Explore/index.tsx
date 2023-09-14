@@ -5,21 +5,14 @@ import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import Title from 'components/ui/Title';
 
-import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
+import { useMedia, usePosts } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { useAppDispatch } from 'hook/store';
 import { setShowShare } from 'flux/modules/post/actions';
+import { Card, findCategoryById } from 'models/post';
 import shareIcon from '../../../../public/img/share-icon-black.svg';
 
 import * as S from './styles';
-
-type Card = {
-  id: number;
-  title: string;
-  imgSrc: string;
-  description: string;
-  category: string;
-};
 
 type Props = {
   title: string;
@@ -27,7 +20,6 @@ type Props = {
 };
 
 const Explore: FC<Props> = ({ title, variant }) => {
-  const { data: categoryData } = useCategory();
   const { data: posts } = usePosts();
   const { data: media } = useMedia();
   const dispatch = useAppDispatch();
@@ -35,7 +27,7 @@ const Explore: FC<Props> = ({ title, variant }) => {
   const [cardData, setCardData] = useState<Card[]>([]);
 
   useEffect(() => {
-    if (!isEmpty(posts) && !isEmpty(media) && !isEmpty(categoryData)) {
+    if (!isEmpty(posts) && !isEmpty(media)) {
       if (Object.keys(media).length === posts?.length) {
         const newCardData: Card[] = [];
         forEach(posts.slice(5), post => {
@@ -47,13 +39,13 @@ const Explore: FC<Props> = ({ title, variant }) => {
                 'independent-grid-small'
               ]?.source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
-            category: categoryData[post.categories[0]]
+            categoryId: post.categories[0]
           });
         });
         setCardData(newCardData);
       }
     }
-  }, [posts, media, categoryData]);
+  }, [posts, media]);
 
   return (
     <S.ExploreWrapper>
@@ -70,7 +62,9 @@ const Explore: FC<Props> = ({ title, variant }) => {
             </Link>
 
             <S.FooterCard>
-              <S.TextFooter> {item.category}</S.TextFooter>
+              <S.TextFooter>
+                {findCategoryById(item.categoryId).label}
+              </S.TextFooter>
               <Image
                 src={shareIcon}
                 alt="Compartilhar"

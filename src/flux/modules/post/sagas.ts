@@ -1,25 +1,9 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import { AxiosError } from 'axios';
 
-import { forEach } from 'lodash';
 import { api } from 'apis';
-import {
-  category,
-  columnists,
-  media,
-  mediaById,
-  postById,
-  posts
-} from './actions';
-import {
-  Category,
-  CategoryResponse,
-  CategoryStore,
-  ColumnistsResponse,
-  MediaItem,
-  PostItem,
-  PostResponse
-} from './types';
+import { columnists, media, mediaById, postById, posts } from './actions';
+import { ColumnistsResponse, MediaItem, PostItem, PostResponse } from './types';
 
 function* postsSaga(): Generator {
   try {
@@ -45,27 +29,6 @@ function* mediaSaga({ payload }: ReturnType<typeof media.request>): Generator {
   } catch (err) {
     const errors = err as Error;
     yield put(media.failure(errors));
-  }
-}
-
-function* categorySaga(): Generator {
-  try {
-    const response = yield api.get<CategoryResponse>(
-      '/v2/Categories?per_page=100',
-      'https://expnew.com.br/wp-json/wp'
-    ) as unknown as CategoryResponse;
-
-    const sanitizedResponse: CategoryStore = {};
-    if (response) {
-      forEach(response, (item: Category) => {
-        sanitizedResponse[item.id] = item.name;
-      });
-    }
-
-    yield put(category.success(sanitizedResponse));
-  } catch (err) {
-    const errors = err as Error;
-    yield put(category.failure(errors));
   }
 }
 
@@ -118,7 +81,6 @@ function* mediaByIdSaga({
 export default [
   takeEvery(posts.request, postsSaga),
   takeEvery(mediaById.request, mediaByIdSaga),
-  takeEvery(category.request, categorySaga),
   takeEvery(columnists.request, columnistsSaga),
   takeEvery(media.request, mediaSaga),
   takeEvery(postById.request, postByIdSaga)

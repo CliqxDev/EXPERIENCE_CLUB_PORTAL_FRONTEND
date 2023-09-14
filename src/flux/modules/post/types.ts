@@ -9,7 +9,7 @@ type AcfObj = {
   autores_colunistas: number;
   exibir_no_banner: boolean;
   tempo_leitura: string;
-}
+};
 
 type LinkObj = {
   embeddable?: boolean;
@@ -147,27 +147,9 @@ export interface MediaItem {
 
 export type PostResponse = PostItem[];
 
-export type Category = {
-  count: number;
-  description: string;
-  id: number;
-  link: string;
-  meta: any;
-  name: string;
-  parent: number;
-  slug: string;
-  taxonomy: string;
-};
-
-export type CategoryStore = {
-  [key: string]: string;
-};
-
 export type MediaResponse = {
   [key: string]: MediaItem;
 };
-
-export type CategoryResponse = Category[];
 
 export type Columnists = {
   id: number;
@@ -192,7 +174,6 @@ export interface Post {
   general: IRequest<PostResponse>;
   media: IRequest<MediaResponse>;
   mediaById: IRequest<MediaResponse>;
-  category: IRequest<CategoryStore>;
   columnists: IRequest<ColumnistsResponse>;
   postById: IRequest<PostItem>;
   showShare: boolean;

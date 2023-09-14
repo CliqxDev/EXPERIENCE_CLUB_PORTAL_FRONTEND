@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 import { FC, useEffect, useState } from 'react';
 import { useAppDispatch } from 'hook/store';
-import { forEach, isEmpty, uniqueId } from 'lodash';
+import { isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import { logout } from 'utils/services/auth';
 
@@ -14,30 +14,16 @@ import LinkMenu from 'components/MenuComponents/LinkMenu';
 import * as S from './styles';
 import { clearClientInfo, clearSigIn } from 'flux/modules/auth/actions';
 import { useClientInfo } from 'hook/selectors/authHooks';
-import { useCategory } from 'hook/selectors/postHooks';
 import { clearAssignNewsletter } from 'flux/modules/client/actions';
+import { POST_CATEGORIES } from 'models/post';
 
 type SearchMenuProps = {
   onClose: () => void;
 };
 
-type Category = {
-  id: number;
-  name: string;
-};
-
-const backgrounds: any = {
-  0: '#708CFD',
-  1: '#5476FD',
-  2: '#254CE5',
-  3: '#1D3CB3',
-  4: '#172E8B',
-  5: '#11236A'
-};
 const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const dispatch = useAppDispatch();
   const { data } = useClientInfo();
-  const { data: categoryData } = useCategory();
 
   const [isLogged, setIsLogger] = useState(false);
   const [menuList, setMenuList] = useState([
@@ -46,7 +32,6 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       path: ''
     }
   ]);
-  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     if (!isEmpty(data)) {
@@ -168,18 +153,6 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
     setIsLogger(false);
   };
 
-  useEffect(() => {
-    if (categoryData) {
-      const newCategories: Category[] = [];
-      let idx = 0;
-      forEach(categoryData, item => {
-        newCategories.push({ id: idx, name: item });
-        idx += 1;
-      });
-      setCategories(newCategories);
-    }
-  }, [categoryData]);
-
   return (
     <S.Wrapper>
       <S.Header>
@@ -243,9 +216,9 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       <S.Divider />
       <S.TitleSort>Trilhas</S.TitleSort>
       <S.WrapperTrail>
-        {categories.slice(0, 6).map(({ id, name }) => (
-          <LinkMenu key={id} variant="sort" color={backgrounds[id]}>
-            {name}
+        {POST_CATEGORIES.map(({ id, label, color }) => (
+          <LinkMenu key={id} variant="sort" color={color}>
+            {label}
           </LinkMenu>
         ))}
       </S.WrapperTrail>

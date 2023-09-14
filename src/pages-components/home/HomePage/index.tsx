@@ -9,18 +9,8 @@ import Newsletter from 'pages-components/home/Newsletter';
 import Trails from 'pages-components/home/Trails';
 
 import { useAppDispatch } from 'hook/store';
-import {
-  category,
-  media,
-  posts,
-  setShowShare
-} from 'flux/modules/post/actions';
-import {
-  useCategory,
-  useMedia,
-  usePosts,
-  useShowShare
-} from 'hook/selectors/postHooks';
+import { media, posts, setShowShare } from 'flux/modules/post/actions';
+import { useMedia, usePosts, useShowShare } from 'hook/selectors/postHooks';
 import { SkeletonHome } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
 import { deleteProvisoryToken } from 'utils/services/auth';
@@ -33,14 +23,12 @@ const HomePage = () => {
   const { data: postsData } = usePosts();
   const dispatch = useAppDispatch();
   const { status: statusPosts, data: dataPost } = usePosts();
-  const { status: statusCategory } = useCategory();
   const { status: statusMedia, data: dataMedia } = useMedia();
   const showShare = useShowShare();
 
   const isLoading =
     statusPosts === RequestStatus.fetching ||
     statusMedia === RequestStatus.fetching ||
-    statusCategory === RequestStatus.fetching ||
     !dataMedia ||
     !dataPost ||
     (dataMedia && Object.keys(dataMedia).length !== dataPost?.length);
@@ -62,7 +50,6 @@ const HomePage = () => {
     deleteProvisoryToken();
     if (postsData === null) {
       dispatch(posts.request());
-      dispatch(category.request());
     }
   }, [postsData]);
 

@@ -4,10 +4,11 @@ import { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import Link from 'next/link';
 import { PostItem } from 'flux/modules/post/types';
-import { useCategory, useMedia } from 'hook/selectors/postHooks';
+import { useMedia } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { useAppDispatch } from 'hook/store';
 import { setShowShare } from 'flux/modules/post/actions';
+import { findCategoryById } from 'models/post';
 import articleIcon from '../../../../public/img/article.svg';
 import shareIcon from '../../../../public/img/share.svg';
 
@@ -19,7 +20,6 @@ type Props = {
 const SlideCarousel: FC<Props> = ({ post }) => {
   const dispatch = useAppDispatch();
   const { data: mediaData } = useMedia();
-  const { data: category } = useCategory();
 
   const [image, setImage] = useState('');
 
@@ -28,7 +28,8 @@ const SlideCarousel: FC<Props> = ({ post }) => {
       if (!isEmpty(mediaData)) {
         if (mediaData[post.featured_media]) {
           setImage(
-            mediaData[post.featured_media].media_details.sizes.medium?.source_url
+            mediaData[post.featured_media].media_details.sizes.medium
+              ?.source_url
           );
         }
       }
@@ -38,14 +39,11 @@ const SlideCarousel: FC<Props> = ({ post }) => {
   return (
     <S.Wrapper>
       <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-        {image &&
+        {image && (
           <S.ImgPost>
-            <img
-              src={image}
-              alt="Assunto"
-            />
+            <img src={image} alt="Assunto" />
           </S.ImgPost>
-        }
+        )}
       </Link>
       <S.WrapperContent>
         <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
@@ -68,7 +66,7 @@ const SlideCarousel: FC<Props> = ({ post }) => {
             <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
               <S.SubjectSection>
                 <Image src={articleIcon} alt="Assunto" />
-                {category && <S.Span>{category[post.categories[0]]}</S.Span>}
+                <S.Span>{findCategoryById(post.categories[0]).label}</S.Span>
               </S.SubjectSection>
             </Link>
             <S.WrapperImagem onClick={() => dispatch(setShowShare(true))}>

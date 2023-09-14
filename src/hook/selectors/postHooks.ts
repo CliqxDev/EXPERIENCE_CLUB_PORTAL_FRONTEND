@@ -1,5 +1,4 @@
 import {
-  CategoryStore,
   ColumnistsResponse,
   MediaResponse,
   PostItem,
@@ -14,9 +13,6 @@ export const usePosts = (): IRequest<PostResponse> =>
 
 export const useMedia = (): IRequest<MediaResponse> =>
   useSelector((state: RootState) => state.post.media);
-
-export const useCategory = (): IRequest<CategoryStore> =>
-  useSelector((state: RootState) => state.post.category);
 
 export const useColumnist = (): IRequest<ColumnistsResponse> =>
   useSelector((state: RootState) => state.post.columnists);

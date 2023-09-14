@@ -2,7 +2,6 @@ import { createAction, createAsyncAction } from 'typesafe-actions';
 
 import { AxiosError } from 'axios';
 import {
-  CategoryStore,
   ColumnistsResponse,
   MediaResponse,
   PostItem,
@@ -32,12 +31,6 @@ export const media = createAsyncAction(
   'MEDIA_SUCCESS',
   'MEDIA_ERROR'
 )<number, MediaResponse, Error | AxiosError>();
-
-export const category = createAsyncAction(
-  'CATEGORY_REQUEST',
-  'CATEGORY_SUCCESS',
-  'CATEGORY_ERROR'
-)<undefined, CategoryStore, Error | AxiosError>();
 
 export const columnists = createAsyncAction(
   'COLUMNISTS_REQUEST',

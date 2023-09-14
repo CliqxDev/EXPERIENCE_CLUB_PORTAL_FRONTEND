@@ -5,71 +5,23 @@ import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import Title from 'components/ui/Title';
 
-import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
+import { useMedia, usePosts } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { useAppDispatch } from 'hook/store';
 import { setShowShare } from 'flux/modules/post/actions';
+import { Card, POST_CATEGORIES, findCategoryById } from 'models/post';
 import * as S from './styles';
 
-type Category = {
-  id: string;
-  name: string;
-};
-
-type Card = {
-  id: number;
-  title: string;
-  imgSrc: string;
-  description: string;
-  category: string;
-};
-
 const Trails = () => {
-  const { data: categoryData } = useCategory();
   const { data: posts } = usePosts();
   const { data: media } = useMedia();
   const dispatch = useAppDispatch();
 
-  const [trailSelectedId, setTrailSelectedId] = useState('');
-  const [colorsByCategoryId, setColorsByCategoryId] = useState<any>({});
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [trailSelectedId, setTrailSelectedId] = useState(0);
   const [cardData, setCardData] = useState<Card[]>([]);
 
-  const backgrounds = [
-    '#11236A',
-    '#254CE5',
-    '#1D3CB3',
-    '#254CE5',
-    '#5476FD',
-    '#708CFD'
-  ];
-
-  const checkImageIdx = (idx: number) => {
-    if (idx > backgrounds.length - 1) {
-      return idx % backgrounds.length;
-    }
-    return idx;
-  };
-
   useEffect(() => {
-    if (categoryData) {
-      const newCategories: Category[] = [];
-      const newColorsByCategoryId: any = {};
-      let idx = 0;
-      forEach(categoryData, (item, key) => {
-        newCategories.push({ id: key, name: item });
-        const color = backgrounds[checkImageIdx(idx)];
-        newColorsByCategoryId[item] = color;
-        idx += 1;
-      });
-      setColorsByCategoryId(newColorsByCategoryId);
-      setCategories(newCategories.splice(0, 6));
-      setTrailSelectedId(newCategories[0].name);
-    }
-  }, [categoryData]);
-
-  useEffect(() => {
-    if (!isEmpty(posts) && !isEmpty(media) && !isEmpty(categoryData)) {
+    if (!isEmpty(posts) && !isEmpty(media)) {
       if (Object.keys(media).length === posts?.length) {
         const newCardData: Card[] = [];
         forEach(posts.slice(5), post => {
@@ -80,27 +32,26 @@ const Trails = () => {
               media[post.featured_media].media_details.sizes.thumbnail
                 ?.source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
-            category: categoryData[post.categories[0]]
+            categoryId: post.categories[0]
           });
         });
         setCardData(newCardData);
       }
     }
-  }, [posts, media, categoryData]);
+  }, [posts, media]);
 
   return (
-    <S.Wrapper backgroundcolor={colorsByCategoryId[trailSelectedId]}>
+    <S.Wrapper backgroundcolor={findCategoryById(trailSelectedId).color}>
       <S.WrapperMedia>
         <Title variant="black50">Trilhas</Title>
         <S.TrailButtonWrapper>
-          {categories.map(({ id, name }) => (
+          {POST_CATEGORIES.map(({ id, label, color }) => (
             <S.TrailsButton
-              onClick={() => setTrailSelectedId(name)}
+              onClick={() => setTrailSelectedId(id)}
               key={id}
-              id={id}
-              backgroundcolor={colorsByCategoryId[name]}
+              backgroundcolor={color}
             >
-              <S.TrailButtonText>{name}</S.TrailButtonText>
+              <S.TrailButtonText>{label}</S.TrailButtonText>
             </S.TrailsButton>
           ))}
         </S.TrailButtonWrapper>
@@ -144,7 +95,7 @@ const Trails = () => {
                     />
                   </g>
                 </svg>
-                {item.category}
+                {findCategoryById(item.categoryId).label}
               </S.CardCategory>
               <svg
                 width="24"

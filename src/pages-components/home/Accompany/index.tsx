@@ -6,30 +6,22 @@ import { forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import Title from 'components/ui/Title';
 
-import { useCategory, useMedia, usePosts } from 'hook/selectors/postHooks';
+import { useMedia, usePosts } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
+import { Card, findCategoryById } from 'models/post';
 import readIcon from '../../../../public/img/read-icon.svg';
 import arrowRight from '../../../../public/img/arrow-right-blue.svg';
 
 import * as S from './styles';
 
-type Card = {
-  id: number;
-  title: string;
-  imgSrc: string;
-  description: string;
-  category: string;
-};
-
 const Accompany = () => {
-  const { data: categoryData } = useCategory();
   const { data: posts } = usePosts();
   const { data: media } = useMedia();
 
   const [cardData, setCardData] = useState<Card[]>([]);
 
   useEffect(() => {
-    if (!isEmpty(posts) && !isEmpty(media) && !isEmpty(categoryData)) {
+    if (!isEmpty(posts) && !isEmpty(media)) {
       if (Object.keys(media).length === posts?.length) {
         const newCardData: Card[] = [];
         forEach(posts.slice(5), post => {
@@ -39,13 +31,13 @@ const Accompany = () => {
             imgSrc:
               media[post.featured_media].media_details.sizes.medium?.source_url,
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
-            category: categoryData[post.categories[0]]
+            categoryId: post.categories[0]
           });
         });
         setCardData(newCardData);
       }
     }
-  }, [posts, media, categoryData]);
+  }, [posts, media]);
 
   return (
     <S.AccompanyWrapper>
@@ -67,7 +59,7 @@ const Accompany = () => {
                     lineHeight: '2rem'
                   }}
                 >
-                  {item.category}
+                  {findCategoryById(item.categoryId).label}
                 </S.AccompanyTitle>
                 <Image src={readIcon} alt="Leia" />
               </S.TopCard>
