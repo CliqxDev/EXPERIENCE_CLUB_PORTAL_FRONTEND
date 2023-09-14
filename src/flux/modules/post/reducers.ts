@@ -8,7 +8,8 @@ import {
   postById as postByIdAction,
   postSearch as postSearchAction,
   clearPostById,
-  setShowShare
+  setShowShare,
+  postByCategories
 } from './actions';
 import { Post } from './types';
 
@@ -18,6 +19,7 @@ const initialState: Post = {
   columnists: { data: null, message: null, status: RequestStatus.idle },
   postById: { data: null, message: null, status: RequestStatus.idle },
   postSearch: { data: null, message: null, status: RequestStatus.idle },
+  postCategories: { data: null, message: null, status: RequestStatus.idle },
   media: { data: null, message: null, status: RequestStatus.idle },
   showShare: false
 };
@@ -42,6 +44,30 @@ const postReducer = createReducer<Post, Action>(initialState)
   .handleAction(postSearchAction.failure, state => ({
     ...state,
     postSearch: {
+      data: null,
+      message: null,
+      status: RequestStatus.error
+    }
+  }))
+  .handleAction(postByCategories.request, state => ({
+    ...state,
+    postCategories: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(postByCategories.success, (state, action) => ({
+    ...state,
+    postCategories: {
+      data: action.payload,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(postByCategories.failure, state => ({
+    ...state,
+    postCategories: {
       data: null,
       message: null,
       status: RequestStatus.error

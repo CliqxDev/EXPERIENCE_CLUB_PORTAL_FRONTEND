@@ -28,3 +28,6 @@ export const useShowShare = (): boolean =>
 
 export const usePostSearch = (): IRequest<PostResponse> =>
   useSelector((state: RootState) => state.post.postSearch);
+
+export const usePostCategories = (): IRequest<PostResponse> =>
+  useSelector((state: RootState) => state.post.postCategories);

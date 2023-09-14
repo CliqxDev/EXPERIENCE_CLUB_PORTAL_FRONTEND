@@ -44,6 +44,12 @@ export const postSearch = createAsyncAction(
   'POST_SEARCH_ERROR'
 )<string, PostResponse, Error | AxiosError>();
 
+export const postByCategories = createAsyncAction(
+  'POST_BY_CATEGORIES_REQUEST',
+  'POST_BY_CATEGORIES_SUCCESS',
+  'POST_BY_CATEGORIES_ERROR'
+)<number, PostResponse, Error | AxiosError>();
+
 export const clearPostById = createAction('CLEAR_POST_BY_ID')();
 
 export const setShowShare = createAction('SET_SHOW_SHARE')<boolean>();

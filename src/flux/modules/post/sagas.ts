@@ -6,6 +6,7 @@ import {
   columnists,
   media,
   mediaById,
+  postByCategories,
   postById,
   postSearch,
   posts
@@ -100,11 +101,27 @@ function* postSearchSaga({
   }
 }
 
+function* postByCategoriesSaga({
+  payload
+}: ReturnType<typeof postByCategories.request>): Generator {
+  try {
+    const response: any = yield api.get<PostResponse>(
+      `/v2/posts?categories=${payload}&per_page=11`,
+      'https://expnew.com.br/wp-json/wp'
+    );
+    yield put(postByCategories.success(response));
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(postByCategories.failure(errors));
+  }
+}
+
 export default [
   takeEvery(posts.request, postsSaga),
   takeEvery(mediaById.request, mediaByIdSaga),
   takeEvery(columnists.request, columnistsSaga),
   takeEvery(media.request, mediaSaga),
+  takeEvery(postByCategories.request, postByCategoriesSaga),
   takeEvery(postSearch.request, postSearchSaga),
   takeEvery(postById.request, postByIdSaga)
 ];
