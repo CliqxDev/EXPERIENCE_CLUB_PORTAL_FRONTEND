@@ -27,7 +27,7 @@ const MyHome = () => {
     <S.Wrapper>
       <HeaderMyHome />
       <BoxLogged variant="myHome" />
-      {userIsAdmin === false && userIsPremium === null && (
+      {userIsAdmin === false && userIsPremium === false && (
         <S.Plan>
           <SubscriberPlan />
         </S.Plan>
@@ -37,7 +37,7 @@ const MyHome = () => {
       {(userIsAdmin === true || userIsPremium === true) && <TrailsMyHome />}
 
       {userIsAdmin === false &&
-        userIsPremium === null &&
+        userIsPremium === false &&
         qtdLimitPostsReadUser - qtdPostsReadUser > 0 && (
           <S.CardLicense>
             <S.AddEmployee>
@@ -55,7 +55,7 @@ const MyHome = () => {
                 Conheça nossos planos e continue navegando sem limites na
                 plataforma [EXP].
               </S.TitleLimit>
-              <Link href="/plan" style={{ textDecoration: 'none' }}>
+              <Link href="/plan" style={{ textDecoration: 'none', width: '100%' }}>
                 <S.AddButton>Adquirir licença</S.AddButton>
               </Link>
             </S.CardAddEmployee>
@@ -63,7 +63,7 @@ const MyHome = () => {
         )}
 
       {userIsAdmin === false &&
-        userIsPremium === null &&
+        userIsPremium === false &&
         qtdLimitPostsReadUser - qtdPostsReadUser <= 0 && (
           <S.CardLicense style={{ height: '420px' }}>
             <S.AddEmployee>
@@ -89,7 +89,7 @@ const MyHome = () => {
           </S.CardLicense>
         )}
 
-      {userIsAdmin === false && userIsPremium === null && <Newsletter />}
+      {userIsAdmin === false && userIsPremium === false && <Newsletter />}
     </S.Wrapper>
   );
 };
