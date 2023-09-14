@@ -76,10 +76,10 @@ const MenuDesktop = () => {
           label: 'Compartilhados',
           path: '/'
         },
-        {
-          label: 'Assinatura',
-          path: '/'
-        },
+        // {
+        //   label: 'Assinatura',
+        //   path: '/'
+        // },
         {
           label: 'Eventos',
           path: '/'
