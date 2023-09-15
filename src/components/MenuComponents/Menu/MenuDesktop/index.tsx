@@ -20,7 +20,8 @@ const MenuDesktop = () => {
   const [menuList, setMenuList] = useState([
     {
       label: '',
-      path: ''
+      path: '', 
+      target: ''
     }
   ]);
 
@@ -37,19 +38,23 @@ const MenuDesktop = () => {
       newMenuList.push(
         {
           label: 'Minha conta',
-          path: '/my-home'
+          path: '/my-home',
+          target: '_parent'
         },
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Assine',
-          path: '/plan'
+          path: '/plan',
+          target: '_parent'
         },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -58,23 +63,28 @@ const MenuDesktop = () => {
       newMenuList.push(
         {
           label: 'Minha conta',
-          path: '/my-home'
+          path: '/my-home',
+          target: '_parent'
         },
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Biblioteca',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Minhas Trilhas',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Compartilhados',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         // {
         //   label: 'Assinatura',
@@ -82,7 +92,8 @@ const MenuDesktop = () => {
         // },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -91,27 +102,33 @@ const MenuDesktop = () => {
       newMenuList.push(
         {
           label: 'Minha conta',
-          path: '/my-home'
+          path: '/my-home',
+          target: '_parent'
         },
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Biblioteca',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Minhas Trilhas',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Colaboradores',
-          path: '/employees'
+          path: '/employees',
+          target: '_parent'
         },
         {
           label: 'Compartilhados',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         // {
         //   label: 'Assinatura',
@@ -119,7 +136,8 @@ const MenuDesktop = () => {
         // },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -137,9 +155,9 @@ const MenuDesktop = () => {
 
   return (
     <S.WrapperDesktop>
-      {menuList.map(({ path, label }) => (
+      {menuList.map(({ path, label, target }) => (
         <S.MenuList key={uniqueId()}>
-          <Link href={path} passHref style={{ textDecoration: 'none' }}>
+          <Link target={target} href={path} passHref style={{ textDecoration: 'none' }}>
             <S.MenuLabel>
               <span>{label}</span>
               <Image src={arrowRightIcon} alt="Acesso" />

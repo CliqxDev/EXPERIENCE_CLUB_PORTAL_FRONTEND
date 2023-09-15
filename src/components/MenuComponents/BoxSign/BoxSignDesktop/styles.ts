@@ -5,8 +5,7 @@ export const WrapperDesktop = styled.main`
   height: 72px;
   padding: 1.6rem;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.8rem;
+  align-items: center;
 
   #sign {
     width: 100px;

@@ -29,7 +29,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
   const [menuList, setMenuList] = useState([
     {
       label: '',
-      path: ''
+      path: '',
+      target: ''
     }
   ]);
 
@@ -46,19 +47,23 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Assine',
-          path: '/plan'
+          path: '/plan',
+          target: '_parent'
         },
         {
           label: 'Cadastre-se',
-          path: '/register/user'
+          path: '/register/user',
+          target: '_parent'
         },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -67,15 +72,18 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Assine',
-          path: '/plan'
+          path: '/plan',
+          target: '_parent'
         },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -84,19 +92,23 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Biblioteca',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Minhas Trilhas',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Compartilhados',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         // {
         //   label: 'Assinatura',
@@ -104,7 +116,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         // },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -113,23 +126,28 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/'
+          path: '/',
+          target: '_blank'
         },
         {
           label: 'Biblioteca',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Minhas Trilhas',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         {
           label: 'Colaboradores',
-          path: '/employees'
+          path: '/employees',
+          target: '_parent'
         },
         {
           label: 'Compartilhados',
-          path: '/'
+          path: '/',
+          target: '_parent'
         },
         // {
         //   label: 'Assinatura',
@@ -137,7 +155,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
         // },
         {
           label: 'Eventos',
-          path: '/'
+          path: 'https://lp.experienceclub.com.br/',
+          target: '_blank'
         }
       );
     }
@@ -207,8 +226,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
 
       {(isLogged && <BoxLogged variant="default" />) || <BoxSign />}
 
-      {menuList.map(({ path, label }) => (
-        <Link href={path} passHref key={uniqueId()}>
+      {menuList.map(({ path, label, target }) => (
+        <Link target={target} href={path} passHref key={uniqueId()}>
           <LinkMenu>{label}</LinkMenu>
         </Link>
       ))}
