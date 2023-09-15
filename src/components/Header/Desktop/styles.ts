@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'styles';
 
 export const WrapperDesktop = styled.main`
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   height: 120px;
@@ -10,8 +10,8 @@ export const WrapperDesktop = styled.main`
   position: relative;
   width: 100%;
 
-  ${breakpoints.down('md')} {
-    display: none;
+  ${breakpoints.up('md')} {
+    display: flex;
   }
 `;
 

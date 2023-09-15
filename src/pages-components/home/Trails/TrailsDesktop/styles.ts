@@ -22,7 +22,7 @@ export const WrapperTrailDesktop = styled.main`
 
 export const WrapperTrail = styled.div`
   display: none;
-  flex-direction: row-reverse;
+  flex-direction: row;
 
   ${breakpoints.up('md')} {
     display: flex;

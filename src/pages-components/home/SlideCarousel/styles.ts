@@ -25,7 +25,7 @@ export const ImgPost = styled.div`
 
 export const Title = styled.h1`
   font-size: 2.4rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 3.2rem;
   color: #ffff;
   padding: 0 1.6rem;
