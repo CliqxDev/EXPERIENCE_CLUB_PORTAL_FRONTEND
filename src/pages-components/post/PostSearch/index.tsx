@@ -17,6 +17,7 @@ import {
 import ShareDialog from 'components/ShareDialog';
 import { RequestStatus } from 'models/iRequest';
 import { SkeletonCardList } from 'components/ui/Skeleton';
+import { PostItem } from 'flux/modules/post/types';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
 import HeaderDesktopPost from '../PostHeader/Desktop';
@@ -41,6 +42,17 @@ const PostSearch = () => {
     dispatch(postSearch.request(search));
   }, [search]);
 
+  const mediaSelect = (postParam: PostItem) => {
+    if (!isEmpty(dataMedia)) {
+      const mediaPost = dataMedia[postParam.featured_media];
+      if (mediaPost) {
+        return dataMedia[postParam.featured_media].media_details.sizes.thumbnail
+          .source_url;
+      }
+    }
+    return '';
+  };
+
   useEffect(() => {
     if (!isEmpty(posts) && !isEmpty(dataMedia)) {
       if (Object.keys(dataMedia).length === posts?.length) {
@@ -49,9 +61,7 @@ const PostSearch = () => {
           newCardData.push({
             id: post.id,
             title: sanitizeTextByMaxLength(post.title.rendered, 32),
-            imgSrc:
-              dataMedia[post.featured_media].media_details.sizes.thumbnail
-                .source_url,
+            imgSrc: mediaSelect(post),
             description: sanitizeTextByMaxLength(post.excerpt.rendered, 80),
             categoryId: post.categories[0]
           });

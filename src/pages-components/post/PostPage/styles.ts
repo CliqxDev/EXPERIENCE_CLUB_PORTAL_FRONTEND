@@ -226,3 +226,8 @@ export const LimitedRead = styled.div`
   bottom: 0;
   z-index: 2;
 `;
+
+export const BoxBlock = styled.div`
+  width: 100%;
+  height: 379px;
+`;

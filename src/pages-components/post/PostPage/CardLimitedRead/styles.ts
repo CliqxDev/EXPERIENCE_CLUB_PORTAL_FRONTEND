@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.main<{ variant: "sigin" | "plan"}>`
+export const Wrapper = styled.main<{ variant: 'sigin' | 'plan' }>`
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  position: relative;
-  background: linear-gradient(180deg, rgba(29, 60, 179, 0.00) 0%, #1D3CB3 15%);
+  background: linear-gradient(180deg, rgba(29, 60, 179, 0) 0%, #1d3cb3 15%);
+  position: fixed;
+  bottom: 0;
 `;
 
 export const BgImg = styled.div`
@@ -28,7 +29,7 @@ export const Title = styled.h1`
   font-size: 32px;
   line-height: 40px;
   padding: 8rem 2rem 2rem 2rem;
-  color: #BDCAFE;
+  color: #bdcafe;
 `;
 
 export const CardContent = styled.div`
@@ -36,7 +37,7 @@ export const CardContent = styled.div`
   height: auto;
   border-radius: 8px;
   gap: 16px;
-  background: #EAEEFF;
+  background: #eaeeff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +51,7 @@ export const TitleCard = styled.h2`
   font-size: 22px;
   line-height: 28px;
   padding: 0.6rem;
-  color: #1D1D1B;
+  color: #1d1d1b;
 `;
 
 export const SubTitleCard = styled.h3`
@@ -59,5 +60,5 @@ export const SubTitleCard = styled.h3`
   font-size: 14px;
   line-height: 20px;
   padding: 0 0.6rem;
-  color: #1D1D1B;
+  color: #1d1d1b;
 `;

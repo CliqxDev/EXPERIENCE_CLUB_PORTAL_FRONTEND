@@ -1,5 +1,6 @@
 export const TOKEN_KEY = 'TOKEN_EXP_CLUB';
 export const TOKEN_PROVISORY_KEY = 'TOKEN_PROVISORY_KEY';
+export const ANONYMOUS_CONTENT_BLOCK = 'ANONYMOUS_CONTENT_BLOCK';
 
 type TokenType = {
   access?: string;
@@ -41,3 +42,12 @@ export const setProvisoryToken = (token: string) =>
 
 export const deleteProvisoryToken = () =>
   window.localStorage.removeItem(TOKEN_PROVISORY_KEY);
+
+export const setAnonymousContentBlock = () =>
+  window.localStorage.setItem(ANONYMOUS_CONTENT_BLOCK, 'YES');
+
+export const deleteAnonymousContentBlock = () =>
+  window.localStorage.removeItem(ANONYMOUS_CONTENT_BLOCK);
+
+export const getAnonymousContentBlock = () =>
+  window.localStorage.getItem(ANONYMOUS_CONTENT_BLOCK);

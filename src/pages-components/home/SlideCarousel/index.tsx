@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import Link from 'next/link';
 import { PostItem } from 'flux/modules/post/types';
+
 import { useMedia } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { useAppDispatch } from 'hook/store';
@@ -23,14 +24,22 @@ const SlideCarousel: FC<Props> = ({ post }) => {
 
   const [image, setImage] = useState('');
 
+  const mediaSelect = (postParam: PostItem) => {
+    if (!isEmpty(mediaData)) {
+      const mediaPost = mediaData[postParam.featured_media];
+      if (mediaPost) {
+        return mediaData[postParam.featured_media].media_details.sizes.medium
+          ?.source_url;
+      }
+    }
+    return '';
+  };
+
   useEffect(() => {
     if (!isEmpty(post)) {
       if (!isEmpty(mediaData)) {
         if (mediaData[post.featured_media]) {
-          setImage(
-            mediaData[post.featured_media].media_details.sizes.medium
-              ?.source_url
-          );
+          setImage(mediaSelect(post));
         }
       }
     }

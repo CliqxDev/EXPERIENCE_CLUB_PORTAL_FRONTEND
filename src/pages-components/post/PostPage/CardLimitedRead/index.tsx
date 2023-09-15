@@ -24,10 +24,7 @@ const CardLimitedRead: FC<CardProps> = ({
       <S.TitleCard>{titleCard}</S.TitleCard>
       <S.SubTitleCard>{subTitleCard}</S.SubTitleCard>
       {variant === 'sigin' && (
-        <Link
-          href="/register/user"
-          style={{ textDecoration: 'none', width: '100%' }}
-        >
+        <Link href="/sigin" style={{ textDecoration: 'none', width: '100%' }}>
           <Button fullwidth>Entrar</Button>
         </Link>
       )}

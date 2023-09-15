@@ -9,6 +9,7 @@ import Title from 'components/ui/Title';
 import { useMedia, usePosts } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { Card, findCategoryById } from 'models/post';
+import { PostItem } from 'flux/modules/post/types';
 import readIcon from '../../../../public/img/read-icon.svg';
 import arrowRight from '../../../../public/img/arrow-right-blue.svg';
 
@@ -20,6 +21,17 @@ const Accompany = () => {
 
   const [cardData, setCardData] = useState<Card[]>([]);
 
+  const mediaSelect = (post: PostItem) => {
+    if (!isEmpty(media)) {
+      const mediaPost = media[post.featured_media];
+      if (mediaPost) {
+        return media[post.featured_media].media_details.sizes.medium
+          ?.source_url;
+      }
+    }
+    return '';
+  };
+
   useEffect(() => {
     if (!isEmpty(posts) && !isEmpty(media)) {
       if (Object.keys(media).length === posts?.length) {
@@ -28,8 +40,7 @@ const Accompany = () => {
           newCardData.push({
             id: post.id,
             title: post.title.rendered,
-            imgSrc:
-              media[post.featured_media].media_details.sizes.medium?.source_url,
+            imgSrc: mediaSelect(post),
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
             categoryId: post.categories[0]
           });

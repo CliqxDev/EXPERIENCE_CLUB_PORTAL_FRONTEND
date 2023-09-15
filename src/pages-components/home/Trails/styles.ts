@@ -160,6 +160,10 @@ export const Action = styled.div`
   justify-content: center;
   margin-top: 34px;
   margin-bottom: 60px;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Button = styled.div`

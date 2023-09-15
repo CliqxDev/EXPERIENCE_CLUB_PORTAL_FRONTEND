@@ -12,13 +12,14 @@ const SearchMenu: FC<SearchMenuProps> = ({ onClose }) => {
   const [search, setSearch] = useState('');
 
   const handleKeyPress = (target: any) => {
-    if (target.charCode === 13) {
+    if (target.charCode === 13 && search) {
       window.location.href = `/post-search/${search}`;
     }
   };
+
   return (
     <S.Wrapper id="search">
-      <Link href={`/post-search/${search}`} passHref type="submit">
+      <Link href={search && `/post-search/${search}`} passHref type="submit">
         <ButtonMenu>
           <svg
             width="18"

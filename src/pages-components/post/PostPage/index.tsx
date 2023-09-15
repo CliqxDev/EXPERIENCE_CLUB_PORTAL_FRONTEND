@@ -3,14 +3,17 @@ import { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import { findIndex, forEach, isEmpty } from 'lodash';
 import moment from 'moment';
+// import Image from 'next/image';
 
 import {
   useColumnist,
   useMedia,
+  useMediaCategory,
   usePostById,
   usePosts,
   useShowShare
 } from 'hook/selectors/postHooks';
+import { useClientInfo } from 'hook/selectors/authHooks';
 import { useAppDispatch } from 'hook/store';
 import {
   postById,
@@ -28,6 +31,15 @@ import { RequestStatus } from 'models/iRequest';
 import TrailFilter from 'components/TrailFilter';
 import ShareDialog from 'components/ShareDialog';
 import { findCategoryById } from 'models/post';
+// import limitedIcon from '../../../../public/img/limited-read.svg';
+import {
+  getAnonymousContentBlock,
+  isAuthenticated,
+  setAnonymousContentBlock
+} from 'utils/services/auth';
+import { sanitizeTextByMaxLength } from 'utils/formatString';
+import { PostItem } from 'flux/modules/post/types';
+import CardLimitedRead from './CardLimitedRead';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
 
@@ -50,11 +62,14 @@ const Post = () => {
   const { data: post, status: statusPostById } = usePostById();
   const { id }: any = useParams();
   const { data: listMedia, status: statusMedia } = useMedia();
+  const { data: listMediaCategory } = useMediaCategory();
   const { data: columnistData } = useColumnist();
   const { data: dataPosts, status: statusPosts } = usePosts();
+  const { data: dataClient } = useClientInfo();
   const showShare = useShowShare();
 
   const [showTrailFilter, setShowTrailFilter] = useState(false);
+  const [blockContent, setBlockContent] = useState(false);
 
   const isFullMedia =
     listMedia && Object.keys(listMedia).length === dataPosts?.length;
@@ -106,10 +121,42 @@ const Post = () => {
       dispatch(columnists.request());
       dispatch(posts.request());
     }
+
+    if (!isAuthenticated()) {
+      const isBlock = getAnonymousContentBlock();
+      setBlockContent(isBlock === 'YES');
+    }
+
     return () => {
       dispatch(clearPostById());
+      setAnonymousContentBlock();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isEmpty(dataClient)) {
+      setBlockContent(dataClient.qtd_posts_read_month === 4);
+    }
+  }, [dataClient]);
+
+  const mediaSelect = (postParam: PostItem) => {
+    if (!isEmpty(listMedia)) {
+      const mediaPost = listMedia[postParam.featured_media];
+      if (mediaPost) {
+        return listMedia[postParam.featured_media].media_details.sizes
+          .medium_large?.source_url;
+      }
+    }
+
+    if (!isEmpty(listMediaCategory)) {
+      const mediaPost = listMediaCategory[postParam.featured_media];
+      if (mediaPost) {
+        return listMediaCategory[postParam.featured_media].media_details.sizes
+          .medium_large?.source_url;
+      }
+    }
+    return '';
+  };
 
   useEffect(() => {
     if (!isEmpty(post) && !isEmpty(listMedia)) {
@@ -119,19 +166,20 @@ const Post = () => {
           tempo_leitura: post.acf?.tempo_leitura,
           rendered: post.excerpt.rendered,
           title: post.title.rendered,
-          imgSrc:
-            listMedia[post.featured_media].media_details.sizes.medium_large
-              ?.source_url,
+          imgSrc: mediaSelect(post),
           description: post.excerpt.rendered,
           categoryId: post.categories[0],
           columnist: (columnistData && getColumnist(post.author)) || '',
           date: moment(post.date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
-          content: post.content.rendered,
+          content:
+            (blockContent &&
+              sanitizeTextByMaxLength(post.content.rendered, 250)) ||
+            post.content.rendered,
           hour: moment(post.date, 'YYYY-MM-DDh:mm:ss A').format('HH:mm:ss')
         });
       }
     }
-  }, [post, listMedia, columnistData]);
+  }, [post, listMedia, columnistData, blockContent]);
 
   return (
     <S.Wrapper>
@@ -210,22 +258,8 @@ const Post = () => {
             </S.Content>
           </S.ContentWrapper>
 
-          {/* LIMITE LEITURA */}
-          {/* <CardLimitedRead
-            title='Faça seu cadastro para ter acesso a mais 4 conteúdos gratuitos.'
-            titleCard='Ou conheça nossos planos e tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports.'
-            variant="sigin"
-          /> */}
-          {/* <CardLimitedRead
-            title='Você esgotou os seus conteúdos gratuitos.'
-            titleCard='Conheça nossos planos e continue navegando sem limites na plataforma [EXP].'
-            subTitleCard='Tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports.'
-            variant="plan"
-          /> */}
-          {/* LIMITE LEITURA */}
-
-          <ShowMore />
-          <Explore title="Relacionados" variant="scroll" />
+          {!blockContent && <ShowMore />}
+          {!blockContent && <Explore title="Relacionados" variant="scroll" />}
         </>
       )}
       <TrailFilter
@@ -241,6 +275,23 @@ const Post = () => {
         Limite de leitura excedido.
         <Image src={limitedIcon} alt="Limite de leitura excedido" />
       </S.LimitedRead> */}
+
+      {blockContent && !isAuthenticated() && (
+        <CardLimitedRead
+          title="Faça seu cadastro para ter acesso a mais 4 conteúdos gratuitos."
+          titleCard="Ou conheça nossos planos e tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports."
+          variant="sigin"
+        />
+      )}
+      {blockContent && isAuthenticated() && (
+        <CardLimitedRead
+          title="Você esgotou os seus conteúdos gratuitos."
+          titleCard="Conheça nossos planos e continue navegando sem limites na plataforma [EXP]."
+          subTitleCard="Tenha acesso ilimitado a todo o conteúdo: entrevistas, reportagens, vídeos e reports."
+          variant="plan"
+        />
+      )}
+      {blockContent && <S.BoxBlock />}
     </S.Wrapper>
   );
 };

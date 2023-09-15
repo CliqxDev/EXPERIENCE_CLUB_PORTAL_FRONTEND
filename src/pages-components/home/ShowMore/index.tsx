@@ -10,6 +10,7 @@ import { sanitizeTextByMaxLength } from 'utils/formatString';
 
 import { useAppDispatch } from 'hook/store';
 import { setShowShare } from 'flux/modules/post/actions';
+import { PostItem } from 'flux/modules/post/types';
 import * as S from './styles';
 
 const ShowMore = () => {
@@ -19,6 +20,17 @@ const ShowMore = () => {
 
   const [cardData, setCardData] = useState<Card[]>([]);
 
+  const mediaSelect = (post: PostItem) => {
+    if (!isEmpty(media)) {
+      const mediaPost = media[post.featured_media];
+      if (mediaPost) {
+        return media[post.featured_media].media_details.sizes.thumbnail
+          .source_url;
+      }
+    }
+    return '';
+  };
+
   useEffect(() => {
     if (!isEmpty(posts) && !isEmpty(media)) {
       if (Object.keys(media).length === posts?.length) {
@@ -27,9 +39,7 @@ const ShowMore = () => {
           newCardData.push({
             id: post.id,
             title: sanitizeTextByMaxLength(post.title.rendered, 32),
-            imgSrc:
-              media[post.featured_media].media_details.sizes.thumbnail
-                .source_url,
+            imgSrc: mediaSelect(post),
             description: sanitizeTextByMaxLength(post.excerpt.rendered, 80),
             categoryId: post.categories[0]
           });
