@@ -8,14 +8,20 @@ import {
   clientCheckoutIndividual,
   createClient,
   deleteClient,
+  setPostRead,
   updateClient
 } from './actions';
-import { ClientCheckoutIndividualInfo, ClientDeleteResponse, ClientInfo } from './types';
+import {
+  ClientCheckoutIndividualInfo,
+  ClientDeleteResponse,
+  ClientInfo
+} from './types';
 import {
   deleteAccount,
   getCheckoutIndividual,
   postAssignNewsletter,
   postClient,
+  postRead,
   putClient
 } from './service';
 import { clientInfo } from '../auth/actions';
@@ -30,7 +36,7 @@ type ClientDeleteResponseAPI = {
 
 type ClientCheckoutIndividualInfoAPI = {
   data: ClientCheckoutIndividualInfo;
-}
+};
 
 function* createClientSaga({
   payload
@@ -113,10 +119,25 @@ function* clientCheckoutIndividualSaga(): Generator {
   }
 }
 
+function* setPostReadSaga({
+  payload
+}: ReturnType<typeof setPostRead.request>): Generator {
+  try {
+    yield call(postRead, payload);
+
+    yield put(clientInfo.request());
+    yield put(setPostRead.success());
+  } catch (err) {
+    const errors = err as Error | AxiosError;
+    yield put(setPostRead.failure(errors));
+  }
+}
+
 export default [
   takeEvery(assignNewsletter.request, assignNewsletterSaga),
   takeEvery(createClient.request, createClientSaga),
   takeEvery(deleteClient.request, deleteClientSaga),
   takeEvery(updateClient.request, updateClientSaga),
+  takeEvery(setPostRead.request, setPostReadSaga),
   takeEvery(clientCheckoutIndividual.request, clientCheckoutIndividualSaga)
 ];

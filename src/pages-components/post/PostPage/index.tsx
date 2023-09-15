@@ -39,6 +39,7 @@ import {
 } from 'utils/services/auth';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { PostItem } from 'flux/modules/post/types';
+import { setPostRead } from 'flux/modules/client/actions';
 import CardLimitedRead from './CardLimitedRead';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
@@ -117,6 +118,11 @@ const Post = () => {
 
   useEffect(() => {
     dispatch(postById.request(id));
+
+    if (isAuthenticated()) {
+      dispatch(setPostRead.request({ post_external_id: id }));
+    }
+
     if (dataPosts === null) {
       dispatch(columnists.request());
       dispatch(posts.request());
@@ -135,7 +141,9 @@ const Post = () => {
 
   useEffect(() => {
     if (!isEmpty(dataClient)) {
-      setBlockContent(dataClient.qtd_posts_read_month === 4);
+      if (!dataClient.is_premium && !dataClient.is_admin) {
+        setBlockContent(dataClient.qtd_posts_read_month >= 4);
+      }
     }
   }, [dataClient]);
 

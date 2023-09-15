@@ -5,7 +5,8 @@ import {
   ClientInfoRequest,
   ClientInfo,
   ClientDeleteResponse,
-  ClientCheckoutIndividualInfo
+  ClientCheckoutIndividualInfo,
+  PostReadRequest
 } from './types';
 
 export const assignNewsletter = createAsyncAction(
@@ -38,6 +39,12 @@ export const clientCheckoutIndividual = createAsyncAction(
   'CLIENT_CHECKOUT_INDIVIDUAL_ERROR'
 )<undefined, ClientCheckoutIndividualInfo, Error | AxiosError>();
 
+export const setPostRead = createAsyncAction(
+  'POST_READ_REQUEST',
+  'POST_READ_SUCCESS',
+  'POST_READ_ERROR'
+)<PostReadRequest, undefined, Error | AxiosError>();
+
 export const clearDeleteClient = createAction('CLEAR_DELETE_CLIENT')();
 
 export const clearUpdateClient = createAction('CLEAR_UPDATE_CLIENT')();
@@ -46,4 +53,6 @@ export const clearCreateClient = createAction('CLEAR_CREATE_CLIENT')();
 
 export const clearAssignNewsletter = createAction('CLEAR_ASSIGN_NEWSLETTER')();
 
-export const clearClientCheckoutIndividual = createAction('CLEAR_CLIENT_CHECKOUT_INDIVIDUAL')();
+export const clearClientCheckoutIndividual = createAction(
+  'CLEAR_CLIENT_CHECKOUT_INDIVIDUAL'
+)();

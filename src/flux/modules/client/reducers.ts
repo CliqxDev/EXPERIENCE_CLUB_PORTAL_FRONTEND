@@ -11,6 +11,7 @@ import {
   clearDeleteClient,
   clientCheckoutIndividual,
   clearClientCheckoutIndividual,
+  setPostRead
 } from './actions';
 import { Client } from './types';
 
@@ -19,10 +20,34 @@ const initialState: Client = {
   newsLetter: { data: null, message: null, status: RequestStatus.idle },
   deleteClient: { data: null, message: null, status: RequestStatus.idle },
   createClient: { data: null, message: null, status: RequestStatus.idle },
-  checkoutIndividual: { data: null, message: null, status: RequestStatus.idle },
+  checkoutIndividual: { data: null, message: null, status: RequestStatus.idle }
 };
 
 const clientReducer = createReducer<Client, Action>(initialState)
+  .handleAction(setPostRead.request, state => ({
+    ...state,
+    deleteClient: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
+  }))
+  .handleAction(setPostRead.success, state => ({
+    ...state,
+    deleteClient: {
+      data: null,
+      message: null,
+      status: RequestStatus.success
+    }
+  }))
+  .handleAction(setPostRead.failure, (state, action) => ({
+    ...state,
+    deleteClient: {
+      data: null,
+      message: action.payload.message,
+      status: RequestStatus.error
+    }
+  }))
   .handleAction(deleteClientAction.request, state => ({
     ...state,
     deleteClient: {
@@ -145,7 +170,11 @@ const clientReducer = createReducer<Client, Action>(initialState)
   }))
   .handleAction(clientCheckoutIndividual.request, state => ({
     ...state,
-    clientCheckoutIndividual: { data: null, message: null, status: RequestStatus.fetching }
+    clientCheckoutIndividual: {
+      data: null,
+      message: null,
+      status: RequestStatus.fetching
+    }
   }))
   .handleAction(clientCheckoutIndividual.success, (state, action) => ({
     ...state,
@@ -170,6 +199,6 @@ const clientReducer = createReducer<Client, Action>(initialState)
       message: null,
       status: RequestStatus.idle
     }
-  }))
+  }));
 
 export default clientReducer;

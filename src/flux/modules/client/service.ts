@@ -3,7 +3,8 @@ import { del, get, post, put } from 'apis/axios';
 import {
   AssignNewsletterRequest,
   ClientInfo,
-  ClientInfoRequest
+  ClientInfoRequest,
+  PostReadRequest
 } from './types';
 
 export const postClient = (data: ClientInfoRequest) =>
@@ -29,7 +30,13 @@ export const postAssignNewsletter = (data: AssignNewsletterRequest) =>
     data
   });
 
-  export const getCheckoutIndividual = () =>
+export const getCheckoutIndividual = () =>
   get({
-    url: '/subscription-plans/?type=1&qtd_members=1',
+    url: '/subscription-plans/?type=1&qtd_members=1'
+  });
+
+export const postRead = (data: PostReadRequest) =>
+  post({
+    url: '/post-read/',
+    data
   });

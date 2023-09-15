@@ -42,7 +42,7 @@ export type ClientCheckoutIndividualInfo = {
   qtd_max_installments: number;
   created_at: string;
   updated_at: string;
-}
+};
 
 export interface ChangePasswordRequest {
   old_password: string;
@@ -72,4 +72,8 @@ export interface Client {
   deleteClient: IRequest<ClientDeleteResponse>;
   newsLetter: IRequest<AssignNewsletterResponse>;
   checkoutIndividual: IRequest<ClientCheckoutIndividualInfo>;
+}
+
+export interface PostReadRequest {
+  post_external_id: string;
 }
