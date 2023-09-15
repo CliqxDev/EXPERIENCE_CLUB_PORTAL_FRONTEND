@@ -146,6 +146,11 @@ export const Placeholder = styled.div`
   &.cardTrail {
     height: 260px;
     margin-bottom: 1.4rem;
+
+    ${breakpoints.up('md')} {
+      width: 467px;
+      margin-right: 1.4rem;
+    }
   }
 `;
 

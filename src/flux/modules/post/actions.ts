@@ -4,6 +4,8 @@ import { AxiosError } from 'axios';
 import {
   ColumnistsResponse,
   MediaResponse,
+  PostCategoryRequest,
+  PostCategoryResponse,
   PostItem,
   PostResponse
 } from './types';
@@ -54,7 +56,7 @@ export const postByCategories = createAsyncAction(
   'POST_BY_CATEGORIES_REQUEST',
   'POST_BY_CATEGORIES_SUCCESS',
   'POST_BY_CATEGORIES_ERROR'
-)<number, PostResponse, Error | AxiosError>();
+)<PostCategoryRequest, PostCategoryResponse, Error | AxiosError>();
 
 export const clearPostById = createAction('CLEAR_POST_BY_ID')();
 

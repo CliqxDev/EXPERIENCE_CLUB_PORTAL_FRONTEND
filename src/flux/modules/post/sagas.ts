@@ -12,7 +12,13 @@ import {
   postSearch,
   posts
 } from './actions';
-import { ColumnistsResponse, MediaItem, PostItem, PostResponse } from './types';
+import {
+  ColumnistsResponse,
+  ItemPostCategoryResponse,
+  MediaItem,
+  PostItem,
+  PostResponse
+} from './types';
 
 function* postsSaga(): Generator {
   try {
@@ -123,10 +129,15 @@ function* postByCategoriesSaga({
 }: ReturnType<typeof postByCategories.request>): Generator {
   try {
     const response: any = yield api.get<PostResponse>(
-      `/v2/posts?categories=${payload}&per_page=6`,
+      `/v2/posts?categories=${payload.category}&page=${payload.page}&per_page=6`,
       'https://expnew.com.br/wp-json/wp'
     );
-    yield put(postByCategories.success(response));
+
+    const postPage: ItemPostCategoryResponse = {
+      data: response,
+      pageNumber: payload.page
+    };
+    yield put(postByCategories.success([postPage]));
   } catch (err) {
     const errors = err as Error | AxiosError;
     yield put(postByCategories.failure(errors));

@@ -1,6 +1,7 @@
 import {
   ColumnistsResponse,
   MediaResponse,
+  PostCategoryResponse,
   PostItem,
   PostResponse
 } from 'flux/modules/post/types';
@@ -29,7 +30,7 @@ export const useShowShare = (): boolean =>
 export const usePostSearch = (): IRequest<PostResponse> =>
   useSelector((state: RootState) => state.post.postSearch);
 
-export const usePostCategories = (): IRequest<PostResponse> =>
+export const usePostCategories = (): IRequest<PostCategoryResponse> =>
   useSelector((state: RootState) => state.post.postCategories);
 
 export const useMediaCategory = (): IRequest<MediaResponse> =>

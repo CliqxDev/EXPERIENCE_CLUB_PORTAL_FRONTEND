@@ -145,7 +145,19 @@ export interface MediaItem {
   };
 }
 
+export type PostCategoryRequest = {
+  page: number;
+  category: number;
+};
+
 export type PostResponse = PostItem[];
+
+export type ItemPostCategoryResponse = {
+  pageNumber: number;
+  data: PostItem[];
+};
+
+export type PostCategoryResponse = ItemPostCategoryResponse[];
 
 export type MediaResponse = {
   [key: string]: MediaItem;
@@ -173,7 +185,7 @@ export type ColumnistsResponse = Columnists[];
 export interface Post {
   general: IRequest<PostResponse>;
   postSearch: IRequest<PostResponse>;
-  postCategories: IRequest<PostResponse>;
+  postCategories: IRequest<PostCategoryResponse>;
   media: IRequest<MediaResponse>;
   mediaById: IRequest<MediaResponse>;
   mediaCategory: IRequest<MediaResponse>;

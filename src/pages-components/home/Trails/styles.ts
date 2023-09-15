@@ -42,7 +42,7 @@ export const WrapperMedia = styled.div`
 
 export const Wrapper = styled.div<{ backgroundcolor: string }>`
   display: flex;
-  padding: 60px 8px 24px 16px;
+  padding: 60px 16px 24px 16px;
   flex-direction: column;
   background-color: ${({ backgroundcolor }) => backgroundcolor};
 
@@ -61,6 +61,12 @@ export const Wrapper = styled.div<{ backgroundcolor: string }>`
   #skeleton-wrapper {
     margin-top: 4.2rem;
     background-color: ${({ backgroundcolor }) => backgroundcolor};
+
+    ${breakpoints.up('md')} {
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-left: 1.4rem;
+    }
   }
 `;
 

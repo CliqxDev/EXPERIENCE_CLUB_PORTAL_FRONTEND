@@ -80,23 +80,32 @@ const postReducer = createReducer<Post, Action>(initialState)
   .handleAction(postByCategories.request, state => ({
     ...state,
     postCategories: {
-      data: null,
+      data: state.postCategories.data,
       message: null,
       status: RequestStatus.fetching
     }
   }))
-  .handleAction(postByCategories.success, (state, action) => ({
-    ...state,
-    postCategories: {
-      data: action.payload,
-      message: null,
-      status: RequestStatus.success
+  .handleAction(postByCategories.success, (state: any, action) => {
+    let newState = [...action.payload];
+    if (state.postCategories) {
+      if (state.postCategories.data) {
+        newState = [...state.postCategories.data, ...action.payload];
+      }
     }
-  }))
+
+    return {
+      ...state,
+      postCategories: {
+        data: newState,
+        message: null,
+        status: RequestStatus.success
+      }
+    };
+  })
   .handleAction(postByCategories.failure, state => ({
     ...state,
     postCategories: {
-      data: null,
+      data: state.postCategories.data,
       message: null,
       status: RequestStatus.error
     }

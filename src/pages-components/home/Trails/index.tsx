@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 
-import { forEach, isEmpty, uniqueId } from 'lodash';
+import { findIndex, forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
 import Title from 'components/ui/Title';
 
@@ -18,6 +18,7 @@ import {
 import { Card, POST_CATEGORIES, findCategoryById } from 'models/post';
 import { RequestStatus } from 'models/iRequest';
 import { SkeletonTrailList } from 'components/ui/Skeleton';
+import { ItemPostCategoryResponse, PostItem } from 'flux/modules/post/types';
 import * as S from './styles';
 
 const Trails = () => {
@@ -27,6 +28,11 @@ const Trails = () => {
 
   const [trailSelectedId, setTrailSelectedId] = useState(2620);
   const [cardData, setCardData] = useState<Card[]>([]);
+  const [page, setPage] = useState(1);
+  const [postCart, setPostCard] = useState<ItemPostCategoryResponse>({
+    data: [],
+    pageNumber: 0
+  });
 
   const isLoading =
     statusCategory === RequestStatus.fetching ||
@@ -36,44 +42,100 @@ const Trails = () => {
     dataMedia && Object.keys(dataMedia).length === posts?.length;
 
   useEffect(() => {
-    if (!isEmpty(posts) && !isEmpty(dataMedia)) {
-      if (Object.keys(dataMedia).length === posts?.length) {
-        const newCardData: Card[] = [];
-        forEach(posts, post => {
-          newCardData.push({
-            id: post.id,
-            title: post.title.rendered,
-            imgSrc:
-              dataMedia[post.featured_media].media_details.sizes.thumbnail
-                ?.source_url,
-            description: sanitizeTextByMaxLength(post.excerpt.rendered),
-            categoryId: post.categories[0]
-          });
-        });
-        setCardData(newCardData);
-      }
+    if (posts === null || posts.length === 0) {
+      setCardData([]);
+      setPostCard({
+        data: [],
+        pageNumber: 0
+      });
     }
-  }, [posts, dataMedia]);
 
-  useEffect(() => {
     if (posts) {
-      if (posts.length && !isFullMedia) {
-        forEach(posts, post =>
-          dispatch(mediaCategory.request(post.featured_media))
-        );
+      if (posts?.length > 0) {
+        const idx = findIndex(posts, ['pageNumber', page]);
+        if (idx !== -1) {
+          setPostCard({
+            pageNumber: page,
+            data: posts[idx].data
+          });
+        }
       }
     }
   }, [posts]);
 
+  const mediaSelect = (post: PostItem) => {
+    if (!isEmpty(dataMedia)) {
+      const mediaPost = dataMedia[post.featured_media];
+      if (mediaPost) {
+        return dataMedia[post.featured_media].media_details.sizes.thumbnail
+          ?.source_url;
+      }
+    }
+    return '';
+  };
+
   useEffect(() => {
-    dispatch(postByCategories.request(trailSelectedId));
+    if (postCart) {
+      if (postCart?.data.length && !isEmpty(dataMedia)) {
+        if (
+          Object.keys(dataMedia).length === postCart?.data.length &&
+          page === postCart.pageNumber
+        ) {
+          const newCardData: Card[] = [];
+          forEach(postCart.data, post => {
+            newCardData.push({
+              id: post.id,
+              title: post.title.rendered,
+              imgSrc: mediaSelect(post),
+              description: sanitizeTextByMaxLength(post.excerpt.rendered),
+              categoryId: trailSelectedId
+            });
+          });
+          setCardData([]);
+          setCardData([...cardData, ...newCardData]);
+        }
+      }
+    }
+  }, [postCart, dataMedia]);
+
+  useEffect(() => {
+    if (postCart) {
+      if (postCart.data.length && !isFullMedia) {
+        forEach(postCart.data, post =>
+          dispatch(mediaCategory.request(post.featured_media))
+        );
+      }
+    }
+  }, [postCart]);
+
+  useEffect(() => {
+    dispatch(postByCategories.request({ category: trailSelectedId, page: 1 }));
   }, []);
 
   const handleChangeCategory = (id: number) => {
     setTrailSelectedId(id);
+    setPage(1);
+    setPostCard({
+      data: [],
+      pageNumber: 0
+    });
     dispatch(clearMediaCategory());
     dispatch(clearPostCategory());
-    dispatch(postByCategories.request(id));
+    dispatch(postByCategories.request({ category: id, page: 1 }));
+  };
+
+  const handleShowMore = () => {
+    setPostCard({
+      data: [],
+      pageNumber: 0
+    });
+    const newPage = page + 1;
+    setPage(newPage);
+    dispatch(clearMediaCategory());
+
+    dispatch(
+      postByCategories.request({ category: trailSelectedId, page: newPage })
+    );
   };
 
   return (
@@ -92,7 +154,7 @@ const Trails = () => {
           ))}
         </S.TrailButtonWrapper>
       </S.WrapperMedia>
-      {isLoading && <SkeletonTrailList />}
+      {(isLoading || cardData.length === 0) && <SkeletonTrailList />}
       <S.CardWrapper>
         {cardData.map(item => (
           <S.Card key={uniqueId()}>
@@ -157,7 +219,7 @@ const Trails = () => {
         ))}
       </S.CardWrapper>
       <S.Action>
-        <S.Button>
+        <S.Button onClick={handleShowMore}>
           Veja Mais
           <svg
             width="25"
