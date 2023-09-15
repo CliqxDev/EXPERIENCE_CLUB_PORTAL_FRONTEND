@@ -91,7 +91,7 @@ const SigIn = () => {
     if (plan) {
       return `/register/${plan}`;
     }
-    return '/register-plan';
+    return '/register/user';
   };
 
   return (

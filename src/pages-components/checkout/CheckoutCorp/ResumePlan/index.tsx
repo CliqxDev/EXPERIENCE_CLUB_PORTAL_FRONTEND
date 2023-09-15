@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
-  const [counter, setCounter] = useState(2);
+  const [counter, setCounter] = useState(1);
   const { data } = useSelectedPlan();
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
@@ -34,12 +34,12 @@ const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
         );
       }
 
-      if (counter > 2) {
+      if (counter > 1) {
         const newPrice = selectedPlan.price * counter / selectedPlan.qtd_max_installments;
 
         return (
           <p>
-            10x <span>ou R$</span> <strong>{newPrice.toFixed(2)}</strong>
+            10x <span>de R$</span> <strong>{newPrice.toFixed(2)}</strong>
           </p>
         );
       }
@@ -59,7 +59,7 @@ const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
         return null;
       }
 
-      if (counter > 2) {
+      if (counter > 0) {
         const newPrice = selectedPlan.price * counter;
 
         return (
@@ -97,7 +97,7 @@ const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
                 <S.CounterBox>
                   <svg
                     onClick={() =>
-                      counter > 2 && handleChangeCounter(counter - 1)
+                      counter > 1 && handleChangeCounter(counter - 1)
                     }
                     width="40"
                     height="40"

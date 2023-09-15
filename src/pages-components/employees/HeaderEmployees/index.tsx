@@ -22,11 +22,13 @@ const HeaderEmployees = () => {
         />
       </Link>
 
-      <Image
-        alt="Logo Experience Club"
-        src={headerImg}
-        style={{ marginLeft: '1.4rem' }}
-      />
+      <Link href="/">
+        <Image
+          alt="Logo Experience Club"
+          src={headerImg}
+          style={{ marginLeft: '1.4rem' }}
+        />
+      </Link>
 
       <ButtonMenu onClick={() => setShowMenu(true)}>
         <svg

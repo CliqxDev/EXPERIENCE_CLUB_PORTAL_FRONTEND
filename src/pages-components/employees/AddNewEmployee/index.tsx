@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useFormik } from 'formik';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -58,12 +59,12 @@ const AddNewEmployee = () => {
       <S.Wrapper>
         <S.AddNewPhoto>
           <S.Avatar>
-            <S.ChangeAvatarLabel htmlFor="avatar">
+            {/* <S.ChangeAvatarLabel htmlFor="avatar">
               <S.ChangeAvatar type='file' id='avatar' name='avatar' />
               <Image src={newPhoto} alt="Adicionar Foto" />
-            </S.ChangeAvatarLabel>
+            </S.ChangeAvatarLabel> */}
           </S.Avatar>
-          <S.AddPhoto>Adicione uma foto</S.AddPhoto>
+          {/* <S.AddPhoto>Adicione uma foto</S.AddPhoto> */}
         </S.AddNewPhoto>
         <S.ContainerData>
           <S.FormData onSubmit={formik.handleSubmit}>

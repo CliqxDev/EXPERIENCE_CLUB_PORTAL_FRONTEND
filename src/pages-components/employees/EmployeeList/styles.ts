@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.main`
   width: 100%;
   padding: 4rem 2rem;
+  background: #E8E8E8;
 `;
 
 export const CardGrid = styled.div`

@@ -16,7 +16,7 @@ import { checkoutCorpSchema } from 'utils/schemas';
 import Input from 'components/ui/Input';
 import { masks } from 'utils';
 import { useAppDispatch } from 'hook/store';
-import { clearSubscriptionUserPlans, getSpecificPlan, postCompaniesUser, postSubscriptionUserPlans } from 'flux/modules/plan/actions';
+import { clearCompaniesUser, clearSubscriptionUserPlans, getSpecificPlan, postCompaniesUser, postSubscriptionUserPlans } from 'flux/modules/plan/actions';
 import { Plan } from 'flux/modules/plan/types';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import { useCompaniesUser, useSelectedPlan, useSubscriptionUserPlan } from 'hook/selectors/planHooks';
@@ -43,7 +43,7 @@ type CheckoutData = {
 };
 
 const CheckoutIndividual = () => {
-  const [counter, setCounter] = useState(2);
+  const [counter, setCounter] = useState(1);
   const dispatch = useAppDispatch();
   const { plan }: any = useParams();
   const { data: dataSelectedPlan } = useSelectedPlan();
@@ -111,6 +111,7 @@ const CheckoutIndividual = () => {
       if (selectedPlan.link) {
         window.location.href = `${selectedPlan.link}?email=${dataClient?.email}&doc=${formik.values.cnpj}`;
         dispatch(clearSubscriptionUserPlans());
+        dispatch(clearCompaniesUser());
       }
     }
   }, [status, message, subscriptionUser])
