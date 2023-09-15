@@ -217,9 +217,11 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       <S.TitleSort>Trilhas</S.TitleSort>
       <S.WrapperTrail>
         {POST_CATEGORIES.map(({ id, label, color }) => (
-          <LinkMenu key={id} variant="sort" color={color}>
-            {label}
-          </LinkMenu>
+          <Link href={`/category/${id}`} passHref key={uniqueId()}>
+            <LinkMenu variant="sort" color={color}>
+              {label}
+            </LinkMenu>
+          </Link>
         ))}
       </S.WrapperTrail>
       {isLogged && (

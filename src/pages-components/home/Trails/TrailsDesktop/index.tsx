@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-no-undef */
 import { FC } from 'react';
+import Link from 'next/link';
 import { POST_CATEGORIES } from 'models/post';
 import * as S from './styles';
 
@@ -12,7 +14,9 @@ const TrailsDesktop: FC<TrailButtonProps> = () => (
     <S.WrapperTrail>
       {POST_CATEGORIES.map(({ id, label, color }) => (
         <S.TrailButton key={id} variant="sort" color={color}>
-          <span>{label}</span>
+          <Link href={`/category/${id}`} passHref>
+            <span>{label}</span>
+          </Link>
         </S.TrailButton>
       ))}
     </S.WrapperTrail>

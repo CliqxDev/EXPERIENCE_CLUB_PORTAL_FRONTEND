@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import Link from 'next/link';
+import { uniqueId } from 'lodash';
 import Dialog from 'components/Dialog';
 import LinkMenu from 'components/MenuComponents/LinkMenu';
 import { POST_CATEGORIES } from 'models/post';
@@ -15,9 +17,11 @@ const TrailFilter: FC<Props> = ({ show, onClose }) => (
       <S.Title>Trilhas</S.Title>
       <S.Subtitle>Navegue diretamente pelos temas do seu interesse </S.Subtitle>
       {POST_CATEGORIES.map(({ id, label, color }) => (
-        <LinkMenu key={id} variant="sort" color={color}>
-          {label}
-        </LinkMenu>
+        <Link href={`/category/${id}`} passHref key={uniqueId()}>
+          <LinkMenu variant="sort" color={color}>
+            {label}
+          </LinkMenu>
+        </Link>
       ))}
     </S.Wrapper>
   </Dialog>

@@ -24,8 +24,8 @@ const HeaderDesktopPost = () => {
   }, [data]);
 
   return (
-    <S.Wrapper>
-      <S.Header>
+    <S.Wrapper id="desktop-header-wrapper">
+      <S.Header id="desktop-header-wrapper">
         <Link href="/" passHref>
           <img src="/img/icon-logo-white.svg" alt="ícone do logo da expclub" />
         </Link>
