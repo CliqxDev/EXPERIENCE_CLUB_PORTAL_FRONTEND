@@ -43,8 +43,8 @@ export const HeaderContent = styled.div`
 
   background: linear-gradient(
     360deg,
-    #1d1d1b 45.21%,
-    rgba(29, 29, 27, 0) 80.16%
+    #1d1d1b 55%,
+    rgba(29, 29, 27, 0) 95%
   );
 `;
 

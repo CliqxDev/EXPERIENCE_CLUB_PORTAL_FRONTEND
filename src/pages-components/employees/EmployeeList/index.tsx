@@ -92,7 +92,8 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
         </strong>
       </S.WarningLicense>
 
-      {data?.remaining_vacancy_count && data?.remaining_vacancy_count - employeeData.length === 0 ?
+      {(data?.remaining_vacancy_count && data?.remaining_vacancy_count - employeeData.length === 0) 
+      ?
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="limited">

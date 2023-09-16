@@ -27,7 +27,7 @@ const ResumePlan = () => {
 
       return (
         <p>
-          10x <span> de R$</span> <strong>49,90</strong>
+          até 10x <span> de R$</span> <strong>49,90</strong>
         </p>
       );
     }

@@ -47,8 +47,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/',
-          target: '_blank'
+          path: '/videos',
+          target: '_parent'
         },
         {
           label: 'Assine',
@@ -72,8 +72,8 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/',
-          target: '_blank'
+          path: '/videos',
+          target: '_parent'
         },
         {
           label: 'Assine',
@@ -92,7 +92,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/',
+          path: 'https://experienceclub.vhx.tv/',
           target: '_blank'
         },
         {
@@ -126,7 +126,7 @@ const Menu: FC<SearchMenuProps> = ({ onClose }) => {
       newMenuList.push(
         {
           label: 'Vídeos',
-          path: '/',
+          path: 'https://experienceclub.vhx.tv/',
           target: '_blank'
         },
         {

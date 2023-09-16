@@ -43,8 +43,8 @@ const MenuDesktop = () => {
         },
         {
           label: 'Vídeos',
-          path: '/',
-          target: '_blank'
+          path: '/videos',
+          target: '_parent'
         },
         {
           label: 'Assine',
@@ -68,7 +68,7 @@ const MenuDesktop = () => {
         },
         {
           label: 'Vídeos',
-          path: '/',
+          path: 'https://experienceclub.vhx.tv/',
           target: '_blank'
         },
         {
@@ -107,7 +107,7 @@ const MenuDesktop = () => {
         },
         {
           label: 'Vídeos',
-          path: '/',
+          path: 'https://experienceclub.vhx.tv/',
           target: '_blank'
         },
         {

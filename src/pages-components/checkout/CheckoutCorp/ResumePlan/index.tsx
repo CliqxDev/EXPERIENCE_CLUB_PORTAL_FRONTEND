@@ -39,14 +39,14 @@ const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
 
         return (
           <p>
-            10x <span>de R$</span> <strong>{newPrice.toFixed(2)}</strong>
+            até 10x <span>de R$</span> <strong>{newPrice.toFixed(2)}</strong>
           </p>
         );
       }
 
       return (
         <p>
-          10x <span> de R$</span> <strong>49,90</strong>
+          até 10x <span> de R$</span> <strong>49,90</strong>
         </p>
       );
     }

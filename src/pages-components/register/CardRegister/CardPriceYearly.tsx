@@ -26,7 +26,7 @@ export const CardPriceYearly: FC<Props> = ({ style, data, forUserSpan }) => (
       <S.InspirationDateWrapperColumn>
         <S.InspirationDateWrapperColumn>
           <p>
-            {sanitizeInstallment(data.qtd_max_installments)}
+            até {sanitizeInstallment(data.qtd_max_installments)}
             <strong>
               {formatInstallmentsValor(data.price, data.qtd_max_installments)}
             </strong>

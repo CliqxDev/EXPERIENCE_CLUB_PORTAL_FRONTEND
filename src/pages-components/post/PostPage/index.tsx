@@ -5,6 +5,7 @@ import { findIndex, forEach, isEmpty } from 'lodash';
 import moment from 'moment';
 // import Image from 'next/image';
 
+import Image from 'next/image';
 import {
   useColumnist,
   useMedia,
@@ -40,6 +41,7 @@ import {
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { PostItem } from 'flux/modules/post/types';
 import { setPostRead } from 'flux/modules/client/actions';
+import timeIcon from '../../../../public/img/time-icon.svg';
 import CardLimitedRead from './CardLimitedRead';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
@@ -142,7 +144,7 @@ const Post = () => {
   useEffect(() => {
     if (!isEmpty(dataClient)) {
       if (!dataClient.is_premium && !dataClient.is_admin) {
-        setBlockContent(dataClient.qtd_posts_read_month >= 4);
+        setBlockContent(dataClient.qtd_posts_read_month > 4);
       }
     }
   }, [dataClient]);
@@ -219,6 +221,11 @@ const Post = () => {
             <S.DateHourTextWrapper>
               <S.Text>{postSelected.date}</S.Text>
               <S.Divider />
+              <Image 
+                src={timeIcon}
+                alt="Tempo do post"
+                style={{  marginRight: '1rem' }}
+              />
               <S.Text>
                 {postSelected.tempo_leitura
                   ? `${postSelected.tempo_leitura} minutos`
@@ -228,7 +235,7 @@ const Post = () => {
             <S.Excerpt
               dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
             />
-            <S.Text>{`Por ${postSelected.columnist}`}</S.Text>
+            {/* <S.Text>{`Por ${postSelected.columnist}`}</S.Text> */}
           </S.ExcerptWrapper>
           <S.ContentWrapper>
             <S.Content>
