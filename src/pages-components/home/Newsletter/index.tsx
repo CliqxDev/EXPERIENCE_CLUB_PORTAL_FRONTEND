@@ -53,9 +53,10 @@ const Newsletter = () => {
     <>
       {status !== RequestStatus.error && status !== RequestStatus.success && (
         <S.NewsletterWrapper
+          id="news-letter-wrapper"
           islogged={isAuthenticated() ? '17.8rem' : '38.8rem'}
         >
-          <div style={{ width: 315 }}>
+          <div>
             <Title variant="lightCenter">
               Inscreva-se na nossa Newsletter!
             </Title>
@@ -134,8 +135,8 @@ const Newsletter = () => {
             </S.MessageHeader>
             <S.MessageContent>
               <p>
-                Caso não esteja recebendo nossos e-mails verifique na sua pasta de Spam e
-                salve o nosso e-mail em seus contatos.
+                Caso não esteja recebendo nossos e-mails verifique na sua pasta
+                de Spam e salve o nosso e-mail em seus contatos.
               </p>
             </S.MessageContent>
           </S.MessageBox>

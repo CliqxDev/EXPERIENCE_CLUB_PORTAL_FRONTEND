@@ -1,42 +1,45 @@
 import { styled } from 'styled-components';
 import { roboto } from 'styles/fonts';
+import { breakpoints } from 'styles';
 
 export const PlanWrapper = styled.main`
   width: 100%;
-  height: 12rem;
-  padding: 2rem;
+  padding: 1rem 1.6rem;
   background-image: url('./imgs/bg-plan.png');
   background-repeat: no-repeat;
-  background-size: 100% 12rem;
-  margin-top: 1.6rem;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${breakpoints.up('md')} {
+    width: 380px;
+  }
 `;
 
 export const Title = styled.h1`
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 2.4rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.5px;
   color: #ffff;
 `;
 
 export const Description = styled.p`
-  width: 15rem;
+  width: 16rem;
   font-family: ${roboto.style.fontFamily};
   font-size: 1.1rem;
-  font-weight: 400;
-  line-height: 1.4rem;
   margin-top: 0.2rem;
   color: #ffff;
-`;
-
-export const Row = styled.p`
-  display: flex;
-  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
 `;
 
 export const ButtonPlan = styled.button`
-  width: 145px;
-  height: 60px;
   border-radius: 8px;
+  padding: 1rem 2.4rem;
   border: none;
   outline: none;
   color: #ffffff;
@@ -47,5 +50,9 @@ export const ButtonPlan = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -2rem;
+`;
+
+export const Text = styled.main`
+  display: flex;
+  flex-direction: column;
 `;

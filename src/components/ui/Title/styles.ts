@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main``;
 
@@ -26,4 +27,8 @@ export const Title = styled.h1<{
   margin-bottom: 0.8rem;
   line-height: 3.6rem;
   ${({ variant }) => variant && variants[variant]}
+
+  ${breakpoints.up('md')} {
+    width: 1140px;
+  }
 `;

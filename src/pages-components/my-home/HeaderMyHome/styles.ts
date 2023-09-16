@@ -10,9 +10,9 @@ export const Wrapper = styled.main`
   position: relative;
   width: 100%;
 
-  /* ${breakpoints.up('md')} {
+  ${breakpoints.up('md')} {
     display: none;
-  } */
+  }
 `;
 
 export const Actions = styled.div`

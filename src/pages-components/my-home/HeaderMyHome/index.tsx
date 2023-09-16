@@ -70,6 +70,6 @@ const HeaderMyHome = () => {
       </S.Actions>
     </S.Wrapper>
   );
-}
+};
 
 export default HeaderMyHome;

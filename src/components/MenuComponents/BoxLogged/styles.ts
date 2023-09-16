@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
+import { breakpoints } from 'styles';
 
 const wrapperVariant = {
   default: css``,
   myHome: css`
-    padding: 2rem;
-  `,
-}
+    padding: 2.4rem 1.6rem;
+  `
+};
 
 export const Wrapper = styled.main<{ variant: 'default' | 'myHome' }>`
   width: 100%;
@@ -15,6 +16,10 @@ export const Wrapper = styled.main<{ variant: 'default' | 'myHome' }>`
   cursor: pointer;
 
   ${({ variant }) => wrapperVariant[variant]}
+
+  ${breakpoints.up('md')} {
+    width: 380px;
+  }
 `;
 
 export const WrapperUserColumn = styled.div`
@@ -67,7 +72,7 @@ export const RedirectProfile = styled.p`
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    color: #2954FC;
+    color: #2954fc;
     margin-right: 12px;
   }
 `;

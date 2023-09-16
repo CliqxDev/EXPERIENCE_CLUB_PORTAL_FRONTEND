@@ -31,9 +31,8 @@ const Explore: FC<Props> = ({ title, variant }) => {
     if (!isEmpty(media)) {
       const mediaPost = media[post.featured_media];
       if (mediaPost) {
-        return media[post.featured_media].media_details.sizes[
-          'independent-grid-small'
-        ]?.source_url;
+        return media[post.featured_media].media_details.sizes.medium
+          ?.source_url;
       }
     }
     return '';

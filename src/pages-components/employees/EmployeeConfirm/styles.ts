@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.main`
-  background-image: url('/img/form-layout-background.svg'),
-    url('/img/form-layout-img.svg');
+  background-image: url('/img/form-layout-background.svg');
   width: 100%;
   min-height: 100vh;
   background-size: cover;
@@ -32,4 +31,3 @@ export const ConfirmContent = styled.div`
   left: 1.6rem;
   right: 1.6rem;
 `;
-

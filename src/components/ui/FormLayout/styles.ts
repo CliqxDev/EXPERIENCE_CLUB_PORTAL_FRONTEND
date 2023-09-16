@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { breakpoints } from 'styles';
 
 const WrapperVariants = {
   bottom: css``,
@@ -9,8 +10,7 @@ const WrapperVariants = {
 };
 
 export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' | 'center' }>`
-  background-image: url('/img/form-layout-background.svg'),
-    url('/img/form-layout-img.svg');
+  background-image: url('/img/form-layout-background.svg');
   width: 100%;
   min-height: 100vh;
   background-size: cover;
@@ -20,6 +20,11 @@ export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' | 'center' }>`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  ${breakpoints.up('md')} {
+    background-repeat: repeat;
+    background-size: contain;
+  }
 
   ${({ variant }) => WrapperVariants[variant]}
 `;
@@ -43,6 +48,11 @@ const FormWrapperVariants = {
     left: 1.6rem;
     right: 1.6rem;
     background-color: #ffffff;
+
+    ${breakpoints.up('md')} {
+      position: unset;
+      width: 558px;
+    }
   `,
   simple: css`
     margin-top: 75px;

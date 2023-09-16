@@ -5,7 +5,7 @@ import { roboto } from 'styles/fonts';
 export const ShowMoreWrapper = styled.main`
   width: 100%;
   height: auto;
-  background: #F4F4F4;
+  background: #f4f4f4;
   padding: 2rem;
 
   ${breakpoints.up('md')} {
@@ -29,6 +29,7 @@ export const CardWrapper = styled.div`
     align-items: center;
     overflow-x: auto;
     gap: 1.6rem;
+    flex-wrap: wrap;
   }
 `;
 
@@ -45,6 +46,7 @@ export const Card = styled.div`
 
   ${breakpoints.up('md')} {
     max-height: 440px;
+    max-width: 470px;
   }
 `;
 
@@ -61,11 +63,6 @@ export const CardTitle = styled.div`
 export const Row = styled.div`
   display: flex;
   width: 100%;
-
-  ${breakpoints.up('md')} {
-   flex-direction: column; 
-   align-items: center;
-  }
 `;
 
 export const Subtitle = styled.div`
@@ -111,9 +108,4 @@ export const Texts = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 1.6rem;
-
-  ${breakpoints.up('md')} {
-   margin-left: 0;
-   margin-top: 16px;
-  }
 `;
