@@ -16,6 +16,7 @@ import { deleteClient } from 'flux/modules/client/actions';
 import { useDeleteClient } from 'hook/selectors/clientHooks';
 import { RequestStatus } from 'models/iRequest';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import BannerVideos from 'pages-components/banner-videos/BannerVideos';
 import * as S from './styles';
 import { Tab } from './types';
 
@@ -23,6 +24,8 @@ const PerfilPage = () => {
   const dispatch = useAppDispatch();
   const { status } = useDeleteClient();
   const { data } = useClientInfo();
+  const userIsAdmin = data?.is_admin;
+  const userIsPremium = data?.is_premium;
 
   const [tab, setTab] = useState<Tab>('PROFILE');
   const [showModal, setShowModal] = useState(false);
@@ -80,7 +83,12 @@ const PerfilPage = () => {
             <>
               <Info />
               <PersonalData />
-              <SubscriberPlan />
+              {userIsAdmin === false && userIsPremium === false ? (
+                <SubscriberPlan />
+              )
+                :
+                <BannerVideos />
+              }
               <S.DeleteAccount onClick={() => setShowModal(true)}>
                 Excluir conta
               </S.DeleteAccount>

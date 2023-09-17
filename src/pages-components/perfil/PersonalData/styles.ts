@@ -6,6 +6,7 @@ export const ContainerPersonalData = styled.div`
   padding: 1.6rem;
   background: #ffff;
   border-radius: 4px;
+  margin-bottom: 1rem;
 `;
 
 export const Title = styled.h1`

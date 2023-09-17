@@ -5,6 +5,7 @@ import BoxLogged from 'components/MenuComponents/BoxLogged';
 import SubscriberPlan from 'pages-components/perfil/SubscriberPlan';
 import { useClientInfo } from 'hook/selectors/authHooks';
 import Newsletter from 'pages-components/home/Newsletter';
+import BannerVideos from 'pages-components/banner-videos/BannerVideos';
 import HeaderMyHome from './HeaderMyHome';
 import HeaderMyHomeDesk from './HeaderMyHomeDesk';
 
@@ -27,11 +28,16 @@ const MyHome = () => {
       <S.InfoClientWrapper>
         <S.InfoClient>
           <BoxLogged variant="myHome" />
-          {userIsAdmin === false && userIsPremium === false && (
+          {userIsAdmin === false && userIsPremium === false ? (
             <S.Plan>
               <SubscriberPlan />
             </S.Plan>
-          )}
+          )
+            :
+            <S.Plan>
+              <BannerVideos />
+            </S.Plan>
+          }
         </S.InfoClient>
       </S.InfoClientWrapper>
 
