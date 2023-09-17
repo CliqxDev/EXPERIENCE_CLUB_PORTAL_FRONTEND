@@ -15,15 +15,20 @@ import { SkeletonHome } from 'components/ui/Skeleton';
 import { RequestStatus } from 'models/iRequest';
 import { deleteProvisoryToken } from 'utils/services/auth';
 import ShareDialog from 'components/ShareDialog';
+import { useClientInfo } from 'hook/selectors/authHooks';
 import * as S from './styles';
 import BannerDesktop from '../BannerDesktop';
 import TrailsDesktop from '../Trails/TrailsDesktop';
+import BannerDesktopVideos from '../BannerDesktopVideos';
 
 const HomePage = () => {
   const { data: postsData } = usePosts();
   const dispatch = useAppDispatch();
   const { status: statusPosts, data: dataPost } = usePosts();
   const { status: statusMedia, data: dataMedia } = useMedia();
+  const { data } = useClientInfo();
+  const userIsAdmin = data?.is_admin;
+  const userIsPremium = data?.is_premium;
   const showShare = useShowShare();
 
   const isLoading =
@@ -64,7 +69,11 @@ const HomePage = () => {
           <Accompany />
           <Newsletter />
           <Explore title="Explore" variant="default" />
-          <BannerDesktop />
+          {userIsAdmin === false && userIsPremium === false ?
+            <BannerDesktop />
+            :
+            <BannerDesktopVideos />
+          }
           <ShowMore />
         </>
       )}
