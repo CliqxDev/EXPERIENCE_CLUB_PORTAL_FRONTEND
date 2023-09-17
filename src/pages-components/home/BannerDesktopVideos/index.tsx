@@ -18,7 +18,7 @@ const BannerDesktopVideos = () => {
               <S.SubTitle>Confira nossa plataforma de vídeos!</S.SubTitle>
             </S.Plans>
             <S.Plans>
-              <Link href="/plan" passHref>
+              <Link href="https://experienceclub.vhx.tv" target="_blank" passHref>
                 <S.PlanButton>ACESSE NOSSOS VÍDEOS</S.PlanButton>
               </Link>
               <Image
