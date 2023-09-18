@@ -2,7 +2,7 @@ import Link from 'next/link';
 import * as S from './styles';
 
 const SubscriberPlan = () => (
-  <S.PlanWrapper>
+  <S.PlanWrapper id="plan-wrapper">
     <S.Text>
       <S.Title>Assine!</S.Title>
       <S.Description>

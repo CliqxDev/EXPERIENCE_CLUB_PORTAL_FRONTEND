@@ -32,49 +32,48 @@ const MyHome = () => {
             <S.Plan>
               <SubscriberPlan />
             </S.Plan>
-          )
-            :
+          ) : (
             <S.Plan>
               <BannerVideos />
             </S.Plan>
-          }
+          )}
         </S.InfoClient>
       </S.InfoClientWrapper>
 
       {(userIsAdmin === true || userIsPremium === true) && <LibraryMyHome />}
       {(userIsAdmin === true || userIsPremium === true) && <TrailsMyHome />}
 
-      {userIsAdmin === false &&
-        userIsPremium === false &&
-        qtdLimitPostsReadUser - qtdPostsReadUser > 0 && (
-          <S.CardLicense>
-            <S.AddEmployee>
-              <S.LimitEmployee>
-                {qtdLimitPostsReadUser - qtdPostsReadUser}
-              </S.LimitEmployee>
-              <S.TitleLimit variant="default">
-                Você ainda tem acesso a<br />
-                {qtdLimitPostsReadUser - qtdPostsReadUser} conteúdo(s)
-                gratuito(s).
-              </S.TitleLimit>
-            </S.AddEmployee>
-
-            <S.CardAddEmployee variant="default">
-              <S.TitleLimit variant="black">
-                Conheça nossos planos e continue navegando sem limites na
-                plataforma [EXP].
-              </S.TitleLimit>
-              <Link
-                href="/plan"
-                style={{ textDecoration: 'none', width: '100%' }}
-              >
-                <S.AddButton>Adquirir licença</S.AddButton>
-              </Link>
-            </S.CardAddEmployee>
-          </S.CardLicense>
-        )}
       <S.ContentWrapper>
         <S.Content>
+          {userIsAdmin === false &&
+            userIsPremium === false &&
+            qtdLimitPostsReadUser - qtdPostsReadUser > 0 && (
+              <S.CardLicense>
+                <S.AddEmployee>
+                  <S.LimitEmployee>
+                    {qtdLimitPostsReadUser - qtdPostsReadUser}
+                  </S.LimitEmployee>
+                  <S.TitleLimit variant="default">
+                    Você ainda tem acesso a<br />
+                    {qtdLimitPostsReadUser - qtdPostsReadUser} conteúdo(s)
+                    gratuito(s).
+                  </S.TitleLimit>
+                </S.AddEmployee>
+
+                <S.CardAddEmployee variant="default">
+                  <S.TitleLimit variant="black">
+                    Conheça nossos planos e continue navegando sem limites na
+                    plataforma [EXP].
+                  </S.TitleLimit>
+                  <Link
+                    href="/plan"
+                    style={{ textDecoration: 'none', width: '100%' }}
+                  >
+                    <S.AddButton>Adquirir licença</S.AddButton>
+                  </Link>
+                </S.CardAddEmployee>
+              </S.CardLicense>
+            )}
           {userIsAdmin === false &&
             userIsPremium === false &&
             qtdLimitPostsReadUser - qtdPostsReadUser <= 0 && (

@@ -8,6 +8,12 @@ export const WrapperProfile = styled.main`
   height: 100vh;
   background: #e8e8e8;
   padding: 0 1.6rem;
+
+  ${breakpoints.up('md')} {
+    #plan-wrapper {
+      width: 100%;
+    }
+  }
 `;
 
 export const WrapperResponsive = styled.div`
