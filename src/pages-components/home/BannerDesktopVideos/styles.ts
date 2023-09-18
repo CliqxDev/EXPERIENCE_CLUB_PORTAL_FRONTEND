@@ -4,7 +4,7 @@ import { breakpoints } from 'styles';
 export const BannerWrapper = styled.main`
   width: 100%;
   height: 65px;
-  background: #1D3CB3;
+  background: #EAEEFF;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -29,10 +29,10 @@ export const Plans = styled.div`
 
 export const Title = styled.h1`
   font-family: Work Sans/headline/large;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 32px;
   line-height: 40px;
-  color: #FFFFFF;
+  color: #2954FC;
 
   ${breakpoints.down('md')} {
     font-family: Work Sans/headline/small;
@@ -65,7 +65,8 @@ export const PlanButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #2954FC;
+  color: #EAEEFF;
+  background: #2954FC;
   text-align: center;
   cursor: pointer;
 `;

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 import * as S from './styles';
-import closeBannerIcon from '../../../../public/img/close.svg';
+import closeBannerIcon from '../../../../public/img/close-blue.svg';
 
 const BannerDesktopVideos = () => {
   const [closeBanner, setCloseBanner] = useState(true);
