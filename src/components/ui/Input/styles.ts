@@ -2,6 +2,7 @@ import InputMask from 'react-input-mask';
 import { NumericFormat } from 'react-number-format';
 import styled, { css } from 'styled-components';
 import { spacings } from 'utils';
+import { breakpoints } from 'styles';
 
 import { roboto } from 'styles/fonts';
 import { Variant } from './types';
@@ -173,6 +174,10 @@ const inputWrapperVariants = {
         ~ ${Label} {
           background-color: #5476fd;
           color: #ffffff;
+
+          ${breakpoints.up('md')} {
+            background-color: #254ce5;
+          }
         }
       }
 

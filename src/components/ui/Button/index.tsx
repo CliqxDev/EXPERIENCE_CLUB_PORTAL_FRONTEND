@@ -20,7 +20,7 @@ const Button: FC<ButtonProps> = ({
   variant = 'default',
   ...others
 }) => (
-  <S.Wrapper fullwidth={fullwidth}>
+  <S.Wrapper id="wrapper-button" fullwidth={fullwidth}>
     <S.Button {...others} variant={variant} fullwidth={fullwidth}>
       {children}
     </S.Button>

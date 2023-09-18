@@ -56,74 +56,76 @@ const Newsletter = () => {
           id="news-letter-wrapper"
           islogged={isAuthenticated() ? '17.8rem' : '38.8rem'}
         >
-          <div>
+          <S.WrapperTitle>
             <Title variant="lightCenter">
               Inscreva-se na nossa Newsletter!
             </Title>
-          </div>
-          <S.FormWrapper onSubmit={formik.handleSubmit}>
-            {!isAuthenticated() && (
-              <>
-                <Input
-                  fullwidth
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  label="Nome"
-                  required
-                  id="name"
-                  name="name"
-                  placeholder=""
-                  errorMessage={
-                    (formik.touched.name && formik.errors.name) || ''
-                  }
-                  spacing="12"
-                  variant="transparent"
-                />
-                <Input
-                  fullwidth
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  label="E-mail"
-                  required
-                  id="email"
-                  name="email"
-                  placeholder=""
-                  errorMessage={
-                    (formik.touched.email && formik.errors.email) || ''
-                  }
-                  spacing="12"
-                  variant="transparent2"
-                />
-                <S.CheckboxContainer>
-                  <S.Checkbox
-                    name="checkbox"
-                    id="checkbox"
-                    type="checkbox"
-                    defaultChecked={checked}
-                    onChange={e => setChecked(e.target.checked)}
+          </S.WrapperTitle>
+          <S.FormDesk>
+            <S.FormWrapper onSubmit={formik.handleSubmit}>
+              {!isAuthenticated() && (
+                <>
+                  <Input
+                    fullwidth
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    label="Nome"
+                    required
+                    id="name"
+                    name="name"
+                    placeholder=""
+                    errorMessage={
+                      (formik.touched.name && formik.errors.name) || ''
+                    }
+                    spacing="12"
+                    variant="transparent"
                   />
-                  <S.CustomizeLabel htmlFor="checkbox">
-                    Concordo com os{' '}
-                    <span style={{ textDecoration: 'underline' }}>
-                      termos de privacidade
-                    </span>{' '}
-                    e aceito receber newsletters.
-                  </S.CustomizeLabel>
-                </S.CheckboxContainer>
-              </>
-            )}
-            <Button
-              style={{ height: '4rem', margin: '2rem auto' }}
-              fullwidth
-              variant="secondary"
-              onClick={handleSubmit}
-              disabled={isDisabled()}
-            >
-              Cadastrar
-            </Button>
-          </S.FormWrapper>
+                  <Input
+                    fullwidth
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    label="E-mail"
+                    required
+                    id="email"
+                    name="email"
+                    placeholder=""
+                    errorMessage={
+                      (formik.touched.email && formik.errors.email) || ''
+                    }
+                    spacing="12"
+                    variant="transparent2"
+                  />
+                  <S.CheckboxContainer>
+                    <S.Checkbox
+                      name="checkbox"
+                      id="checkbox"
+                      type="checkbox"
+                      defaultChecked={checked}
+                      onChange={e => setChecked(e.target.checked)}
+                    />
+                    <S.CustomizeLabel htmlFor="checkbox">
+                      Concordo com os{' '}
+                      <span style={{ textDecoration: 'underline' }}>
+                        termos de privacidade
+                      </span>{' '}
+                      e aceito receber newsletters.
+                    </S.CustomizeLabel>
+                  </S.CheckboxContainer>
+                </>
+              )}
+              <Button
+                style={{ height: '4rem', margin: '2rem auto' }}
+                fullwidth
+                variant="secondary"
+                onClick={handleSubmit}
+                disabled={isDisabled()}
+              >
+                Cadastrar
+              </Button>
+            </S.FormWrapper>
+          </S.FormDesk>
         </S.NewsletterWrapper>
       )}
       {status === RequestStatus.error && (

@@ -3,7 +3,6 @@ import parse from 'html-react-parser';
 
 import { findIndex, forEach, isEmpty, uniqueId } from 'lodash';
 import Link from 'next/link';
-import Title from 'components/ui/Title';
 
 import { useMediaCategory, usePostCategories } from 'hook/selectors/postHooks';
 import { sanitizeTextByMaxLength } from 'utils/formatString';
@@ -144,7 +143,8 @@ const Trails = () => {
   return (
     <S.Wrapper backgroundcolor={findCategoryById(trailSelectedId).color}>
       <S.WrapperMedia>
-        <Title variant="black50">Trilhas</Title>
+        <S.TitleTrail>Trilhas</S.TitleTrail>
+
         <S.TrailButtonWrapper>
           {POST_CATEGORIES.map(({ id, label, color }) => (
             <S.TrailsButton
