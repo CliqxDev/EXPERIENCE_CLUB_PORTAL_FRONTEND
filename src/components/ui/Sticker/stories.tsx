@@ -7,4 +7,4 @@ export default {
   component: Sticker
 } as Meta;
 
-export const Default: Story = () => <Sticker bottom="10">teste</Sticker>;
+export const Default: Story = () => <Sticker>teste</Sticker>;
