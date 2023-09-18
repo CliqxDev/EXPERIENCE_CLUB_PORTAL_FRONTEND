@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import { findIndex, forEach, isEmpty } from 'lodash';
 import moment from 'moment';
-// import Image from 'next/image';
 
-import Image from 'next/image';
+// import Image from 'next/image';
 import {
   useColumnist,
   useMedia,
@@ -32,7 +31,6 @@ import { RequestStatus } from 'models/iRequest';
 import TrailFilter from 'components/TrailFilter';
 import ShareDialog from 'components/ShareDialog';
 import { findCategoryById } from 'models/post';
-// import limitedIcon from '../../../../public/img/limited-read.svg';
 import {
   getAnonymousContentBlock,
   isAuthenticated,
@@ -41,10 +39,11 @@ import {
 import { sanitizeTextByMaxLength } from 'utils/formatString';
 import { PostItem } from 'flux/modules/post/types';
 import { setPostRead } from 'flux/modules/client/actions';
-import timeIcon from '../../../../public/img/time-icon.svg';
+// import timeIcon from '../../../../public/img/time-icon.svg';
 import CardLimitedRead from './CardLimitedRead';
 import * as S from './styles';
 import PostHeader from '../PostHeader';
+import HeaderDesktopPost from '../PostHeader/Desktop';
 
 type Card = {
   id: number;
@@ -52,6 +51,7 @@ type Card = {
   rendered: string;
   title: string;
   imgSrc: string;
+  imgSrcDesk: string;
   description: string;
   categoryId: number;
   columnist: string;
@@ -91,6 +91,7 @@ const Post = () => {
     rendered: '',
     title: '',
     imgSrc: '',
+    imgSrcDesk: '',
     description: '',
     categoryId: 0,
     columnist: '',
@@ -168,6 +169,25 @@ const Post = () => {
     return '';
   };
 
+  const mediaSelectDesk = (postParam: PostItem) => {
+    if (!isEmpty(listMedia)) {
+      const mediaPost = listMedia[postParam.featured_media];
+      if (mediaPost) {
+        return listMedia[postParam.featured_media].media_details.sizes.full
+          ?.source_url;
+      }
+    }
+
+    if (!isEmpty(listMediaCategory)) {
+      const mediaPost = listMediaCategory[postParam.featured_media];
+      if (mediaPost) {
+        return listMediaCategory[postParam.featured_media].media_details.sizes
+          .full?.source_url;
+      }
+    }
+    return '';
+  };
+
   useEffect(() => {
     if (!isEmpty(post) && !isEmpty(listMedia)) {
       if (isFullMedia) {
@@ -177,6 +197,7 @@ const Post = () => {
           rendered: post.excerpt.rendered,
           title: post.title.rendered,
           imgSrc: mediaSelect(post),
+          imgSrcDesk: mediaSelectDesk(post),
           description: post.excerpt.rendered,
           categoryId: post.categories[0],
           columnist: (columnistData && getColumnist(post.author)) || '',
@@ -215,27 +236,45 @@ const Post = () => {
               {postSelected.title && <span>{parse(postSelected.title)}</span>}
             </S.HeaderContent>
           </S.HeaderImage>
+          <S.BannerDesktop>
+            <S.GradientTop />
+            <HeaderDesktopPost />
+            <S.HeaderDesktop>
+              <S.WrapperImage>
+                <S.GradientDesk />
+                <S.WrapperContent>
+                  <S.Title>{parse(postSelected.title)}</S.Title>
+                </S.WrapperContent>
+                <S.ImgPost>
+                  <img
+                    id="banner"
+                    src={postSelected.imgSrcDesk}
+                    alt="Assunto"
+                  />
+                </S.ImgPost>
+              </S.WrapperImage>
+            </S.HeaderDesktop>
+          </S.BannerDesktop>
           <S.ExcerptWrapper
             $background={findCategoryById(postSelected.categoryId).color}
           >
             <S.DateHourTextWrapper>
               <S.Text>{postSelected.date}</S.Text>
-              <S.Divider />
-              <Image 
+              {/* <S.Divider />
+              <Image
                 src={timeIcon}
                 alt="Tempo do post"
-                style={{  marginRight: '1rem' }}
-              />
-              <S.Text>
+                style={{ marginRight: '1rem' }}
+              /> */}
+              {/* <S.Text>
                 {postSelected.tempo_leitura
                   ? `${postSelected.tempo_leitura} minutos`
                   : `0 minutos`}
-              </S.Text>
+              </S.Text> */}
             </S.DateHourTextWrapper>
             <S.Excerpt
               dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
             />
-            {/* <S.Text>{`Por ${postSelected.columnist}`}</S.Text> */}
           </S.ExcerptWrapper>
           <S.ContentWrapper>
             <S.Content>

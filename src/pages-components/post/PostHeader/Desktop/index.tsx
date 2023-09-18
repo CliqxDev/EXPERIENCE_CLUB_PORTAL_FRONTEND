@@ -25,7 +25,7 @@ const HeaderDesktopPost = () => {
 
   return (
     <S.Wrapper id="desktop-header-wrapper">
-      <S.Header id="desktop-header-wrapper">
+      <S.Header id="desktop-header">
         <Link href="/" passHref>
           <img src="/img/icon-logo-white.svg" alt="ícone do logo da expclub" />
         </Link>

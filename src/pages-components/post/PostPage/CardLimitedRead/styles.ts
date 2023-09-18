@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main<{ variant: 'sigin' | 'plan' }>`
   width: 100%;
@@ -10,6 +11,7 @@ export const Wrapper = styled.main<{ variant: 'sigin' | 'plan' }>`
   background: linear-gradient(180deg, rgba(29, 60, 179, 0) 0%, #1d3cb3 15%);
   position: fixed;
   bottom: 0;
+  z-index: 100;
 `;
 
 export const BgImg = styled.div`
@@ -30,6 +32,9 @@ export const Title = styled.h1`
   line-height: 40px;
   padding: 8rem 2rem 2rem 2rem;
   color: #bdcafe;
+  ${breakpoints.up('md')} {
+    width: 600px;
+  }
 `;
 
 export const CardContent = styled.div`
@@ -43,6 +48,10 @@ export const CardContent = styled.div`
   align-items: center;
   padding: 1.6rem;
   z-index: 1;
+
+  ${breakpoints.up('md')} {
+    width: 600px;
+  }
 `;
 
 export const TitleCard = styled.h2`
