@@ -4,9 +4,10 @@ import { breakpoints } from 'styles';
 export const Wrapper = styled.main`
   width: 100%;
   background-color: #ffff;
+  display: none;
 
   ${breakpoints.up('md')} {
-    display: none;
+    display: block;
   }
 
   .carousel.carousel-slider li.slide.selected {

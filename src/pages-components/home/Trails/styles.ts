@@ -12,6 +12,10 @@ export const TrailsButton = styled.div<{ backgroundcolor: string }>`
   align-items: center;
   justify-content: center;
   background-color: ${({ backgroundcolor }) => backgroundcolor};
+
+  ${breakpoints.up('md')} {
+    margin-top: 0;
+  }
 `;
 
 export const TrailButtonText = styled.div`
@@ -37,6 +41,7 @@ export const WrapperMedia = styled.div`
   ${breakpoints.up('md')} {
     display: flex;
     align-items: center;
+    padding: 0 1.6rem;
   }
 `;
 
@@ -179,5 +184,18 @@ export const Button = styled.div`
 
   svg {
     margin-left: 8px;
+  }
+`;
+
+export const TitleTrail = styled.div`
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+  line-height: 3.6rem;
+  color: #e8e8e8;
+
+  ${breakpoints.up('md')} {
+    margin-bottom: 0;
+    margin-right: 100px;
   }
 `;

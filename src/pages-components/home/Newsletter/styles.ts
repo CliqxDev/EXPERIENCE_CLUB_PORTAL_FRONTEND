@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const NewsletterWrapper = styled.main<{ islogged: string }>`
   width: 100%;
@@ -10,14 +11,42 @@ export const NewsletterWrapper = styled.main<{ islogged: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${breakpoints.up('md')} {
+    justify-content: center;
+    height: 389px;
+  }
 `;
 
 export const FormWrapper = styled.form`
   width: 100%;
-  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
+  ${breakpoints.up('md')} {
+    flex-direction: row;
+
+    #input-wrapper {
+      height: 76px;
+      width: 270px;
+      margin-right: 1.6rem;
+    }
+
+    #wrapper-button {
+      width: 160px;
+      margin: 0;
+      height: 76px;
+
+      margin-bottom: 1.2rem;
+
+      button {
+        height: 56px !important;
+        margin: 0 !important;
+      }
+    }
+  }
 `;
 
 export const CheckboxContainer = styled.div`
@@ -25,6 +54,13 @@ export const CheckboxContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${breakpoints.up('md')} {
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    width: 100%;
+  }
 `;
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
@@ -41,6 +77,10 @@ export const CustomizeLabel = styled.label`
   line-height: 2rem;
 
   color: #ffff;
+
+  ${breakpoints.up('md')} {
+    width: 100%;
+  }
 `;
 
 export const MessageWrapper = styled.div`
@@ -111,3 +151,14 @@ export const MessageSuccess = styled.div`
   align-items: center;
   text-align: center;
 `;
+
+export const WrapperTitle = styled.div`
+  ${breakpoints.up('md')} {
+    h1 {
+      margin-right: 0;
+      margin-bottom: 26px;
+    }
+  }
+`;
+
+export const FormDesk = styled.div``;

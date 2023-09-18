@@ -20,6 +20,7 @@ import * as S from './styles';
 import BannerDesktop from '../BannerDesktop';
 import TrailsDesktop from '../Trails/TrailsDesktop';
 import BannerDesktopVideos from '../BannerDesktopVideos';
+import CarouselDesktop from '../CarouselDesktop';
 
 const HomePage = () => {
   const { data: postsData } = usePosts();
@@ -72,15 +73,17 @@ const HomePage = () => {
       {(isLoading && <SkeletonHome />) || (
         <>
           <CarouselSlide />
+          <CarouselDesktop />
+
           <Trails />
           <Accompany />
           <Newsletter />
           <Explore title="Explore" variant="default" />
-          {(!isLogged || userIsAdmin === false && userIsPremium === false) ?
+          {!isLogged || (userIsAdmin === false && userIsPremium === false) ? (
             <BannerDesktop />
-            :
+          ) : (
             <BannerDesktopVideos />
-          }
+          )}
           <ShowMore />
         </>
       )}

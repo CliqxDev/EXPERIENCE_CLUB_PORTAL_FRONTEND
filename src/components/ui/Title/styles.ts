@@ -29,6 +29,7 @@ export const Title = styled.h1<{
   ${({ variant }) => variant && variants[variant]}
 
   ${breakpoints.up('md')} {
-    width: 1140px;
+    margin-bottom: 0;
+    margin-right: 100px;
   }
 `;

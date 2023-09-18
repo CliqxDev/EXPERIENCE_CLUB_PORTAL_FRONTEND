@@ -48,6 +48,7 @@ const Input: FC<InputProps> = ({
 
   return (
     <S.Wrapper
+      id="input-wrapper"
       variant={variant || 'default'}
       error={errorMessage}
       disabled={disabled}
