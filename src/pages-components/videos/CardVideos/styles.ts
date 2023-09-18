@@ -34,6 +34,10 @@ export const Header = styled.div`
 export const Content = styled.div`
   position: fixed;
   bottom: 1.6rem;
+
+  ${breakpoints.up('md')} {
+    bottom: 4rem;
+  }
 `;
 
 export const TopCard = styled.div`

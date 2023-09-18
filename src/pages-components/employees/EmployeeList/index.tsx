@@ -111,9 +111,9 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
               Limite de licenças excedido, porém é possível adicionar mais
               pessoas.
             </S.TitleLimit>
-            <Link href="/plan" style={{ width: '100%' }}>
+            {/* <Link href="/plan" style={{ width: '100%' }}>
               <S.AddButton>Adquirir licença</S.AddButton>
-            </Link>
+            </Link> */}
           </S.CardAddEmployee>
         </S.CardLicense>
         :

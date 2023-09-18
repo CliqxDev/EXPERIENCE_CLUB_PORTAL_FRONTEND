@@ -64,7 +64,7 @@ const HeaderDesktop = () => {
             <BoxLoggedDesktop onClick={() => setShowMenu(!showMenu)} />
           )) || (
               <>
-                <Link href="https://experienceclub.vhx.tv/" target='_blank' passHref style={{ textDecoration: 'none', marginRight: '2rem' }}>
+                <Link href="/videos" target='_parent' passHref style={{ textDecoration: 'none', marginRight: '2rem' }}>
                   <S.SpanAction style={{ marginLeft: '2rem' }}>Vídeos</S.SpanAction>
                 </Link>
                 <Link href="/plan" passHref style={{ textDecoration: 'none', marginRight: '2rem' }}>

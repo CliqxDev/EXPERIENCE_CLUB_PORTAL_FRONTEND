@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { forEach } from 'lodash';
+import { useEffect, useState } from 'react';
+import { forEach, isEmpty } from 'lodash';
 import Accompany from 'pages-components/home/Accompany';
 import CarouselSlide from 'pages-components/home/Carousel';
 import Explore from 'pages-components/home/Explore';
@@ -30,6 +30,13 @@ const HomePage = () => {
   const userIsAdmin = data?.is_admin;
   const userIsPremium = data?.is_premium;
   const showShare = useShowShare();
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(data)) {
+      setIsLogged(true);
+    }
+  }, [data, isLogged]);
 
   const isLoading =
     statusPosts === RequestStatus.fetching ||
@@ -69,7 +76,7 @@ const HomePage = () => {
           <Accompany />
           <Newsletter />
           <Explore title="Explore" variant="default" />
-          {userIsAdmin === false && userIsPremium === false ?
+          {(!isLogged || userIsAdmin === false && userIsPremium === false) ?
             <BannerDesktop />
             :
             <BannerDesktopVideos />

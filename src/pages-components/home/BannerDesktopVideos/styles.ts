@@ -4,7 +4,7 @@ import { breakpoints } from 'styles';
 export const BannerWrapper = styled.main`
   width: 100%;
   height: 65px;
-  background: #2954FC;
+  background: #1D3CB3;
   display: flex;
   position: fixed;
   bottom: 0;

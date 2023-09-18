@@ -126,7 +126,7 @@ const CheckoutIndividual = () => {
   };
 
   useEffect(() => {
-    getPlan(2);
+    getPlan(1);
   }, []);
 
   const handleCounter = (newCounter: number) => {
