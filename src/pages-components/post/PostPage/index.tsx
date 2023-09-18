@@ -173,7 +173,7 @@ const Post = () => {
     if (!isEmpty(listMedia)) {
       const mediaPost = listMedia[postParam.featured_media];
       if (mediaPost) {
-        return listMedia[postParam.featured_media].media_details.sizes.full
+        return listMedia[postParam.featured_media].media_details.sizes.medium
           ?.source_url;
       }
     }
@@ -182,7 +182,7 @@ const Post = () => {
       const mediaPost = listMediaCategory[postParam.featured_media];
       if (mediaPost) {
         return listMediaCategory[postParam.featured_media].media_details.sizes
-          .full?.source_url;
+          .medium?.source_url;
       }
     }
     return '';
@@ -241,11 +241,13 @@ const Post = () => {
             <HeaderDesktopPost />
             <S.HeaderDesktop>
               <S.WrapperImage>
-                <S.GradientDesk />
                 <S.WrapperContent>
-                  <S.Title>{parse(postSelected.title)}</S.Title>
+                  <S.TextWrapper>
+                    <S.Title>{parse(postSelected.title)}</S.Title>
+                  </S.TextWrapper>
                 </S.WrapperContent>
                 <S.ImgPost>
+                  <S.GradientDesk />
                   <img
                     id="banner"
                     src={postSelected.imgSrcDesk}
@@ -258,23 +260,27 @@ const Post = () => {
           <S.ExcerptWrapper
             $background={findCategoryById(postSelected.categoryId).color}
           >
-            <S.DateHourTextWrapper>
-              <S.Text>{postSelected.date}</S.Text>
-              {/* <S.Divider />
+            <S.ExcerptWrapperDesk
+              $background={findCategoryById(postSelected.categoryId).color}
+            >
+              <S.DateHourTextWrapper>
+                <S.Text>{postSelected.date}</S.Text>
+                {/* <S.Divider />
               <Image
                 src={timeIcon}
                 alt="Tempo do post"
                 style={{ marginRight: '1rem' }}
               /> */}
-              {/* <S.Text>
+                {/* <S.Text>
                 {postSelected.tempo_leitura
                   ? `${postSelected.tempo_leitura} minutos`
                   : `0 minutos`}
               </S.Text> */}
-            </S.DateHourTextWrapper>
-            <S.Excerpt
-              dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
-            />
+              </S.DateHourTextWrapper>
+              <S.Excerpt
+                dangerouslySetInnerHTML={{ __html: postSelected.rendered }}
+              />
+            </S.ExcerptWrapperDesk>
           </S.ExcerptWrapper>
           <S.ContentWrapper>
             <S.Content>

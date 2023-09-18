@@ -28,7 +28,7 @@ const SlideCarouselDesktop: FC<Props> = ({ post }) => {
     if (!isEmpty(mediaData)) {
       const mediaPost = mediaData[postParam.featured_media];
       if (mediaPost) {
-        return mediaData[postParam.featured_media].media_details.sizes.full
+        return mediaData[postParam.featured_media].media_details.sizes.medium
           ?.source_url;
       }
     }
@@ -48,36 +48,42 @@ const SlideCarouselDesktop: FC<Props> = ({ post }) => {
   return (
     <S.Wrapper>
       <S.WrapperImage>
-        <S.Gradient />
         <S.WrapperContent>
-          <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-            <S.Title>{parse(post.title.rendered)}</S.Title>
-
-            <S.Description
-              dangerouslySetInnerHTML={{
-                __html: `${sanitizeTextByMaxLength(
-                  post.excerpt.rendered,
-                  100
-                )}...`
-              }}
-            />
-          </Link>
-
-          <S.WrapperAction>
+          <S.TextWrapper>
             <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-              <S.SubjectSection>
-                <Image src={articleIcon} alt="Assunto" />
-              </S.SubjectSection>
+              <S.Title>{parse(post.title.rendered)}</S.Title>
+
+              <S.Description
+                dangerouslySetInnerHTML={{
+                  __html: `${sanitizeTextByMaxLength(
+                    post.excerpt.rendered,
+                    100
+                  )}...`
+                }}
+              />
             </Link>
-            <S.SubjectSection onClick={() => dispatch(setShowShare(true))}>
-              <Image src={shareIcon} alt="Compartilhar" />
-            </S.SubjectSection>
-          </S.WrapperAction>
+
+            <S.WrapperAction>
+              <Link
+                href={`/post/${post.id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <S.SubjectSection>
+                  <Image src={articleIcon} alt="Assunto" />
+                </S.SubjectSection>
+              </Link>
+              <S.SubjectSection onClick={() => dispatch(setShowShare(true))}>
+                <Image src={shareIcon} alt="Compartilhar" />
+              </S.SubjectSection>
+            </S.WrapperAction>
+          </S.TextWrapper>
         </S.WrapperContent>
 
         <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
           {image && (
             <S.ImgPost>
+              <S.Gradient />
+              {/* <S.Gradient2 /> */}
               <img id="banner" src={image} alt="Assunto" />
             </S.ImgPost>
           )}

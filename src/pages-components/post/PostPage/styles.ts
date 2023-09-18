@@ -33,14 +33,19 @@ export const BannerDesktop = styled.div`
     display: flex;
     flex-direction: column;
 
-    #desktop-header-wrapper,
-    #desktop-header {
+    #desktop-header-wrapper {
       z-index: 10;
       background-color: transparent;
+      justify-content: center;
     }
 
     #desktop-header {
-      padding: 0 15rem;
+      width: 1140px;
+      background-color: transparent;
+
+      #box-sign-desktop {
+        padding-right: 0;
+      }
     }
   }
 `;
@@ -50,8 +55,8 @@ export const HeaderDesktop = styled.div`
   background: #0c0c0b;
   display: flex;
   text-align: left;
-  height: 460px;
-  justify-content: end;
+  height: 501px;
+  justify-content: center;
 `;
 
 export const Gradient = styled.div`
@@ -120,7 +125,16 @@ export const ExcerptWrapper = styled.div<{ $background: string }>`
   background: ${({ $background }) => $background || '#11236A'};
 
   ${breakpoints.up('md')} {
-    padding-left: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+`;
+
+export const ExcerptWrapperDesk = styled.div<{ $background: string }>`
+  ${breakpoints.up('md')} {
+    width: 1140px;
   }
 `;
 
@@ -280,8 +294,10 @@ export const ImgPost = styled.div`
 export const WrapperImage = styled.div`
   position: relative;
   display: flex;
+  width: 1140px;
+
   #banner {
-    height: 460px;
+    height: 501px;
     width: auto !important;
   }
 `;
@@ -291,7 +307,6 @@ export const Title = styled.h1`
   font-size: 40px;
   font-weight: 600;
   line-height: 43px;
-  margin-top: 112px;
 `;
 
 export const Description = styled.p`
@@ -350,16 +365,25 @@ export const WrapperText = styled.div`
 `;
 
 export const WrapperContent = styled.div`
-  width: 460px;
-  position: absolute;
-  height: 100%;
+  width: 260px;
+  margin-left: 70px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   ${breakpoints.up('lg')} {
-    left: -327px;
+    margin-left: 0px;
+    width: 460px;
   }
 `;
 
 export const GradientDesk = styled.div`
-  width: 460px;
+  width: 260px;
+
+  ${breakpoints.up('lg')} {
+    width: 460px;
+  }
   position: absolute;
   height: 100%;
   background: linear-gradient(
@@ -379,4 +403,19 @@ export const WrapperAction = styled.div`
   position: absolute;
   right: -54px;
   bottom: 86px;
+`;
+
+export const TextWrapper = styled.div`
+  width: 260px;
+
+  ${breakpoints.up('lg')} {
+    width: 460px;
+  }
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 48px;
+  justify-content: flex-end;
 `;

@@ -6,24 +6,20 @@ export const Wrapper = styled.main`
   background: #0c0c0b;
   display: flex;
   text-align: left;
-  height: 460px;
-  justify-content: end;
+  height: 501px;
+  justify-content: center;
 `;
 
 export const ImgPost = styled.div`
-  max-width: 950px;
-
-  /* #banner    ${breakpoints.up('md')} {
-      height: 415px;
-      width: 800px;
-    }
-  } */
-`;
-export const WrapperImage = styled.div`
   position: relative;
+  max-width: 950px;
+`;
+
+export const WrapperImage = styled.div`
   display: flex;
+  width: 1140px;
   #banner {
-    height: 460px;
+    height: 501px;
     width: auto !important;
   }
 `;
@@ -33,7 +29,6 @@ export const Title = styled.h1`
   font-size: 40px;
   font-weight: 600;
   line-height: 43px;
-  margin-top: 112px;
 `;
 
 export const Description = styled.p`
@@ -80,27 +75,37 @@ export const WrapperText = styled.div`
   left: 0;
   width: 100%;
   background: linear-gradient(0deg, #000000 60.94%, rgba(29, 29, 27, 0) 100%);
-
-  ${breakpoints.up('md')} {
-    /* position: relative; */
-    /* top: 0; */
-    /* background: transparent; */
-    position: relative;
-    margin-top: -32px;
-    padding-top: 32px;
-  }
+  position: relative;
+  margin-top: -32px;
+  padding-top: 32px;
 `;
 
 export const WrapperContent = styled.div`
+  width: 260px;
+  margin-left: 70px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  ${breakpoints.up('lg')} {
+    width: 460px;
+    margin-left: 0;
+  }
+`;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 48px;
+  justify-content: flex-end;
   width: 460px;
   position: absolute;
   height: 100%;
-  ${breakpoints.up('lg')} {
-    left: -327px;
-  }
+  z-index: 1;
 `;
 
 export const Gradient = styled.div`
+  left: 0;
   width: 460px;
   position: absolute;
   height: 100%;
@@ -113,12 +118,24 @@ export const Gradient = styled.div`
   );
 `;
 
-export const WrapperShare = styled.div``;
+export const Gradient2 = styled.div`
+  right: 0;
+  width: 460px;
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(
+    270deg,
+    #0c0c0b 0%,
+    rgba(14, 14, 13, 0.8) 25.59%,
+    rgba(18, 18, 17, 0.5) 64.08%,
+    rgba(29, 29, 27, 0) 100%
+  );
+`;
 
 export const WrapperAction = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
+  justify-content: flex-end;
   right: -54px;
-  bottom: 86px;
 `;
