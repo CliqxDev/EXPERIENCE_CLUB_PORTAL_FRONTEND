@@ -175,13 +175,14 @@ export const Divider = styled.div`
   margin: 0 1.6rem;
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div<{ fontSize: number }>`
   display: flex;
   flex-direction: column;
   padding: 3.2rem 1.6rem;
 
   p {
     margin-bottom: 2.4rem;
+    font-size: ${({ fontSize }) => fontSize}px;
   }
 
   ${breakpoints.up('md')} {

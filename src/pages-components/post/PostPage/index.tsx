@@ -73,6 +73,7 @@ const Post = () => {
 
   const [showTrailFilter, setShowTrailFilter] = useState(false);
   const [blockContent, setBlockContent] = useState(false);
+  const [fontSize, setFontSize] = useState(20);
 
   const isFullMedia =
     listMedia && Object.keys(listMedia).length === dataPosts?.length;
@@ -212,6 +213,20 @@ const Post = () => {
     }
   }, [post, listMedia, columnistData, blockContent]);
 
+  const changeFontSize = (value: number) => {
+    if (fontSize > 14 && fontSize < 26) {
+      setFontSize(fontSize + value);
+    }
+
+    if (fontSize === 14 && value === +2) {
+      setFontSize(fontSize + value);
+    }
+
+    if (fontSize === 26 && value === -2) {
+      setFontSize(fontSize + value);
+    }
+  };
+
   return (
     <S.Wrapper>
       {(isLoading && <SkeletonPost />) || (
@@ -282,21 +297,21 @@ const Post = () => {
               />
             </S.ExcerptWrapperDesk>
           </S.ExcerptWrapper>
-          <S.ContentWrapper>
+          <S.ContentWrapper fontSize={fontSize}>
             <S.Content>
               <S.Post
                 dangerouslySetInnerHTML={{ __html: postSelected.content }}
               />
 
               <S.Action>
-                <S.ButtonWrapper>
+                <S.ButtonWrapper onClick={() => changeFontSize(+2)}>
                   <img
                     src="/img/icon-a+.svg"
                     alt="ícone letra A e sinal de mais"
                   />
                   <S.Button>Aumentar</S.Button>
                 </S.ButtonWrapper>
-                <S.ButtonWrapper>
+                <S.ButtonWrapper onClick={() => changeFontSize(-2)}>
                   <img
                     src="/img/icon-a-.svg"
                     alt="ícone letra A e sinal de menos"
