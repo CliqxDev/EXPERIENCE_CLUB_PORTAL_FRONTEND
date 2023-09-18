@@ -92,8 +92,8 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
         </strong>
       </S.WarningLicense>
 
-      {(data?.remaining_vacancy_count && data?.remaining_vacancy_count - employeeData.length === 0) 
-      ?
+      {(data?.remaining_vacancy_count && data?.remaining_vacancy_count - employeeData.length === 0)
+        ?
         <S.CardLicense>
           <S.AddEmployee>
             <S.LimitEmployee variant="limited">
@@ -108,8 +108,7 @@ const EmployeeList: FC<TitleVariant> = ({ variant }) => {
           </S.AddEmployee>
           <S.CardAddEmployee variant="limit">
             <S.TitleLimit variant="add">
-              Limite de licenças excedido, porém é possível adicionar mais
-              pessoas.
+              Limite de licença excedido, para aumento de licenças entre em contato com ExpClub.
             </S.TitleLimit>
             {/* <Link href="/plan" style={{ width: '100%' }}>
               <S.AddButton>Adquirir licença</S.AddButton>

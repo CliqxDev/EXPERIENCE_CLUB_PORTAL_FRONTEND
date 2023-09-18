@@ -112,7 +112,7 @@ const cardAddVariant = {
   default: css`
   `,
   limit: css`
-    height: 140px;
+    height: 110px;
   `,
 }
 
