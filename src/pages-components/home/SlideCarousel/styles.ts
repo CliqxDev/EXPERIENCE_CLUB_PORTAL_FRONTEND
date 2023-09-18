@@ -7,7 +7,7 @@ export const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   text-align: left;
-  
+
   /* ${breakpoints.up('md')} {
     height: 415px;
     flex-direction: row-reverse;
@@ -15,6 +15,7 @@ export const Wrapper = styled.main`
 `;
 
 export const ImgPost = styled.div`
+  min-height: 250px;
   /* img {
     ${breakpoints.up('md')} {
       height: 415px;
