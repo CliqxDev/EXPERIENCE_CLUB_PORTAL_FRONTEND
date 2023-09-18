@@ -54,7 +54,12 @@ const BUTTONS_SHARE: ButtonShare[] = [
 ];
 
 const ShareDialog: FC<Props> = ({ id, onClose }) => {
-  const handleText = () => window && `${window.location.host}/post/${id}`;
+  const handleText = () => {
+    if (typeof window !== 'undefined') {
+      return `${window.location.host}/post/${id}`;
+    }
+    return '';
+  };
 
   return (
     <Dialog show={!!id} onClose={onClose}>
