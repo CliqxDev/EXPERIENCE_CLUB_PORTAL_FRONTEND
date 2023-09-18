@@ -30,6 +30,7 @@ export const Wrapper = styled.main<{ variant: 'bottom' | 'simple' | 'center' }>`
 `;
 
 export const Header = styled.div`
+  background-color: transparent;
   height: 72px;
   display: flex;
   align-items: center;
@@ -47,7 +48,7 @@ const FormWrapperVariants = {
     bottom: 1.6rem;
     left: 1.6rem;
     right: 1.6rem;
-    background-color: #ffffff;
+    background: transparent;
 
     ${breakpoints.up('md')} {
       position: unset;
@@ -68,6 +69,7 @@ const FormWrapperVariants = {
 export const FormWrapper = styled.div<{
   variant: 'bottom' | 'simple' | 'center';
 }>`
+  background: transparent;
   display: flex;
   flex-direction: column;
   z-index: 10;

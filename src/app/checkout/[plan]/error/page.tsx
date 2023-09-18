@@ -9,8 +9,8 @@ import * as S from './styles';
 
 export default function Page() {
   return (
-    <>
-      <Sticker bottom="24.3rem" padding="0">
+    <FormLayout onRedirectPath="/">
+      <Sticker padding="0">
         <S.Header>
           <h1>Houve um problema</h1>
           <h2>
@@ -19,16 +19,14 @@ export default function Page() {
           </h2>
         </S.Header>
       </Sticker>
-      <FormLayout onRedirectPath="/">
-        <S.Action>
-          <h1>Tente novamente</h1>
-          <h2>Confirme os dados e sua conexão e refaça seu pedido.</h2>
+      <S.Action>
+        <h1>Tente novamente</h1>
+        <h2>Confirme os dados e sua conexão e refaça seu pedido.</h2>
 
-          <Link href="/" passHref>
-            <Button fullwidth>Ok</Button>
-          </Link>
-        </S.Action>
-      </FormLayout>
-    </>
+        <Link href="/" passHref>
+          <Button fullwidth>Ok</Button>
+        </Link>
+      </S.Action>
+    </FormLayout>
   );
 }

@@ -22,11 +22,11 @@ export default function SigInPage() {
   }, []);
   return (
     <>
-      <Sticker bottom="51.6rem">
-        <h2>Clique para entrar no portal</h2>
-      </Sticker>
       <Spinner active={isLoading || false}>
         <FormLayout variant="bottom" onRedirectPath="/">
+          <Sticker>
+            <h2>Clique para entrar no portal</h2>
+          </Sticker>
           <SigIn />
         </FormLayout>
       </Spinner>

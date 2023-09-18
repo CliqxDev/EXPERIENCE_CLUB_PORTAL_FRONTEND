@@ -8,8 +8,8 @@ import * as S from './styles';
 
 export default function Page() {
   return (
-    <>
-      <Sticker bottom="24.3rem" padding="0">
+    <FormLayout onRedirectPath="/">
+      <Sticker padding="0">
         <S.Header>
           <h1>Processo de compra em andamento</h1>
           <h2>
@@ -18,19 +18,17 @@ export default function Page() {
           </h2>
         </S.Header>
       </Sticker>
-      <FormLayout onRedirectPath="/">
-        <S.Action>
-          <h1>Você será redirecionado</h1>
-          <h2>Estamos processando as informações, aguarde um segundo.</h2>
+      <S.Action>
+        <h1>Você será redirecionado</h1>
+        <h2>Estamos processando as informações, aguarde um segundo.</h2>
 
-          <ReactLoading
-            type="spinningBubbles"
-            color="rgba(41, 84, 252, 1)"
-            height={76}
-            width={72}
-          />
-        </S.Action>
-      </FormLayout>
-    </>
+        <ReactLoading
+          type="spinningBubbles"
+          color="rgba(41, 84, 252, 1)"
+          height={76}
+          width={72}
+        />
+      </S.Action>
+    </FormLayout>
   );
 }

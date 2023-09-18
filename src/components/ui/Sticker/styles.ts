@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
-export const StickWrapper = styled.div<{ bottom: string }>`
+export const StickWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: ${({ bottom }) => bottom};
-  left: 1.6rem;
-  right: 1.6rem;
-  position: absolute;
+  margin-bottom: 1.6rem;
 `;
 
 export const Stick = styled.div<{ padding: string }>`

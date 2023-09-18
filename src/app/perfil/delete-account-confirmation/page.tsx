@@ -26,8 +26,8 @@ export default function Page() {
   }, []);
 
   return (
-    <>
-      <Sticker bottom="14rem" padding="0">
+    <FormLayout onRedirectPath="/perfil">
+      <Sticker padding="0">
         <S.Header>
           <h1>Conta excluída</h1>
           <h2>Você não faz mais parte da nossa plataforma</h2>
@@ -36,13 +36,11 @@ export default function Page() {
           Suas informações foram excluídas do nosso banco de dados.
         </S.Footer>
       </Sticker>
-      <FormLayout onRedirectPath="/perfil">
-        <S.Action>
-          <Link href="/" passHref>
-            <Button fullwidth>Ok</Button>
-          </Link>
-        </S.Action>
-      </FormLayout>
-    </>
+      <S.Action>
+        <Link href="/" passHref>
+          <Button fullwidth>Ok</Button>
+        </Link>
+      </S.Action>
+    </FormLayout>
   );
 }

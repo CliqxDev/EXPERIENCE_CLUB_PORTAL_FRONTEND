@@ -29,11 +29,11 @@ export default function Page() {
 
   return (
     <>
-      <Sticker bottom="24.6rem">
-        {plan ? <h1>{title[plan]}</h1> : <h1>Cadastro</h1>}
-        <h2>{textH2[plan]}</h2>
-      </Sticker>
       <FormLayout onRedirectPath="/">
+        <Sticker>
+          {plan ? <h1>{title[plan]}</h1> : <h1>Cadastro</h1>}
+          <h2>{textH2[plan]}</h2>
+        </Sticker>
         <EmailVerify>
           <h2>
             Confirme a criação da sua conta <br /> clicando no link enviado.

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.form`
   padding: 3.2rem 2.4rem;
+  background-color: #ffffff;
 
   h1 {
     font-size: 2.4rem;

@@ -3,12 +3,11 @@ import * as S from './styles';
 
 type Props = {
   children: ReactNode;
-  bottom: string;
   padding?: string;
 };
 
-const Sticker: FC<Props> = ({ children, bottom, padding = '1.6rem' }) => (
-  <S.StickWrapper bottom={bottom}>
+const Sticker: FC<Props> = ({ children, padding = '1.6rem' }) => (
+  <S.StickWrapper id="wrapper-sticker">
     <S.Stick padding={padding}> {children}</S.Stick>
   </S.StickWrapper>
 );
