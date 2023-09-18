@@ -143,8 +143,8 @@ const Post = () => {
 
   useEffect(() => {
     if (!isEmpty(dataClient)) {
-      if (!dataClient.is_premium && !dataClient.is_admin) {
-        setBlockContent(dataClient.qtd_posts_read_month > 4);
+      if (!dataClient.is_premium) {
+        setBlockContent(dataClient.qtd_posts_read_month >= 4);
       }
     }
   }, [dataClient]);
