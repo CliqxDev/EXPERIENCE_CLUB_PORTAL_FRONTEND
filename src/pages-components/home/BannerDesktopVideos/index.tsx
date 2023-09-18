@@ -14,7 +14,7 @@ const BannerDesktopVideos = () => {
         <S.BannerWrapper>
           <S.Assign>
             <S.Plans>
-              <S.Title>Vídeos!</S.Title>
+              <S.Title>Vídeos</S.Title>
               <S.SubTitle>Confira nossa plataforma de vídeos!</S.SubTitle>
             </S.Plans>
             <S.Plans>
