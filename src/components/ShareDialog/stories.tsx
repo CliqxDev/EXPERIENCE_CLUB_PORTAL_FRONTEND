@@ -7,4 +7,4 @@ export default {
   component: ShareDialog
 } as Meta;
 
-export const Default: Story = () => <ShareDialog show onClose={() => {}} />;
+export const Default: Story = () => <ShareDialog id="" onClose={() => {}} />;

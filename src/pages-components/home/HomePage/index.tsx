@@ -87,10 +87,7 @@ const HomePage = () => {
           <ShowMore />
         </>
       )}
-      <ShareDialog
-        show={showShare}
-        onClose={() => dispatch(setShowShare(false))}
-      />
+      <ShareDialog id={showShare} onClose={() => dispatch(setShowShare(''))} />
     </S.Wrapper>
   );
 };

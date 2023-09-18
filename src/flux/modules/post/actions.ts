@@ -60,7 +60,7 @@ export const postByCategories = createAsyncAction(
 
 export const clearPostById = createAction('CLEAR_POST_BY_ID')();
 
-export const setShowShare = createAction('SET_SHOW_SHARE')<boolean>();
+export const setShowShare = createAction('SET_SHOW_SHARE')<string | number>();
 
 export const clearPostCategory = createAction('CLEAR_POST_CATEGORY')();
 

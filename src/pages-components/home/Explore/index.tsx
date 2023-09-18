@@ -77,7 +77,7 @@ const Explore: FC<Props> = ({ title, variant }) => {
               <Image
                 src={shareIcon}
                 alt="Compartilhar"
-                onClick={() => dispatch(setShowShare(true))}
+                onClick={() => dispatch(setShowShare(item.id))}
               />
             </S.FooterCard>
           </S.Card>

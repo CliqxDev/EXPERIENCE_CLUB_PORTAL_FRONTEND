@@ -143,7 +143,7 @@ const PostSearch = () => {
                   {findCategoryById(item.categoryId).label}
                 </S.CardCategory>
                 <svg
-                  onClick={() => dispatch(setShowShare(true))}
+                  onClick={() => dispatch(setShowShare(item.id))}
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -172,8 +172,8 @@ const PostSearch = () => {
         </S.CardWrapper>
       </S.Content>
       <ShareDialog
-        show={showShare}
-        onClose={() => dispatch(setShowShare(false))}
+        id={showShare}
+        onClose={() => dispatch(setShowShare(''))}
       />
     </S.Wrapper>
   );

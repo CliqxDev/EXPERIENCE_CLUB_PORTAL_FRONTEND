@@ -318,7 +318,7 @@ const Post = () => {
                   />
                   <S.Button>Diminuir</S.Button>
                 </S.ButtonWrapper>
-                <S.ButtonWrapper onClick={() => dispatch(setShowShare(true))}>
+                <S.ButtonWrapper onClick={() => dispatch(setShowShare(id))}>
                   <img
                     src="/img/icon-post-share-action.svg"
                     alt="ícone compartilhar"
@@ -342,8 +342,8 @@ const Post = () => {
         onClose={() => setShowTrailFilter(false)}
       />
       <ShareDialog
-        show={showShare}
-        onClose={() => dispatch(setShowShare(false))}
+        id={showShare}
+        onClose={() => dispatch(setShowShare(''))}
       />
 
       {/* <S.LimitedRead>

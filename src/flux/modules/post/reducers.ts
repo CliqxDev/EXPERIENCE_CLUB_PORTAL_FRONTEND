@@ -25,7 +25,7 @@ const initialState: Post = {
   postSearch: { data: null, message: null, status: RequestStatus.idle },
   postCategories: { data: null, message: null, status: RequestStatus.idle },
   media: { data: null, message: null, status: RequestStatus.idle },
-  showShare: false
+  showShare: ''
 };
 
 const postReducer = createReducer<Post, Action>(initialState)

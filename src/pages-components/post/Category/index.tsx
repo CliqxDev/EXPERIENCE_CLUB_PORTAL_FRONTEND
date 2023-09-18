@@ -246,7 +246,7 @@ const Category = () => {
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  onClick={() => dispatch(setShowShare(true))}
+                  onClick={() => dispatch(setShowShare(item.id))}
                 >
                   <mask
                     id="mask0_2582_25361"
@@ -269,10 +269,7 @@ const Category = () => {
           ))}
         </S.CardWrapper>
       </S.Content>
-      <ShareDialog
-        show={showShare}
-        onClose={() => dispatch(setShowShare(false))}
-      />
+      <ShareDialog id={showShare} onClose={() => dispatch(setShowShare(''))} />
     </S.Wrapper>
   );
 };

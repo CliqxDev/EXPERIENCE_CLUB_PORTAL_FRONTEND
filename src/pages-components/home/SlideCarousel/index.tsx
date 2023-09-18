@@ -58,7 +58,9 @@ const SlideCarousel: FC<Props> = ({ post }) => {
       <S.WrapperContent>
         <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
           <S.WrapperText>
-            <S.Title>{post.title && <span>{parse(post.title.rendered)}</span>}</S.Title>
+            <S.Title>
+              {post.title && <span>{parse(post.title.rendered)}</span>}
+            </S.Title>
 
             <S.Description
               dangerouslySetInnerHTML={{
@@ -79,7 +81,7 @@ const SlideCarousel: FC<Props> = ({ post }) => {
                 <S.Span>{findCategoryById(post.categories[0]).label}</S.Span>
               </S.SubjectSection>
             </Link>
-            <S.WrapperImagem onClick={() => dispatch(setShowShare(true))}>
+            <S.WrapperImagem onClick={() => dispatch(setShowShare(post.id))}>
               <Image src={shareIcon} alt="Compartilhar" />
             </S.WrapperImagem>
           </S.FooterSlide>

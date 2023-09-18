@@ -191,5 +191,5 @@ export interface Post {
   mediaCategory: IRequest<MediaResponse>;
   columnists: IRequest<ColumnistsResponse>;
   postById: IRequest<PostItem>;
-  showShare: boolean;
+  showShare: string | number;
 }

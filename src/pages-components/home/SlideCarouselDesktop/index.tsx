@@ -72,7 +72,7 @@ const SlideCarouselDesktop: FC<Props> = ({ post }) => {
                   <Image src={articleIcon} alt="Assunto" />
                 </S.SubjectSection>
               </Link>
-              <S.SubjectSection onClick={() => dispatch(setShowShare(true))}>
+              <S.SubjectSection onClick={() => dispatch(setShowShare(post.id))}>
                 <Image src={shareIcon} alt="Compartilhar" />
               </S.SubjectSection>
             </S.WrapperAction>
