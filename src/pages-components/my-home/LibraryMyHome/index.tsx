@@ -49,7 +49,7 @@ const LibraryMyHome = () => {
     <S.Wrapper>
       {userIsAdmin === true &&
         <S.AdminUser>
-          <Link href="/employees" style={{ textDecoration: 'none' }}>
+          <Link href="/employees" style={{ textDecoration: 'none', width: '100%' }}>
             <S.CardAdminUser>
               <Image
                 src={employeesIcon}

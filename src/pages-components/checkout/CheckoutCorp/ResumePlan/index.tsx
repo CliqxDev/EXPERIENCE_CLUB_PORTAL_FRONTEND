@@ -131,7 +131,7 @@ const ResumePlan: FC<Props> = ({ onCounter, counterQtdMembers }) => {
               <S.HeaderDescription>
                 {sanitizeInstallment()}
                 {sanitizeValue()}
-                <h5>Valor por usuário</h5>
+                <h5>Valor total</h5>
               </S.HeaderDescription>
             </S.Header>
           </S.HeaderWrapper>
