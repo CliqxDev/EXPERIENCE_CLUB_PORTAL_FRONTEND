@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 
 import {
   useMediaCategory,
+  useMedia,
   usePostCategories,
   useShowShare
 } from 'hook/selectors/postHooks';
@@ -36,6 +37,7 @@ const Category = () => {
 
   const { data: posts, status: statusCategory } = usePostCategories();
   const { data: dataMedia, status: statusMedia } = useMediaCategory();
+  const { data: listMedia, status: statusListMedia } = useMedia();
 
   const [cardData, setCardData] = useState<Card[]>([]);
   const [page, setPage] = useState(1);
@@ -75,11 +77,21 @@ const Category = () => {
   }, [posts]);
 
   const mediaSelect = (post: PostItem) => {
-    if (!isEmpty(dataMedia)) {
-      const mediaPost = dataMedia[post.featured_media];
-      if (mediaPost) {
-        return dataMedia[post.featured_media].media_details.sizes.thumbnail
-          ?.source_url;
+    if (!isEmpty(post)) {
+      if (!isEmpty(dataMedia)) {
+        const mediaPost = dataMedia[post.featured_media];
+        if (mediaPost) {
+          return dataMedia[post.featured_media].media_details.sizes.thumbnail
+            ?.source_url;
+        }
+      }
+
+      if (!isEmpty(listMedia)) {
+        const mediaPost = listMedia[post.featured_media];
+        if (mediaPost) {
+          return listMedia[post.featured_media].media_details.sizes.medium
+            ?.source_url;
+        }
       }
     }
     return '';
@@ -103,7 +115,7 @@ const Category = () => {
             });
           });
           setCardData([]);
-          setCardData([...cardData, ...newCardData]);
+          setCardData([...newCardData]);
         }
       }
     }
@@ -208,7 +220,7 @@ const Category = () => {
                   </S.ImageWrapper>
                   <S.Subtitle
                     dangerouslySetInnerHTML={{
-                      __html: `${item.description}...`
+                      __html: item.description
                     }}
                   />
                 </S.Row>

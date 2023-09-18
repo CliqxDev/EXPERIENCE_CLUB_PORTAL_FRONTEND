@@ -168,7 +168,7 @@ const Trails = () => {
                   <img src={item.imgSrc} alt="card imagem" />
                 </S.ImageWrapper>
                 <S.Subtitle
-                  dangerouslySetInnerHTML={{ __html: `${item.description}...` }}
+                  dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               </S.Row>
             </Link>

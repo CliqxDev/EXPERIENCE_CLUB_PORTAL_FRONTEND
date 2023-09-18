@@ -12,11 +12,14 @@ export const sanitizeAvatar = (name: string) => {
 };
 
 export const sanitizeTextByMaxLength = (value: string, maxLength = 150) => {
-  const trimmedString = value.substring(0, maxLength);
-  return trimmedString.substring(
-    0,
-    Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
-  );
+  if (value.length > maxLength) {
+    const trimmedString = value.substring(0, maxLength);
+    return `${trimmedString.substring(
+      0,
+      Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
+    )}...`;
+  }
+  return value;
 };
 
 export const formatInstallmentsValor = (value: number, qtd: number) => {

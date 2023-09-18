@@ -39,7 +39,7 @@ const Accompany = () => {
         forEach(posts.slice(5), post => {
           newCardData.push({
             id: post.id,
-            title: post.title.rendered,
+            title: sanitizeTextByMaxLength(post.title.rendered, 65),
             imgSrc: mediaSelect(post),
             description: sanitizeTextByMaxLength(post.excerpt.rendered),
             categoryId: post.categories[0]

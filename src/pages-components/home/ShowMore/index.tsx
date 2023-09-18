@@ -61,10 +61,10 @@ const ShowMore = () => {
                   <img src={item.imgSrc} alt="card imagem" />
                 </S.ImageWrapper>
                 <S.Texts>
-                  <S.CardTitle>{parse(`${item.title}...`)}</S.CardTitle>
+                  <S.CardTitle>{parse(item.title)}</S.CardTitle>
                   <S.Subtitle
                     dangerouslySetInnerHTML={{
-                      __html: `${item.description}...`
+                      __html: item.description
                     }}
                   />
                 </S.Texts>

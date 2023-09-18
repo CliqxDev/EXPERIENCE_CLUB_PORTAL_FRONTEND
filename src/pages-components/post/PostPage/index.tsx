@@ -152,38 +152,42 @@ const Post = () => {
   }, [dataClient]);
 
   const mediaSelect = (postParam: PostItem) => {
-    if (!isEmpty(listMedia)) {
-      const mediaPost = listMedia[postParam.featured_media];
-      if (mediaPost) {
-        return listMedia[postParam.featured_media].media_details.sizes
-          .medium_large?.source_url;
+    if (!isEmpty(postParam)) {
+      if (!isEmpty(listMedia)) {
+        const mediaPost = listMedia[postParam.featured_media];
+        if (mediaPost) {
+          return listMedia[postParam.featured_media].media_details.sizes
+            .medium_large?.source_url;
+        }
       }
-    }
 
-    if (!isEmpty(listMediaCategory)) {
-      const mediaPost = listMediaCategory[postParam.featured_media];
-      if (mediaPost) {
-        return listMediaCategory[postParam.featured_media].media_details.sizes
-          .medium_large?.source_url;
+      if (!isEmpty(listMediaCategory)) {
+        const mediaPost = listMediaCategory[postParam.featured_media];
+        if (mediaPost) {
+          return listMediaCategory[postParam.featured_media].media_details.sizes
+            .medium_large?.source_url;
+        }
       }
     }
     return '';
   };
 
   const mediaSelectDesk = (postParam: PostItem) => {
-    if (!isEmpty(listMedia)) {
-      const mediaPost = listMedia[postParam.featured_media];
-      if (mediaPost) {
-        return listMedia[postParam.featured_media].media_details.sizes.medium
-          ?.source_url;
+    if (!isEmpty(postParam)) {
+      if (!isEmpty(listMedia)) {
+        const mediaPost = listMedia[postParam.featured_media];
+        if (mediaPost) {
+          return listMedia[postParam.featured_media].media_details.sizes.medium
+            ?.source_url;
+        }
       }
-    }
 
-    if (!isEmpty(listMediaCategory)) {
-      const mediaPost = listMediaCategory[postParam.featured_media];
-      if (mediaPost) {
-        return listMediaCategory[postParam.featured_media].media_details.sizes
-          .medium?.source_url;
+      if (!isEmpty(listMediaCategory)) {
+        const mediaPost = listMediaCategory[postParam.featured_media];
+        if (mediaPost) {
+          return listMediaCategory[postParam.featured_media].media_details.sizes
+            .medium?.source_url;
+        }
       }
     }
     return '';
@@ -341,10 +345,7 @@ const Post = () => {
         show={showTrailFilter}
         onClose={() => setShowTrailFilter(false)}
       />
-      <ShareDialog
-        id={showShare}
-        onClose={() => dispatch(setShowShare(''))}
-      />
+      <ShareDialog id={showShare} onClose={() => dispatch(setShowShare(''))} />
 
       {/* <S.LimitedRead>
         Limite de leitura excedido.

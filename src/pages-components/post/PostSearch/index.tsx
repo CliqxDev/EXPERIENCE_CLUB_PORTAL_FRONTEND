@@ -106,10 +106,10 @@ const PostSearch = () => {
                     <img src={item.imgSrc} alt="card imagem" />
                   </S.ImageWrapper>
                   <S.Texts>
-                    <S.CardTitle>{parse(`${item.title}...`)}</S.CardTitle>
+                    <S.CardTitle>{parse(item.title)}</S.CardTitle>
                     <S.Subtitle
                       dangerouslySetInnerHTML={{
-                        __html: `${item.description}...`
+                        __html: item.description
                       }}
                     />
                   </S.Texts>
@@ -171,10 +171,7 @@ const PostSearch = () => {
           ))}
         </S.CardWrapper>
       </S.Content>
-      <ShareDialog
-        id={showShare}
-        onClose={() => dispatch(setShowShare(''))}
-      />
+      <ShareDialog id={showShare} onClose={() => dispatch(setShowShare(''))} />
     </S.Wrapper>
   );
 };

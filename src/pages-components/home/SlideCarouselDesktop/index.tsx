@@ -55,10 +55,7 @@ const SlideCarouselDesktop: FC<Props> = ({ post }) => {
 
               <S.Description
                 dangerouslySetInnerHTML={{
-                  __html: `${sanitizeTextByMaxLength(
-                    post.excerpt.rendered,
-                    100
-                  )}...`
+                  __html: sanitizeTextByMaxLength(post.excerpt.rendered, 100)
                 }}
               />
             </Link>

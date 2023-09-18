@@ -66,7 +66,7 @@ const Explore: FC<Props> = ({ title, variant }) => {
             <Link href={`/post/${item.id}`}>
               <img src={item.imgSrc} alt="card imagem" />
               <S.DescriptionCard
-                dangerouslySetInnerHTML={{ __html: `${item.title}...` }}
+                dangerouslySetInnerHTML={{ __html: item.title }}
               />
             </Link>
 
