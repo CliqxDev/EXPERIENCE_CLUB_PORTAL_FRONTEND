@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import Link from 'next/link';
+import parse from 'html-react-parser';
 import { PostItem } from 'flux/modules/post/types';
 
 import { useMedia } from 'hook/selectors/postHooks';
@@ -57,7 +58,7 @@ const SlideCarousel: FC<Props> = ({ post }) => {
       <S.WrapperContent>
         <Link href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
           <S.WrapperText>
-            <S.Title>{post.title.rendered}</S.Title>
+            <S.Title>{post.title && <span>{parse(post.title.rendered)}</span>}</S.Title>
 
             <S.Description
               dangerouslySetInnerHTML={{
