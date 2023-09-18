@@ -96,8 +96,17 @@ const SigIn = () => {
 
   return (
     <S.Wrapper onSubmit={formik.handleSubmit}>
-      <h1>Entre no seu perfil</h1>
-      <h2>Para ter acesso a todo o conteúdo.</h2>
+      {plan ?
+        <>
+          <h1>Complete sua assinatura</h1>
+          <h2>Para completar esta ação, faça login ou crie um cadastro.</h2>
+        </>
+        :
+        <>
+          <h1>Entre no seu perfil</h1>
+          <h2>Para ter acesso a todo o conteúdo.</h2>
+        </>
+      }
       <Input
         value={formik.values.email}
         onChange={(e: any) => {

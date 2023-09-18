@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { redirect, useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 
 import { forEach } from 'lodash';
@@ -22,6 +22,7 @@ import { setProvisoryToken } from 'utils/services/auth';
 import * as S from './styles';
 
 const ResetPasswordConfirmationPage = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { token }: any = useParams();
   const { status, message } = useResetPassword();
@@ -43,9 +44,12 @@ const ResetPasswordConfirmationPage = () => {
     }
 
     if (status === RequestStatus.success) {
+      toast("Senha alterada com sucesso. Você será redirecionado.");
       dispatch(clearRecoveryPasswordSendEmail());
 
-      redirect('/sigin');
+      setTimeout(() => {
+        router.push('/sigin');
+      }, 4000)
     }
   }, [status, message]);
 
@@ -125,6 +129,7 @@ const ResetPasswordConfirmationPage = () => {
         Salvar
       </Button>
       <Toaster variant="error" />
+      {status === RequestStatus.success && <Toaster variant="success" />}
     </S.Wrapper>
   );
 };

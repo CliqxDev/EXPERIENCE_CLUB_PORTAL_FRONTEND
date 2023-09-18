@@ -23,7 +23,7 @@ export default function SigInPage() {
   return (
     <>
       <Sticker bottom="51.6rem">
-        <h2>Você já faz parte da comunidade [EXP]</h2>
+        <h2>Clique para entrar no portal</h2>
       </Sticker>
       <Spinner active={isLoading || false}>
         <FormLayout variant="bottom" onRedirectPath="/">
