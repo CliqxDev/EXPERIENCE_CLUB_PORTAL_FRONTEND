@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'styles';
 import { roboto } from 'styles/fonts';
 
-export const Wrapper = styled.main`
+export const Wrapper = styled.main<{ auth: boolean }>`
   display: none;
   align-items: center;
   height: 72px;
@@ -14,6 +14,11 @@ export const Wrapper = styled.main`
 
   ${breakpoints.up('md')} {
     display: flex;
+
+    #wrapper-search {
+      width: 1140px;
+      left: ${({ auth }) => (auth ? -1040 : -500)}px;
+    }
   }
 `;
 

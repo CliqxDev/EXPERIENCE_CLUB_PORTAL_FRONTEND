@@ -18,7 +18,7 @@ const SearchMenu: FC<SearchMenuProps> = ({ onClose }) => {
   };
 
   return (
-    <S.Wrapper id="search">
+    <S.Wrapper id="wrapper-search">
       <Link href={search && `/post-search/${search}`} passHref type="submit">
         <ButtonMenu>
           <svg
