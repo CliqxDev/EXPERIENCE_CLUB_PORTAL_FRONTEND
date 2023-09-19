@@ -231,6 +231,7 @@ export const Action = styled.div`
   background-color: #ffffff;
   justify-content: space-around;
   align-items: center;
+  z-index: 1;
 
   ${breakpoints.up('md')} {
     width: 100px;

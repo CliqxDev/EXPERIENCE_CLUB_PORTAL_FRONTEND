@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main`
   display: flex;
@@ -15,6 +16,10 @@ export const ContentWrapper = styled.main`
   align-items: center;
   justify-content: center;
   max-width: 406px;
+
+  ${breakpoints.up('md')} {
+    max-width: 100%;
+  }
 `;
 
 export const Content = styled.main`

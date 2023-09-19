@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main`
   padding-top: 1.6rem;
+
+  ${breakpoints.up('md')} {
+    padding: 1.6rem;
+  }
 `;
 
 export const Title = styled.h1`
@@ -11,6 +16,10 @@ export const Title = styled.h1`
   font-weight: 400;
   line-height: 32px;
   padding: 0 1.6rem;
+
+  ${breakpoints.up('md')} {
+    padding: 0;
+  }
 `;
 
 export const Subtitle = styled.h2`
@@ -21,4 +30,8 @@ export const Subtitle = styled.h2`
   line-height: 20px;
   margin-bottom: 1.6rem;
   padding: 0 1.6rem;
+
+  ${breakpoints.up('md')} {
+    padding: 0;
+  }
 `;
