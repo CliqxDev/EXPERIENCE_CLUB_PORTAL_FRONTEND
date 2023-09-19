@@ -9,6 +9,7 @@ import { logout } from 'utils/services/auth';
 
 import { clearClientInfo, clearSigIn } from 'flux/modules/auth/actions';
 import { useClientInfo } from 'hook/selectors/authHooks';
+import { clearAssignNewsletter } from 'flux/modules/client/actions';
 import * as S from './styles';
 
 import arrowRightIcon from '../../../../../public/img/arrow-right-gray.svg';
@@ -20,7 +21,7 @@ const MenuDesktop = () => {
   const [menuList, setMenuList] = useState([
     {
       label: '',
-      path: '', 
+      path: '',
       target: ''
     }
   ]);
@@ -148,16 +149,22 @@ const MenuDesktop = () => {
   const handleLogout = () => {
     dispatch(clearClientInfo());
     dispatch(clearSigIn());
+    dispatch(clearAssignNewsletter());
     logout();
     setIsLogger(false);
-    redirect('/');
+    window.location.href = '/';
   };
 
   return (
     <S.WrapperDesktop>
       {menuList.map(({ path, label, target }) => (
         <S.MenuList key={uniqueId()}>
-          <Link target={target} href={path} passHref style={{ textDecoration: 'none' }}>
+          <Link
+            target={target}
+            href={path}
+            passHref
+            style={{ textDecoration: 'none' }}
+          >
             <S.MenuLabel>
               <span>{label}</span>
               <Image src={arrowRightIcon} alt="Acesso" />
