@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.main`
   width: 100%;
   padding: 4rem 2rem;
-  background: #E8E8E8;
+  background: #e8e8e8;
 `;
 
 export const CardGrid = styled.div`
@@ -21,7 +21,7 @@ export const Card = styled.div`
   gap: 16px;
   margin-top: 16px;
   border-radius: 4px;
-  background: #FFFF;
+  background: #ffff;
 `;
 
 export const EmployeeName = styled.h4`
@@ -29,7 +29,7 @@ export const EmployeeName = styled.h4`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #2954FC;
+  color: #2954fc;
   margin-top: 24px;
 `;
 
@@ -49,7 +49,7 @@ export const CardLicense = styled.div`
   border-radius: 4px;
   margin-top: 16px;
   padding: 2rem;
-  background-color: #1D3CB3;
+  background-color: #1d3cb3;
   background-image: url('/img/employee-bg.png');
   background-size: 100% 130px;
   background-position: bottom;
@@ -67,12 +67,12 @@ const variantLimited = {
     width: 104px;
     height: 64px;
   `
-}
+};
 
-export const LimitEmployee = styled.div<{ variant: "default" | "limited"}>`
+export const LimitEmployee = styled.div<{ variant: 'default' | 'limited' }>`
   width: 94px;
   height: 64px;
-  background: #11236A;
+  background: #11236a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +80,7 @@ export const LimitEmployee = styled.div<{ variant: "default" | "limited"}>`
   font-weight: 400;
   font-size: 32px;
   line-height: 40px;
-  color: #BDCAFE;
+  color: #bdcafe;
   ${({ variant }) => variant && variantLimited[variant]}
 `;
 
@@ -94,36 +94,35 @@ const variants = {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: #1D1D1B;
+    color: #1d1d1b;
     margin-top: 16px;
-  `,
-}
+  `
+};
 
-export const TitleLimit = styled.h1<{variant: 'default' | 'add' }>`
+export const TitleLimit = styled.h1<{ variant: 'default' | 'add' }>`
   font-family: Work Sans/title/large;
   font-weight: 400;
   font-size: 22px;
   line-height: 28px;
-  color: #BDCAFE;
+  color: #bdcafe;
   ${({ variant }) => variant && variants[variant]}
 `;
 
 const cardAddVariant = {
-  default: css`
-  `,
+  default: css``,
   limit: css`
     height: 110px;
-  `,
-}
+  `
+};
 
-export const CardAddEmployee = styled.div<{variant: 'default' | 'limit' }>`
+export const CardAddEmployee = styled.div<{ variant: 'default' | 'limit' }>`
   width: 100%;
   height: 152px;
-  background: #EAEEFF;
+  background: #eaeeff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   margin-top: 4rem;
   border-radius: 8px;
   ${({ variant }) => variant && cardAddVariant[variant]}
@@ -137,12 +136,10 @@ export const AddButton = styled.button`
   justify-content: center;
   border: none;
   border-radius: 8px;
-  font-family: Work Sans/label/large;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   margin: 14px auto;
-  color: #FFFFFF;
-  background: #2954FC;
+  color: #ffffff;
+  background: #2954fc;
 `;
-

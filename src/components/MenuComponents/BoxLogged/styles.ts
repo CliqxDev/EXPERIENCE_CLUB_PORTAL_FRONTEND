@@ -68,7 +68,6 @@ export const RedirectProfile = styled.p`
   margin-right: 2rem;
 
   p {
-    font-family: Work Sans/label/large;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;

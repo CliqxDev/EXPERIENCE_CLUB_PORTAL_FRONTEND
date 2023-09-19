@@ -46,7 +46,7 @@ export const TopCard = styled.div`
   padding: 16px;
   margin-bottom: 1rem;
   border-radius: 4px;
-  background-color: #EAEEFF;
+  background-color: #eaeeff;
 
   ${breakpoints.up('md')} {
     margin-top: 2rem;
@@ -58,7 +58,7 @@ export const BottomCard = styled.div`
   height: 230px;
   padding: 16px;
   border-radius: 4px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   ${breakpoints.up('md')} {
     position: relative;
@@ -73,20 +73,20 @@ export const TitleCard = styled.h1`
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
-  color: #1D1D1B;
+  color: #1d1d1b;
   text-align: center;
 `;
 
-export const SubTitle  = styled.h2`
+export const SubTitle = styled.h2`
   font-family: Work Sans/headline/small;
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
-  color: #5476FD;
+  color: #5476fd;
   text-align: center;
 `;
 
-export const DescriptionCard  = styled.p`
+export const DescriptionCard = styled.p`
   width: 322px;
   display: flex;
   align-items: center;
@@ -106,15 +106,14 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background: #2954FC;
+  background: #2954fc;
   outline: none;
   border: none;
   height: 40px;
   cursor: pointer;
-  font-family: Work Sans/label/large;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #FFFF;
+  color: #ffff;
   margin-top: 4rem;
 `;

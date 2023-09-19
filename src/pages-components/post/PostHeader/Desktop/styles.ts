@@ -34,6 +34,23 @@ export const ActionsWrapper = styled.div`
     width: auto;
     margin-bottom: 0;
   }
+
+  #menu {
+    ${breakpoints.up('md')} {
+      right: 12px;
+      top: 51px;
+    }
+
+    ${breakpoints.up('lg')} {
+      right: -74px;
+      top: 51px;
+    }
+
+    ${breakpoints.up('xl')} {
+      right: -74px;
+      top: 51px;
+    }
+  }
 `;
 
 export const ButtonRegister = styled.button`

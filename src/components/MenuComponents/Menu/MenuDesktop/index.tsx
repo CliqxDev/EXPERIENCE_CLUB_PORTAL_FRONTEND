@@ -156,7 +156,7 @@ const MenuDesktop = () => {
   };
 
   return (
-    <S.WrapperDesktop>
+    <S.WrapperDesktop id="menu">
       {menuList.map(({ path, label, target }) => (
         <S.MenuList key={uniqueId()}>
           <Link

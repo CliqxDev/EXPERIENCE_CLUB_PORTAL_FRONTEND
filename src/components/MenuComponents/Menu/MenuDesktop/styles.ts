@@ -34,11 +34,10 @@ export const MenuLabel = styled.div`
   justify-content: space-between;
 
   span {
-    font-family: Work Sans/label/large;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    color: #0C0C0B;
+    color: #0c0c0b;
     cursor: pointer;
   }
 `;
