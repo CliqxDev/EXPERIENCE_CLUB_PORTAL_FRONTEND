@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from 'styles/fonts';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.div<{
   variant: string;
@@ -20,5 +21,14 @@ export const Wrapper = styled.div<{
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 20px;
+  }
+
+  ${breakpoints.up('md')} {
+    justify-content: center;
+    padding: 0;
+
+    div {
+      display: none;
+    }
   }
 `;

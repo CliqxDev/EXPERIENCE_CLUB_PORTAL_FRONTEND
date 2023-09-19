@@ -20,6 +20,10 @@ export const WrapperResponsive = styled.div`
   ${breakpoints.up('md')} {
     max-width: 720px;
     margin: 0 auto;
+
+    #wrapper-plan {
+      width: 100%;
+    }
   }
 `;
 
