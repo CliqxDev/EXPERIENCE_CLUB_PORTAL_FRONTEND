@@ -154,6 +154,13 @@ export const CardAddEmployee = styled.div<{ variant: 'default' | 'large' }>`
   padding: 1.2rem;
 
   ${({ variant }) => variant && cardVariants[variant]}
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+  }
 `;
 
 export const AddButton = styled.button`
@@ -170,4 +177,5 @@ export const AddButton = styled.button`
   background: #2954fc;
   height: 40px;
   margin-top: 1.6rem;
+  cursor: pointer;
 `;

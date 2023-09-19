@@ -96,7 +96,9 @@ const MyHome = () => {
                     Tenha acesso ilimitado a todo o conteúdo: entrevistas,
                     reportagens, vídeos e reports.
                   </S.SubTitle>
-                  <S.AddButton>Conheça nossos planos</S.AddButton>
+                  <Link href="/plan" passHref>
+                    <S.AddButton>Conheça nossos planos</S.AddButton>
+                  </Link>
                 </S.CardAddEmployee>
               </S.CardLicense>
             )}
