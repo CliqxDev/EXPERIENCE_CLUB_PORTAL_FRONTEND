@@ -123,10 +123,6 @@ const Post = () => {
   useEffect(() => {
     dispatch(postById.request(id));
 
-    if (isAuthenticated()) {
-      dispatch(setPostRead.request({ post_external_id: id }));
-    }
-
     if (dataPosts === null) {
       dispatch(columnists.request());
       dispatch(posts.request());
@@ -140,6 +136,9 @@ const Post = () => {
     return () => {
       dispatch(clearPostById());
       setAnonymousContentBlock();
+      if (isAuthenticated()) {
+        dispatch(setPostRead.request({ post_external_id: id }));
+      }
     };
   }, []);
 
