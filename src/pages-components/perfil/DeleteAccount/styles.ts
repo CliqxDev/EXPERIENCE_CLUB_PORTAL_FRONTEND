@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Title = styled.h1`
   color: #1d1d1b;
@@ -38,5 +39,12 @@ export const Action = styled.div`
 
   div:not(:last-child) {
     margin-right: 1.6rem;
+  }
+
+  ${breakpoints.up('md')} {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    padding: 0 1.6rem;
   }
 `;

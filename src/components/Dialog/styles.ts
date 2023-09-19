@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'styles';
 
 export const Wrapper = styled.main`
   width: 100%;
@@ -19,6 +20,14 @@ export const Content = styled.div`
   left: 0;
   background-color: #ffffff;
   border-radius: 16px 16px 0px 0px;
+
+  ${breakpoints.up('md')} {
+    width: 532px;
+    height: 100%;
+    left: auto;
+    right: 0;
+    border-radius: 16px 0 0 16px;
+  }
 `;
 
 export const Top = styled.div`
